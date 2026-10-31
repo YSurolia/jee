@@ -13,9 +13,13 @@ python3 -m http.server 8000
 Then visit http://localhost:8000. No internet connection is needed: the math renderer (KaTeX 0.16.9, MIT licence)
 is bundled in `vendor/katex/`. Your "done" progress is saved in the browser you use.
 
-## Host it for free
-- **GitHub Pages:** push this folder to a GitHub repo, then go to Settings → Pages → Deploy from branch → `main` / root.
-- **Netlify:** drag and drop this folder at https://app.netlify.com/drop
+## Live site
+The site is published at **https://jee.yatharth.org** from the GitHub repo `YSurolia/jee`.
+Every push to `main` runs `.github/workflows/pages.yml`, which deploys the repository root to GitHub Pages
+(Settings → Pages → Source: GitHub Actions; custom domain `jee.yatharth.org`, a DNS CNAME record pointing to `ysurolia.github.io`).
+You can also re-run it by hand from the repo's Actions tab ("Deploy to GitHub Pages" → Run workflow).
+
+Other free options: drag and drop this folder at https://app.netlify.com/drop
 
 ## Add or edit content
 All content is in `js/data/physics.js`, `chemistry.js` and `maths.js`. Each chapter is one object:
