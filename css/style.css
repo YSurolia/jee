@@ -405,3 +405,93 @@ summary { cursor: pointer; color: var(--accent); font-weight: 600; }
   .topic-icon.big { width: 46px; height: 46px; }
   .score-bar { flex-wrap: wrap; }
 }
+
+/* ---------- book chapters (Theory tab) ---------- */
+:root { --d-o: #e8590c; --d-b: #1971c2; --d-g: #2f9e44; --d-r: #e03131; --d-p: #7048e8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --d-o: #ff922b; --d-b: #4dabf7; --d-g: #69db7c; --d-r: #ff6b6b; --d-p: #9775fa; }
+}
+:root[data-theme="dark"] { --d-o: #ff922b; --d-b: #4dabf7; --d-g: #69db7c; --d-r: #ff6b6b; --d-p: #9775fa; }
+
+.book-intro { font-size: 1.05rem; line-height: 1.75; }
+.book-intro .ch-label { font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--c); }
+.book-intro h2 { margin: .2em 0 .4em; font-size: 1.35rem; }
+.book-intro p { margin: 0 0 10px; }
+.book-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.book-actions .btn { display: inline-flex; align-items: center; gap: 6px; }
+.book-actions .ico { width: 16px; height: 16px; }
+.toc ol { margin: 6px 0 0; padding: 0; list-style: none; columns: 2 260px; column-gap: 24px; }
+.toc li { break-inside: avoid; margin: 0 0 4px; }
+.toc button {
+  display: flex; gap: 8px; width: 100%; text-align: left; padding: 5px 6px; border: 0; border-radius: 8px;
+  background: none; color: var(--text); font: inherit; font-size: .95rem; cursor: pointer;
+}
+.toc button:hover { background: var(--surface-2); }
+.toc .toc-n { flex: none; min-width: 2.4em; font-weight: 700; color: var(--c); font-variant-numeric: tabular-nums; }
+.book-sec { scroll-margin-top: calc(var(--topbar-h, 58px) + 70px); }
+.book-sec .theory-num { width: auto; min-width: 38px; padding: 0 8px; border-radius: 99px; }
+.book-sec > p, .book-sec .sec-body > p { margin: 0 0 12px; font-size: 1.02rem; line-height: 1.75; }
+.book-sec h3 { margin: 20px 0 8px; font-size: 1.05rem; color: var(--c); }
+.book-sec .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.figure { margin: 16px 0; padding: 12px; border-radius: 12px; background: var(--surface-2); text-align: center; }
+.figure figcaption { margin-top: 8px; font-size: .88rem; color: var(--muted); text-align: left; }
+.figure figcaption b { color: var(--text); }
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; }
+.fig-cell { flex: 0 1 auto; min-width: 0; }
+.fig-sub { font-size: .82rem; color: var(--muted); margin-top: 2px; }
+.dia { display: block; max-width: 100%; height: auto; margin: 0 auto; overflow: visible; font-size: 14px; }
+.fig-cell .dia { max-width: 100%; }
+.dia text { font-family: inherit; }
+.dia .t-math { font-family: "KaTeX_Main", "Times New Roman", serif; font-style: italic; font-size: 16px; }
+.dia .t-bold { font-weight: 700; }
+.dia .s-k { stroke: var(--text); } .dia .f-k, .dia .t-k { fill: var(--text); }
+.dia .s-c { stroke: var(--c, var(--accent)); } .dia .f-c, .dia .t-c { fill: var(--c, var(--accent)); }
+.dia .s-m { stroke: var(--muted); } .dia .f-m, .dia .t-m { fill: var(--muted); }
+.dia .s-o { stroke: var(--d-o); } .dia .f-o, .dia .t-o { fill: var(--d-o); }
+.dia .s-b { stroke: var(--d-b); } .dia .f-b, .dia .t-b { fill: var(--d-b); }
+.dia .s-g { stroke: var(--d-g); } .dia .f-g, .dia .t-g { fill: var(--d-g); }
+.dia .s-r { stroke: var(--d-r); } .dia .f-r, .dia .t-r { fill: var(--d-r); }
+.dia .s-p { stroke: var(--d-p); } .dia .f-p, .dia .t-p { fill: var(--d-p); }
+.dia .f-bg { fill: var(--surface-2); }
+.dia .soft-k { fill: color-mix(in srgb, var(--text) 10%, transparent); }
+.dia .soft-c { fill: color-mix(in srgb, var(--c, var(--accent)) 18%, transparent); }
+.dia .soft-m { fill: color-mix(in srgb, var(--muted) 16%, transparent); }
+.dia .soft-o { fill: color-mix(in srgb, var(--d-o) 18%, transparent); }
+.dia .soft-b { fill: color-mix(in srgb, var(--d-b) 18%, transparent); }
+.dia .soft-g { fill: color-mix(in srgb, var(--d-g) 18%, transparent); }
+.dia .soft-r { fill: color-mix(in srgb, var(--d-r) 16%, transparent); }
+.dia .soft-p { fill: color-mix(in srgb, var(--d-p) 18%, transparent); }
+.derive { margin: 14px 0; border: 1px dashed var(--border); border-radius: 10px; padding: 8px 14px; }
+.derive summary { cursor: pointer; font-weight: 600; color: var(--c); display: flex; align-items: center; gap: 7px; }
+.derive summary .ico { width: 17px; height: 17px; }
+.derive ol { margin: 8px 0 4px; padding-left: 22px; }
+.derive li { margin-bottom: 6px; line-height: 1.65; }
+.illus { margin: 16px 0; padding: 12px 14px; border-radius: 10px; background: color-mix(in srgb, var(--c) 7%, transparent); border: 1px solid color-mix(in srgb, var(--c) 30%, transparent); }
+.illus > b { display: flex; align-items: center; gap: 7px; color: var(--c); font-size: .92rem; }
+.illus > b .ico { width: 17px; height: 17px; }
+.illus .q { margin: 6px 0; }
+.illus ol { margin: 6px 0; padding-left: 22px; }
+.illus li { margin-bottom: 4px; line-height: 1.6; }
+.callout.note { background: color-mix(in srgb, var(--d-p) 9%, transparent); border-color: var(--d-p); }
+.callout.note b { color: var(--d-p); }
+.book-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .95rem; }
+.table-wrap { overflow-x: auto; }
+.book-table th, .book-table td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; vertical-align: top; }
+.book-table th { background: var(--surface-2); }
+.summary-card ul { margin: 6px 0 0; padding-left: 20px; }
+.summary-card li { margin-bottom: 6px; line-height: 1.6; }
+
+@media print {
+  body { background: #fff !important; color: #000; }
+  .topbar, .tabs, .crumbs, .pager, .done-row, .book-actions, .learn, footer { display: none !important; }
+  .card, .glass { box-shadow: none !important; background: #fff !important; border-color: #ccc !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .book-sec, .figure, .illus, .callout, .derive { break-inside: avoid-page; }
+  .book-sec { break-inside: auto; }
+  .figure { background: #f4f4f4; }
+  details > *:not(summary) { display: block !important; }
+}
+.dia text { paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; stroke-linejoin: round; }
+.dia.no-halo text, .dia text.no-halo { stroke: none; }
+.toc h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; }
+.toc h3 .ico, .toc .toc-n .ico { width: 18px; height: 18px; flex: none; }
+.book-intro + .toc { margin-top: 14px; }

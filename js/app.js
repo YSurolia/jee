@@ -145,23 +145,29 @@
   // ---------- lessons (deep theory, extra examples, practice) ----------
   // Each chapter's lesson lives in js/lessons/<subject>/<id>.js and is loaded the first time the chapter opens.
   // A <script> tag (rather than fetch) is used so this also works when the site is opened from a local folder.
-  var LESSONS = {}, lessonState = {};
+  var LESSONS = {}, BOOKS = {}, lessonState = {};
   JEE.lesson = function (s, id, data) { LESSONS[s + '/' + id] = data; };
+  // Book chapters (full textbook-style theory with diagrams) live in js/book/<subject>/<id>.js.
+  JEE.book = function (s, id, data) { BOOKS[s + '/' + id] = data; };
 
   function lessonReady(s, id) {
-    var st = lessonState[s + '/' + id];
-    return st === 'loaded' || st === 'missing';
+    return lessonState[s + '/' + id] === 'ready';
   }
+  // Load the chapter's lesson and book files side by side; either may be missing.
   function loadLesson(s, id, done) {
     var k = s + '/' + id;
     if (lessonReady(s, id)) return done();
     if (lessonState[k] === 'loading') return;
     lessonState[k] = 'loading';
-    var el = document.createElement('script');
-    el.src = 'js/lessons/' + s + '/' + id + '.js';
-    el.onload = function () { lessonState[k] = LESSONS[k] ? 'loaded' : 'missing'; done(); };
-    el.onerror = function () { lessonState[k] = 'missing'; done(); };
-    document.head.appendChild(el);
+    var dirs = ['lessons'].concat((JEE.bookList || []).indexOf(k) !== -1 ? ['book'] : []), pending = dirs.length;
+    function settle() { if (--pending === 0) { lessonState[k] = 'ready'; done(); } }
+    dirs.forEach(function (dir) {
+      var el = document.createElement('script');
+      el.src = 'js/' + dir + '/' + s + '/' + id + '.js';
+      el.onload = settle;
+      el.onerror = settle;
+      document.head.appendChild(el);
+    });
   }
 
   var LEVELS = { 1: 'Basic', 2: 'JEE Main', 3: 'JEE Advanced' };
@@ -214,7 +220,61 @@
     return { total: total, tried: tried, right: right };
   }
 
-  function theoryTab(s, ch, lesson) {
+  // ---------- book chapter rendering ----------
+  function bookBlock(b, figNo) {
+    if (typeof b === 'string') return '<p>' + b + '</p>';
+    if (b.h3) return '<h3>' + b.h3 + '</h3>';
+    if (b.fig) {
+      var no = figNo();
+      return '<figure class="figure">' + b.fig + (b.cap ? '<figcaption><b>Fig. ' + no + '</b> ' + b.cap + '</figcaption>' : '') + '</figure>';
+    }
+    if (b.derive) return '<details class="derive"' + (b.open ? ' open' : '') + '><summary>' + icon('sigma') + b.derive + '</summary><ol>' +
+      b.steps.map(function (st) { return '<li>' + st + '</li>'; }).join('') + '</ol>' + (b.result ? '<p>' + b.result + '</p>' : '') + '</details>';
+    if (b.ex) return '<div class="illus"><b>' + icon('pencil-line') + ' Illustration</b><div class="q">' + b.ex.q + '</div>' +
+      '<ol>' + b.ex.steps.map(function (st) { return '<li>' + st + '</li>'; }).join('') + '</ol>' +
+      '<div class="ans"><b>Answer:</b> ' + b.ex.ans + '</div></div>';
+    if (b.table) return '<div class="table-wrap"><table class="book-table"><thead><tr>' + b.table.head.map(function (h) { return '<th>' + h + '</th>'; }).join('') +
+      '</tr></thead><tbody>' + b.table.rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('') +
+      '</tbody></table></div>';
+    if (b.analogy) return '<div class="callout analogy"><b>' + icon('lightbulb') + ' Think of it like this</b><p>' + b.analogy + '</p></div>';
+    if (b.points) return '<div class="callout points"><b>' + icon('circle-check') + ' Remember</b><ul>' +
+      b.points.map(function (pt) { return '<li>' + pt + '</li>'; }).join('') + '</ul></div>';
+    if (b.mistake) return '<div class="callout mistake"><b>' + icon('triangle-alert') + ' Common mistake</b><p>' + b.mistake + '</p></div>';
+    if (b.note) return '<div class="callout note"><b>' + icon('book-open') + ' ' + (b.title || 'Good to know') + '</b><p>' + b.note + '</p></div>';
+    if (b.check) return '<div class="callout check"><b>' + icon('circle-help') + ' Quick check</b><p>' + b.check.q + '</p>' +
+      '<details><summary>Show answer</summary><div class="ans">' + b.check.ans + '</div></details></div>';
+    return '';
+  }
+
+  function bookView(s, ch, book, chNo) {
+    var fig = 0;
+    function figNo() { fig++; return chNo + '.' + fig; }
+    var toc = '<div class="card toc"><h3>' + icon('list-checks') + ' In this chapter</h3><ol>' +
+      book.sections.map(function (sec, k) {
+        return '<li><button type="button" data-goto="sec-' + (k + 1) + '"><span class="toc-n">' + chNo + '.' + (k + 1) + '</span><span>' + sec.h + '</span></button></li>';
+      }).join('') +
+      '<li><button type="button" data-goto="sec-summary"><span class="toc-n">' + icon('circle-check') + '</span><span>Chapter at a glance</span></button></li></ol></div>';
+    var intro = '<div class="card book-intro"><span class="ch-label">Chapter ' + chNo + '</span><h2>' + esc(ch.title) + '</h2>' +
+      [].concat(book.intro).map(function (p) { return '<p>' + p + '</p>'; }).join('') +
+      '<div class="book-actions"><button type="button" class="btn print-btn">' + icon('book-open') + ' Print / Save as PDF</button></div></div>';
+    var learn = '<div class="card glass learn"><h3>' + icon('target') + ' Syllabus topics</h3>' +
+      '<p class="hint">Tap a topic to see its solved examples.</p><ul class="topics">' +
+      ch.syllabus.map(function (t, k) { return '<li><a href="#/s/' + s + '/' + ch.id + '/examples/' + k + '">' + t + '</a></li>'; }).join('') + '</ul></div>';
+    var secs = book.sections.map(function (sec, k) {
+      return '<article class="card theory book-sec" id="sec-' + (k + 1) + '">' +
+        '<h2><span class="theory-num">' + chNo + '.' + (k + 1) + '</span>' + sec.h + '</h2>' +
+        sec.blocks.map(function (b) { return bookBlock(b, figNo); }).join('') + '</article>';
+    }).join('');
+    var summary = '<article class="card summary-card book-sec" id="sec-summary"><h2 class="tab-title" style="margin-top:0">Chapter at a glance</h2><ul>' +
+      book.summary.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul></article>';
+    return intro + toc + learn + secs + summary;
+  }
+
+  function theoryTab(s, ch, lesson, book, chNo) {
+    if (book) {
+      return bookView(s, ch, book, chNo) + '<h2 class="tab-title">Quick revision</h2>' +
+        ch.concepts.map(function (c) { return '<div class="card concept"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>'; }).join('');
+    }
     var learn = '<div class="card glass learn"><h3>' + icon('list-checks') + ' What you will learn</h3>' +
       '<p class="hint">Tap a topic to see its solved examples.</p><ul class="topics">' +
       ch.syllabus.map(function (t, k) {
@@ -328,7 +388,7 @@
     var content = tab === 'examples' ? examplesTab(ch, lesson, focus)
       : tab === 'practice' ? practiceTab(s, ch, lesson)
       : tab === 'formulas' ? formulasTab(ch)
-      : theoryTab(s, ch, lesson);
+      : theoryTab(s, ch, lesson, BOOKS[s + '/' + id], i + 1);
 
     return '<div class="crumbs"><a href="#/">Home</a> › <a href="#/s/' + s + '">' + sub.name + '</a> › Chapter ' + (i + 1) + '</div>' +
       '<header class="ch-hero card glass" style="--c:' + COLORS[s] + '">' +
@@ -354,6 +414,14 @@
   // Level filter chips, practice answering and reset. Called after a chapter page is rendered.
   function bindChapter(s, id) {
     var lesson = LESSONS[s + '/' + id];
+    app.querySelectorAll('[data-goto]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = document.getElementById(b.getAttribute('data-goto'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    var pb = app.querySelector('.print-btn');
+    if (pb) pb.addEventListener('click', function () { window.print(); });
     app.querySelectorAll('.lvl-filter').forEach(function (bar) {
       bar.addEventListener('click', function (e) {
         var btn = e.target.closest('.chip');
@@ -523,6 +591,14 @@
     var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     root.dataset.theme = dark ? 'light' : 'dark';
     try { localStorage.setItem('jee-theme', root.dataset.theme); } catch (e) {}
+  });
+
+  // Printing a book chapter: open every collapsed derivation and answer so they appear on paper.
+  window.addEventListener('beforeprint', function () {
+    app.querySelectorAll('details:not([open])').forEach(function (d) { d.open = true; d.setAttribute('data-print-opened', ''); });
+  });
+  window.addEventListener('afterprint', function () {
+    app.querySelectorAll('details[data-print-opened]').forEach(function (d) { d.open = false; d.removeAttribute('data-print-opened'); });
   });
 
   window.addEventListener('hashchange', route);

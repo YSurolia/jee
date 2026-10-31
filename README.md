@@ -3,7 +3,9 @@
 A free, static study website for JEE Main and JEE Advanced, covering Physics (20 chapters), Chemistry (20) and Mathematics (14).
 Each chapter works like a coaching-centre app, with four tabs:
 
-- **Theory**: simple explanations of every syllabus topic, with "think of it like this" analogies, key points, common mistakes and quick checks
+- **Theory**: simple explanations of every syllabus topic, with "think of it like this" analogies, key points, common mistakes and quick checks.
+  Chapters with a **book chapter** (see below) show a full textbook-style chapter here instead: numbered sections, diagrams, derivations,
+  worked illustrations and a "Chapter at a glance" summary, with a Print / Save as PDF button
 - **Examples**: solved examples ordered from Basic → JEE Main → JEE Advanced, with a level filter
 - **Practice**: multiple-choice and numerical questions with instant right/wrong feedback, full solutions and a saved score
 - **Formulas**: the chapter's formula sheet
@@ -27,10 +29,11 @@ You can also re-run it by hand from the repo's Actions tab ("Deploy to GitHub Pa
 Other free options: drag and drop this folder at https://app.netlify.com/drop
 
 ## Add or edit content
-Content lives in two places:
+Content lives in three places:
 
 1. `js/data/physics.js`, `chemistry.js` and `maths.js`: the chapter index (syllabus, key concepts, formulas, topic-wise examples, short-answer questions). These load with every page.
 2. `js/lessons/<subject>/<chapter-id>.js`: one "lesson" per chapter (deep theory, extra examples, practice questions). Each loads only when its chapter is opened.
+3. `js/book/<subject>/<chapter-id>.js` (optional): a full book chapter with diagrams, listed in `js/book/index.js`. When a chapter has one, its Theory tab shows the book instead of the lesson's short theory.
 
 ### Chapter index (`js/data/*.js`)
 Each chapter is one object:
@@ -74,6 +77,40 @@ JEE.lesson('physics', 'kinematics', {
 - `tol` is how far a typed numerical answer may be from `answer` and still count as correct.
 - If a lesson file is missing, the chapter still works using only its index content.
 
+### Book chapters (`js/book/<subject>/<chapter-id>.js`)
+Add the chapter to the list in `js/book/index.js` (for example `'physics/kinematics'`), then create the file:
+
+```js
+var R = String.raw, D = JEE.D;
+JEE.book('physics', 'kinematics', {
+  intro: [R`opening paragraph`, R`...`],
+  sections: [
+    { h: R`Section heading`, t: [0, 1],          // syllabus topic indices this section covers
+      blocks: [
+        R`a paragraph (HTML allowed)`,
+        { h3: R`Sub-heading` },
+        { fig: D.plot({ ... }), cap: R`caption` },          // numbered automatically: Fig. 2.1, 2.2 ...
+        { derive: R`Deriving ...`, steps: [R`...`], open: false },   // collapsible derivation
+        { ex: { q: R`...`, steps: [R`...`], ans: R`...` } },          // worked "Illustration"
+        { table: { head: [R`...`], rows: [[R`...`]] } },
+        { analogy: R`...` }, { points: [R`...`] }, { mistake: R`...` },
+        { note: R`...`, title: 'Good to know' }, { check: { q: R`...`, ans: R`...` } }
+      ] }
+  ],
+  summary: [R`...`]                                // "Chapter at a glance"
+});
+```
+
+Diagrams come from `js/diagrams.js` (`JEE.D`). Every helper returns an SVG string, so figures work offline and follow the light/dark theme:
+
+- `D.plot({ x, y, fns, param, pts, segs, shade, guides, texts, xticks, yticks, eq })`: graphs in data coordinates (`eq: true` keeps both axes at the same scale)
+- `D.svg(w, h, parts)` with `D.line`, `D.arrow`, `D.circle`, `D.rect`, `D.path`, `D.dot`, `D.text`, `D.angle`, `D.ground`, `D.block`, `D.lobe`: free drawings in pixel coordinates
+- `D.molecule({ atoms, bonds })` / `D.mol(...)`: Lewis structures and 3-D shapes (bond types 1, 2, 3, `'w'` wedge, `'h'` hashed, `'hb'` hydrogen bond)
+- `D.levels({ cols, links })`: energy-level and molecular-orbital diagrams
+- `D.row([[svg, 'caption'], ...])`: several small figures side by side
+
+Colours are keys: `'k'` ink, `'c'` subject colour, `'m'` muted, `'o'` orange, `'b'` blue, `'g'` green, `'r'` red, `'p'` purple. Labels accept `v_0`, `x^2` and `*italic*`.
+
 Write math as LaTeX inside `\( ... \)` (inline) or `\[ ... \]` (display). Strings are wrapped in `R\`...\`` (String.raw), so you can type
 single backslashes. Don't use a backtick or `${` inside these strings. A superscript at the start of an expression needs a placeholder: `{}^nC_r`.
 
@@ -81,6 +118,8 @@ single backslashes. Don't use a backtick or `${` inside these strings. A supersc
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
 - `js/app.js`: routing, rendering, lesson loading, the practice engine, dark mode, and progress and practice scores (saved in the browser's localStorage)
 - `js/lessons/`: one lesson file per chapter (54 in total)
+- `js/book/`: full book chapters with diagrams (`index.js` lists which chapters have one)
+- `js/diagrams.js`: the SVG diagram helpers used by the book chapters
 - `css/style.css`: styles (light and dark themes, mobile-friendly)
 - `vendor/katex/`: local copy of KaTeX so formulas work offline
 - `js/icons.js`: the Lucide icons used on the home page (ISC licence), stored locally so they work offline
