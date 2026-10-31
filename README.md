@@ -10,7 +10,8 @@ Open `index.html` in a browser, or run:
 python3 -m http.server 8000
 ```
 
-Then visit http://localhost:8000. An internet connection is needed for the math rendering (KaTeX loads from cdnjs).
+Then visit http://localhost:8000. No internet connection is needed: the math renderer (KaTeX 0.16.9, MIT licence)
+is bundled in `vendor/katex/`. Your "done" progress is saved in the browser you use.
 
 ## Host it for free
 - **GitHub Pages:** push this folder to a GitHub repo, then go to Settings → Pages → Deploy from branch → `main` / root.
@@ -39,3 +40,4 @@ To add another solved example, append an object to that chapter's `examples` arr
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
 - `js/app.js`: routing, rendering, search, dark mode, progress tracking (saved in the browser's localStorage)
 - `css/style.css`: styles (light and dark themes, mobile-friendly)
+- `vendor/katex/`: local copy of KaTeX so formulas work offline

@@ -55,26 +55,60 @@
 
   // ---------- views ----------
   function homeView() {
-    var cards = SUBJECTS.map(function (s) {
+    var totals = { ch: 0, topics: 0, ex: 0, pr: 0 };
+    SUBJECTS.forEach(function (s) {
+      JEE[s].chapters.forEach(function (c) {
+        totals.ch++; totals.topics += c.syllabus.length; totals.ex += c.examples.length; totals.pr += c.practice.length;
+      });
+    });
+    var ICON = { physics: 'P', chemistry: 'C', maths: 'M' };
+
+    // One panel per subject, with every chapter listed under it (grouped by class).
+    var panels = SUBJECTS.map(function (s) {
       var sub = JEE[s], p = subjectProgress(s);
-      return '<a class="card subject-card" style="--c:' + COLORS[s] + '" href="#/s/' + s + '">' +
-        '<h3>' + sub.name + '</h3>' +
-        '<p>' + sub.chapters.length + ' chapters · ' + esc(sub.tagline) + '</p>' +
+      var topics = sub.chapters.reduce(function (n, c) { return n + c.syllabus.length; }, 0);
+      function list(cls) {
+        return sub.chapters.map(function (c, i) {
+          if (c.cls !== cls) return '';
+          var d = isDone(s, c.id);
+          return '<li><a class="ch-link' + (d ? ' done' : '') + '" href="#/s/' + s + '/' + c.id + '">' +
+            '<span class="ch-num">' + (d ? '✓' : i + 1) + '</span>' +
+            '<span class="ch-title">' + esc(c.title) + '</span>' +
+            '<span class="ch-meta">' + c.syllabus.length + ' topics</span></a></li>';
+        }).join('');
+      }
+      return '<section class="subject-panel" style="--c:' + COLORS[s] + '">' +
+        '<header class="panel-head">' +
+          '<span class="panel-icon">' + ICON[s] + '</span>' +
+          '<div><h3>' + sub.name + '</h3><p>' + esc(sub.tagline) + '</p></div>' +
+        '</header>' +
+        '<div class="panel-stats"><span><b>' + sub.chapters.length + '</b> chapters</span><span><b>' + topics + '</b> topics</span>' +
+          '<span><b>' + p.n + '/' + p.total + '</b> done</span></div>' +
         '<div class="progress"><div style="width:' + p.pct + '%"></div></div>' +
-        '<div class="progress-label">' + p.n + ' / ' + p.total + ' chapters completed</div></a>';
+        '<h4 class="class-label">Class 11</h4><ol class="ch-list">' + list(11) + '</ol>' +
+        '<h4 class="class-label">Class 12</h4><ol class="ch-list">' + list(12) + '</ol>' +
+        '<a class="panel-cta" href="#/s/' + s + '">Open ' + sub.name + ' →</a>' +
+      '</section>';
     }).join('');
 
     return '' +
-      '<section class="hero">' +
-        '<h1>Study for JEE Main &amp; Advanced, chapter by chapter</h1>' +
-        '<p>Every chapter of Physics, Chemistry and Mathematics, with its syllabus topics, key concepts, a formula sheet, ' +
-        'at least one solved example for every syllabus topic (worked step by step), and practice questions. ' +
+      '<section class="hero-panel">' +
+        '<span class="eyebrow">Free · JEE Main &amp; JEE Advanced</span>' +
+        '<h1>Physics, Chemistry &amp; Maths,<br>one chapter at a time.</h1>' +
+        '<p>Notes, formula sheets and step-by-step solved examples for every syllabus topic, plus practice questions. ' +
         'Mark chapters as done to track your progress.</p>' +
         '<input id="search" class="search" type="search" placeholder="Search a chapter or topic, e.g. projectile, Nernst, binomial…" autocomplete="off">' +
         '<div id="results" class="results"></div>' +
+        '<div class="stats">' +
+          '<div><b>' + totals.ch + '</b><span>chapters</span></div>' +
+          '<div><b>' + totals.topics + '</b><span>syllabus topics</span></div>' +
+          '<div><b>' + totals.ex + '</b><span>solved examples</span></div>' +
+          '<div><b>' + totals.pr + '</b><span>practice questions</span></div>' +
+        '</div>' +
       '</section>' +
-      '<h2>Subjects</h2><div class="grid">' + cards + '</div>' +
-      '<h2>Exam at a glance</h2>' +
+      '<h2 class="section-title">Choose a subject</h2>' +
+      '<div class="subject-grid">' + panels + '</div>' +
+      '<h2 class="section-title">Exam at a glance</h2>' +
       '<div class="card table-wrap"><table class="pattern">' +
         '<tr><th></th><th>JEE Main (Paper 1)</th><th>JEE Advanced</th></tr>' +
         '<tr><td><b>Conducted by</b></td><td>NTA, twice a year (January &amp; April sessions)</td><td>One of the IITs, once a year</td></tr>' +
@@ -219,6 +253,7 @@
     else html = notFound();
 
     app.innerHTML = html;
+    app.classList.toggle('wide', parts.length === 0);
     renderMath(app);
     window.scrollTo(0, 0);
 
