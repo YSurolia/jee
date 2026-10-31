@@ -41,3 +41,4 @@ To add another solved example, append an object to that chapter's `examples` arr
 - `js/app.js`: routing, rendering, search, dark mode, progress tracking (saved in the browser's localStorage)
 - `css/style.css`: styles (light and dark themes, mobile-friendly)
 - `vendor/katex/`: local copy of KaTeX so formulas work offline
+- `js/icons.js`: the Lucide icons used on the home page (ISC licence), stored locally so they work offline

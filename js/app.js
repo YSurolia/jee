@@ -54,62 +54,62 @@
   function strip(html) { return String(html).replace(/<[^>]+>/g, '').replace(/\\[()[\]]/g, ''); }
 
   // ---------- views ----------
-  function homeView() {
-    var totals = { ch: 0, topics: 0, ex: 0, pr: 0 };
-    SUBJECTS.forEach(function (s) {
-      JEE[s].chapters.forEach(function (c) {
-        totals.ch++; totals.topics += c.syllabus.length; totals.ex += c.examples.length; totals.pr += c.practice.length;
-      });
-    });
-    var ICON = { physics: 'P', chemistry: 'C', maths: 'M' };
+  // Home-page icons (names refer to js/icons.js): one per chapter, and two for each subject's title box.
+  var CHAPTER_ICONS = {
+    'units-measurement': 'ruler', 'kinematics': 'gauge', 'laws-of-motion': 'weight', 'work-energy-power': 'dumbbell',
+    'rotational-motion': 'rotate-3d', 'gravitation': 'orbit', 'solids-liquids': 'droplets', 'thermodynamics': 'thermometer',
+    'kinetic-theory': 'wind', 'oscillations-waves': 'audio-waveform', 'electrostatics': 'zap', 'current-electricity': 'battery',
+    'magnetism': 'magnet', 'emi-ac': 'plug-zap', 'em-waves': 'radio', 'optics': 'eye', 'dual-nature': 'sun',
+    'atoms-nuclei': 'atom', 'electronic-devices': 'cpu', 'experimental-skills': 'microscope',
+    'basic-concepts': 'scale', 'atomic-structure': 'atom', 'chemical-bonding': 'link', 'chemical-thermodynamics': 'flame',
+    'solutions': 'beaker', 'equilibrium': 'arrow-left-right', 'redox-electrochemistry': 'battery-charging',
+    'chemical-kinetics': 'timer', 'periodicity': 'grid-3x3', 'p-block': 'flask-conical', 'd-f-block': 'gem',
+    'coordination-compounds': 'network', 'purification-characterisation': 'filter', 'goc': 'hexagon',
+    'hydrocarbons': 'fuel', 'haloalkanes': 'droplet', 'oxygen-compounds': 'wine', 'nitrogen-compounds': 'palette',
+    'biomolecules': 'dna', 'practical-chemistry': 'test-tubes',
+    'sets-relations-functions': 'braces', 'complex-quadratic': 'radical', 'matrices-determinants': 'grid-2x2',
+    'permutations-combinations': 'shuffle', 'binomial-theorem': 'triangle', 'sequences-series': 'list-ordered',
+    'trigonometry': 'triangle-right', 'limits-continuity-differentiability': 'infinity', 'integral-calculus': 'chart-area',
+    'differential-equations': 'activity', 'coordinate-geometry': 'chart-scatter', '3d-geometry': 'box',
+    'vector-algebra': 'move-up-right', 'statistics-probability': 'dices'
+  };
+  var SUBJECT_ICONS = { physics: ['atom', 'orbit'], chemistry: ['flask-conical', 'test-tube'], maths: ['pi', 'calculator'] };
 
-    // One panel per subject, with every chapter listed under it (grouped by class).
-    var panels = SUBJECTS.map(function (s) {
+  function icon(name, cls) {
+    return '<svg class="' + (cls || 'ico') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (window.ICONS[name] || '') + '</svg>';
+  }
+
+  function homeView() {
+    // One column per subject: a title box, then every chapter with its first topics underneath.
+    var columns = SUBJECTS.map(function (s) {
       var sub = JEE[s], p = subjectProgress(s);
-      var topics = sub.chapters.reduce(function (n, c) { return n + c.syllabus.length; }, 0);
-      function list(cls) {
+      function items(cls) {
         return sub.chapters.map(function (c, i) {
           if (c.cls !== cls) return '';
           var d = isDone(s, c.id);
-          return '<li><a class="ch-link' + (d ? ' done' : '') + '" href="#/s/' + s + '/' + c.id + '">' +
-            '<span class="ch-num">' + (d ? '✓' : i + 1) + '</span>' +
-            '<span class="ch-title">' + esc(c.title) + '</span>' +
-            '<span class="ch-meta">' + c.syllabus.length + ' topics</span></a></li>';
+          return '<li><a class="topic-item' + (d ? ' done' : '') + '" href="#/s/' + s + '/' + c.id + '">' +
+            '<span class="topic-icon">' + icon(d ? 'check' : CHAPTER_ICONS[c.id]) + '</span>' +
+            '<span class="topic-text"><b>' + (i + 1) + '. ' + esc(c.title) + '</b>' +
+            '<small>' + c.syllabus.slice(0, 3).join(' · ') + '</small></span></a></li>';
         }).join('');
       }
-      return '<section class="subject-panel" style="--c:' + COLORS[s] + '">' +
-        '<header class="panel-head">' +
-          '<span class="panel-icon">' + ICON[s] + '</span>' +
-          '<div><h3>' + sub.name + '</h3><p>' + esc(sub.tagline) + '</p></div>' +
-        '</header>' +
-        '<div class="panel-stats"><span><b>' + sub.chapters.length + '</b> chapters</span><span><b>' + topics + '</b> topics</span>' +
-          '<span><b>' + p.n + '/' + p.total + '</b> done</span></div>' +
-        '<div class="progress"><div style="width:' + p.pct + '%"></div></div>' +
-        '<h4 class="class-label">Class 11</h4><ol class="ch-list">' + list(11) + '</ol>' +
-        '<h4 class="class-label">Class 12</h4><ol class="ch-list">' + list(12) + '</ol>' +
-        '<a class="panel-cta" href="#/s/' + s + '">Open ' + sub.name + ' →</a>' +
+      return '<section class="subject-col" style="--c:' + COLORS[s] + '">' +
+        '<a class="subject-banner" href="#/s/' + s + '">' + icon(SUBJECT_ICONS[s][0], 'banner-ico') +
+          '<span>' + sub.name + '</span>' + icon(SUBJECT_ICONS[s][1], 'banner-ico') + '</a>' +
+        '<div class="topic-card">' +
+          '<h3 class="class-label">Class 11</h3><ul class="topic-list">' + items(11) + '</ul>' +
+          '<h3 class="class-label">Class 12</h3><ul class="topic-list">' + items(12) + '</ul>' +
+          '<div class="topic-foot"><span>' + p.n + ' / ' + p.total + ' chapters done</span>' +
+            '<a href="#/s/' + s + '">Open ' + sub.name + icon('arrow-right') + '</a></div>' +
+        '</div>' +
       '</section>';
     }).join('');
 
-    return '' +
-      '<section class="hero-panel">' +
-        '<span class="eyebrow">Free · JEE Main &amp; JEE Advanced</span>' +
-        '<h1>Physics, Chemistry &amp; Maths,<br>one chapter at a time.</h1>' +
-        '<p>Notes, formula sheets and step-by-step solved examples for every syllabus topic, plus practice questions. ' +
-        'Mark chapters as done to track your progress.</p>' +
-        '<input id="search" class="search" type="search" placeholder="Search a chapter or topic, e.g. projectile, Nernst, binomial…" autocomplete="off">' +
-        '<div id="results" class="results"></div>' +
-        '<div class="stats">' +
-          '<div><b>' + totals.ch + '</b><span>chapters</span></div>' +
-          '<div><b>' + totals.topics + '</b><span>syllabus topics</span></div>' +
-          '<div><b>' + totals.ex + '</b><span>solved examples</span></div>' +
-          '<div><b>' + totals.pr + '</b><span>practice questions</span></div>' +
-        '</div>' +
-      '</section>' +
-      '<h2 class="section-title">Choose a subject</h2>' +
-      '<div class="subject-grid">' + panels + '</div>' +
+    return '<h1 class="sr-only">JEE Main and Advanced: Physics, Chemistry and Mathematics</h1>' +
+      '<div class="subject-columns">' + columns + '</div>' +
       '<h2 class="section-title">Exam at a glance</h2>' +
-      '<div class="card table-wrap"><table class="pattern">' +
+      '<div class="card glass table-wrap"><table class="pattern">' +
         '<tr><th></th><th>JEE Main (Paper 1)</th><th>JEE Advanced</th></tr>' +
         '<tr><td><b>Conducted by</b></td><td>NTA, twice a year (January &amp; April sessions)</td><td>One of the IITs, once a year</td></tr>' +
         '<tr><td><b>Eligibility</b></td><td>Class 12 with PCM</td><td>Top ~2.5 lakh JEE Main qualifiers</td></tr>' +
@@ -257,10 +257,16 @@
     renderMath(app);
     window.scrollTo(0, 0);
 
-    var title = 'JEE Study Hub';
+    var title = 'jee.yatharth.org · JEE Study Hub';
     var h1 = app.querySelector('h1');
-    if (parts.length && h1) title = h1.textContent + ' · ' + title;
+    if (parts.length && h1) title = h1.textContent + ' · jee.yatharth.org';
     document.title = title;
+
+    // Highlight the menu link for the current section.
+    var section = parts.length === 0 ? '#/' : '#/' + parts.slice(0, parts[0] === 's' ? 2 : 1).join('/');
+    document.querySelectorAll('.topbar nav a').forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === section);
+    });
 
     bindSearch();
     var btn = document.getElementById('done-btn');
