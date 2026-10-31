@@ -374,6 +374,36 @@
     return '<div class="formulas">' + ch.formulas.map(function (f) { return '<div class="formula">' + f + '</div>'; }).join('') + '</div>';
   }
 
+  // Left-hand index of every chapter: the current subject open, the other two folded, and the open chapter's
+  // book sections nested under it (Theory tab only). On small screens it becomes a slide-in drawer.
+  function sideIndex(s, id, tab) {
+    function rows(subj) {
+      var html = '', cls = 0;
+      JEE[subj].chapters.forEach(function (c, k) {
+        if (c.cls !== cls) { cls = c.cls; html += '<li class="side-cls">Class ' + cls + '</li>'; }
+        var active = subj === s && c.id === id, book = BOOKS[subj + '/' + c.id];
+        html += '<li><a class="side-ch' + (active ? ' active' : '') + '" href="#/s/' + subj + '/' + c.id + '"' + (active ? ' aria-current="page"' : '') + '>' +
+          '<span class="side-n">' + (k + 1) + '</span><span class="side-t">' + esc(c.title) + '</span>' +
+          (isDone(subj, c.id) ? icon('check', 'side-done') : '') + '</a>';
+        if (active && book && tab === 'theory') {
+          html += '<ol class="side-secs">' + book.sections.map(function (sec, j) {
+            return '<li><button type="button" data-goto="sec-' + (j + 1) + '"><span>' + (k + 1) + '.' + (j + 1) + '</span>' + sec.h + '</button></li>';
+          }).join('') + '</ol>';
+        }
+        html += '</li>';
+      });
+      return '<ul class="side-list">' + html + '</ul>';
+    }
+    return '<aside class="ch-side" id="ch-side" aria-label="All chapters">' +
+      '<div class="side-head"><span>All chapters</span><button type="button" class="side-close" aria-label="Close chapter list">' + icon('x') + '</button></div>' +
+      SUBJECTS.map(function (subj) {
+        var p = subjectProgress(subj);
+        return '<details class="side-group"' + (subj === s ? ' open' : '') + ' style="--c:' + COLORS[subj] + '">' +
+          '<summary>' + icon(SUBJECT_ICONS[subj][0]) + '<span>' + JEE[subj].name + '</span><small>' + p.n + '/' + p.total + ' done</small></summary>' +
+          rows(subj) + '</details>';
+      }).join('') + '</aside><div class="side-overlay" hidden></div>';
+  }
+
   function chapterView(s, id, tab, focus) {
     var found = findChapter(s, id);
     if (!found) return notFound();
@@ -390,7 +420,9 @@
       : tab === 'formulas' ? formulasTab(ch)
       : theoryTab(s, ch, lesson, BOOKS[s + '/' + id], i + 1);
 
-    return '<div class="crumbs"><a href="#/">Home</a> › <a href="#/s/' + s + '">' + sub.name + '</a> › Chapter ' + (i + 1) + '</div>' +
+    return '<div class="ch-layout">' + sideIndex(s, id, tab) + '<div class="ch-main">' +
+      '<div class="crumbs"><button type="button" class="btn side-toggle" aria-controls="ch-side">' + icon('list-checks') + ' All chapters</button>' +
+        '<a href="#/">Home</a> › <a href="#/s/' + s + '">' + sub.name + '</a> › Chapter ' + (i + 1) + '</div>' +
       '<header class="ch-hero card glass" style="--c:' + COLORS[s] + '">' +
         '<span class="topic-icon big">' + icon(CHAPTER_ICONS[id]) + '</span>' +
         '<div class="ch-hero-text"><span class="ch-kicker">' + sub.name + ' · Chapter ' + (i + 1) + ' · Class ' + ch.cls + '</span>' +
@@ -408,14 +440,29 @@
       '<div class="pager">' +
         (prev ? '<a class="btn" href="#/s/' + s + '/' + prev.id + '">← ' + esc(prev.title) + '</a>' : '<span></span>') +
         (next ? '<a class="btn" href="#/s/' + s + '/' + next.id + '">' + esc(next.title) + ' →</a>' : '<span></span>') +
-      '</div>';
+      '</div></div></div>';
+  }
+
+  // Phone drawer for the chapter index.
+  function setSide(open) {
+    var side = document.getElementById('ch-side'), overlay = app.querySelector('.side-overlay');
+    document.body.classList.toggle('side-open', !!(open && side));
+    if (!side) return;
+    side.classList.toggle('open', open);
+    overlay.hidden = !open;
   }
 
   // Level filter chips, practice answering and reset. Called after a chapter page is rendered.
   function bindChapter(s, id) {
     var lesson = LESSONS[s + '/' + id];
+    var toggle = app.querySelector('.side-toggle');
+    if (toggle) toggle.addEventListener('click', function () { setSide(true); });
+    app.querySelector('.side-overlay').addEventListener('click', function () { setSide(false); });
+    app.querySelector('.side-close').addEventListener('click', function () { setSide(false); });
+    app.querySelectorAll('.ch-side a').forEach(function (a) { a.addEventListener('click', function () { setSide(false); }); });
     app.querySelectorAll('[data-goto]').forEach(function (b) {
       b.addEventListener('click', function () {
+        setSide(false);
         var t = document.getElementById(b.getAttribute('data-goto'));
         if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
@@ -552,6 +599,8 @@
 
     app.innerHTML = html;
     app.classList.toggle('wide', parts.length === 0);
+    app.classList.toggle('with-side', !!app.querySelector('.ch-side'));
+    document.body.classList.remove('side-open');
     renderMath(app);
 
     var focus = document.getElementById('focus');
@@ -576,7 +625,12 @@
     bindSearch();
     var btn = document.getElementById('done-btn');
     if (btn) btn.addEventListener('click', function () { toggleDone(parts[1], parts[2]); route(); });
-    if (isChapter) bindChapter(parts[1], parts[2]);
+    if (isChapter && app.querySelector('.ch-side')) {
+      bindChapter(parts[1], parts[2]);
+      // Scroll the chapter list (not the page) so the open chapter is in view.
+      var side = document.getElementById('ch-side'), act = side.querySelector('.side-ch.active');
+      if (act) side.scrollTop = Math.max(0, act.offsetTop - side.clientHeight / 3);
+    }
   }
 
   // The chapter tab bar sticks just below the top bar, whose height changes when the menu wraps on phones.
@@ -600,6 +654,8 @@
   window.addEventListener('afterprint', function () {
     app.querySelectorAll('details[data-print-opened]').forEach(function (d) { d.open = false; d.removeAttribute('data-print-opened'); });
   });
+
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setSide(false); });
 
   window.addEventListener('hashchange', route);
   route();

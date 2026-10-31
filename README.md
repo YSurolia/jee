@@ -1,6 +1,8 @@
 # JEE Study Hub
 
 A free, static study website for JEE Main and JEE Advanced, covering Physics (20 chapters), Chemistry (20) and Mathematics (14).
+Every chapter page has an **"All chapters" index** on the left (a slide-in drawer on phones) listing every chapter of all three
+subjects, with your completed chapters ticked and the open chapter's book sections underneath, so you can jump anywhere.
 Each chapter works like a coaching-centre app, with four tabs:
 
 - **Theory**: simple explanations of every syllabus topic, with "think of it like this" analogies, key points, common mistakes and quick checks.
@@ -116,7 +118,7 @@ single backslashes. Don't use a backtick or `${` inside these strings. A supersc
 
 ## Files
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
-- `js/app.js`: routing, rendering, lesson loading, the practice engine, dark mode, and progress and practice scores (saved in the browser's localStorage)
+- `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, dark mode, and progress and practice scores (saved in the browser's localStorage)
 - `js/lessons/`: one lesson file per chapter (54 in total)
 - `js/book/`: full book chapters with diagrams (`index.js` lists which chapters have one)
 - `js/diagrams.js`: the SVG diagram helpers used by the book chapters
