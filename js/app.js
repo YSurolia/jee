@@ -130,7 +130,7 @@
         return '<a class="chapter-row' + (d ? ' done' : '') + '" href="#/s/' + s + '/' + o.c.id + '">' +
           '<span class="num">' + (d ? '✓' : o.i + 1) + '</span>' +
           '<span class="title">' + esc(o.c.title) + '</span>' +
-          '<small>' + o.c.examples.length + ' solved · ' + o.c.practice.length + ' practice</small></a>';
+          '<small>' + o.c.syllabus.length + ' topics</small></a>';
       }).join('');
     }
 
@@ -142,53 +142,274 @@
       '<h2>Class 12</h2><div class="chapter-list">' + rows(groups[12]) + '</div>';
   }
 
-  function chapterView(s, id) {
-    var found = findChapter(s, id);
-    if (!found) return notFound();
-    var sub = JEE[s], ch = found.ch, i = found.i;
-    var prev = sub.chapters[i - 1], next = sub.chapters[i + 1];
-    var d = isDone(s, id);
+  // ---------- lessons (deep theory, extra examples, practice) ----------
+  // Each chapter's lesson lives in js/lessons/<subject>/<id>.js and is loaded the first time the chapter opens.
+  // A <script> tag (rather than fetch) is used so this also works when the site is opened from a local folder.
+  var LESSONS = {}, lessonState = {};
+  JEE.lesson = function (s, id, data) { LESSONS[s + '/' + id] = data; };
 
-    var concepts = ch.concepts.map(function (c) {
-      return '<div class="card concept"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>';
-    }).join('');
+  function lessonReady(s, id) {
+    var st = lessonState[s + '/' + id];
+    return st === 'loaded' || st === 'missing';
+  }
+  function loadLesson(s, id, done) {
+    var k = s + '/' + id;
+    if (lessonReady(s, id)) return done();
+    if (lessonState[k] === 'loading') return;
+    lessonState[k] = 'loading';
+    var el = document.createElement('script');
+    el.src = 'js/lessons/' + s + '/' + id + '.js';
+    el.onload = function () { lessonState[k] = LESSONS[k] ? 'loaded' : 'missing'; done(); };
+    el.onerror = function () { lessonState[k] = 'missing'; done(); };
+    document.head.appendChild(el);
+  }
 
-    var formulas = ch.formulas.map(function (f) { return '<div class="formula">' + f + '</div>'; }).join('');
+  var LEVELS = { 1: 'Basic', 2: 'JEE Main', 3: 'JEE Advanced' };
+  var TABS = [
+    { id: 'theory', label: 'Theory', icon: 'book-open' },
+    { id: 'examples', label: 'Examples', icon: 'pencil-line' },
+    { id: 'practice', label: 'Practice', icon: 'target' },
+    { id: 'formulas', label: 'Formulas', icon: 'sigma' }
+  ];
 
-    // Group solved examples under their syllabus topic, in syllabus order; numbering runs across the chapter.
-    var n = 0;
-    var examples = ch.syllabus.map(function (topic, t) {
-      var list = ch.examples.filter(function (ex) { return ex.topic === topic; });
-      if (!list.length) return '';
-      return '<h3 class="topic-head" id="topic-' + t + '">' + topic + '</h3>' + list.map(function (ex) {
-        n++;
-        var lvl = ex.level === 'Advanced' ? '<span class="badge adv">Advanced level</span>' : '<span class="badge">Main level</span>';
-        return '<div class="card example"><div class="q"><b>Example ' + n + '.</b> ' + lvl + '<br>' + ex.q + '</div>' +
-          '<details><summary>Show solution</summary><ol class="steps">' +
-          ex.steps.map(function (st) { return '<li>' + st + '</li>'; }).join('') +
-          '</ol><div class="ans"><b>Answer:</b> ' + ex.ans + '</div></details></div>';
+  function levelBadge(level) {
+    return '<span class="lvl lvl-' + level + '">' + LEVELS[level] + '</span>';
+  }
+  function levelFilter(counts) {
+    var total = counts[1] + counts[2] + counts[3];
+    return '<div class="lvl-filter" role="group" aria-label="Filter by level">' +
+      '<button class="chip active" data-level="all">All <span>' + total + '</span></button>' +
+      [1, 2, 3].map(function (l) {
+        return counts[l] ? '<button class="chip" data-level="' + l + '">' + LEVELS[l] + ' <span>' + counts[l] + '</span></button>' : '';
+      }).join('') + '</div>';
+  }
+  function countLevels(list) {
+    var c = { 1: 0, 2: 0, 3: 0 };
+    list.forEach(function (x) { c[x.level]++; });
+    return c;
+  }
+
+  // Existing topic examples (level 'Main'/'Advanced') plus the lesson's extra examples, easiest first.
+  function chapterExamples(ch, lesson) {
+    var order = {};
+    ch.syllabus.forEach(function (t, k) { order[t] = k; });
+    var list = ch.examples.map(function (e) {
+      return { level: e.level === 'Advanced' ? 3 : 2, topic: e.topic, q: e.q, steps: e.steps, ans: e.ans };
+    });
+    if (lesson && lesson.examples) {
+      list = list.concat(lesson.examples.map(function (e) {
+        return { level: e.level, topic: ch.syllabus[e.t], q: e.q, steps: e.steps, ans: e.ans };
+      }));
+    }
+    list.forEach(function (e, i) { e.i = i; });
+    return list.sort(function (a, b) { return a.level - b.level || order[a.topic] - order[b.topic] || a.i - b.i; });
+  }
+
+  // Practice answers: { 'physics/kinematics': { <question index>: { v: choice or typed value, ok: true/false } } }
+  var answers = load('jee-practice', {});
+  function practiceScore(s, id, lesson) {
+    var a = answers[s + '/' + id] || {}, total = lesson && lesson.practice ? lesson.practice.length : 0;
+    var tried = 0, right = 0;
+    Object.keys(a).forEach(function (k) { if (+k < total) { tried++; if (a[k].ok) right++; } });
+    return { total: total, tried: tried, right: right };
+  }
+
+  function theoryTab(s, ch, lesson) {
+    var learn = '<div class="card glass learn"><h3>' + icon('list-checks') + ' What you will learn</h3>' +
+      '<p class="hint">Tap a topic to see its solved examples.</p><ul class="topics">' +
+      ch.syllabus.map(function (t, k) {
+        return '<li><a href="#/s/' + s + '/' + ch.id + '/examples/' + k + '">' + t + '</a></li>';
+      }).join('') + '</ul></div>';
+
+    var sections = '';
+    if (lesson && lesson.theory) {
+      sections = lesson.theory.map(function (sec, k) {
+        var body = [].concat(sec.body).map(function (para) { return '<p>' + para + '</p>'; }).join('');
+        return '<article class="card theory">' +
+          '<h2><span class="theory-num">' + (k + 1) + '</span>' + sec.h + '</h2>' + body +
+          (sec.analogy ? '<div class="callout analogy"><b>' + icon('lightbulb') + ' Think of it like this</b><p>' + sec.analogy + '</p></div>' : '') +
+          (sec.points ? '<div class="callout points"><b>' + icon('circle-check') + ' Remember</b><ul>' +
+            sec.points.map(function (pt) { return '<li>' + pt + '</li>'; }).join('') + '</ul></div>' : '') +
+          (sec.mistake ? '<div class="callout mistake"><b>' + icon('triangle-alert') + ' Common mistake</b><p>' + sec.mistake + '</p></div>' : '') +
+          (sec.check ? '<div class="callout check"><b>' + icon('circle-help') + ' Quick check</b><p>' + sec.check.q + '</p>' +
+            '<details><summary>Show answer</summary><div class="ans">' + sec.check.ans + '</div></details></div>' : '') +
+        '</article>';
       }).join('');
-    }).join('');
+    }
 
-    var practice = ch.practice.map(function (pr, n) {
+    var revision = '<h2 class="tab-title">' + (sections ? 'Quick revision' : 'Key concepts') + '</h2>' +
+      ch.concepts.map(function (c) { return '<div class="card concept"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>'; }).join('');
+
+    return learn + sections + revision;
+  }
+
+  function examplesTab(ch, lesson, focusTopic) {
+    var list = chapterExamples(ch, lesson);
+    return levelFilter(countLevels(list)) + '<div class="ex-list">' + list.map(function (ex, n) {
+      var t = ch.syllabus.indexOf(ex.topic);
+      return '<div class="card example" data-level="' + ex.level + '" data-topic="' + t + '"' +
+        (focusTopic >= 0 && t === focusTopic && list.findIndex(function (e) { return e.topic === ex.topic; }) === n ? ' id="focus"' : '') + '>' +
+        '<div class="ex-meta"><b>Example ' + (n + 1) + '</b>' + levelBadge(ex.level) + '<span class="ex-topic">' + ex.topic + '</span></div>' +
+        '<div class="q">' + ex.q + '</div>' +
+        '<details><summary>Show solution</summary><ol class="steps">' +
+        ex.steps.map(function (st) { return '<li>' + st + '</li>'; }).join('') +
+        '</ol><div class="ans"><b>Answer:</b> ' + ex.ans + '</div></details></div>';
+    }).join('') + '</div>';
+  }
+
+  function practiceQuestion(q, qi, saved) {
+    var tried = !!saved, body;
+    if (q.type === 'mcq') {
+      body = '<div class="options">' + q.options.map(function (o, k) {
+        var cls = 'opt';
+        if (tried && k === q.correct) cls += ' right';
+        else if (tried && k === saved.v) cls += ' wrong';
+        return '<button class="' + cls + '" data-opt="' + k + '"' + (tried ? ' disabled' : '') + '>' +
+          '<span class="opt-key">' + 'ABCD'[k] + '</span><span>' + o + '</span></button>';
+      }).join('') + '</div>';
+    } else {
+      body = '<div class="num-row"><input class="num-input" type="text" inputmode="decimal" placeholder="Your answer"' +
+        (tried ? ' value="' + esc(saved.v) + '" disabled' : '') + '>' +
+        (q.unit ? '<span class="num-unit">' + q.unit + '</span>' : '') +
+        '<button class="btn primary num-check"' + (tried ? ' disabled' : '') + '>Check</button></div>';
+    }
+    var verdict = '';
+    if (tried) {
+      verdict = '<div class="verdict ' + (saved.ok ? 'ok' : 'no') + '">' + icon(saved.ok ? 'circle-check' : 'x') +
+        (saved.ok ? 'Correct!' : 'Not quite.') +
+        (q.type === 'num' ? ' Answer: <b>' + q.answer + (q.unit ? ' ' + q.unit : '') + '</b>' : '') + '</div>' +
+        '<div class="solution"><b>Solution:</b> ' + q.solution + '</div>';
+    }
+    return '<div class="card pq' + (tried ? (saved.ok ? ' is-right' : ' is-wrong') : '') + '" data-level="' + q.level + '" data-qi="' + qi + '">' +
+      '<div class="ex-meta"><b>Q' + (qi + 1) + '</b>' + levelBadge(q.level) +
+        '<span class="ex-topic">' + (q.type === 'mcq' ? 'Single correct' : 'Numerical answer') + '</span></div>' +
+      '<div class="q">' + q.q + '</div>' + body + '<div class="pq-result">' + verdict + '</div></div>';
+  }
+
+  function scoreBar(sc) {
+    var pct = sc.total ? Math.round(100 * sc.right / sc.total) : 0;
+    return '<div class="score-bar card glass"><div class="score-ico">' + icon('trophy') + '</div>' +
+      '<div class="score-text"><b>' + sc.right + ' correct</b> out of ' + sc.tried + ' attempted · ' + sc.total + ' questions' +
+      '<div class="progress"><div style="width:' + pct + '%"></div></div></div>' +
+      '<button class="btn reset-btn"' + (sc.tried ? '' : ' disabled') + '>' + icon('rotate-ccw') + ' Reset</button></div>';
+  }
+
+  function practiceTab(s, ch, lesson) {
+    var html = '';
+    if (lesson && lesson.practice) {
+      var a = answers[s + '/' + ch.id] || {};
+      var order = lesson.practice.map(function (q, qi) { return qi; })
+        .sort(function (x, y) { return lesson.practice[x].level - lesson.practice[y].level || x - y; });
+      html = '<div id="score">' + scoreBar(practiceScore(s, ch.id, lesson)) + '</div>' +
+        levelFilter(countLevels(lesson.practice)) +
+        '<div class="pq-list">' + order.map(function (qi) { return practiceQuestion(lesson.practice[qi], qi, a[qi]); }).join('') + '</div>';
+    }
+    return html + '<h2 class="tab-title">Short-answer questions</h2>' + ch.practice.map(function (pr, n) {
       return '<div class="card example"><div class="q"><b>Q' + (n + 1) + '.</b> ' + pr.q + '</div>' +
         '<details><summary>Show answer</summary><div class="ans">' + pr.ans + '</div></details></div>';
     }).join('');
+  }
+
+  function formulasTab(ch) {
+    return '<div class="formulas">' + ch.formulas.map(function (f) { return '<div class="formula">' + f + '</div>'; }).join('') + '</div>';
+  }
+
+  function chapterView(s, id, tab, focus) {
+    var found = findChapter(s, id);
+    if (!found) return notFound();
+    var sub = JEE[s], ch = found.ch, i = found.i, lesson = LESSONS[s + '/' + id];
+    var prev = sub.chapters[i - 1], next = sub.chapters[i + 1];
+    var d = isDone(s, id);
+    if (!TABS.some(function (t) { return t.id === tab; })) tab = 'theory';
+
+    var nEx = chapterExamples(ch, lesson).length;
+    var sc = practiceScore(s, id, lesson);
+    var nPr = sc.total + ch.practice.length;
+    var content = tab === 'examples' ? examplesTab(ch, lesson, focus)
+      : tab === 'practice' ? practiceTab(s, ch, lesson)
+      : tab === 'formulas' ? formulasTab(ch)
+      : theoryTab(s, ch, lesson);
 
     return '<div class="crumbs"><a href="#/">Home</a> › <a href="#/s/' + s + '">' + sub.name + '</a> › Chapter ' + (i + 1) + '</div>' +
-      '<h1>' + esc(ch.title) + '</h1>' +
-      '<span class="badge">Class ' + ch.cls + '</span> <span class="badge">' + sub.name + '</span>' +
-      '<h2>Syllabus topics</h2><p class="hint">Tap a topic to jump to its solved example.</p><ul class="topics">' +
-      ch.syllabus.map(function (t, k) { return '<li><a href="#" data-jump="topic-' + k + '">' + t + '</a></li>'; }).join('') + '</ul>' +
-      '<h2>Key concepts</h2>' + concepts +
-      '<h2>Formula sheet</h2><div class="formulas">' + formulas + '</div>' +
-      '<h2>Solved examples</h2>' + examples +
-      '<h2>Practice questions</h2>' + practice +
-      '<p><button id="done-btn" class="btn ' + (d ? 'done' : 'primary') + '">' + (d ? '✓ Completed (click to undo)' : 'Mark chapter as done') + '</button></p>' +
+      '<header class="ch-hero card glass" style="--c:' + COLORS[s] + '">' +
+        '<span class="topic-icon big">' + icon(CHAPTER_ICONS[id]) + '</span>' +
+        '<div class="ch-hero-text"><span class="ch-kicker">' + sub.name + ' · Chapter ' + (i + 1) + ' · Class ' + ch.cls + '</span>' +
+          '<h1>' + esc(ch.title) + '</h1>' +
+          '<div class="ch-stats"><span>' + ch.syllabus.length + ' topics</span><span>' + nEx + ' solved examples</span>' +
+            '<span>' + nPr + ' practice questions</span>' +
+            (sc.total ? '<span class="ch-score">' + icon('trophy') + sc.right + '/' + sc.total + ' correct</span>' : '') + '</div></div>' +
+      '</header>' +
+      '<nav class="tabs" style="--c:' + COLORS[s] + '">' + TABS.map(function (t) {
+        return '<a class="tab' + (t.id === tab ? ' active' : '') + '" href="#/s/' + s + '/' + id + '/' + t.id + '">' +
+          icon(t.icon) + '<span>' + t.label + '</span></a>';
+      }).join('') + '</nav>' +
+      '<div class="tab-body" style="--c:' + COLORS[s] + '">' + content + '</div>' +
+      '<p class="done-row"><button id="done-btn" class="btn ' + (d ? 'done' : 'primary') + '">' + (d ? '✓ Completed (click to undo)' : 'Mark chapter as done') + '</button></p>' +
       '<div class="pager">' +
         (prev ? '<a class="btn" href="#/s/' + s + '/' + prev.id + '">← ' + esc(prev.title) + '</a>' : '<span></span>') +
         (next ? '<a class="btn" href="#/s/' + s + '/' + next.id + '">' + esc(next.title) + ' →</a>' : '<span></span>') +
       '</div>';
+  }
+
+  // Level filter chips, practice answering and reset. Called after a chapter page is rendered.
+  function bindChapter(s, id) {
+    var lesson = LESSONS[s + '/' + id];
+    app.querySelectorAll('.lvl-filter').forEach(function (bar) {
+      bar.addEventListener('click', function (e) {
+        var btn = e.target.closest('.chip');
+        if (!btn) return;
+        bar.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('active', c === btn); });
+        var lvl = btn.getAttribute('data-level');
+        app.querySelectorAll('.ex-list > .card, .pq-list > .card').forEach(function (card) {
+          card.hidden = lvl !== 'all' && card.getAttribute('data-level') !== lvl;
+        });
+      });
+    });
+
+    var list = app.querySelector('.pq-list');
+    if (!list || !lesson) return;
+    var key = s + '/' + id;
+    function record(qi, v, ok) {
+      answers[key] = answers[key] || {};
+      answers[key][qi] = { v: v, ok: ok };
+      save('jee-practice', answers);
+      var card = list.querySelector('[data-qi="' + qi + '"]');
+      var fresh = document.createElement('div');
+      fresh.innerHTML = practiceQuestion(lesson.practice[qi], qi, answers[key][qi]);
+      fresh = fresh.firstChild;
+      fresh.hidden = card.hidden;
+      card.replaceWith(fresh);
+      renderMath(fresh);
+      var scoreEl = document.getElementById('score');
+      scoreEl.innerHTML = scoreBar(practiceScore(s, id, lesson));
+      bindReset();
+    }
+    list.addEventListener('click', function (e) {
+      var card = e.target.closest('.pq');
+      if (!card) return;
+      var qi = +card.getAttribute('data-qi'), q = lesson.practice[qi];
+      var opt = e.target.closest('.opt');
+      if (opt && !opt.disabled) record(qi, +opt.getAttribute('data-opt'), +opt.getAttribute('data-opt') === q.correct);
+      if (e.target.closest('.num-check')) {
+        var input = card.querySelector('.num-input'), raw = input.value.trim().replace(/,/g, '');
+        var v = parseFloat(raw);
+        if (raw === '' || isNaN(v)) { input.focus(); input.classList.add('shake'); return; }
+        record(qi, raw, Math.abs(v - q.answer) <= q.tol);
+      }
+    });
+    list.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.classList.contains('num-input')) e.target.closest('.pq').querySelector('.num-check').click();
+    });
+    function bindReset() {
+      var r = app.querySelector('.reset-btn');
+      if (r) r.addEventListener('click', function () {
+        if (!confirm('Clear your answers for this chapter?')) return;
+        delete answers[key];
+        save('jee-practice', answers);
+        route();
+      });
+    }
+    bindReset();
   }
 
   function syllabusView() {
@@ -245,17 +466,33 @@
   // ---------- router ----------
   function route() {
     var parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
+    var isChapter = parts[0] === 's' && JEE[parts[1]] && parts[2];
+
+    // Chapter pages need their lesson file first; show a short loading state and come back here.
+    if (isChapter && findChapter(parts[1], parts[2]) && !lessonReady(parts[1], parts[2])) {
+      app.innerHTML = '<p class="loading">Loading chapter…</p>';
+      loadLesson(parts[1], parts[2], route);
+      return;
+    }
+
     var html;
     if (parts.length === 0) html = homeView();
     else if (parts[0] === 'syllabus') html = syllabusView();
     else if (parts[0] === 's' && JEE[parts[1]] && !parts[2]) html = subjectView(parts[1]);
-    else if (parts[0] === 's' && JEE[parts[1]] && parts[2]) html = chapterView(parts[1], parts[2]);
+    else if (isChapter) html = chapterView(parts[1], parts[2], parts[3], parts[4] === undefined ? -1 : +parts[4]);
     else html = notFound();
 
     app.innerHTML = html;
     app.classList.toggle('wide', parts.length === 0);
     renderMath(app);
-    window.scrollTo(0, 0);
+
+    var focus = document.getElementById('focus');
+    if (focus) {
+      focus.classList.add('flash');
+      focus.scrollIntoView({ block: 'start' });
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     var title = 'jee.yatharth.org · JEE Study Hub';
     var h1 = app.querySelector('h1');
@@ -271,15 +508,15 @@
     bindSearch();
     var btn = document.getElementById('done-btn');
     if (btn) btn.addEventListener('click', function () { toggleDone(parts[1], parts[2]); route(); });
-    // Topic chips scroll within the page; a real #anchor would be read as a route by the hash router.
-    app.querySelectorAll('[data-jump]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        var target = document.getElementById(a.getAttribute('data-jump'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
+    if (isChapter) bindChapter(parts[1], parts[2]);
   }
+
+  // The chapter tab bar sticks just below the top bar, whose height changes when the menu wraps on phones.
+  function measureTopbar() {
+    document.documentElement.style.setProperty('--topbar-h', document.querySelector('.topbar').offsetHeight + 'px');
+  }
+  window.addEventListener('resize', measureTopbar);
+  measureTopbar();
 
   document.getElementById('theme-btn').addEventListener('click', function () {
     var root = document.documentElement;
