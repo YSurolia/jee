@@ -53,6 +53,39 @@
   }
   function strip(html) { return String(html).replace(/<[^>]+>/g, '').replace(/\\[()[\]]/g, ''); }
 
+  // ---------- complete syllabus outline (js/data/outline-<subject>.js) ----------
+  // Each chapter's outline is plain text: "# Topic [A|M] @k" lines, each followed by "- subtopic [A|M]" lines.
+  // [A] = JEE Advanced only, [M] = JEE Main only; @k links the topic to syllabus[k] (its solved examples);
+  // >n links it to section n of the chapter's book (js/book/), when the chapter has one.
+  var OUTLINE = {};
+  function outlineOf(s, id) {
+    var key = s + '/' + id;
+    if (OUTLINE[key]) return OUTLINE[key];
+    var text = JEE.outline && JEE.outline[s] && JEE.outline[s][id], topics = [];
+    function parse(str) {
+      var o = { name: str, tag: '', s: -1, sec: 0 }, m;
+      if ((m = o.name.match(/\s*>(\d+)/))) { o.sec = +m[1]; o.name = o.name.replace(m[0], ''); }
+      if ((m = o.name.match(/\s*@(\d+)/))) { o.s = +m[1]; o.name = o.name.replace(m[0], ''); }
+      if ((m = o.name.match(/\s*\[(A|M)\]/))) { o.tag = m[1]; o.name = o.name.replace(m[0], ''); }
+      o.name = o.name.trim();
+      return o;
+    }
+    String(text || '').split('\n').forEach(function (line) {
+      line = line.trim();
+      if (line.charAt(0) === '#') { var t = parse(line.slice(1)); t.sub = []; topics.push(t); }
+      else if (line.charAt(0) === '-' && topics.length) topics[topics.length - 1].sub.push(parse(line.slice(1)));
+    });
+    return (OUTLINE[key] = topics);
+  }
+  function outlineCount(s, id) {
+    var t = outlineOf(s, id), n = 0;
+    t.forEach(function (x) { n += x.sub.length; });
+    return { topics: t.length, subs: n };
+  }
+  function tagBadge(tag) {
+    return tag ? '<span class="xtag xtag-' + tag + '" title="' + (tag === 'A' ? 'JEE Advanced only' : 'JEE Main only') + '">' + (tag === 'A' ? 'Adv' : 'Main') + '</span>' : '';
+  }
+
   // ---------- views ----------
   // Home-page icons (names refer to js/icons.js): one per chapter, and two for each subject's title box.
   var CHAPTER_ICONS = {
@@ -67,6 +100,8 @@
     'coordination-compounds': 'network', 'purification-characterisation': 'filter', 'goc': 'hexagon',
     'hydrocarbons': 'fuel', 'haloalkanes': 'droplet', 'oxygen-compounds': 'wine', 'nitrogen-compounds': 'palette',
     'biomolecules': 'dna', 'practical-chemistry': 'test-tubes',
+    'states-of-matter': 'wind', 'hydrogen': 'droplet', 's-block': 'flame', 'environmental-chemistry': 'leaf', 'solid-state': 'box',
+    'surface-chemistry': 'layers', 'metallurgy': 'pickaxe', 'polymers': 'link', 'everyday-chemistry': 'pill',
     'sets-relations-functions': 'braces', 'complex-quadratic': 'radical', 'matrices-determinants': 'grid-2x2',
     'permutations-combinations': 'shuffle', 'binomial-theorem': 'triangle', 'sequences-series': 'list-ordered',
     'trigonometry': 'triangle-right', 'limits-continuity-differentiability': 'infinity', 'integral-calculus': 'chart-area',
@@ -90,7 +125,7 @@
           var d = isDone(s, c.id);
           return '<li><a class="topic-item' + (d ? ' done' : '') + '" href="#/s/' + s + '/' + c.id + '">' +
             '<span class="topic-icon">' + icon(d ? 'check' : CHAPTER_ICONS[c.id]) + '</span>' +
-            '<span class="topic-text"><b>' + (i + 1) + '. ' + esc(c.title) + '</b>' +
+            '<span class="topic-text"><b>' + (i + 1) + '. ' + esc(c.title) + tagBadge(chapterTag(s, c)) + '</b>' +
             '<small>' + c.syllabus.slice(0, 3).join(' · ') + '</small></span></a></li>';
         }).join('');
       }
@@ -119,6 +154,11 @@
       '<p style="color:var(--muted);font-size:.9rem">Pattern details can change. Check the official information bulletin each year.</p>';
   }
 
+  function topicCountText(s, c) {
+    var n = outlineCount(s, c.id);
+    return n.topics ? n.topics + ' topics · ' + n.subs + ' subtopics' : c.syllabus.length + ' topics';
+  }
+
   function subjectView(s) {
     var sub = JEE[s], p = subjectProgress(s);
     var groups = { 11: [], 12: [] };
@@ -130,7 +170,7 @@
         return '<a class="chapter-row' + (d ? ' done' : '') + '" href="#/s/' + s + '/' + o.c.id + '">' +
           '<span class="num">' + (d ? '✓' : o.i + 1) + '</span>' +
           '<span class="title">' + esc(o.c.title) + '</span>' +
-          '<small>' + o.c.syllabus.length + ' topics</small></a>';
+          '<small>' + (chapterTag(s, o.c) ? tagBadge(chapterTag(s, o.c)) + ' ' : '') + topicCountText(s, o.c) + '</small></a>';
       }).join('');
     }
 
@@ -159,7 +199,9 @@
     if (lessonReady(s, id)) return done();
     if (lessonState[k] === 'loading') return;
     lessonState[k] = 'loading';
-    var dirs = ['lessons'].concat((JEE.bookList || []).indexOf(k) !== -1 ? ['book'] : []), pending = dirs.length;
+    var f = findChapter(s, id);
+    var dirs = (f && f.ch.lesson === false ? [] : ['lessons']).concat((JEE.bookList || []).indexOf(k) !== -1 ? ['book'] : []), pending = dirs.length;
+    if (!pending) { lessonState[k] = 'ready'; return done(); }
     function settle() { if (--pending === 0) { lessonState[k] = 'ready'; done(); } }
     dirs.forEach(function (dir) {
       var el = document.createElement('script');
@@ -246,6 +288,56 @@
     return '';
   }
 
+  // Where a topic link goes: the book section that covers it (Theory tab) or else its solved examples.
+  function topicLink(s, ch, t) {
+    if (t.sec && (JEE.bookList || []).indexOf(s + '/' + ch.id) !== -1) return { href: '#/s/' + s + '/' + ch.id + '/theory', go: 'sec-' + t.sec };
+    var book = BOOKS[s + '/' + ch.id];
+    if (book && t.s >= 0) {
+      for (var j = 0; j < book.sections.length; j++) {
+        if ((book.sections[j].t || []).indexOf(t.s) !== -1) return { href: '#/s/' + s + '/' + ch.id + '/theory', go: 'sec-' + (j + 1) };
+      }
+    }
+    return t.s >= 0 ? { href: '#/s/' + s + '/' + ch.id + '/examples/' + t.s } : null;
+  }
+  function chapterNo(s, id) { var f = findChapter(s, id); return f ? f.i + 1 : 0; }
+  function outlineList(s, ch, cls) {
+    var n = chapterNo(s, ch.id);
+    return '<ol class="ol-topics ' + cls + '">' + outlineOf(s, ch.id).map(function (t, k) {
+      var L = topicLink(s, ch, t);
+      var head = '<span class="ol-n">' + n + '.' + (k + 1) + '</span><span class="ol-t">' + esc(t.name) + tagBadge(t.tag) + '</span>';
+      return '<li>' + (L ? '<a class="ol-topic" href="' + L.href + '"' + (L.go ? ' data-goto="' + L.go + '"' : '') + '>' + head + '</a>'
+        : '<span class="ol-topic">' + head + '</span>') +
+        (t.sub.length ? '<ul class="ol-subs">' + t.sub.map(function (st) {
+          var SL = st.s >= 0 || st.sec ? topicLink(s, ch, st) : null, txt = esc(st.name) + tagBadge(st.tag);
+          return '<li>' + (SL ? '<a href="' + SL.href + '"' + (SL.go ? ' data-goto="' + SL.go + '"' : '') + '>' + txt + '</a>' : txt) + '</li>';
+        }).join('') + '</ul>' : '') +
+        '</li>';
+    }).join('') + '</ol>';
+  }
+  // A whole chapter is Advanced-only (marked in the data) or Main-only (every topic tagged [M]).
+  function chapterTag(s, c) {
+    if (c.adv) return 'A';
+    var t = outlineOf(s, c.id);
+    return t.length && t.every(function (x) { return x.tag === 'M'; }) ? 'M' : '';
+  }
+  function hasTags(s, id) {
+    return outlineOf(s, id).some(function (t) { return t.tag || t.sub.some(function (x) { return x.tag; }); });
+  }
+  var TAG_KEY = '<span class="xtag xtag-A">Adv</span> = only in JEE Advanced, <span class="xtag xtag-M">Main</span> = only in JEE Main; everything else is in both.';
+  // The chapter's complete syllabus (every topic and subtopic) shown at the top of the Theory tab.
+  function syllabusCard(s, ch, book) {
+    var c = outlineCount(s, ch.id);
+    if (!c.topics) {
+      return '<div class="card glass learn"><h3>' + icon('target') + ' Syllabus topics</h3>' +
+        '<p class="hint">Tap a topic to see its solved examples.</p><ul class="topics">' +
+        ch.syllabus.map(function (t, k) { return '<li><a href="#/s/' + s + '/' + ch.id + '/examples/' + k + '">' + t + '</a></li>'; }).join('') + '</ul></div>';
+    }
+    return '<div class="card glass learn outline-card"><h3>' + icon('list-checks') + ' Complete syllabus of this chapter</h3>' +
+      '<p class="hint">' + c.topics + ' topics · ' + c.subs + ' subtopics, from the official JEE Main and JEE Advanced syllabi. ' +
+      (book ? 'Tap a topic to read it below.' : 'Tap a topic to see its solved examples.') + (hasTags(s, ch.id) ? ' ' + TAG_KEY : '') + '</p>' +
+      outlineList(s, ch, 'card-ol') + '</div>';
+  }
+
   function bookView(s, ch, book, chNo) {
     var fig = 0;
     function figNo() { fig++; return chNo + '.' + fig; }
@@ -257,9 +349,7 @@
     var intro = '<div class="card book-intro"><span class="ch-label">Chapter ' + chNo + '</span><h2>' + esc(ch.title) + '</h2>' +
       [].concat(book.intro).map(function (p) { return '<p>' + p + '</p>'; }).join('') +
       '<div class="book-actions"><button type="button" class="btn print-btn">' + icon('book-open') + ' Print / Save as PDF</button></div></div>';
-    var learn = '<div class="card glass learn"><h3>' + icon('target') + ' Syllabus topics</h3>' +
-      '<p class="hint">Tap a topic to see its solved examples.</p><ul class="topics">' +
-      ch.syllabus.map(function (t, k) { return '<li><a href="#/s/' + s + '/' + ch.id + '/examples/' + k + '">' + t + '</a></li>'; }).join('') + '</ul></div>';
+    var learn = syllabusCard(s, ch, book);
     var secs = book.sections.map(function (sec, k) {
       return '<article class="card theory book-sec" id="sec-' + (k + 1) + '">' +
         '<h2><span class="theory-num">' + chNo + '.' + (k + 1) + '</span>' + sec.h + '</h2>' +
@@ -275,11 +365,7 @@
       return bookView(s, ch, book, chNo) + '<h2 class="tab-title">Quick revision</h2>' +
         ch.concepts.map(function (c) { return '<div class="card concept"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>'; }).join('');
     }
-    var learn = '<div class="card glass learn"><h3>' + icon('list-checks') + ' What you will learn</h3>' +
-      '<p class="hint">Tap a topic to see its solved examples.</p><ul class="topics">' +
-      ch.syllabus.map(function (t, k) {
-        return '<li><a href="#/s/' + s + '/' + ch.id + '/examples/' + k + '">' + t + '</a></li>';
-      }).join('') + '</ul></div>';
+    var learn = syllabusCard(s, ch, null);
 
     var sections = '';
     if (lesson && lesson.theory) {
@@ -376,26 +462,22 @@
 
   // Left-hand index of every chapter: the current subject open, the other two folded, and the open chapter's
   // book sections nested under it (Theory tab only). On small screens it becomes a slide-in drawer.
-  function sideIndex(s, id, tab) {
+  function sideIndex(s, id) {
     function rows(subj) {
       var html = '', cls = 0;
       JEE[subj].chapters.forEach(function (c, k) {
         if (c.cls !== cls) { cls = c.cls; html += '<li class="side-cls">Class ' + cls + '</li>'; }
-        var active = subj === s && c.id === id, book = BOOKS[subj + '/' + c.id];
-        html += '<li><a class="side-ch' + (active ? ' active' : '') + '" href="#/s/' + subj + '/' + c.id + '"' + (active ? ' aria-current="page"' : '') + '>' +
-          '<span class="side-n">' + (k + 1) + '</span><span class="side-t">' + esc(c.title) + '</span>' +
-          (isDone(subj, c.id) ? icon('check', 'side-done') : '') + '</a>';
-        if (active && book && tab === 'theory') {
-          html += '<ol class="side-secs">' + book.sections.map(function (sec, j) {
-            return '<li><button type="button" data-goto="sec-' + (j + 1) + '"><span>' + (k + 1) + '.' + (j + 1) + '</span>' + sec.h + '</button></li>';
-          }).join('') + '</ol>';
-        }
-        html += '</li>';
+        var active = subj === s && c.id === id;
+        html += '<li><details class="side-chd"' + (active ? ' open' : '') + ' data-s="' + subj + '" data-id="' + c.id + '"><summary>' +
+          '<a class="side-ch' + (active ? ' active' : '') + '" href="#/s/' + subj + '/' + c.id + '"' + (active ? ' aria-current="page"' : '') + '>' +
+          '<span class="side-n">' + (k + 1) + '</span><span class="side-t">' + esc(c.title) + tagBadge(chapterTag(subj, c)) + '</span>' +
+          (isDone(subj, c.id) ? icon('check', 'side-done') : '') + '</a><span class="side-x" title="Show topics and subtopics"></span></summary>' +
+          (active ? outlineList(subj, c, 'side-ol') : '') + '</details></li>';
       });
       return '<ul class="side-list">' + html + '</ul>';
     }
     return '<aside class="ch-side" id="ch-side" aria-label="All chapters">' +
-      '<div class="side-head"><span>All chapters</span><button type="button" class="side-close" aria-label="Close chapter list">' + icon('x') + '</button></div>' +
+      '<div class="side-head"><span>All chapters &amp; topics</span><button type="button" class="side-close" aria-label="Close chapter list">' + icon('x') + '</button></div>' +
       SUBJECTS.map(function (subj) {
         var p = subjectProgress(subj);
         return '<details class="side-group"' + (subj === s ? ' open' : '') + ' style="--c:' + COLORS[subj] + '">' +
@@ -420,14 +502,14 @@
       : tab === 'formulas' ? formulasTab(ch)
       : theoryTab(s, ch, lesson, BOOKS[s + '/' + id], i + 1);
 
-    return '<div class="ch-layout">' + sideIndex(s, id, tab) + '<div class="ch-main">' +
+    return '<div class="ch-layout">' + sideIndex(s, id) + '<div class="ch-main">' +
       '<div class="crumbs"><button type="button" class="btn side-toggle" aria-controls="ch-side">' + icon('list-checks') + ' All chapters</button>' +
         '<a href="#/">Home</a> › <a href="#/s/' + s + '">' + sub.name + '</a> › Chapter ' + (i + 1) + '</div>' +
       '<header class="ch-hero card glass" style="--c:' + COLORS[s] + '">' +
         '<span class="topic-icon big">' + icon(CHAPTER_ICONS[id]) + '</span>' +
-        '<div class="ch-hero-text"><span class="ch-kicker">' + sub.name + ' · Chapter ' + (i + 1) + ' · Class ' + ch.cls + '</span>' +
+        '<div class="ch-hero-text"><span class="ch-kicker">' + sub.name + ' · Chapter ' + (i + 1) + ' · Class ' + ch.cls + ({ A: ' · JEE Advanced only', M: ' · JEE Main only' }[chapterTag(s, ch)] || '') + '</span>' +
           '<h1>' + esc(ch.title) + '</h1>' +
-          '<div class="ch-stats"><span>' + ch.syllabus.length + ' topics</span><span>' + nEx + ' solved examples</span>' +
+          '<div class="ch-stats"><span>' + topicCountText(s, ch) + '</span><span>' + nEx + ' solved examples</span>' +
             '<span>' + nPr + ' practice questions</span>' +
             (sc.total ? '<span class="ch-score">' + icon('trophy') + sc.right + '/' + sc.total + ' correct</span>' : '') + '</div></div>' +
       '</header>' +
@@ -460,13 +542,6 @@
     app.querySelector('.side-overlay').addEventListener('click', function () { setSide(false); });
     app.querySelector('.side-close').addEventListener('click', function () { setSide(false); });
     app.querySelectorAll('.ch-side a').forEach(function (a) { a.addEventListener('click', function () { setSide(false); }); });
-    app.querySelectorAll('[data-goto]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        setSide(false);
-        var t = document.getElementById(b.getAttribute('data-goto'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
     var pb = app.querySelector('.print-btn');
     if (pb) pb.addEventListener('click', function () { window.print(); });
     app.querySelectorAll('.lvl-filter').forEach(function (bar) {
@@ -528,20 +603,27 @@
   }
 
   function syllabusView() {
+    var totals = { ch: 0, topics: 0, subs: 0 };
     var body = SUBJECTS.map(function (s) {
-      var sub = JEE[s];
-      return '<div class="syl-subject"><h2 style="color:' + COLORS[s] + '">' + sub.name + '</h2>' +
+      var sub = JEE[s], cls = 0;
+      return '<section class="syl-subject" style="--c:' + COLORS[s] + '"><h2>' + icon(SUBJECT_ICONS[s][0]) + sub.name + ' <small>' + sub.chapters.length + ' chapters</small></h2>' +
         sub.chapters.map(function (c, i) {
-          return '<div class="syl-chapter"><strong><a href="#/s/' + s + '/' + c.id + '">' + (i + 1) + '. ' + esc(c.title) + '</a> ' +
-            '<span class="badge">Class ' + c.cls + '</span></strong><span>' + c.syllabus.join(' · ') + '</span></div>';
-        }).join('') + '</div>';
+          var n = outlineCount(s, c.id);
+          totals.ch++; totals.topics += n.topics; totals.subs += n.subs;
+          var head = c.cls !== cls ? '<h3 class="syl-cls">Class ' + (cls = c.cls) + '</h3>' : '';
+          return head + '<details class="syl-ch"><summary><span class="syl-num">' + (i + 1) + '</span><span class="syl-title">' + esc(c.title) +
+            tagBadge(chapterTag(s, c)) + '</span><small>' + topicCountText(s, c) + '</small></summary>' +
+            '<div class="syl-body">' + outlineList(s, c, 'card-ol') +
+            '<p><a class="btn" href="#/s/' + s + '/' + c.id + '">Open chapter →</a></p></div></details>';
+        }).join('') + '</section>';
     }).join('');
     return '<div class="crumbs"><a href="#/">Home</a> › Syllabus</div>' +
-      '<h1>Full syllabus</h1>' +
-      '<p style="color:var(--muted)">These are the JEE Main units (20 Physics, 20 Chemistry, 14 Mathematics), which together cover almost all of JEE Advanced as well. ' +
-      'JEE Advanced asks deeper, multi-concept questions on the same chapters. For the exact official wording, download the PDFs from ' +
-      '<a href="https://jeemain.nta.nic.in" target="_blank" rel="noopener">jeemain.nta.nic.in</a> and ' +
-      '<a href="https://jeeadv.ac.in" target="_blank" rel="noopener">jeeadv.ac.in</a>.</p>' + body;
+      '<h1>Complete syllabus</h1>' +
+      '<p class="syl-intro">Every chapter, topic and subtopic of <b>JEE Main 2027</b> (official NTA syllabus, October 2026) and ' +
+      '<b>JEE Advanced 2026</b> (official IIT syllabus), merged into one list: ' + totals.ch + ' chapters, ' + totals.topics + ' topics and ' + totals.subs + ' subtopics. ' +
+      TAG_KEY + ' Official documents: <a href="https://jeemain.nta.nic.in" target="_blank" rel="noopener">jeemain.nta.nic.in</a> and ' +
+      '<a href="https://jeeadv.ac.in" target="_blank" rel="noopener">jeeadv.ac.in</a>.</p>' +
+      '<div class="syl-actions"><button type="button" class="btn" data-syl="open">Expand all</button><button type="button" class="btn" data-syl="close">Collapse all</button></div>' + body;
   }
 
   function notFound() {
@@ -603,8 +685,11 @@
     document.body.classList.remove('side-open');
     renderMath(app);
 
-    var focus = document.getElementById('focus');
-    if (focus) {
+    var focus = document.getElementById('focus'), pend = pendingGoto && document.getElementById(pendingGoto);
+    pendingGoto = null;
+    if (pend) {
+      pend.scrollIntoView({ block: 'start' });
+    } else if (focus) {
       focus.classList.add('flash');
       focus.scrollIntoView({ block: 'start' });
     } else {
@@ -656,6 +741,29 @@
   });
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setSide(false); });
+
+  // Links to a book section (contents card, syllabus topics, chapter index): scroll if the section is on this
+  // page, otherwise let the link open the Theory tab and scroll there once it has rendered.
+  var pendingGoto = null;
+  app.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-goto]');
+    if (!a) return;
+    var el = document.getElementById(a.getAttribute('data-goto'));
+    setSide(false);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    else if (a.getAttribute('href')) pendingGoto = a.getAttribute('data-goto');
+  });
+  app.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-syl]');
+    if (b) app.querySelectorAll('.syl-ch').forEach(function (d) { d.open = b.getAttribute('data-syl') === 'open'; });
+  });
+  // Chapter index: fill in a chapter's topics and subtopics the first time it is opened.
+  app.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (!d.classList || !d.classList.contains('side-chd') || !d.open || d.querySelector('.ol-topics')) return;
+    var f = findChapter(d.getAttribute('data-s'), d.getAttribute('data-id'));
+    if (f) { d.insertAdjacentHTML('beforeend', outlineList(d.getAttribute('data-s'), f.ch, 'side-ol')); renderMath(d); }
+  }, true);
 
   window.addEventListener('hashchange', route);
   route();

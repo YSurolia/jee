@@ -1,0 +1,893 @@
+// Complete syllabus outline for Chemistry: every topic and subtopic of each chapter.
+// Built from the official JEE (Main) 2027 syllabus (NTA, October 2026) and the JEE (Advanced) 2026 syllabus
+// (IIT Roorkee information brochure, Annexure-I). Chapters marked adv: true in js/data/chemistry-advanced.js are
+// JEE Advanced only as a whole, so their topics carry no extra tag.
+// Format: "# Topic" lines, each followed by "- subtopic" lines.
+//   [A] = in the JEE Advanced syllabus only, [M] = in the JEE Main syllabus only (no tag = in both).
+//   @k  = the topic's index in the chapter's `syllabus` list (links to its solved examples).
+window.JEE = window.JEE || {};
+JEE.outline = JEE.outline || {};
+JEE.outline.chemistry = {
+  'basic-concepts': `
+# Matter and its nature @0
+- Importance and scope of chemistry
+- States of matter; elements, compounds and mixtures
+- Properties of matter and their measurement; SI units
+- Uncertainty in measurement: scientific notation, significant figures, precision and accuracy
+# Dalton's atomic theory @1
+- Postulates of Dalton's atomic theory
+- Concept of atom, molecule, element and compound
+# Laws of chemical combination @2
+- Law of conservation of mass
+- Law of definite proportions
+- Law of multiple proportions
+- Gay-Lussac's law of gaseous volumes
+- Avogadro's law
+# Atomic and molecular masses @3
+- Atomic mass unit and average atomic mass
+- Molecular mass and formula mass
+# Mole concept and molar mass @4
+- The mole and Avogadro's number
+- Molar mass; molar volume of a gas
+# Percentage composition @5
+- Mass percentage of elements in a compound
+# Empirical and molecular formulae @6
+- Finding empirical and molecular formulae from percentage composition
+# Chemical equations and stoichiometry @7
+- Balancing chemical equations
+- Mass–mass, mass–volume and volume–volume calculations
+- Limiting reagent and percentage yield @8
+- Calculations involving redox, neutralisation and displacement reactions [A]
+# Concentration of solutions
+- Mass percent, mole fraction, molarity and molality
+- Equivalent mass and normality [A]
+`,
+
+  'atomic-structure': `
+# Subatomic particles and early atomic models @0
+- Discovery of the electron, proton and neutron
+- Thomson's model of the atom
+- Rutherford's nuclear model and its drawbacks
+- Atomic number, mass number, isotopes and isobars
+# Electromagnetic radiation and the photoelectric effect @1
+- Nature of electromagnetic radiation; the electromagnetic spectrum
+- Planck's quantum theory
+- Photoelectric effect
+# Spectrum of the hydrogen atom @2
+- Emission and absorption spectra
+- Line spectrum of hydrogen; Rydberg formula and spectral series
+# Bohr's model of the hydrogen atom @3
+- Postulates of Bohr's model
+- Derivation of the energy of the electron and radii of the orbits
+- Explanation of the hydrogen spectrum
+- Limitations of Bohr's model
+# Dual nature of matter @4
+- Wave–particle duality; de Broglie relationship
+# Heisenberg uncertainty principle @5
+- Uncertainty principle and its significance
+# Quantum mechanical model of the atom
+- Elementary ideas of quantum mechanics; important features of the model
+- Atomic orbitals as one-electron wave functions
+- Variation of ψ and ψ² with r for 1s and 2s orbitals (probability density plots)
+- Energies of orbitals in the hydrogen atom
+# Quantum numbers @6
+- Principal, azimuthal (angular momentum) and magnetic quantum numbers and their significance
+- Electron spin and the spin quantum number
+# Shapes of atomic orbitals @7
+- Shapes of s, p and d orbitals
+- Radial and angular nodes @8
+# Rules for filling electrons in orbitals @9
+- Aufbau principle and the (n + l) rule
+- Pauli's exclusion principle
+- Hund's rule of maximum multiplicity
+# Electronic configuration of atoms @10
+- Electronic configurations of elements
+- Extra stability of half-filled and completely filled orbitals
+`,
+
+  'chemical-bonding': `
+# Kossel–Lewis approach @0 >2
+- Octet rule and Lewis symbols
+- Concept of ionic and covalent bonds
+- Limitations of the octet rule
+# Ionic bonding @1 >3
+- Formation of ionic bonds and factors affecting it
+- Calculation of lattice enthalpy (Born–Haber cycle) >4
+# Covalent bonding @2 >5
+- Lewis structures and formal charge
+- Bond parameters: bond length, bond angle, bond enthalpy and bond order >6
+- Electronegativity and polar covalent bonds >7
+- Fajans' rules [M] >7
+# Dipole moment @3 >8
+- Dipole moment and polarity of molecules
+- Percentage ionic character
+# VSEPR theory and shapes of molecules @4 >9
+- The VSEPR model and the effect of lone pairs
+- Linear, angular, triangular, tetrahedral, pyramidal, square planar, square pyramidal, trigonal bipyramidal and octahedral shapes
+# Valence bond theory @5 >10
+- Important features of valence bond theory; orbital overlap
+- σ and π bonds
+# Hybridisation @5 >11
+- Hybridisation involving s, p and d orbitals (sp, sp², sp³, sp³d, sp³d²)
+- Shapes of molecules from hybridisation
+# Resonance @6 >12
+- Resonance structures and the resonance hybrid
+# Molecular orbital theory @7 >13
+- Important features; linear combination of atomic orbitals (LCAO)
+- Bonding and antibonding molecular orbitals; σ and π molecular orbitals
+- MO energy diagrams and configurations of homonuclear diatomic molecules (up to Ne₂)
+- Bond order, bond length, bond energy and magnetic behaviour
+# Metallic bonding [M]
+- Elementary idea of metallic bonding
+# Hydrogen bonding @8 >14
+- Intermolecular and intramolecular hydrogen bonds
+- Applications of hydrogen bonding
+`,
+
+  'states-of-matter': `
+# Gas laws @0
+- Boyle's, Charles', Gay-Lussac's and Avogadro's laws
+- Absolute (kelvin) scale of temperature
+# Ideal gas equation @1
+- PV = nRT and the values of R
+- Density and molar mass of a gas
+# Dalton's law of partial pressures @2
+- Partial pressure and mole fraction
+- Pressure of a gas collected over water
+# Diffusion of gases @3
+- Graham's law of diffusion and effusion
+# Kinetic theory of gases @4
+- Postulates of the kinetic molecular theory
+- Kinetic gas equation
+- Average, root-mean-square and most probable speeds and their relation with temperature
+# Real gases @5
+- Deviation from ideal behaviour; compressibility factor
+- van der Waals equation; meaning of the constants a and b
+# Intermolecular forces @6
+- Types: London (dispersion), dipole–dipole, dipole–induced dipole forces and hydrogen bonding
+- Distance dependence of the forces and their effect on properties
+# Liquid state @7
+- Vapour pressure
+- Surface tension
+- Viscosity
+`,
+
+  'chemical-thermodynamics': `
+# Fundamentals of thermodynamics @0
+- System, surroundings and types of systems
+- Extensive and intensive properties
+- State functions and path functions
+- Types of processes
+# First law of thermodynamics @1
+- Internal energy, work (pressure–volume only) and heat
+- First law: ΔU = q + w
+- Enthalpy; ΔH = ΔU + Δn(g)RT
+- Measuring ΔU and ΔH: calorimetry
+# Heat capacity @2
+- Heat capacity, molar heat capacity and specific heat
+# Enthalpy changes @4
+- Standard state and standard enthalpy of reaction
+- Enthalpies of formation, combustion, atomisation and bond dissociation
+- Enthalpies of phase transition: fusion, vaporisation and sublimation
+- Enthalpies of solution, hydration and ionisation; lattice enthalpy
+# Hess's law of constant heat summation @3
+- Hess's law and its applications
+# Entropy and the second law @5
+- Spontaneous processes
+- Entropy and entropy change
+- Second law: ΔS of the universe as the criterion for spontaneity
+# Gibbs energy and spontaneity @6
+- Gibbs energy, G = H − TS
+- ΔG of the system as the criterion of spontaneity and equilibrium
+- Effect of temperature on spontaneity
+# Gibbs energy and the equilibrium constant @7
+- Standard Gibbs energy change and the equilibrium constant: ΔG° = −RT ln K
+`,
+
+  'equilibrium': `
+# Equilibrium in physical processes @0
+- Dynamic nature of equilibrium
+- Solid–liquid, liquid–gas, gas–gas and solid–gas equilibria
+- Henry's law; general characteristics of physical equilibria
+# Equilibrium in chemical processes @1
+- Law of chemical equilibrium (law of mass action)
+- Equilibrium constants Kp and Kc and their relation
+- Homogeneous and heterogeneous equilibria
+- Applications of equilibrium constants
+# Reaction quotient @2
+- Reaction quotient Q and the direction of reaction
+- Significance of ΔG and ΔG° in chemical equilibrium
+# Factors affecting equilibrium @3
+- Le Chatelier's principle
+- Effect of concentration, pressure and temperature
+- Effect of a catalyst
+# Acids, bases and ionic equilibrium @4
+- Weak and strong electrolytes; ionisation of electrolytes
+- Arrhenius, Brønsted–Lowry and Lewis concepts of acids and bases
+- Ionisation constants of weak acids and bases
+- Acid–base equilibria including multistage ionisation
+# Ionisation of water and the pH scale @5
+- Ionic product of water
+- pH scale; pH of acids and bases
+# Common-ion effect @6
+- Common-ion effect on ionisation
+# Hydrolysis of salts @7
+- Hydrolysis of salts and the pH of their solutions
+# Buffer solutions @8
+- Acidic and basic buffers; Henderson–Hasselbalch equation
+# Solubility equilibria @9
+- Solubility of sparingly soluble salts; solubility product
+- Applications of the solubility product
+`,
+
+  'periodicity': `
+# Classification of elements @0
+- Need for classification; early attempts (Döbereiner, Newlands, Mendeleev)
+- Modern periodic law and the present form of the periodic table
+- Nomenclature of elements with atomic number above 100
+# Electronic configuration and types of elements @1
+- Electronic configurations of elements; periods and groups
+- s-, p-, d- and f-block elements
+# Atomic and ionic radii @2
+- Atomic and ionic radii; isoelectronic species
+- Trends across periods and down groups
+# Ionisation enthalpy @3
+- Factors affecting ionisation enthalpy; trends and exceptions
+# Electron gain enthalpy @4
+- Trends and exceptions
+# Electronegativity @6
+- Electronegativity and its trends
+# Valence and oxidation states @5
+- Periodicity of valence and oxidation states
+# Chemical reactivity @7
+- Periodic trends in chemical properties; metallic and non-metallic character
+- Anomalous properties of second-period elements
+- Acidic and basic character of oxides
+`,
+
+  'hydrogen': `
+# Position of hydrogen in the periodic table @0
+- Resemblance with alkali metals and halogens
+- Occurrence and isotopes (protium, deuterium, tritium)
+# Dihydrogen @1
+- Laboratory and commercial preparation
+- Physical and chemical properties
+- Uses of dihydrogen
+# Hydrides @2
+- Ionic (saline) hydrides
+- Covalent (molecular) hydrides: electron-deficient, electron-precise and electron-rich
+- Interstitial (metallic) hydrides
+# Water @3
+- Physical and chemical properties of water
+- Heavy water: properties and uses
+# Hydrogen peroxide @4
+- Preparation
+- Reactions: oxidising and reducing behaviour
+- Structure, strength and uses
+# Hydrogen as a fuel @5
+- Hydrogen economy
+`,
+
+  's-block': `
+# Group 1: alkali metals @0
+- Electronic configuration, atomic and ionic radii, ionisation and hydration enthalpies
+- Physical properties and flame colours
+# Group 2: alkaline earth metals @0
+- Electronic configuration and general trends
+- Physical properties and flame colours
+# Chemical reactivity @1
+- Reactivity towards air and water; oxides, peroxides and superoxides
+- Reactivity towards dihydrogen, halogens and acids
+# Reducing nature @2
+- Reducing nature and electrode potentials
+- Solutions in liquid ammonia
+# Compounds of s-block elements @3
+- Oxides and hydroxides: basic character and solubility
+- Halides
+- Salts of oxoacids: carbonates, sulphates and nitrates; thermal stability and solubility
+# Anomalous behaviour of lithium and beryllium @4
+- Anomalous properties of lithium; diagonal relationship with magnesium
+- Anomalous properties of beryllium; diagonal relationship with aluminium
+# Important compounds of sodium @5
+- Sodium carbonate (Solvay process)
+- Sodium chloride
+- Sodium hydroxide
+- Sodium hydrogencarbonate
+# Important compounds of calcium @6
+- Calcium oxide and calcium hydroxide
+- Calcium carbonate
+- Calcium sulphate and plaster of Paris
+# Uses of s-block elements
+- Uses of alkali and alkaline earth metals
+`,
+
+  'purification-characterisation': `
+# Methods of purification [M] @0
+- Crystallisation and sublimation
+- Distillation: simple, fractional, under reduced pressure and steam distillation
+- Differential extraction
+- Chromatography: principles and applications
+# Qualitative analysis @1
+- Detection of carbon and hydrogen
+- Lassaigne's test for nitrogen, sulphur and halogens
+- Detection of phosphorus [M]
+# Quantitative analysis @2
+- Estimation of carbon and hydrogen (combustion method)
+- Estimation of nitrogen: Dumas and Kjeldahl methods [M]
+- Estimation of halogens, sulphur and phosphorus (Carius method) [M]
+# Empirical and molecular formulae @3
+- Calculating empirical and molecular formulae from analysis data
+# Numerical problems @4
+- Numerical problems in organic quantitative analysis
+`,
+
+  'goc': `
+# Tetravalency of carbon and shapes of molecules @0
+- Tetravalency of carbon
+- Hybridisation (sp, sp², sp³) and shapes of simple molecules
+- σ and π bonds
+# Classification of organic compounds @1
+- Classification by structure and by functional groups (containing halogens, oxygen, nitrogen and sulphur)
+- Homologous series
+# Nomenclature @1
+- Trivial (common) names
+- IUPAC nomenclature of hydrocarbons, simple cyclic compounds and their mono- and bi-functional derivatives
+# Isomerism @2
+- Structural isomerism: chain, position, functional group, metamerism and tautomerism
+- Geometrical (cis–trans) isomerism
+- Optical isomerism: chirality and enantiomers
+- Diastereomers and meso compounds (up to two asymmetric centres) [A]
+# Covalent bond fission @3
+- Homolytic and heterolytic fission
+# Reactive intermediates @4
+- Free radicals, carbocations and carbanions: formation and structure
+- Stability of carbocations, carbanions and free radicals
+# Electrophiles and nucleophiles @5
+- Electrophiles and nucleophiles with examples
+# Electronic displacements in a covalent bond @6
+- Inductive effect
+- Electromeric effect [M]
+- Resonance (mesomeric) effect
+- Hyperconjugation
+- Effects of hydrogen bonding [A]
+# Acidity and basicity of organic compounds [A]
+- Effect of structure on the acidity of carboxylic acids, phenols and alcohols
+- Effect of structure on the basicity of amines
+# Common types of organic reactions @7
+- Substitution, addition, elimination and rearrangement reactions
+`,
+
+  'hydrocarbons': `
+# Alkanes @0
+- Classification, isomerism and IUPAC nomenclature of hydrocarbons
+- Physical properties; effect of branching on melting point, boiling point and density
+- Preparation from alkyl halides and from aliphatic carboxylic acids
+- Conformations of ethane: Sawhorse and Newman projections
+- Conformations of butane (Newman projections) [A]
+- Reactions: combustion, halogenation and its free-radical mechanism, oxidation
+- Allylic and benzylic halogenation [A]
+# Alkenes @1
+- Structure, geometrical isomerism and physical properties
+- Preparation by elimination reactions
+- Mechanism of electrophilic addition; addition of hydrogen, halogens, water and hydrogen halides
+- Markovnikov's rule and the peroxide effect
+- Addition of HOX [A]
+- Acid-catalysed hydration
+- Reactions with KMnO₄ and ozone (ozonolysis)
+- Polymerisation
+# Alkynes @2
+- Structure and preparation
+- Acidic character; metal acetylides
+- Addition of hydrogen, halogens, water and hydrogen halides
+- Reduction of alkenes and alkynes
+- Polymerisation; cyclic polymerisation of alkynes
+# Aromatic hydrocarbons @3
+- Nomenclature and isomerism
+- Structure of benzene; resonance and aromaticity
+- Mechanism of electrophilic substitution
+- Halogenation, nitration and sulphonation
+- Friedel–Crafts alkylation and acylation
+# Directive influence of substituents @4
+- Ortho/para- and meta-directing groups in monosubstituted benzene
+- Activating and deactivating groups
+`,
+
+  'environmental-chemistry': `
+# Environmental pollution @0
+- Pollutants and their types
+# Tropospheric pollution @0
+- Gaseous pollutants: oxides of sulphur, nitrogen and carbon; hydrocarbons
+- Particulate pollutants
+- Classical and photochemical smog
+# Stratospheric pollution @1
+- Formation and breakdown of ozone
+- The ozone hole and the role of CFCs
+# Acid rain and global warming @2
+- Acid rain: causes and effects
+- Greenhouse effect and global warming
+# Water pollution @3
+- Causes: pathogens, organic waste and chemical pollutants
+- Dissolved oxygen and biochemical oxygen demand (BOD)
+- International standards for drinking water
+# Soil pollution and industrial waste @4
+- Pesticides and herbicides
+- Industrial and domestic waste
+# Strategies to control pollution @5
+- Waste management and control strategies
+# Green chemistry @5
+- Principles of green chemistry; atom economy and safer solvents
+`,
+
+  'solid-state': `
+# Classification of solids @0
+- Crystalline and amorphous solids
+- Molecular, ionic, metallic and covalent (network) solids
+# Crystal lattices and unit cells @1
+- Crystal lattice and unit cell; primitive and centred unit cells
+- Seven crystal systems and cell parameters (a, b, c, α, β, γ); Bravais lattices
+# Close packing @2
+- Close packing in one, two and three dimensions
+- Hexagonal close packing (hcp) and cubic close packing (ccp or fcc)
+- Body-centred cubic (bcc) packing
+- Packing efficiency of simple cubic, bcc, fcc and hcp lattices
+# Number of atoms in a unit cell and density @3
+- Contribution of corner, edge, face and body atoms
+- Relation between edge length and atomic radius
+- Density of a unit cell
+# Voids and ionic crystals @4
+- Tetrahedral and octahedral voids and their number
+- Nearest neighbours and coordination number
+- Ionic radii and the radius ratio rule
+- Simple ionic structures (NaCl, CsCl, ZnS)
+# Imperfections in solids @5
+- Point defects: Schottky and Frenkel defects
+- Impurity defects
+`,
+
+  'solutions': `
+# Types of solutions and concentration @0
+- Types of solutions
+- Mass and volume percentage, mole fraction, molarity and molality
+# Solubility
+- Solubility of solids in liquids
+- Solubility of gases in liquids; Henry's law
+# Vapour pressure and Raoult's law @1
+- Vapour pressure of liquid solutions
+- Raoult's law
+# Ideal and non-ideal solutions @2
+- Ideal solutions
+- Non-ideal solutions: positive and negative deviations
+- Vapour pressure–composition plots for ideal and non-ideal solutions; azeotropes
+# Colligative properties @3
+- Relative lowering of vapour pressure
+- Elevation of boiling point
+- Depression of freezing point
+- Osmosis and osmotic pressure
+# Determination of molecular mass @4
+- Molecular mass from colligative properties
+# Abnormal molar mass @5
+- Association and dissociation of solutes
+- van 't Hoff factor and its significance
+`,
+
+  'redox-electrochemistry': `
+# Oxidation and reduction @0
+- Electronic concepts of oxidation and reduction; redox reactions
+- Oxidation number and rules for assigning it
+- Types of redox reactions, including disproportionation
+# Balancing redox reactions @1
+- Oxidation-number method
+- Half-reaction (ion–electron) method
+# Electrolytic and metallic conduction @2
+- Electrolytic and metallic conduction
+# Conductance in electrolytic solutions @3
+- Resistance, conductance and conductivity (specific conductance)
+- Molar conductivity and its variation with concentration
+- Equivalent conductivity [A]
+# Kohlrausch's law and its applications @4
+- Limiting molar conductivity of weak electrolytes
+- Degree of dissociation from conductivity
+# Electrochemical cells @5
+- Electrolytic and galvanic cells; half-cell and cell reactions
+- Types of electrodes; standard hydrogen electrode
+- Electrode potentials and standard electrode potentials; electrochemical series
+- emf of a galvanic cell and its measurement
+# Nernst equation and its applications @6
+- Nernst equation for electrodes and cells
+- Equilibrium constant from the standard cell potential
+# Cell potential and Gibbs energy @7
+- ΔG = −nFE; electrochemical work
+# Electrolysis @8
+- Products of electrolysis
+- Faraday's laws of electrolysis
+# Batteries and fuel cells @9
+- Primary batteries: dry cell
+- Secondary batteries: lead accumulator
+- Fuel cells
+# Corrosion [A]
+- Electrochemical theory of rusting and its prevention
+`,
+
+  'chemical-kinetics': `
+# Rate of a chemical reaction @0
+- Average and instantaneous rate
+- Expressing rate in terms of different reactants and products
+# Factors affecting the rate @1
+- Concentration, temperature, pressure and catalyst
+# Elementary and complex reactions @2
+- Elementary steps and the rate-determining step
+# Order and molecularity @3
+- Order and molecularity of a reaction and the difference between them
+- Pseudo-first-order reactions
+# Rate law and rate constant @4
+- Rate law (differential form); units of the rate constant
+- Finding the order: initial-rate method
+# Integrated rate equations @5
+- Zero-order reactions: integrated form, characteristics and half-life
+- First-order reactions: integrated form, characteristics and half-life
+# Effect of temperature on rate @6
+- Arrhenius equation
+- Activation energy and its calculation
+# Collision theory [M] @7
+- Collision theory of bimolecular gaseous reactions (no derivation)
+# Catalysis [A]
+- Homogeneous and heterogeneous catalysis
+- Activity and selectivity of solid catalysts
+- Enzyme catalysis and its mechanism
+`,
+
+  'surface-chemistry': `
+# Adsorption @0
+- Adsorption and absorption; adsorbate and adsorbent
+- Physisorption and chemisorption
+# Factors affecting adsorption @1
+- Effect of the nature of the gas, surface area, pressure and temperature
+- Freundlich adsorption isotherm
+- Applications of adsorption
+# Colloids and their classification @2
+- True solutions, colloids and suspensions
+- Classification by physical state, by interaction with the medium (lyophilic, lyophobic) and by type of particle
+# Preparation and purification of colloids @3
+- Chemical methods, Bredig's arc method and peptisation
+- Dialysis, electrodialysis and ultrafiltration
+# Properties of colloids @4
+- Tyndall effect and colour
+- Brownian movement
+- Charge on colloidal particles; electrophoresis
+- Coagulation and the Hardy–Schulze rule; protection of colloids
+# Emulsions, surfactants and micelles @5
+- Emulsions: oil-in-water and water-in-oil; emulsifiers
+- Surfactants
+- Micelles and the critical micelle concentration
+`,
+
+  'metallurgy': `
+# Occurrence of metals @0
+- Minerals and ores; important ores of iron, copper, zinc and aluminium
+# Concentration of ores @1
+- Hydraulic washing
+- Magnetic separation
+- Froth flotation
+- Leaching
+# Conversion to oxide @2
+- Calcination
+- Roasting
+# Thermodynamic principles of metallurgy @3
+- Gibbs energy and Ellingham diagrams
+- Extraction of iron from its oxides (blast furnace)
+- Extraction of copper (self-reduction)
+- Extraction of zinc from zinc oxide
+# Electrochemical principles of metallurgy @4
+- ΔG° = −nFE° in metallurgy
+- Extraction of aluminium (Hall–Héroult process)
+# Cyanide process @5
+- Extraction of silver and gold
+# Refining of metals @6
+- Distillation and liquation
+- Electrolytic refining
+- Zone refining
+- Vapour-phase refining: Mond process and van Arkel method
+`,
+
+  'p-block': `
+# General introduction to groups 13 to 18 @0
+- Electronic configuration @1
+- General trends in physical and chemical properties across periods and down groups
+- Oxidation states and trends in chemical reactivity
+- Inert pair effect @3
+# Unique behaviour of the first element @2
+- Anomalous properties of boron, carbon, nitrogen, oxygen and fluorine
+# Group 13: the boron family [A] @4
+- Reactivity towards acids, alkalis and halogens
+- Borax, orthoboric acid and diborane
+- Boron trifluoride, aluminium chloride and alums
+- Uses of boron and aluminium
+# Group 14: the carbon family [A]
+- Reactivity towards water and halogens
+- Allotropes of carbon and uses of carbon
+- Carbon monoxide and carbon dioxide
+- Silicon dioxide, silicones, silicates and zeolites
+# Group 15: the nitrogen family [A]
+- Reactivity towards hydrogen, oxygen and halogens
+- Allotropes of phosphorus
+- Dinitrogen, ammonia and nitric acid
+- Phosphine, phosphorus trichloride and phosphorus pentachloride
+- Oxides of nitrogen and oxoacids of phosphorus
+# Group 16: the oxygen family [A]
+- Reactivity towards hydrogen, oxygen and halogens; simple oxides
+- Allotropes of sulphur
+- Dioxygen and ozone
+- Sulphur dioxide, sulphuric acid and the oxoacids of sulphur
+# Group 17: the halogens [A]
+- Reactivity towards hydrogen, oxygen and metals
+- Chlorine and hydrogen chloride
+- Interhalogen compounds and oxoacids of halogens
+- Bleaching powder
+# Group 18: the noble gases [A]
+- Chemical properties and uses
+- Compounds of xenon with fluorine and oxygen
+`,
+
+  'd-f-block': `
+# Transition elements: introduction @0
+- Position in the periodic table
+- Electronic configurations of the d-block elements
+# Occurrence and general characteristics @1
+- Occurrence and characteristics of transition elements
+# General trends in the first transition series @2
+- Physical properties and metallic character
+- Atomic and ionic radii
+- Ionisation enthalpy
+- Oxidation states and their stability; standard electrode potentials
+- Colour and magnetic properties
+- Catalytic behaviour
+- Complex formation, interstitial compounds and alloy formation
+# Potassium dichromate and potassium permanganate @3
+- Preparation, properties and uses
+- Structures and reactions of the oxoanions of chromium and manganese
+# Lanthanoids @4
+- Electronic configuration and oxidation states
+- Lanthanoid contraction and its consequences
+# Actinoids @5
+- Electronic configuration and oxidation states
+- Actinoid contraction and general characteristics
+# Applications of d- and f-block elements [A]
+- Uses of transition and inner transition elements and their compounds
+`,
+
+  'coordination-compounds': `
+# Werner's theory @0
+- Double salts and coordination compounds
+- Werner's theory: primary and secondary valencies
+# Important terms @1
+- Coordination entity, central atom, ligands and coordination sphere
+- Coordination number, denticity, chelation and ambidentate ligands
+- Oxidation number of the central atom; homoleptic and heteroleptic complexes
+# IUPAC nomenclature @2
+- Writing formulas and names of mononuclear coordination compounds
+# Isomerism @3
+- Structural isomerism: ionisation, linkage, coordination and hydrate isomerism
+- Stereoisomerism: geometrical (cis–trans) and optical isomerism
+# Valence bond theory @4
+- Hybridisation and geometry: linear, tetrahedral, square planar and octahedral
+- Inner- and outer-orbital complexes; magnetic properties
+- Limitations of valence bond theory
+# Crystal field theory @5
+- Crystal field splitting in octahedral and tetrahedral fields
+- Spectrochemical series; strong- and weak-field ligands
+- Crystal field stabilisation energy; high-spin and low-spin complexes
+- Colour and magnetic properties (spin-only moment) of 3d-series complexes
+# Stability of coordination compounds [A]
+- Stability of complexes and the chelate effect
+# Metal carbonyls [A]
+- Structure and bonding in metal carbonyls
+# Importance and applications @6
+- Uses in qualitative analysis, extraction of metals and biological systems
+`,
+
+  'haloalkanes': `
+# Classification and nomenclature @0
+- Classification of haloalkanes and haloarenes
+- IUPAC nomenclature
+# Nature of the C–X bond @1
+- Polarity, length and strength of the carbon–halogen bond
+# Methods of preparation @0
+- From alcohols and from hydrocarbons
+- Halogen exchange (Finkelstein and Swarts reactions)
+- Preparation of haloarenes
+# Physical properties
+- Melting and boiling points, density and solubility
+# Nucleophilic substitution reactions @2
+- SN2 mechanism and inversion of configuration
+- SN1 mechanism, carbocation rearrangements and racemisation
+- Stereochemical aspects of nucleophilic substitution
+# Elimination reactions @3
+- Dehydrohalogenation and Saytzeff's rule
+- Elimination versus substitution
+# Reactions with metals
+- Grignard reagents and their reactions
+- Wurtz, Fittig and Wurtz–Fittig reactions
+# Reactions of haloarenes
+- Nucleophilic aromatic substitution in haloarenes and substituted haloarenes
+- Electrophilic substitution in haloarenes
+# Polyhalogen compounds @4
+- Uses and environmental effects of chloroform, iodoform, freons and DDT [M]
+`,
+
+  'oxygen-compounds': `
+# Alcohols: preparation and properties @0
+- Classification and nomenclature
+- Preparation of alcohols
+- Physical properties and hydrogen bonding
+# Reactions of alcohols @0
+- Reactions with sodium, phosphorus halides, ZnCl₂/conc. HCl and thionyl chloride
+- Identification of primary, secondary and tertiary alcohols
+- Esterification
+- Dehydration to alkenes and ethers; mechanism of dehydration
+- Oxidation to aldehydes, ketones and carboxylic acids
+# Phenols @1
+- Preparation and physical properties
+- Acidic nature of phenol and effect of substituents
+- Electrophilic substitution: halogenation, nitration and sulphonation
+- Reimer–Tiemann reaction
+- Kolbe's reaction
+- Esterification, etherification and the synthesis of aspirin
+- Oxidation and reduction of phenol
+# Ethers @2
+- Structure and nomenclature
+- Williamson synthesis
+- Cleavage of the C–O bond
+# Aldehydes and ketones: structure and preparation @3
+- Nature of the carbonyl group
+- Preparation from alcohols, acid chlorides, nitriles and esters
+- Benzaldehyde from toluene and benzene
+# Nucleophilic addition reactions @3
+- Relative reactivities of aldehydes and ketones
+- Addition of HCN, NaHSO₃, alcohols and Grignard reagents
+- Addition of ammonia and its derivatives: oximes and hydrazones
+# Other reactions of aldehydes and ketones @4
+- Oxidation; reduction (Clemmensen and Wolff–Kishner)
+- Acidity of α-hydrogen; aldol condensation
+- Cannizzaro reaction
+- Haloform reaction
+# Tests for aldehydes and ketones @5
+- Tollens' and Fehling's tests; distinguishing aldehydes from ketones
+# Carboxylic acids @6
+- Physical properties
+- Preparation from nitriles, Grignard reagents and hydrolysis of esters and amides
+- Benzoic acid from alkylbenzenes
+- Acidic strength and the factors affecting it
+- Reactions: reduction, halogenation and formation of esters, acid chlorides and amides
+`,
+
+  'nitrogen-compounds': `
+# Structure, classification and nomenclature of amines @0
+- Primary, secondary and tertiary amines
+- Structure and IUPAC nomenclature
+# Preparation of amines
+- Reduction of nitro compounds, nitriles and amides
+- Hoffmann bromamide degradation
+- Gabriel phthalimide synthesis
+# Basic character of amines @1
+- Basicity of aliphatic and aromatic amines; effect of substituents
+# Chemical reactions of amines
+- Alkylation and acylation
+- Carbylamine reaction
+- Reaction with nitrous acid
+# Identification of primary, secondary and tertiary amines @2
+- Hinsberg test and other distinguishing tests
+# Diazonium salts @3
+- Preparation (diazotisation) and importance in synthetic organic chemistry
+- Sandmeyer and related replacement reactions
+- Azo coupling reactions
+`,
+
+  'biomolecules': `
+# Carbohydrates: classification @0
+- Monosaccharides, oligosaccharides and polysaccharides
+- Aldoses and ketoses; reducing and non-reducing sugars
+# Monosaccharides @0
+- Glucose: open-chain and cyclic structures; anomers
+- Oxidation and reduction of glucose
+- Glycoside formation
+- Fructose
+# Disaccharides and polysaccharides @0
+- Sucrose, maltose and lactose: constituent monosaccharides and hydrolysis
+- Starch, cellulose and glycogen
+# Proteins @1
+- α-Amino acids and zwitterions
+- Peptide bond and polypeptides
+- Fibrous and globular proteins
+- Primary, secondary, tertiary and quaternary structures
+- Denaturation of proteins
+# Enzymes [M]
+- Enzymes as biological catalysts
+# Vitamins [M] @2
+- Classification and functions of vitamins; deficiency diseases
+# Nucleic acids @3
+- Chemical composition: nucleosides and nucleotides
+- Structure of DNA and RNA
+- Biological functions of nucleic acids @4
+# Hormones [M] @5
+- General introduction to hormones
+`,
+
+  'polymers': `
+# Classification of polymers @0
+- By source: natural, semi-synthetic and synthetic
+- By structure: linear, branched and cross-linked
+- By molecular forces: elastomers, fibres, thermoplastics and thermosetting polymers
+# Addition polymerisation @1
+- Free-radical (chain-growth) mechanism
+- Polythene, Teflon, polyacrylonitrile and PVC
+# Condensation polymerisation @2
+- Step-growth polymerisation
+- Polyamides: nylon-6,6 and nylon-6
+- Polyesters
+- Phenol–formaldehyde polymers: Bakelite
+# Homopolymers and copolymers @3
+- Homopolymers and copolymers (Buna-S, Buna-N)
+# Rubber and cellulose @4
+- Natural rubber and vulcanisation
+- Synthetic rubbers
+- Cellulose as a natural polymer
+# Important polymers @5
+- Monomers, properties and uses of polythene, Teflon, PVC, nylon and Bakelite
+# Biodegradable polymers and applications @6
+- Biodegradable polymers (PHBV, nylon-2-nylon-6)
+- Applications of polymers
+`,
+
+  'everyday-chemistry': `
+# Drugs and drug–target interaction @0
+- Classification of drugs
+- Enzymes as drug targets: catalytic action and inhibition
+- Receptors as drug targets: agonists and antagonists
+# Antacids and antihistamines @1
+- Antacids
+- Antihistamines
+# Tranquilizers and analgesics @2
+- Tranquilizers
+- Non-narcotic and narcotic analgesics
+# Antimicrobials @3
+- Antibiotics: bactericidal and bacteriostatic; broad- and narrow-spectrum
+- Antiseptics and disinfectants
+# Antifertility drugs @4
+- Synthetic hormones used in antifertility drugs (examples, no structures)
+# Artificial sweeteners @5
+- Artificial sweetening agents (names only)
+# Soaps and detergents @6
+- Soaps: saponification
+- Synthetic detergents: anionic, cationic and non-ionic
+- Cleansing action
+`,
+
+  'practical-chemistry': `
+# Detection of extra elements @0
+- Nitrogen, sulphur and halogens in organic compounds
+# Tests for functional groups @1
+- Hydroxyl group: alcoholic and phenolic
+- Carbonyl group: aldehydes and ketones
+- Carboxyl group
+- Amino group
+- Nitro group [A]
+# Preparation of compounds [M] @2
+- Inorganic compounds: Mohr's salt and potash alum
+- Organic compounds: acetanilide, p-nitroacetanilide, aniline yellow and iodoform
+# Titrimetric analysis [M] @3
+- Acids, bases and the use of indicators
+- Oxalic acid vs KMnO₄ and Mohr's salt vs KMnO₄
+# Qualitative salt analysis: cations @4
+- Group separation of cations
+- JEE Main list: Pb²⁺, Cu²⁺, Al³⁺, Fe³⁺, Zn²⁺, Ni²⁺, Ca²⁺, Ba²⁺, Mg²⁺, NH₄⁺ [M]
+- JEE Advanced list (groups I–V): Ag⁺, Hg²⁺, Cu²⁺, Pb²⁺, Fe³⁺, Cr³⁺, Al³⁺, Ca²⁺, Ba²⁺, Zn²⁺, Mn²⁺, Mg²⁺ [A]
+# Qualitative salt analysis: anions @4
+- JEE Main list: CO₃²⁻, S²⁻, SO₄²⁻, NO₃⁻, NO₂⁻, Cl⁻, Br⁻, I⁻ [M]
+- JEE Advanced list: nitrate, halides (except fluoride), carbonate, bicarbonate, sulphate and sulphide [A]
+# Physical chemistry experiments [M] @5
+- Enthalpy of solution of CuSO₄
+- Enthalpy of neutralisation of a strong acid and a strong base
+- Preparation of lyophilic and lyophobic sols @6
+- Kinetic study of the reaction of iodide ions with hydrogen peroxide @7
+`
+};

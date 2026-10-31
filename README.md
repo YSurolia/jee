@@ -1,8 +1,15 @@
 # JEE Study Hub
 
-A free, static study website for JEE Main and JEE Advanced, covering Physics (20 chapters), Chemistry (20) and Mathematics (14).
+A free, static study website for JEE Main and JEE Advanced, covering Physics (20 chapters), Chemistry (29) and Mathematics (14).
+The chapters follow the official **JEE Main 2027** syllabus (NTA, October 2026) and **JEE Advanced 2026** syllabus (IIT Roorkee):
+the 54 JEE Main units, plus 9 chemistry chapters that are only in JEE Advanced (States of Matter, Hydrogen, s-Block, Environmental
+Chemistry, Solid State, Surface Chemistry, Isolation of Metals, Polymers, Chemistry in Everyday Life).
+
+Every chapter lists its **complete syllabus: all 527 topics and 1255 subtopics**, with anything that is only in JEE Main or only in
+JEE Advanced marked. The list appears in the chapter index on the left of each chapter page, at the top of the Theory tab, and on the
+Syllabus page.
 Every chapter page has an **"All chapters" index** on the left (a slide-in drawer on phones) listing every chapter of all three
-subjects, with your completed chapters ticked and the open chapter's book sections underneath, so you can jump anywhere.
+subjects, with your completed chapters ticked; open any chapter in it to see all its topics and subtopics, so you can jump anywhere.
 Each chapter works like a coaching-centre app, with four tabs:
 
 - **Theory**: simple explanations of every syllabus topic, with "think of it like this" analogies, key points, common mistakes and quick checks.
@@ -31,11 +38,29 @@ You can also re-run it by hand from the repo's Actions tab ("Deploy to GitHub Pa
 Other free options: drag and drop this folder at https://app.netlify.com/drop
 
 ## Add or edit content
-Content lives in three places:
+Content lives in four places:
 
 1. `js/data/physics.js`, `chemistry.js` and `maths.js`: the chapter index (syllabus, key concepts, formulas, topic-wise examples, short-answer questions). These load with every page.
 2. `js/lessons/<subject>/<chapter-id>.js`: one "lesson" per chapter (deep theory, extra examples, practice questions). Each loads only when its chapter is opened.
-3. `js/book/<subject>/<chapter-id>.js` (optional): a full book chapter with diagrams, listed in `js/book/index.js`. When a chapter has one, its Theory tab shows the book instead of the lesson's short theory.
+3. `js/data/outline-physics.js`, `outline-chemistry.js` and `outline-maths.js`: the complete topic and subtopic list of every chapter (see below).
+4. `js/book/<subject>/<chapter-id>.js` (optional): a full book chapter with diagrams, listed in `js/book/index.js`. When a chapter has one, its Theory tab shows the book instead of the lesson's short theory.
+
+### Complete syllabus outline (`js/data/outline-*.js`)
+Each chapter's outline is a block of plain text: a `#` line for each topic, followed by `-` lines for its subtopics.
+
+```
+# Projectile motion @8 >12
+- Time of flight, maximum height and horizontal range
+- Projectile thrown horizontally from a height
+# Doppler effect [A]
+- Doppler effect in sound: moving source and moving observer
+```
+
+- `[A]` marks something only in the JEE Advanced syllabus, `[M]` something only in JEE Main; no tag means both.
+- `@k` links the topic (or subtopic) to topic `k` of the chapter's `syllabus` list, which opens its solved examples.
+- `>n` links it to section `n` of the chapter's book chapter, for chapters that have one.
+- A whole chapter that is only in JEE Advanced has `adv: true` in its data (see `js/data/chemistry-advanced.js`); chapters without a
+  lesson file have `lesson: false`.
 
 ### Chapter index (`js/data/*.js`)
 Each chapter is one object:
@@ -120,6 +145,8 @@ single backslashes. Don't use a backtick or `${` inside these strings. A supersc
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
 - `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, dark mode, and progress and practice scores (saved in the browser's localStorage)
 - `js/lessons/`: one lesson file per chapter (54 in total)
+- `js/data/outline-*.js`: the complete topic and subtopic outline of every chapter
+- `js/data/chemistry-advanced.js`: the 9 chemistry chapters that are only in JEE Advanced
 - `js/book/`: full book chapters with diagrams (`index.js` lists which chapters have one)
 - `js/diagrams.js`: the SVG diagram helpers used by the book chapters
 - `css/style.css`: styles (light and dark themes, mobile-friendly)
