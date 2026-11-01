@@ -265,6 +265,41 @@
     }, o);
   };
 
+  // ---------- ray optics ----------
+  // Ray: polyline through pts with an arrowhead in the middle of each segment longer than 30 px. o.dash for virtual rays.
+  D.ray = function (pts, o) {
+    o = o || {};
+    var c = o.color || 'o', out = D.poly(pts, { color: c, w: o.w || 1.6, dash: o.dash });
+    if (o.arrows !== false) for (var i = 1; i < pts.length; i++) {
+      var a = pts[i - 1], b = pts[i], len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      if (len > 30 && !(o.noArrow && o.noArrow.indexOf(i) >= 0)) { var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2; out += head(mx - (b[0] - a[0]) / len, my - (b[1] - a[1]) / len, mx + (b[0] - a[0]) / len * 4, my + (b[1] - a[1]) / len * 4, 8, c); }
+    }
+    return out;
+  };
+  // Thin lens at x, centred on axis y, half-height h. o.type 'convex' (default) or 'concave'.
+  D.lens = function (x, y, h, o) {
+    o = o || {};
+    var c = o.color || 'c', w = o.w || 10, d;
+    if (o.type === 'concave') d = 'M' + (x - w) + ' ' + (y - h) + ' L' + (x + w) + ' ' + (y - h) + ' Q ' + (x + 2) + ' ' + y + ' ' + (x + w) + ' ' + (y + h) + ' L' + (x - w) + ' ' + (y + h) + ' Q ' + (x - 2) + ' ' + y + ' ' + (x - w) + ' ' + (y - h) + ' Z';
+    else d = 'M' + x + ' ' + (y - h) + ' Q ' + (x + 2 * w) + ' ' + y + ' ' + x + ' ' + (y + h) + ' Q ' + (x - 2 * w) + ' ' + y + ' ' + x + ' ' + (y - h) + ' Z';
+    return D.path(d, { color: c, fill: 'soft', w: 1.6 });
+  };
+  // Spherical mirror with its pole at (x, y), half-height h, radius R (px); light comes from the left.
+  // o.type 'concave' (default) or 'convex'. Hatching on the back.
+  D.mirror = function (x, y, h, Rr, o) {
+    o = o || {};
+    var cc = o.type === 'convex' ? 1 : -1, pts = [], k, out = '';
+    for (k = 0; k <= 40; k++) { var dy = -h + 2 * h * k / 40; pts.push([x + cc * (Rr - Math.sqrt(Rr * Rr - dy * dy)), y + dy]); }
+    out += D.poly(pts, { color: o.color || 'k', w: 2.4 });
+    for (k = 2; k <= 38; k += 4) out += D.line(pts[k][0], pts[k][1], pts[k][0] + 7, pts[k][1] - 5, { color: 'm', w: 1 });
+    return out;
+  };
+  // Object/image arrow standing on the axis at (x, y) with height h (negative = inverted). o.dash for virtual images.
+  D.obj = function (x, y, h, o) {
+    o = o || {};
+    return D.arrow(x, y, x, y - h, { color: o.color || 'g', w: o.w || 2.4, head: 8, dash: o.dash, label: o.label, at: 'end', lx: o.lx === undefined ? 0 : o.lx, ly: o.ly === undefined ? (h > 0 ? -10 : 14) : o.ly, math: o.math, size: o.size });
+  };
+
   // Labelled block (for free-body diagrams).
   D.block = function (x, y, w, h, label, o) {
     o = o || {};

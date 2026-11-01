@@ -16,5 +16,7 @@ JEE.bookList = [
   'physics/electrostatics',
   'physics/current-electricity',
   'physics/magnetism',
-  'physics/emi-ac'
+  'physics/emi-ac',
+  'physics/em-waves',
+  'physics/optics'
 ];

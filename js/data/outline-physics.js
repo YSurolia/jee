@@ -556,56 +556,56 @@ JEE.outline.physics = {
 `,
 
   'em-waves': `
-# Displacement current [M] @0
-- Displacement current; Ampère–Maxwell law
-# Electromagnetic waves and their characteristics @1
-- Sources of electromagnetic waves
-- Oscillating electric and magnetic fields; speed c = 1/√(μ₀ε₀)
-# Transverse nature of electromagnetic waves @2
-- Transverse nature of EM waves
-# Electromagnetic spectrum @3
-- Radio waves, microwaves, infrared, visible, ultraviolet, X-rays and gamma rays
-# Uses of electromagnetic waves @4
-- Elementary facts about the uses of each part of the spectrum
+# Displacement current [M] @0 >1
+- Displacement current; Ampère–Maxwell law >1
+# Electromagnetic waves and their characteristics @1 >3
+- Sources of electromagnetic waves >2
+- Oscillating electric and magnetic fields; speed c = 1/√(μ₀ε₀) >3
+# Transverse nature of electromagnetic waves @2 >4
+- Transverse nature of EM waves >4
+# Electromagnetic spectrum @3 >5
+- Radio waves, microwaves, infrared, visible, ultraviolet, X-rays and gamma rays >5
+# Uses of electromagnetic waves @4 >6
+- Elementary facts about the uses of each part of the spectrum >6
 `,
 
   'optics': `
-# Reflection of light @0
-- Laws of reflection; plane mirrors
-- Spherical mirrors and the sign convention
-- Mirror formula and magnification @1
-# Refraction of light @0
-- Laws of refraction; refractive index
-- Refraction at a plane surface; real and apparent depth
-- Refraction at a spherical surface
-# Total internal reflection and its applications @2
-- Critical angle
-- Applications: optical fibres, mirage, sparkling of diamond
-# Thin lenses @3
-- Lens maker's formula
-- Thin lens formula; magnification
-- Power of a lens @4
-- Combination of thin lenses in contact
-- Combinations of mirrors and thin lenses [A]
-# Refraction through a prism @5
-- Angle of deviation and minimum deviation
-- Dispersion of light by a prism
-# Optical instruments [M] @6
-- Microscope and its magnifying power
-- Astronomical telescope (refracting and reflecting) and its magnifying power
-# Wavefront and Huygens' principle @7
-- Wavefront and Huygens' principle
-- Laws of reflection and refraction from Huygens' principle
-# Interference of light @8
-- Coherent sources and sustained interference
-- Young's double-slit experiment; expression for fringe width
-# Diffraction @9
-- Diffraction due to a single slit
-- Width of the central maximum
-# Polarisation @10
-- Plane-polarised light
-- Brewster's law @11
-- Uses of plane-polarised light and Polaroids
+# Reflection of light @0 >1
+- Laws of reflection; plane mirrors >1
+- Spherical mirrors and the sign convention >2
+- Mirror formula and magnification @1 >3
+# Refraction of light @0 >4
+- Laws of refraction; refractive index >4
+- Refraction at a plane surface; real and apparent depth >5
+- Refraction at a spherical surface >6
+# Total internal reflection and its applications @2 >7
+- Critical angle >7
+- Applications: optical fibres, mirage, sparkling of diamond >7
+# Thin lenses @3 >8
+- Lens maker's formula >8
+- Thin lens formula; magnification >9
+- Power of a lens @4 >10
+- Combination of thin lenses in contact >10
+- Combinations of mirrors and thin lenses [A] >11
+# Refraction through a prism @5 >12
+- Angle of deviation and minimum deviation >12
+- Dispersion of light by a prism >13
+# Optical instruments [M] @6 >14
+- Microscope and its magnifying power >14
+- Astronomical telescope (refracting and reflecting) and its magnifying power >15
+# Wavefront and Huygens' principle @7 >16
+- Wavefront and Huygens' principle >16
+- Laws of reflection and refraction from Huygens' principle >17
+# Interference of light @8 >18
+- Coherent sources and sustained interference >18
+- Young's double-slit experiment; expression for fringe width >19
+# Diffraction @9 >20
+- Diffraction due to a single slit >20
+- Width of the central maximum >20
+# Polarisation @10 >21
+- Plane-polarised light >21
+- Brewster's law @11 >22
+- Uses of plane-polarised light and Polaroids >23
 `,
 
   'dual-nature': `
