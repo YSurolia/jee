@@ -6,5 +6,7 @@ JEE.bookList = [
   'maths/limits-continuity-differentiability',
   'physics/units-measurement',
   'physics/laws-of-motion',
-  'physics/work-energy-power'
+  'physics/work-energy-power',
+  'physics/rotational-motion',
+  'physics/gravitation'
 ];

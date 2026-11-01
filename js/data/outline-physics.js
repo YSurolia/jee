@@ -179,73 +179,73 @@ JEE.outline.physics = {
 `,
 
   'rotational-motion': `
-# Centre of mass @0
+# Centre of mass @0 >2
 - Centre of mass of a two-particle system
-- Centre of mass of a system of particles and of a rigid body
-- Centre of mass of a rod, ring, disc and other symmetric bodies
-- Motion of the centre of mass of a system of particles
-# Basic concepts of rotational motion @7
+- Centre of mass of a system of particles and of a rigid body >3
+- Centre of mass of a rod, ring, disc and other symmetric bodies >3
+- Motion of the centre of mass of a system of particles >4
+# Basic concepts of rotational motion @7 >1
 - Rigid body; translational and rotational motion
-- Angular displacement, angular velocity and angular acceleration
-- Equations of rotational motion with constant angular acceleration
-- Comparison of linear and rotational motion
-# Torque (moment of a force) @1
-- Vector (cross) product of two vectors
+- Angular displacement, angular velocity and angular acceleration >5
+- Equations of rotational motion with constant angular acceleration >5
+- Comparison of linear and rotational motion >13
+# Torque (moment of a force) @1 >7
+- Vector (cross) product of two vectors >6
 - Torque τ = r × F
 - Couple and its moment
-# Angular momentum @2
+# Angular momentum @2 >8
 - Angular momentum of a particle and of a rigid body
 - Relation τ = dL/dt
-- Conservation of angular momentum and its applications
-# Moment of inertia and radius of gyration @3
+- Conservation of angular momentum and its applications >9
+# Moment of inertia and radius of gyration @3 >10
 - Moment of inertia
 - Radius of gyration
 - Kinetic energy of rotation
-# Theorems of parallel and perpendicular axes @4
+# Theorems of parallel and perpendicular axes @4 >11
 - Perpendicular axes theorem
 - Parallel axes theorem
 - Applications of the two theorems
-# Moments of inertia of simple bodies @5
+# Moments of inertia of simple bodies @5 >12
 - Ring, disc, thin rod, solid and hollow sphere, solid and hollow cylinder
-# Dynamics of rotation about a fixed axis @7
+# Dynamics of rotation about a fixed axis @7 >13
 - Rotational form of Newton's second law (τ = Iα)
 - Work and power in rotational motion
-# Equilibrium of rigid bodies @6
+# Equilibrium of rigid bodies @6 >14
 - Conditions for translational and rotational equilibrium
 - Principle of moments; centre of gravity
-# Rolling motion [A] @8
+# Rolling motion [A] @8 >15
 - Rolling without slipping (v = ωR)
 - Kinetic energy of a rolling body
 - Rings, cylinders and spheres rolling down an incline
-# Collision of point masses with rigid bodies [A]
+# Collision of point masses with rigid bodies [A] >16
 - Angular impulse
 - Conservation of angular momentum in collisions with rigid bodies
 `,
 
   'gravitation': `
-# Universal law of gravitation @0
+# Universal law of gravitation @0 >1
 - Newton's law of gravitation; the constant G
-- Gravitational force due to spherical shells and spheres
-- Gravitational field intensity [A]
-# Acceleration due to gravity @1
+- Gravitational force due to spherical shells and spheres >3
+- Gravitational field intensity [A] >2
+# Acceleration due to gravity @1 >4
 - Acceleration due to gravity at the Earth's surface
-- Variation of g with altitude
-- Variation of g with depth
-# Kepler's laws of planetary motion @2
+- Variation of g with altitude >5
+- Variation of g with depth >6
+# Kepler's laws of planetary motion @2 >7
 - Law of orbits, law of areas and law of periods
 - Law of areas and conservation of angular momentum
-# Gravitational potential energy and potential @3
+# Gravitational potential energy and potential @3 >8
 - Gravitational potential energy of a two-body system
-- Gravitational potential due to a point mass
-- Gravitational field and potential of a spherical shell and a solid sphere [A]
-# Escape velocity @4
+- Gravitational potential due to a point mass >9
+- Gravitational field and potential of a spherical shell and a solid sphere [A] >9
+# Escape velocity @4 >10
 - Escape velocity from the Earth's surface
-# Motion of satellites @5
+# Motion of satellites @5 >11
 - Orbital velocity @6
 - Time period of a satellite
-- Energy of an orbiting satellite; binding energy
-- Geostationary orbits [A]
-- Weightlessness
+- Energy of an orbiting satellite; binding energy >12
+- Geostationary orbits [A] >13
+- Weightlessness >14
 `,
 
   'solids-liquids': `
