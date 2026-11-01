@@ -517,42 +517,42 @@ JEE.outline.physics = {
 `,
 
   'emi-ac': `
-# Faraday's law of induction @0
-- Magnetic flux
-- Faraday's law of electromagnetic induction
-# Lenz's law @1
-- Lenz's law and conservation of energy
-# Induced emf and current @2
-- Motional emf
-- Emf induced in a rotating rod or coil
-# Eddy currents [M] @3
-- Eddy currents and their applications
-# Self and mutual inductance @4
-- Self-inductance
-- Mutual inductance
-- Energy stored in an inductor
-# RC and LR circuits [A]
-- Charging and discharging of a capacitor through a resistor
-- Growth and decay of current in an LR circuit
-- Time constant
-# LC circuits [A]
-- LC oscillations
-# Alternating current @5
-- Peak and RMS values of alternating current and voltage
-- Phasors
-# Reactance and impedance @6
-- AC through a resistor, an inductor and a capacitor
-- Inductive and capacitive reactance; impedance
-# LCR series circuit @7
-- Impedance and phase angle
-- Resonance
-- Sharpness of resonance and quality factor @8
-# Power in AC circuits @9
-- Average power and power factor
-- Wattless current
-# AC generator and transformer [M] @10
-- AC generator
-- Transformer
+# Faraday's law of induction @0 >2
+- Magnetic flux >1
+- Faraday's law of electromagnetic induction >2
+# Lenz's law @1 >3
+- Lenz's law and conservation of energy >3
+# Induced emf and current @2 >4
+- Motional emf >4
+- Emf induced in a rotating rod or coil >5
+# Eddy currents [M] @3 >6
+- Eddy currents and their applications >6
+# Self and mutual inductance @4 >7
+- Self-inductance >7
+- Mutual inductance >8
+- Energy stored in an inductor >9
+# RC and LR circuits [A] >10
+- Charging and discharging of a capacitor through a resistor >10
+- Growth and decay of current in an LR circuit >11
+- Time constant >10
+# LC circuits [A] >12
+- LC oscillations >12
+# Alternating current @5 >13
+- Peak and RMS values of alternating current and voltage >13
+- Phasors >14
+# Reactance and impedance @6 >15
+- AC through a resistor, an inductor and a capacitor >15
+- Inductive and capacitive reactance; impedance >15
+# LCR series circuit @7 >16
+- Impedance and phase angle >16
+- Resonance >17
+- Sharpness of resonance and quality factor @8 >18
+# Power in AC circuits @9 >19
+- Average power and power factor >19
+- Wattless current >19
+# AC generator and transformer [M] @10 >20
+- AC generator >20
+- Transformer >21
 `,
 
   'em-waves': `

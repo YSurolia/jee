@@ -236,6 +236,27 @@
     }, o);
   };
 
+  // Inductor: a row of loops (o.loops, default 4).
+  D.ind = function (x1, y1, x2, y2, o) {
+    o = o || {};
+    var n = o.loops || 4, gap = n * 12;
+    return twoTerm(x1, y1, x2, y2, gap, function (mx, my, ux, uy, px, py, c) {
+      var d = 'M' + (mx - ux * gap / 2).toFixed(1) + ' ' + (my - uy * gap / 2).toFixed(1);
+      for (var k = 0; k < n; k++) {
+        var ex = mx + ux * (-gap / 2 + 12 * (k + 1)), ey = my + uy * (-gap / 2 + 12 * (k + 1));
+        var cx = mx + ux * (-gap / 2 + 12 * k + 6) + px * 12, cy = my + uy * (-gap / 2 + 12 * k + 6) + py * 12;
+        d += ' Q ' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1);
+      }
+      return D.path(d, { color: c, w: 1.8 });
+    }, o);
+  };
+  // AC source: circle with a sine wave inside.
+  D.ac = function (x1, y1, x2, y2, o) {
+    return twoTerm(x1, y1, x2, y2, 28, function (mx, my, ux, uy, px, py, c) {
+      var d = 'M' + (mx - 8) + ' ' + my + ' Q ' + (mx - 4) + ' ' + (my - 9) + ' ' + mx + ' ' + my + ' T ' + (mx + 8) + ' ' + my;
+      return D.circle(mx, my, 14, { color: c, w: 1.8 }) + D.path(d, { color: c, w: 1.6 });
+    }, o);
+  };
   // Meter (G, A or V) as a circle in a wire from (x1,y1) to (x2,y2).
   D.meter = function (x1, y1, x2, y2, o) {
     o = o || {};
