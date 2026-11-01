@@ -28,5 +28,7 @@ JEE.bookList = [
   'chemistry/states-of-matter',
   'chemistry/chemical-thermodynamics',
   'chemistry/solid-state',
-  'chemistry/solutions'
+  'chemistry/solutions',
+  'chemistry/equilibrium',
+  'chemistry/redox-electrochemistry'
 ];

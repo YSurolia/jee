@@ -185,39 +185,39 @@ JEE.outline.chemistry = {
 `,
 
   'equilibrium': `
-# Equilibrium in physical processes @0
-- Dynamic nature of equilibrium
-- Solid–liquid, liquid–gas, gas–gas and solid–gas equilibria
-- Henry's law; general characteristics of physical equilibria
-# Equilibrium in chemical processes @1
-- Law of chemical equilibrium (law of mass action)
-- Equilibrium constants Kp and Kc and their relation
-- Homogeneous and heterogeneous equilibria
-- Applications of equilibrium constants
-# Reaction quotient @2
-- Reaction quotient Q and the direction of reaction
-- Significance of ΔG and ΔG° in chemical equilibrium
-# Factors affecting equilibrium @3
-- Le Chatelier's principle
-- Effect of concentration, pressure and temperature
-- Effect of a catalyst
-# Acids, bases and ionic equilibrium @4
-- Weak and strong electrolytes; ionisation of electrolytes
-- Arrhenius, Brønsted–Lowry and Lewis concepts of acids and bases
-- Ionisation constants of weak acids and bases
-- Acid–base equilibria including multistage ionisation
-# Ionisation of water and the pH scale @5
-- Ionic product of water
-- pH scale; pH of acids and bases
-# Common-ion effect @6
-- Common-ion effect on ionisation
-# Hydrolysis of salts @7
-- Hydrolysis of salts and the pH of their solutions
-# Buffer solutions @8
-- Acidic and basic buffers; Henderson–Hasselbalch equation
-# Solubility equilibria @9
-- Solubility of sparingly soluble salts; solubility product
-- Applications of the solubility product
+# Equilibrium in physical processes @0 >1
+- Dynamic nature of equilibrium >1
+- Solid–liquid, liquid–gas, gas–gas and solid–gas equilibria >1
+- Henry's law; general characteristics of physical equilibria >1
+# Equilibrium in chemical processes @1 >2
+- Law of chemical equilibrium (law of mass action) >2
+- Equilibrium constants Kp and Kc and their relation >3
+- Homogeneous and heterogeneous equilibria >4
+- Applications of equilibrium constants >5
+# Reaction quotient @2 >6
+- Reaction quotient Q and the direction of reaction >6
+- Significance of ΔG and ΔG° in chemical equilibrium >7
+# Factors affecting equilibrium @3 >8
+- Le Chatelier's principle >8
+- Effect of concentration, pressure and temperature >8
+- Effect of a catalyst >8
+# Acids, bases and ionic equilibrium @4 >9
+- Weak and strong electrolytes; ionisation of electrolytes >9
+- Arrhenius, Brønsted–Lowry and Lewis concepts of acids and bases >9
+- Ionisation constants of weak acids and bases >10
+- Acid–base equilibria including multistage ionisation >10
+# Ionisation of water and the pH scale @5 >11
+- Ionic product of water >11
+- pH scale; pH of acids and bases >11
+# Common-ion effect @6 >12
+- Common-ion effect on ionisation >12
+# Hydrolysis of salts @7 >13
+- Hydrolysis of salts and the pH of their solutions >13
+# Buffer solutions @8 >14
+- Acidic and basic buffers; Henderson–Hasselbalch equation >14
+# Solubility equilibria @9 >15
+- Solubility of sparingly soluble salts; solubility product >15
+- Applications of the solubility product >15
 `,
 
   'periodicity': `
@@ -471,41 +471,41 @@ JEE.outline.chemistry = {
 `,
 
   'redox-electrochemistry': `
-# Oxidation and reduction @0
-- Electronic concepts of oxidation and reduction; redox reactions
-- Oxidation number and rules for assigning it
-- Types of redox reactions, including disproportionation
-# Balancing redox reactions @1
-- Oxidation-number method
-- Half-reaction (ion–electron) method
-# Electrolytic and metallic conduction @2
-- Electrolytic and metallic conduction
-# Conductance in electrolytic solutions @3
-- Resistance, conductance and conductivity (specific conductance)
-- Molar conductivity and its variation with concentration
-- Equivalent conductivity [A]
-# Kohlrausch's law and its applications @4
-- Limiting molar conductivity of weak electrolytes
-- Degree of dissociation from conductivity
-# Electrochemical cells @5
-- Electrolytic and galvanic cells; half-cell and cell reactions
-- Types of electrodes; standard hydrogen electrode
-- Electrode potentials and standard electrode potentials; electrochemical series
-- emf of a galvanic cell and its measurement
-# Nernst equation and its applications @6
-- Nernst equation for electrodes and cells
-- Equilibrium constant from the standard cell potential
-# Cell potential and Gibbs energy @7
-- ΔG = −nFE; electrochemical work
-# Electrolysis @8
-- Products of electrolysis
-- Faraday's laws of electrolysis
-# Batteries and fuel cells @9
-- Primary batteries: dry cell
-- Secondary batteries: lead accumulator
-- Fuel cells
-# Corrosion [A]
-- Electrochemical theory of rusting and its prevention
+# Oxidation and reduction @0 >1
+- Electronic concepts of oxidation and reduction; redox reactions >1
+- Oxidation number and rules for assigning it >2
+- Types of redox reactions, including disproportionation >3
+# Balancing redox reactions @1 >4
+- Oxidation-number method >4
+- Half-reaction (ion–electron) method >5
+# Electrolytic and metallic conduction @2 >6
+- Electrolytic and metallic conduction >6
+# Conductance in electrolytic solutions @3 >7
+- Resistance, conductance and conductivity (specific conductance) >7
+- Molar conductivity and its variation with concentration >7
+- Equivalent conductivity [A] >7
+# Kohlrausch's law and its applications @4 >8
+- Limiting molar conductivity of weak electrolytes >8
+- Degree of dissociation from conductivity >8
+# Electrochemical cells @5 >9
+- Electrolytic and galvanic cells; half-cell and cell reactions >9
+- Types of electrodes; standard hydrogen electrode >9
+- Electrode potentials and standard electrode potentials; electrochemical series >10
+- emf of a galvanic cell and its measurement >11
+# Nernst equation and its applications @6 >12
+- Nernst equation for electrodes and cells >12
+- Equilibrium constant from the standard cell potential >12
+# Cell potential and Gibbs energy @7 >13
+- ΔG = −nFE; electrochemical work >13
+# Electrolysis @8 >14
+- Products of electrolysis >14
+- Faraday's laws of electrolysis >15
+# Batteries and fuel cells @9 >16
+- Primary batteries: dry cell >16
+- Secondary batteries: lead accumulator >16
+- Fuel cells >16
+# Corrosion [A] >17
+- Electrochemical theory of rusting and its prevention >17
 `,
 
   'chemical-kinetics': `
