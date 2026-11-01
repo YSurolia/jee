@@ -8,39 +8,39 @@ window.JEE = window.JEE || {};
 JEE.outline = JEE.outline || {};
 JEE.outline.physics = {
   'units-measurement': `
-# Physical quantities and systems of units @0
+# Physical quantities and systems of units @0 >1
 - Need for measurement; physical quantities and their units
-- Systems of units: CGS, FPS, MKS and SI
-- The seven SI base units; supplementary units (radian, steradian)
-- SI prefixes; practical units (light year, astronomical unit, parsec, atomic mass unit)
-# Fundamental and derived units @1
+- Systems of units: CGS, FPS, MKS and SI >2
+- The seven SI base units; supplementary units (radian, steradian) >2
+- SI prefixes; practical units (light year, astronomical unit, parsec, atomic mass unit) >4
+# Fundamental and derived units @1 >3
 - Fundamental (base) quantities and units
 - Derived quantities and their units
 - Rules for writing SI units and symbols
-# Measuring instruments and least count @2
+# Measuring instruments and least count @2 >5
 - Least count of a metre scale, vernier callipers and screw gauge
-- Zero error and zero correction
+- Zero error and zero correction >5
 - Methods of measurement for the standard experiments [A]
-# Significant figures @3
+# Significant figures @3 >7
 - Rules for counting significant figures
-- Rounding off
-- Significant figures in addition, subtraction, multiplication and division
-# Errors in measurement @4
+- Rounding off >8
+- Significant figures in addition, subtraction, multiplication and division >8
+# Errors in measurement @4 >9
 - Systematic errors, random errors and least-count error
-- Absolute, mean absolute, relative and percentage errors
-- Combination of errors in sums, differences, products, quotients and powers
-- Accuracy and precision
+- Absolute, mean absolute, relative and percentage errors >10
+- Combination of errors in sums, differences, products, quotients and powers >11
+- Accuracy and precision >12
 - Error analysis of experimental results
-# Dimensions of physical quantities @5
+# Dimensions of physical quantities @5 >13
 - Dimensions and dimensional formulae
 - Dimensional formulae of common quantities
 - Dimensionless quantities and dimensional constants
-# Dimensional analysis and its applications @6
+# Dimensional analysis and its applications @6 >14
 - Principle of homogeneity of dimensions
 - Checking whether an equation is dimensionally correct
 - Converting a quantity from one system of units to another
 - Deducing the relation between physical quantities
-- Limitations of dimensional analysis
+- Limitations of dimensional analysis >15
 `,
 
   'kinematics': `
@@ -100,82 +100,82 @@ JEE.outline.physics = {
 `,
 
   'laws-of-motion': `
-# Force and inertia @0
-- Aristotle's fallacy and Galileo's law of inertia
+# Force and inertia @0 >2
+- Aristotle's fallacy and Galileo's law of inertia >2
 - Inertia and mass
-- Newton's first law of motion
-# Newton's second law; momentum @1
+- Newton's first law of motion >3
+# Newton's second law; momentum @1 >4
 - Linear momentum
 - Second law: F = dp/dt = ma
 - Units of force; the newton
-# Impulse @2
+# Impulse @2 >5
 - Impulse and impulsive forces
 - Impulse as change in momentum; force–time graphs
-# Newton's third law @1
+# Newton's third law @1 >6
 - Action and reaction pairs
-- Free-body diagrams
-- Normal reaction, tension and spring force
-- Connected bodies: strings and pulleys
-# Conservation of linear momentum @3
+- Free-body diagrams >7
+- Normal reaction, tension and spring force >7
+- Connected bodies: strings and pulleys >8
+# Conservation of linear momentum @3 >10
 - Law of conservation of linear momentum
-- Applications: recoil of a gun, explosions, rocket propulsion
-# Equilibrium of concurrent forces @4
+- Applications: recoil of a gun, explosions, rocket propulsion >11
+# Equilibrium of concurrent forces @4 >12
 - Condition for equilibrium of a particle
 - Lami's theorem
-# Inertial and non-inertial frames [A]
+# Inertial and non-inertial frames [A] >9
 - Inertial frames of reference
 - Uniformly accelerated frames and pseudo forces
 - Apparent weight in a lift
-# Friction @5
+# Friction @5 >13
 - Static and kinetic friction
 - Laws of friction; coefficient of friction
-- Angle of friction and angle of repose
-- Motion of blocks on rough horizontal and inclined surfaces
-# Rolling friction [M] @6
+- Angle of friction and angle of repose >14
+- Motion of blocks on rough horizontal and inclined surfaces >14
+# Rolling friction [M] @6 >15
 - Rolling friction
 - Ways of reducing friction
-# Dynamics of uniform circular motion @7
+# Dynamics of uniform circular motion @7 >16
 - Centripetal force and its sources
 - Vehicle on a level circular road
 - Conical pendulum
-# Banking of roads @8
+# Banking of roads @8 >17
 - Vehicle on a banked road
 - Optimum, maximum and minimum safe speeds
 `,
 
   'work-energy-power': `
-# Work @0
-- Scalar (dot) product of two vectors
-- Work done by a constant force
-- Work done by a variable force (area under the force–displacement graph)
-- Positive, negative and zero work
-# Kinetic energy and the work–energy theorem @2
+# Work @0 >2
+- Scalar (dot) product of two vectors >1
+- Work done by a constant force >2
+- Work done by a variable force (area under the force–displacement graph) >4
+- Positive, negative and zero work >3
+# Kinetic energy and the work–energy theorem @2 >5
 - Kinetic energy
 - Work–energy theorem for constant and variable forces
-# Potential energy @1
+# Potential energy @1 >6
 - Gravitational potential energy near the Earth
-- Force as the negative gradient of potential energy (F = −dU/dx)
-- Stable, unstable and neutral equilibrium from potential-energy curves
-# Potential energy of a spring @4
+- Force as the negative gradient of potential energy (F = −dU/dx) >8
+- Stable, unstable and neutral equilibrium from potential-energy curves >8
+# Potential energy of a spring @4 >9
 - Spring force and Hooke's law
 - Elastic potential energy ½kx²
-# Conservative and non-conservative forces @6
+# Conservative and non-conservative forces @6 >7
 - Definition and examples
 - Work done around a closed path
-# Conservation of mechanical energy @5
+# Conservation of mechanical energy @5 >10
 - Law of conservation of mechanical energy
-- Different forms of energy; conservation of total energy
-# Power @3
+- Different forms of energy; conservation of total energy >11
+# Power @3 >12
 - Average and instantaneous power (P = F·v)
 - Units: watt, horsepower; kilowatt-hour
-# Motion in a vertical circle @7
+# Motion in a vertical circle @7 >13
 - Speed and tension at different points
 - Minimum speeds at the top and bottom to complete the circle
-# Collisions @8
+# Collisions @8 >14
 - Elastic and inelastic collisions
-- Collisions in one dimension; coefficient of restitution
-- Collisions in two dimensions
-- Perfectly inelastic collisions and loss of kinetic energy
+- Collisions in one dimension; coefficient of restitution >15
+- Collisions in two dimensions >17
+- Perfectly inelastic collisions and loss of kinetic energy >16
 `,
 
   'rotational-motion': `

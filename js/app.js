@@ -283,6 +283,9 @@
       b.points.map(function (pt) { return '<li>' + pt + '</li>'; }).join('') + '</ul></div>';
     if (b.mistake) return '<div class="callout mistake"><b>' + icon('triangle-alert') + ' Common mistake</b><p>' + b.mistake + '</p></div>';
     if (b.note) return '<div class="callout note"><b>' + icon('book-open') + ' ' + (b.title || 'Good to know') + '</b><p>' + b.note + '</p></div>';
+    if (b.tip) return '<div class="callout tip"><b>' + icon('target') + ' ' + (b.title || 'JEE tip') + '</b><p>' + b.tip + '</p></div>';
+    if (b.adv) return '<div class="callout advbox"><b>' + icon('trophy') + ' ' + (b.title || 'JEE Advanced') + '</b>' +
+      [].concat(b.adv).map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div>';
     if (b.check) return '<div class="callout check"><b>' + icon('circle-help') + ' Quick check</b><p>' + b.check.q + '</p>' +
       '<details><summary>Show answer</summary><div class="ans">' + b.check.ans + '</div></details></div>';
     return '';
@@ -356,7 +359,11 @@
         sec.blocks.map(function (b) { return bookBlock(b, figNo); }).join('') + '</article>';
     }).join('');
     var summary = '<article class="card summary-card book-sec" id="sec-summary"><h2 class="tab-title" style="margin-top:0">Chapter at a glance</h2><ul>' +
-      book.summary.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul></article>';
+      book.summary.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>' +
+      (book.refs ? '<h3 class="refs-title">' + icon('book-open') + ' Further reading</h3><ul class="refs">' + book.refs.map(function (r) {
+        return '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + r.t + '</a>' + (r.note ? ' <small>' + r.note + '</small>' : '') + '</li>';
+      }).join('') + '</ul><p class="refs-note">The explanations on this page are original. These free resources go further: OpenStax textbooks are licensed CC BY 4.0, Wikipedia articles CC BY-SA 4.0.</p>' : '') +
+      '</article>';
     return intro + toc + learn + secs + summary;
   }
 

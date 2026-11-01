@@ -3,5 +3,8 @@ window.JEE = window.JEE || {};
 JEE.bookList = [
   'physics/kinematics',
   'chemistry/chemical-bonding',
-  'maths/limits-continuity-differentiability'
+  'maths/limits-continuity-differentiability',
+  'physics/units-measurement',
+  'physics/laws-of-motion',
+  'physics/work-energy-power'
 ];

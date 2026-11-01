@@ -191,7 +191,7 @@ summary { cursor: pointer; color: var(--accent); font-weight: 600; }
 
 .pattern td, .pattern th { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
 .pattern { border-collapse: collapse; width: 100%; font-size: .93rem; }
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; position: relative; }
 
 .footer { color: var(--muted); font-size: .85rem; padding-top: 30px; padding-bottom: 30px; border-top: 1px solid var(--border); margin-top: 40px; }
 
@@ -433,6 +433,7 @@ summary { cursor: pointer; color: var(--accent); font-weight: 600; }
 .book-sec > p, .book-sec .sec-body > p { margin: 0 0 12px; font-size: 1.02rem; line-height: 1.75; }
 .book-sec h3 { margin: 20px 0 8px; font-size: 1.05rem; color: var(--c); }
 .book-sec .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex-display { position: relative; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 .figure { margin: 16px 0; padding: 12px; border-radius: 12px; background: var(--surface-2); text-align: center; }
 .figure figcaption { margin-top: 8px; font-size: .88rem; color: var(--muted); text-align: left; }
 .figure figcaption b { color: var(--text); }
@@ -475,7 +476,7 @@ summary { cursor: pointer; color: var(--accent); font-weight: 600; }
 .callout.note { background: color-mix(in srgb, var(--d-p) 9%, transparent); border-color: var(--d-p); }
 .callout.note b { color: var(--d-p); }
 .book-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .95rem; }
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; position: relative; }
 .book-table th, .book-table td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; vertical-align: top; }
 .book-table th { background: var(--surface-2); }
 .summary-card ul { margin: 6px 0 0; padding-left: 20px; }
@@ -607,6 +608,17 @@ a.ol-topic:hover { color: var(--c, var(--accent)); text-decoration: none; }
   .syl-ch > summary small { flex-basis: 100%; padding-left: 38px; white-space: normal; }
 }
 
+.callout.tip { background: color-mix(in srgb, var(--d-b) 9%, transparent); border-color: var(--d-b); }
+.callout.tip b { color: var(--d-b); }
+.callout.advbox { background: color-mix(in srgb, var(--d-p) 8%, transparent); border-color: var(--d-p); }
+.callout.advbox b { color: var(--d-p); }
+.callout.advbox p { margin: 6px 0 0; }
+.refs-title { display: flex; align-items: center; gap: 8px; margin: 22px 0 6px; font-size: 1rem; }
+.refs-title .ico { width: 18px; height: 18px; }
+.refs { margin: 0; padding-left: 20px; }
+.refs li { margin-bottom: 5px; }
+.refs small { color: var(--muted); }
+.refs-note { margin: 8px 0 0; font-size: .82rem; color: var(--muted); }
 @media print {
   body { background: #fff !important; color: #000; }
   .topbar, .tabs, .crumbs, .pager, .done-row, .book-actions, .learn, footer, .ch-side, .side-overlay { display: none !important; }
