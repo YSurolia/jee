@@ -22,5 +22,8 @@ JEE.bookList = [
   'physics/dual-nature',
   'physics/atoms-nuclei',
   'physics/electronic-devices',
-  'physics/experimental-skills'
+  'physics/experimental-skills',
+  'chemistry/basic-concepts',
+  'chemistry/atomic-structure',
+  'chemistry/states-of-matter'
 ];

@@ -9,80 +9,80 @@ window.JEE = window.JEE || {};
 JEE.outline = JEE.outline || {};
 JEE.outline.chemistry = {
   'basic-concepts': `
-# Matter and its nature @0
-- Importance and scope of chemistry
-- States of matter; elements, compounds and mixtures
-- Properties of matter and their measurement; SI units
-- Uncertainty in measurement: scientific notation, significant figures, precision and accuracy
-# Dalton's atomic theory @1
-- Postulates of Dalton's atomic theory
-- Concept of atom, molecule, element and compound
-# Laws of chemical combination @2
-- Law of conservation of mass
-- Law of definite proportions
-- Law of multiple proportions
-- Gay-Lussac's law of gaseous volumes
-- Avogadro's law
-# Atomic and molecular masses @3
-- Atomic mass unit and average atomic mass
-- Molecular mass and formula mass
-# Mole concept and molar mass @4
-- The mole and Avogadro's number
-- Molar mass; molar volume of a gas
-# Percentage composition @5
-- Mass percentage of elements in a compound
-# Empirical and molecular formulae @6
-- Finding empirical and molecular formulae from percentage composition
-# Chemical equations and stoichiometry @7
-- Balancing chemical equations
-- Mass–mass, mass–volume and volume–volume calculations
-- Limiting reagent and percentage yield @8
-- Calculations involving redox, neutralisation and displacement reactions [A]
-# Concentration of solutions
-- Mass percent, mole fraction, molarity and molality
-- Equivalent mass and normality [A]
+# Matter and its nature @0 >1
+- Importance and scope of chemistry >1
+- States of matter; elements, compounds and mixtures >1
+- Properties of matter and their measurement; SI units >2
+- Uncertainty in measurement: scientific notation, significant figures, precision and accuracy >3
+# Dalton's atomic theory @1 >4
+- Postulates of Dalton's atomic theory >4
+- Concept of atom, molecule, element and compound >4
+# Laws of chemical combination @2 >5
+- Law of conservation of mass >5
+- Law of definite proportions >5
+- Law of multiple proportions >5
+- Gay-Lussac's law of gaseous volumes >6
+- Avogadro's law >6
+# Atomic and molecular masses @3 >7
+- Atomic mass unit and average atomic mass >7
+- Molecular mass and formula mass >8
+# Mole concept and molar mass @4 >9
+- The mole and Avogadro's number >9
+- Molar mass; molar volume of a gas >10
+# Percentage composition @5 >11
+- Mass percentage of elements in a compound >11
+# Empirical and molecular formulae @6 >12
+- Finding empirical and molecular formulae from percentage composition >12
+# Chemical equations and stoichiometry @7 >13
+- Balancing chemical equations >13
+- Mass–mass, mass–volume and volume–volume calculations >14
+- Limiting reagent and percentage yield @8 >15
+- Calculations involving redox, neutralisation and displacement reactions [A] >16
+# Concentration of solutions >17
+- Mass percent, mole fraction, molarity and molality >17
+- Equivalent mass and normality [A] >18
 `,
 
   'atomic-structure': `
-# Subatomic particles and early atomic models @0
-- Discovery of the electron, proton and neutron
-- Thomson's model of the atom
-- Rutherford's nuclear model and its drawbacks
-- Atomic number, mass number, isotopes and isobars
-# Electromagnetic radiation and the photoelectric effect @1
-- Nature of electromagnetic radiation; the electromagnetic spectrum
-- Planck's quantum theory
-- Photoelectric effect
-# Spectrum of the hydrogen atom @2
-- Emission and absorption spectra
-- Line spectrum of hydrogen; Rydberg formula and spectral series
-# Bohr's model of the hydrogen atom @3
-- Postulates of Bohr's model
-- Derivation of the energy of the electron and radii of the orbits
-- Explanation of the hydrogen spectrum
-- Limitations of Bohr's model
-# Dual nature of matter @4
-- Wave–particle duality; de Broglie relationship
-# Heisenberg uncertainty principle @5
-- Uncertainty principle and its significance
-# Quantum mechanical model of the atom
-- Elementary ideas of quantum mechanics; important features of the model
-- Atomic orbitals as one-electron wave functions
-- Variation of ψ and ψ² with r for 1s and 2s orbitals (probability density plots)
-- Energies of orbitals in the hydrogen atom
-# Quantum numbers @6
-- Principal, azimuthal (angular momentum) and magnetic quantum numbers and their significance
-- Electron spin and the spin quantum number
-# Shapes of atomic orbitals @7
-- Shapes of s, p and d orbitals
-- Radial and angular nodes @8
-# Rules for filling electrons in orbitals @9
-- Aufbau principle and the (n + l) rule
-- Pauli's exclusion principle
-- Hund's rule of maximum multiplicity
-# Electronic configuration of atoms @10
-- Electronic configurations of elements
-- Extra stability of half-filled and completely filled orbitals
+# Subatomic particles and early atomic models @0 >1
+- Discovery of the electron, proton and neutron >1
+- Thomson's model of the atom >2
+- Rutherford's nuclear model and its drawbacks >2
+- Atomic number, mass number, isotopes and isobars >3
+# Electromagnetic radiation and the photoelectric effect @1 >4
+- Nature of electromagnetic radiation; the electromagnetic spectrum >4
+- Planck's quantum theory >5
+- Photoelectric effect >6
+# Spectrum of the hydrogen atom @2 >7
+- Emission and absorption spectra >7
+- Line spectrum of hydrogen; Rydberg formula and spectral series >8
+# Bohr's model of the hydrogen atom @3 >9
+- Postulates of Bohr's model >9
+- Derivation of the energy of the electron and radii of the orbits >9
+- Explanation of the hydrogen spectrum >10
+- Limitations of Bohr's model >10
+# Dual nature of matter @4 >11
+- Wave–particle duality; de Broglie relationship >11
+# Heisenberg uncertainty principle @5 >12
+- Uncertainty principle and its significance >12
+# Quantum mechanical model of the atom >13
+- Elementary ideas of quantum mechanics; important features of the model >13
+- Atomic orbitals as one-electron wave functions >13
+- Variation of ψ and ψ² with r for 1s and 2s orbitals (probability density plots) >14
+- Energies of orbitals in the hydrogen atom >15
+# Quantum numbers @6 >16
+- Principal, azimuthal (angular momentum) and magnetic quantum numbers and their significance >16
+- Electron spin and the spin quantum number >16
+# Shapes of atomic orbitals @7 >17
+- Shapes of s, p and d orbitals >17
+- Radial and angular nodes @8 >18
+# Rules for filling electrons in orbitals @9 >19
+- Aufbau principle and the (n + l) rule >19
+- Pauli's exclusion principle >20
+- Hund's rule of maximum multiplicity >20
+# Electronic configuration of atoms @10 >21
+- Electronic configurations of elements >21
+- Extra stability of half-filled and completely filled orbitals >21
 `,
 
   'chemical-bonding': `
@@ -125,31 +125,31 @@ JEE.outline.chemistry = {
 `,
 
   'states-of-matter': `
-# Gas laws @0
-- Boyle's, Charles', Gay-Lussac's and Avogadro's laws
-- Absolute (kelvin) scale of temperature
-# Ideal gas equation @1
-- PV = nRT and the values of R
-- Density and molar mass of a gas
-# Dalton's law of partial pressures @2
-- Partial pressure and mole fraction
-- Pressure of a gas collected over water
-# Diffusion of gases @3
-- Graham's law of diffusion and effusion
-# Kinetic theory of gases @4
-- Postulates of the kinetic molecular theory
-- Kinetic gas equation
-- Average, root-mean-square and most probable speeds and their relation with temperature
-# Real gases @5
-- Deviation from ideal behaviour; compressibility factor
-- van der Waals equation; meaning of the constants a and b
-# Intermolecular forces @6
-- Types: London (dispersion), dipole–dipole, dipole–induced dipole forces and hydrogen bonding
-- Distance dependence of the forces and their effect on properties
-# Liquid state @7
-- Vapour pressure
-- Surface tension
-- Viscosity
+# Gas laws @0 >1
+- Boyle's, Charles', Gay-Lussac's and Avogadro's laws >1
+- Absolute (kelvin) scale of temperature >1
+# Ideal gas equation @1 >2
+- PV = nRT and the values of R >2
+- Density and molar mass of a gas >2
+# Dalton's law of partial pressures @2 >3
+- Partial pressure and mole fraction >3
+- Pressure of a gas collected over water >3
+# Diffusion of gases @3 >4
+- Graham's law of diffusion and effusion >4
+# Kinetic theory of gases @4 >5
+- Postulates of the kinetic molecular theory >5
+- Kinetic gas equation >5
+- Average, root-mean-square and most probable speeds and their relation with temperature >6
+# Real gases @5 >7
+- Deviation from ideal behaviour; compressibility factor >7
+- van der Waals equation; meaning of the constants a and b >8
+# Intermolecular forces @6 >9
+- Types: London (dispersion), dipole–dipole, dipole–induced dipole forces and hydrogen bonding >9
+- Distance dependence of the forces and their effect on properties >9
+# Liquid state @7 >10
+- Vapour pressure >10
+- Surface tension >11
+- Viscosity >11
 `,
 
   'chemical-thermodynamics': `

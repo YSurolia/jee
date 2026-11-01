@@ -1,11 +1,12 @@
 // Chemistry chapters that are in the JEE Advanced 2026 syllabus but not in JEE Main 2027.
 // They use the same format as js/data/chemistry.js. Each example gives `t`, the index of its syllabus topic,
-// which is turned into the exact topic string below. These chapters have no lesson file yet (lesson: false).
+// which is turned into the exact topic string below. Chapters not yet in WITH_LESSON have no lesson file (lesson: false).
 (function () {
   var R = String.raw, list = JEE.chemistry.chapters;
+  var WITH_LESSON = ['states-of-matter'];
   function add(where, o) {
     o.adv = true;
-    o.lesson = false;
+    if (WITH_LESSON.indexOf(o.id) < 0) o.lesson = false;
     o.examples.forEach(function (e) { e.topic = o.syllabus[e.t]; delete e.t; });
     var i = list.findIndex(function (c) { return c.id === (where.after || where.before); });
     list.splice(where.after ? i + 1 : i, 0, o);
