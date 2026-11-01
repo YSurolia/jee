@@ -153,35 +153,35 @@ JEE.outline.chemistry = {
 `,
 
   'chemical-thermodynamics': `
-# Fundamentals of thermodynamics @0
-- System, surroundings and types of systems
-- Extensive and intensive properties
-- State functions and path functions
-- Types of processes
-# First law of thermodynamics @1
-- Internal energy, work (pressure–volume only) and heat
-- First law: ΔU = q + w
-- Enthalpy; ΔH = ΔU + Δn(g)RT
-- Measuring ΔU and ΔH: calorimetry
-# Heat capacity @2
-- Heat capacity, molar heat capacity and specific heat
-# Enthalpy changes @4
-- Standard state and standard enthalpy of reaction
-- Enthalpies of formation, combustion, atomisation and bond dissociation
-- Enthalpies of phase transition: fusion, vaporisation and sublimation
-- Enthalpies of solution, hydration and ionisation; lattice enthalpy
-# Hess's law of constant heat summation @3
-- Hess's law and its applications
-# Entropy and the second law @5
-- Spontaneous processes
-- Entropy and entropy change
-- Second law: ΔS of the universe as the criterion for spontaneity
-# Gibbs energy and spontaneity @6
-- Gibbs energy, G = H − TS
-- ΔG of the system as the criterion of spontaneity and equilibrium
-- Effect of temperature on spontaneity
-# Gibbs energy and the equilibrium constant @7
-- Standard Gibbs energy change and the equilibrium constant: ΔG° = −RT ln K
+# Fundamentals of thermodynamics @0 >1
+- System, surroundings and types of systems >1
+- Extensive and intensive properties >2
+- State functions and path functions >2
+- Types of processes >2
+# First law of thermodynamics @1 >4
+- Internal energy, work (pressure–volume only) and heat >3
+- First law: ΔU = q + w >4
+- Enthalpy; ΔH = ΔU + Δn(g)RT >5
+- Measuring ΔU and ΔH: calorimetry >6
+# Heat capacity @2 >7
+- Heat capacity, molar heat capacity and specific heat >7
+# Enthalpy changes @4 >8
+- Standard state and standard enthalpy of reaction >8
+- Enthalpies of formation, combustion, atomisation and bond dissociation >9
+- Enthalpies of phase transition: fusion, vaporisation and sublimation >10
+- Enthalpies of solution, hydration and ionisation; lattice enthalpy >11
+# Hess's law of constant heat summation @3 >12
+- Hess's law and its applications >12
+# Entropy and the second law @5 >14
+- Spontaneous processes >13
+- Entropy and entropy change >14
+- Second law: ΔS of the universe as the criterion for spontaneity >15
+# Gibbs energy and spontaneity @6 >16
+- Gibbs energy, G = H − TS >16
+- ΔG of the system as the criterion of spontaneity and equilibrium >17
+- Effect of temperature on spontaneity >17
+# Gibbs energy and the equilibrium constant @7 >18
+- Standard Gibbs energy change and the equilibrium constant: ΔG° = −RT ln K >18
 `,
 
   'equilibrium': `
@@ -419,55 +419,55 @@ JEE.outline.chemistry = {
 `,
 
   'solid-state': `
-# Classification of solids @0
-- Crystalline and amorphous solids
-- Molecular, ionic, metallic and covalent (network) solids
-# Crystal lattices and unit cells @1
-- Crystal lattice and unit cell; primitive and centred unit cells
-- Seven crystal systems and cell parameters (a, b, c, α, β, γ); Bravais lattices
-# Close packing @2
-- Close packing in one, two and three dimensions
-- Hexagonal close packing (hcp) and cubic close packing (ccp or fcc)
-- Body-centred cubic (bcc) packing
-- Packing efficiency of simple cubic, bcc, fcc and hcp lattices
-# Number of atoms in a unit cell and density @3
-- Contribution of corner, edge, face and body atoms
-- Relation between edge length and atomic radius
-- Density of a unit cell
-# Voids and ionic crystals @4
-- Tetrahedral and octahedral voids and their number
-- Nearest neighbours and coordination number
-- Ionic radii and the radius ratio rule
-- Simple ionic structures (NaCl, CsCl, ZnS)
-# Imperfections in solids @5
-- Point defects: Schottky and Frenkel defects
-- Impurity defects
+# Classification of solids @0 >1
+- Crystalline and amorphous solids >1
+- Molecular, ionic, metallic and covalent (network) solids >2
+# Crystal lattices and unit cells @1 >3
+- Crystal lattice and unit cell; primitive and centred unit cells >3
+- Seven crystal systems and cell parameters (a, b, c, α, β, γ); Bravais lattices >4
+# Close packing @2 >5
+- Close packing in one, two and three dimensions >5
+- Hexagonal close packing (hcp) and cubic close packing (ccp or fcc) >5
+- Body-centred cubic (bcc) packing >5
+- Packing efficiency of simple cubic, bcc, fcc and hcp lattices >7
+# Number of atoms in a unit cell and density @3 >6
+- Contribution of corner, edge, face and body atoms >6
+- Relation between edge length and atomic radius >7
+- Density of a unit cell >8
+# Voids and ionic crystals @4 >9
+- Tetrahedral and octahedral voids and their number >9
+- Nearest neighbours and coordination number >10
+- Ionic radii and the radius ratio rule >10
+- Simple ionic structures (NaCl, CsCl, ZnS) >11
+# Imperfections in solids @5 >12
+- Point defects: Schottky and Frenkel defects >12
+- Impurity defects >13
 `,
 
   'solutions': `
-# Types of solutions and concentration @0
-- Types of solutions
-- Mass and volume percentage, mole fraction, molarity and molality
-# Solubility
-- Solubility of solids in liquids
-- Solubility of gases in liquids; Henry's law
-# Vapour pressure and Raoult's law @1
-- Vapour pressure of liquid solutions
-- Raoult's law
-# Ideal and non-ideal solutions @2
-- Ideal solutions
-- Non-ideal solutions: positive and negative deviations
-- Vapour pressure–composition plots for ideal and non-ideal solutions; azeotropes
-# Colligative properties @3
-- Relative lowering of vapour pressure
-- Elevation of boiling point
-- Depression of freezing point
-- Osmosis and osmotic pressure
-# Determination of molecular mass @4
-- Molecular mass from colligative properties
-# Abnormal molar mass @5
-- Association and dissociation of solutes
-- van 't Hoff factor and its significance
+# Types of solutions and concentration @0 >1
+- Types of solutions >1
+- Mass and volume percentage, mole fraction, molarity and molality >2
+# Solubility >3
+- Solubility of solids in liquids >3
+- Solubility of gases in liquids; Henry's law >4
+# Vapour pressure and Raoult's law @1 >5
+- Vapour pressure of liquid solutions >5
+- Raoult's law >6
+# Ideal and non-ideal solutions @2 >7
+- Ideal solutions >7
+- Non-ideal solutions: positive and negative deviations >8
+- Vapour pressure–composition plots for ideal and non-ideal solutions; azeotropes >8
+# Colligative properties @3 >9
+- Relative lowering of vapour pressure >9
+- Elevation of boiling point >10
+- Depression of freezing point >10
+- Osmosis and osmotic pressure >11
+# Determination of molecular mass @4 >12
+- Molecular mass from colligative properties >12
+# Abnormal molar mass @5 >13
+- Association and dissociation of solutes >13
+- van 't Hoff factor and its significance >13
 `,
 
   'redox-electrochemistry': `

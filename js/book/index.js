@@ -25,5 +25,8 @@ JEE.bookList = [
   'physics/experimental-skills',
   'chemistry/basic-concepts',
   'chemistry/atomic-structure',
-  'chemistry/states-of-matter'
+  'chemistry/states-of-matter',
+  'chemistry/chemical-thermodynamics',
+  'chemistry/solid-state',
+  'chemistry/solutions'
 ];
