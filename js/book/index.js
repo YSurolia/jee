@@ -18,5 +18,9 @@ JEE.bookList = [
   'physics/magnetism',
   'physics/emi-ac',
   'physics/em-waves',
-  'physics/optics'
+  'physics/optics',
+  'physics/dual-nature',
+  'physics/atoms-nuclei',
+  'physics/electronic-devices',
+  'physics/experimental-skills'
 ];

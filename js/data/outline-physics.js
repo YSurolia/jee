@@ -609,110 +609,110 @@ JEE.outline.physics = {
 `,
 
   'dual-nature': `
-# Dual nature of radiation @0
-- Dual nature of radiation
-- Electron emission and work function
-# Photoelectric effect @1
-- Hertz's and Lenard's observations @2
-- Effect of intensity, frequency and potential; stopping potential and threshold frequency
-# Einstein's photoelectric equation @3
-- Einstein's photoelectric equation
-# Particle nature of light @4
-- The photon: energy and momentum
-# Matter waves @5
-- Wave nature of particles
-- de Broglie relation @6
-- de Broglie wavelength of matter waves
+# Dual nature of radiation @0 >1
+- Dual nature of radiation >1
+- Electron emission and work function >2
+# Photoelectric effect @1 >3
+- Hertz's and Lenard's observations @2 >3
+- Effect of intensity, frequency and potential; stopping potential and threshold frequency >4
+# Einstein's photoelectric equation @3 >5
+- Einstein's photoelectric equation >5
+# Particle nature of light @4 >6
+- The photon: energy and momentum >6
+# Matter waves @5 >7
+- Wave nature of particles >7
+- de Broglie relation @6 >8
+- de Broglie wavelength of matter waves >8
 `,
 
   'atoms-nuclei': `
-# Alpha-particle scattering experiment @0
-- Geiger–Marsden experiment
-- Distance of closest approach and impact parameter
-# Rutherford's model of the atom @1
-- Rutherford's nuclear model and its limitations
-# Bohr model @2
-- Bohr's postulates
-- Radius, speed and energy of the electron in hydrogen-like atoms
-- Energy levels
-# Hydrogen spectrum @3
-- Spectral series of hydrogen
-# X-rays [A]
-- Continuous and characteristic X-rays
-- Moseley's law
-# Composition and size of the nucleus @4
-- Atomic masses and composition of the nucleus
-- Size of the nucleus
-# Mass–energy relation and binding energy @5
-- Mass–energy relation
-- Mass defect @6
-- Binding energy per nucleon and its variation with mass number
-# Nuclear fission and fusion @7
-- Nuclear fission and fusion
-- Energy calculations in fission and fusion
-# Radioactivity [A] @8
-- α, β and γ radiations
-- Law of radioactive decay; decay constant
-- Half-life and mean life
+# Alpha-particle scattering experiment @0 >1
+- Geiger–Marsden experiment >1
+- Distance of closest approach and impact parameter >2
+# Rutherford's model of the atom @1 >3
+- Rutherford's nuclear model and its limitations >3
+# Bohr model @2 >4
+- Bohr's postulates >4
+- Radius, speed and energy of the electron in hydrogen-like atoms >5
+- Energy levels >6
+# Hydrogen spectrum @3 >7
+- Spectral series of hydrogen >7
+# X-rays [A] >8
+- Continuous and characteristic X-rays >8
+- Moseley's law >8
+# Composition and size of the nucleus @4 >9
+- Atomic masses and composition of the nucleus >9
+- Size of the nucleus >10
+# Mass–energy relation and binding energy @5 >11
+- Mass–energy relation >11
+- Mass defect @6 >12
+- Binding energy per nucleon and its variation with mass number >13
+# Nuclear fission and fusion @7 >14
+- Nuclear fission and fusion >14
+- Energy calculations in fission and fusion >15
+# Radioactivity [A] @8 >16
+- α, β and γ radiations >16
+- Law of radioactive decay; decay constant >17
+- Half-life and mean life >18
 `,
 
   'electronic-devices': `
-# Semiconductors [M] @0
-- Conductors, semiconductors and insulators
-- Intrinsic and extrinsic (n-type and p-type) semiconductors
-# Semiconductor diode [M] @1
-- p–n junction diode
-- I–V characteristics in forward and reverse bias
-# Diode as a rectifier [M] @2
-- Half-wave and full-wave rectifiers
-# LED, photodiode and solar cell [M] @3
-- I–V characteristics of LED, photodiode and solar cell
-# Zener diode [M] @4
-- Zener diode
-- Zener diode as a voltage regulator
-# Logic gates [M] @5
-- OR, AND, NOT, NAND and NOR gates
+# Semiconductors [M] @0 >1
+- Conductors, semiconductors and insulators >1
+- Intrinsic and extrinsic (n-type and p-type) semiconductors >3
+# Semiconductor diode [M] @1 >4
+- p–n junction diode >4
+- I–V characteristics in forward and reverse bias >5
+# Diode as a rectifier [M] @2 >6
+- Half-wave and full-wave rectifiers >6
+# LED, photodiode and solar cell [M] @3 >7
+- I–V characteristics of LED, photodiode and solar cell >7
+# Zener diode [M] @4 >8
+- Zener diode >8
+- Zener diode as a voltage regulator >8
+# Logic gates [M] @5 >9
+- OR, AND, NOT, NAND and NOR gates >9
 `,
 
   'experimental-skills': `
-# Vernier callipers @0
-- Measuring internal and external diameter and depth of a vessel
-# Screw gauge @1
-- Measuring the thickness of a thin sheet or diameter of a wire
-# Simple pendulum @2
-- Determination of g using a simple pendulum [A]
-- Dissipation of energy: plot of square of amplitude against time [M]
-# Metre scale and the principle of moments [M] @3
-- Mass of a given object by the principle of moments
-# Young's modulus of a wire @4
-- Young's modulus of elasticity of the material of a metallic wire
-# Surface tension by capillary rise @5
-- Surface tension of water and the effect of detergents
-# Viscosity by terminal velocity [M] @6
-- Coefficient of viscosity using the terminal velocity of a spherical body
-# Speed of sound with a resonance tube @7
-- Speed of sound in air at room temperature
-# Specific heat capacity by the method of mixtures @8
-- Specific heat capacity of a solid [M]
-- Specific heat capacity of a liquid using a calorimeter
-# Resistivity using a metre bridge @9
-- Resistivity of the material of a wire using a metre bridge
-- Specific resistance using a post office box [A]
-# Ohm's law @10
-- Resistance of a wire using a voltmeter and an ammeter
-# Galvanometer [M] @11
-- Resistance and figure of merit by the half-deflection method
-# Focal length of mirrors and lenses @12
-- Convex mirror [M]
-- Concave mirror and convex lens (u–v or parallax method)
-# Prism [M]
-- Plot of angle of deviation against angle of incidence
-# Refractive index of a glass slab [M] @13
-- Using a travelling microscope
-# Diodes [M] @14
-- Characteristic curves of a p–n junction diode in forward and reverse bias
-- Characteristic curves of a Zener diode and its reverse breakdown voltage
-# Identifying components [M]
-- Identifying a diode, LED, resistor and capacitor from a mixed collection
+# Vernier callipers @0 >1
+- Measuring internal and external diameter and depth of a vessel >1
+# Screw gauge @1 >2
+- Measuring the thickness of a thin sheet or diameter of a wire >2
+# Simple pendulum @2 >3
+- Determination of g using a simple pendulum [A] >3
+- Dissipation of energy: plot of square of amplitude against time [M] >3
+# Metre scale and the principle of moments [M] @3 >4
+- Mass of a given object by the principle of moments >4
+# Young's modulus of a wire @4 >5
+- Young's modulus of elasticity of the material of a metallic wire >5
+# Surface tension by capillary rise @5 >6
+- Surface tension of water and the effect of detergents >6
+# Viscosity by terminal velocity [M] @6 >7
+- Coefficient of viscosity using the terminal velocity of a spherical body >7
+# Speed of sound with a resonance tube @7 >8
+- Speed of sound in air at room temperature >8
+# Specific heat capacity by the method of mixtures @8 >9
+- Specific heat capacity of a solid [M] >9
+- Specific heat capacity of a liquid using a calorimeter >9
+# Resistivity using a metre bridge @9 >10
+- Resistivity of the material of a wire using a metre bridge >10
+- Specific resistance using a post office box [A] >10
+# Ohm's law @10 >11
+- Resistance of a wire using a voltmeter and an ammeter >11
+# Galvanometer [M] @11 >12
+- Resistance and figure of merit by the half-deflection method >12
+# Focal length of mirrors and lenses @12 >13
+- Convex mirror [M] >13
+- Concave mirror and convex lens (u–v or parallax method) >13
+# Prism [M] >14
+- Plot of angle of deviation against angle of incidence >14
+# Refractive index of a glass slab [M] @13 >15
+- Using a travelling microscope >15
+# Diodes [M] @14 >16
+- Characteristic curves of a p–n junction diode in forward and reverse bias >16
+- Characteristic curves of a Zener diode and its reverse breakdown voltage >16
+# Identifying components [M] >17
+- Identifying a diode, LED, resistor and capacitor from a mixed collection >17
 `
 };
