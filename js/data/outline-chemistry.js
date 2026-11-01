@@ -221,84 +221,84 @@ JEE.outline.chemistry = {
 `,
 
   'periodicity': `
-# Classification of elements @0
-- Need for classification; early attempts (Döbereiner, Newlands, Mendeleev)
-- Modern periodic law and the present form of the periodic table
-- Nomenclature of elements with atomic number above 100
-# Electronic configuration and types of elements @1
-- Electronic configurations of elements; periods and groups
-- s-, p-, d- and f-block elements
-# Atomic and ionic radii @2
-- Atomic and ionic radii; isoelectronic species
-- Trends across periods and down groups
-# Ionisation enthalpy @3
-- Factors affecting ionisation enthalpy; trends and exceptions
-# Electron gain enthalpy @4
-- Trends and exceptions
-# Electronegativity @6
-- Electronegativity and its trends
-# Valence and oxidation states @5
-- Periodicity of valence and oxidation states
-# Chemical reactivity @7
-- Periodic trends in chemical properties; metallic and non-metallic character
-- Anomalous properties of second-period elements
-- Acidic and basic character of oxides
+# Classification of elements @0 >1
+- Need for classification; early attempts (Döbereiner, Newlands, Mendeleev) >1
+- Modern periodic law and the present form of the periodic table >2
+- Nomenclature of elements with atomic number above 100 >3
+# Electronic configuration and types of elements @1 >4
+- Electronic configurations of elements; periods and groups >4
+- s-, p-, d- and f-block elements >5
+# Atomic and ionic radii @2 >6
+- Atomic and ionic radii; isoelectronic species >6
+- Trends across periods and down groups >7
+# Ionisation enthalpy @3 >8
+- Factors affecting ionisation enthalpy; trends and exceptions >8
+# Electron gain enthalpy @4 >9
+- Trends and exceptions >9
+# Electronegativity @6 >10
+- Electronegativity and its trends >10
+# Valence and oxidation states @5 >11
+- Periodicity of valence and oxidation states >11
+# Chemical reactivity @7 >12
+- Periodic trends in chemical properties; metallic and non-metallic character >12
+- Anomalous properties of second-period elements >12
+- Acidic and basic character of oxides >12
 `,
 
   'hydrogen': `
-# Position of hydrogen in the periodic table @0
-- Resemblance with alkali metals and halogens
-- Occurrence and isotopes (protium, deuterium, tritium)
-# Dihydrogen @1
-- Laboratory and commercial preparation
-- Physical and chemical properties
-- Uses of dihydrogen
-# Hydrides @2
-- Ionic (saline) hydrides
-- Covalent (molecular) hydrides: electron-deficient, electron-precise and electron-rich
-- Interstitial (metallic) hydrides
-# Water @3
-- Physical and chemical properties of water
-- Heavy water: properties and uses
-# Hydrogen peroxide @4
-- Preparation
-- Reactions: oxidising and reducing behaviour
-- Structure, strength and uses
-# Hydrogen as a fuel @5
-- Hydrogen economy
+# Position of hydrogen in the periodic table @0 >1
+- Resemblance with alkali metals and halogens >1
+- Occurrence and isotopes (protium, deuterium, tritium) >2
+# Dihydrogen @1 >3
+- Laboratory and commercial preparation >3
+- Physical and chemical properties >4
+- Uses of dihydrogen >5
+# Hydrides @2 >6
+- Ionic (saline) hydrides >6
+- Covalent (molecular) hydrides: electron-deficient, electron-precise and electron-rich >7
+- Interstitial (metallic) hydrides >8
+# Water @3 >9
+- Physical and chemical properties of water >9
+- Heavy water: properties and uses >10
+# Hydrogen peroxide @4 >11
+- Preparation >11
+- Reactions: oxidising and reducing behaviour >12
+- Structure, strength and uses >12
+# Hydrogen as a fuel @5 >13
+- Hydrogen economy >13
 `,
 
   's-block': `
-# Group 1: alkali metals @0
-- Electronic configuration, atomic and ionic radii, ionisation and hydration enthalpies
-- Physical properties and flame colours
-# Group 2: alkaline earth metals @0
-- Electronic configuration and general trends
-- Physical properties and flame colours
-# Chemical reactivity @1
-- Reactivity towards air and water; oxides, peroxides and superoxides
-- Reactivity towards dihydrogen, halogens and acids
-# Reducing nature @2
-- Reducing nature and electrode potentials
-- Solutions in liquid ammonia
-# Compounds of s-block elements @3
-- Oxides and hydroxides: basic character and solubility
-- Halides
-- Salts of oxoacids: carbonates, sulphates and nitrates; thermal stability and solubility
-# Anomalous behaviour of lithium and beryllium @4
-- Anomalous properties of lithium; diagonal relationship with magnesium
-- Anomalous properties of beryllium; diagonal relationship with aluminium
-# Important compounds of sodium @5
-- Sodium carbonate (Solvay process)
-- Sodium chloride
-- Sodium hydroxide
-- Sodium hydrogencarbonate
-# Important compounds of calcium @6
-- Calcium oxide and calcium hydroxide
-- Calcium carbonate
-- Calcium sulphate and plaster of Paris
-# Uses of s-block elements
-- Uses of alkali and alkaline earth metals
+# Group 1: alkali metals @0 >1
+- Electronic configuration, atomic and ionic radii, ionisation and hydration enthalpies >1
+- Physical properties and flame colours >1
+# Group 2: alkaline earth metals @0 >2
+- Electronic configuration and general trends >2
+- Physical properties and flame colours >2
+# Chemical reactivity @1 >3
+- Reactivity towards air and water; oxides, peroxides and superoxides >3
+- Reactivity towards dihydrogen, halogens and acids >4
+# Reducing nature @2 >5
+- Reducing nature and electrode potentials >5
+- Solutions in liquid ammonia >6
+# Compounds of s-block elements @3 >7
+- Oxides and hydroxides: basic character and solubility >7
+- Halides >8
+- Salts of oxoacids: carbonates, sulphates and nitrates; thermal stability and solubility >9
+# Anomalous behaviour of lithium and beryllium @4 >10
+- Anomalous properties of lithium; diagonal relationship with magnesium >10
+- Anomalous properties of beryllium; diagonal relationship with aluminium >11
+# Important compounds of sodium @5 >12
+- Sodium carbonate (Solvay process) >12
+- Sodium chloride >13
+- Sodium hydroxide >13
+- Sodium hydrogencarbonate >13
+# Important compounds of calcium @6 >14
+- Calcium oxide and calcium hydroxide >14
+- Calcium carbonate >14
+- Calcium sulphate and plaster of Paris >15
+# Uses of s-block elements >16
+- Uses of alkali and alkaline earth metals >16
 `,
 
   'purification-characterisation': `
@@ -562,31 +562,31 @@ JEE.outline.chemistry = {
 `,
 
   'metallurgy': `
-# Occurrence of metals @0
-- Minerals and ores; important ores of iron, copper, zinc and aluminium
-# Concentration of ores @1
-- Hydraulic washing
-- Magnetic separation
-- Froth flotation
-- Leaching
-# Conversion to oxide @2
-- Calcination
-- Roasting
-# Thermodynamic principles of metallurgy @3
-- Gibbs energy and Ellingham diagrams
-- Extraction of iron from its oxides (blast furnace)
-- Extraction of copper (self-reduction)
-- Extraction of zinc from zinc oxide
-# Electrochemical principles of metallurgy @4
-- ΔG° = −nFE° in metallurgy
-- Extraction of aluminium (Hall–Héroult process)
-# Cyanide process @5
-- Extraction of silver and gold
-# Refining of metals @6
-- Distillation and liquation
-- Electrolytic refining
-- Zone refining
-- Vapour-phase refining: Mond process and van Arkel method
+# Occurrence of metals @0 >1
+- Minerals and ores; important ores of iron, copper, zinc and aluminium >1
+# Concentration of ores @1 >2
+- Hydraulic washing >2
+- Magnetic separation >2
+- Froth flotation >3
+- Leaching >4
+# Conversion to oxide @2 >5
+- Calcination >5
+- Roasting >5
+# Thermodynamic principles of metallurgy @3 >6
+- Gibbs energy and Ellingham diagrams >6
+- Extraction of iron from its oxides (blast furnace) >7
+- Extraction of copper (self-reduction) >8
+- Extraction of zinc from zinc oxide >9
+# Electrochemical principles of metallurgy @4 >10
+- ΔG° = −nFE° in metallurgy >10
+- Extraction of aluminium (Hall–Héroult process) >11
+# Cyanide process @5 >12
+- Extraction of silver and gold >12
+# Refining of metals @6 >13
+- Distillation and liquation >13
+- Electrolytic refining >14
+- Zone refining >15
+- Vapour-phase refining: Mond process and van Arkel method >16
 `,
 
   'p-block': `
