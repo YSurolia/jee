@@ -11,5 +11,7 @@ JEE.bookList = [
   'physics/gravitation',
   'physics/solids-liquids',
   'physics/thermodynamics',
-  'physics/kinetic-theory'
+  'physics/kinetic-theory',
+  'physics/oscillations-waves',
+  'physics/electrostatics'
 ];

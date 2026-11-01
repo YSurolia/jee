@@ -360,93 +360,93 @@ JEE.outline.physics = {
 `,
 
   'oscillations-waves': `
-# Periodic and oscillatory motion @0
-- Time period and frequency
-- Displacement as a function of time; periodic functions
-# Simple harmonic motion @1
-- SHM and its equation: x = A sin(ωt + φ)
-- Velocity and acceleration in SHM
-- SHM and uniform circular motion
-- Phase and phase difference @2
-- Linear and angular SHM [A]
-# Oscillations of a spring @3
-- Restoring force and force constant
-- Time period of a spring–mass system
-- Springs in series and in parallel
-# Energy in SHM @4
-- Kinetic and potential energy in SHM
-# Simple pendulum @5
-- Derivation of the expression for its time period
-# Damped and forced oscillations [A]
-- Damped oscillations
-- Forced oscillations and resonance
-# Wave motion @6
-- Transverse and longitudinal waves
-- Wavelength, frequency and wave speed
-# Speed of a travelling wave @7
-- Speed of a transverse wave on a stretched string
-- Speed of sound in gases (Newton's formula and Laplace's correction)
-# Displacement relation for a progressive wave @8
-- y = A sin(kx − ωt + φ); wave number and angular frequency
-# Superposition and reflection of waves @9
-- Principle of superposition of waves
-- Reflection of waves at rigid and open boundaries
-# Standing waves @10
-- Nodes and antinodes
-- Standing waves in strings
-- Standing waves in open and closed organ pipes (air columns)
-- Resonance
-# Fundamental mode and harmonics @11
-- Fundamental mode, harmonics and overtones
-# Beats @12
-- Beats and beat frequency
-# Doppler effect [A]
-- Doppler effect in sound: moving source and moving observer
+# Periodic and oscillatory motion @0 >1
+- Time period and frequency >1
+- Displacement as a function of time; periodic functions >1
+# Simple harmonic motion @1 >2
+- SHM and its equation: x = A sin(ωt + φ) >2
+- Velocity and acceleration in SHM >3
+- SHM and uniform circular motion >4
+- Phase and phase difference @2 >5
+- Linear and angular SHM [A] >6
+# Oscillations of a spring @3 >7
+- Restoring force and force constant >7
+- Time period of a spring–mass system >7
+- Springs in series and in parallel >7
+# Energy in SHM @4 >8
+- Kinetic and potential energy in SHM >8
+# Simple pendulum @5 >9
+- Derivation of the expression for its time period >9
+# Damped and forced oscillations [A] >10
+- Damped oscillations >10
+- Forced oscillations and resonance >10
+# Wave motion @6 >11
+- Transverse and longitudinal waves >11
+- Wavelength, frequency and wave speed >12
+# Speed of a travelling wave @7 >13
+- Speed of a transverse wave on a stretched string >13
+- Speed of sound in gases (Newton's formula and Laplace's correction) >13
+# Displacement relation for a progressive wave @8 >14
+- y = A sin(kx − ωt + φ); wave number and angular frequency >14
+# Superposition and reflection of waves @9 >15
+- Principle of superposition of waves >15
+- Reflection of waves at rigid and open boundaries >16
+# Standing waves @10 >17
+- Nodes and antinodes >17
+- Standing waves in strings >17
+- Standing waves in open and closed organ pipes (air columns) >18
+- Resonance >18
+# Fundamental mode and harmonics @11 >19
+- Fundamental mode, harmonics and overtones >19
+# Beats @12 >20
+- Beats and beat frequency >20
+# Doppler effect [A] >21
+- Doppler effect in sound: moving source and moving observer >21
 `,
 
   'electrostatics': `
-# Electric charge @0
-- Properties of charge: additivity, quantisation and conservation
-- Charging by friction, conduction and induction
-# Coulomb's law @1
-- Force between two point charges; permittivity
-- Forces between multiple charges: the superposition principle
-- Continuous charge distributions (line, surface and volume densities)
-# Electric field @2
-- Electric field due to a point charge and a system of charges
-- Electric field lines and their properties
-# Electric dipole @3
-- Electric dipole and dipole moment
-- Electric field due to a dipole (axial and equatorial)
-- Torque on a dipole in a uniform electric field
-- Potential energy of a dipole in a uniform field
-# Electric flux @4
-- Electric flux through a surface
-# Gauss's law and its applications @5
-- Gauss's law
-- Field due to an infinitely long uniformly charged straight wire
-- Field due to a uniformly charged infinite plane sheet
-- Field due to a uniformly charged thin spherical shell
-# Electric potential @6
-- Potential due to a point charge, an electric dipole and a system of charges
-- Potential difference; relation between field and potential
-- Electrical potential energy of a system of two point charges
-# Equipotential surfaces @7
-- Equipotential surfaces and their properties
-# Conductors and insulators @8
-- Electrostatics of conductors
-- Electrostatic shielding
-# Dielectrics and electric polarisation @9
-- Polar and non-polar molecules; polarisation
-- Dielectric constant
-# Capacitors and capacitance @10
-- Capacitance
-- Parallel-plate capacitor with and without a dielectric @11
-# Combination of capacitors @10
-- Capacitors in series and in parallel
-# Energy stored in a capacitor @12
-- Energy stored in a capacitor; energy density of the field
-- Sharing of charge between capacitors and loss of energy
+# Electric charge @0 >1
+- Properties of charge: additivity, quantisation and conservation >1
+- Charging by friction, conduction and induction >2
+# Coulomb's law @1 >3
+- Force between two point charges; permittivity >3
+- Forces between multiple charges: the superposition principle >4
+- Continuous charge distributions (line, surface and volume densities) >5
+# Electric field @2 >6
+- Electric field due to a point charge and a system of charges >6
+- Electric field lines and their properties >7
+# Electric dipole @3 >8
+- Electric dipole and dipole moment >8
+- Electric field due to a dipole (axial and equatorial) >8
+- Torque on a dipole in a uniform electric field >9
+- Potential energy of a dipole in a uniform field >9
+# Electric flux @4 >10
+- Electric flux through a surface >10
+# Gauss's law and its applications @5 >11
+- Gauss's law >11
+- Field due to an infinitely long uniformly charged straight wire >12
+- Field due to a uniformly charged infinite plane sheet >12
+- Field due to a uniformly charged thin spherical shell >12
+# Electric potential @6 >13
+- Potential due to a point charge, an electric dipole and a system of charges >13
+- Potential difference; relation between field and potential >14
+- Electrical potential energy of a system of two point charges >15
+# Equipotential surfaces @7 >16
+- Equipotential surfaces and their properties >16
+# Conductors and insulators @8 >17
+- Electrostatics of conductors >17
+- Electrostatic shielding >17
+# Dielectrics and electric polarisation @9 >18
+- Polar and non-polar molecules; polarisation >18
+- Dielectric constant >18
+# Capacitors and capacitance @10 >19
+- Capacitance >19
+- Parallel-plate capacitor with and without a dielectric @11 >19
+# Combination of capacitors @10 >21
+- Capacitors in series and in parallel >21
+# Energy stored in a capacitor @12 >22
+- Energy stored in a capacitor; energy density of the field >22
+- Sharing of charge between capacitors and loss of energy >23
 `,
 
   'current-electricity': `

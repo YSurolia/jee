@@ -145,6 +145,97 @@
     return out;
   };
 
+  // Zigzag spring from (x1,y1) to (x2,y2): o.coils (default 8), o.amp (half-width, default 8), straight ends of o.end px.
+  D.spring = function (x1, y1, x2, y2, o) {
+    o = o || {};
+    var len = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / len, uy = (y2 - y1) / len, px = -uy, py = ux;
+    var e = o.end === undefined ? 8 : o.end, coils = o.coils || 8, amp = o.amp || 8, pts = [[x1, y1], [x1 + ux * e, y1 + uy * e]];
+    var body = len - 2 * e, m = coils * 2;
+    for (var k = 1; k < m; k++) { var d = e + body * k / m, sgn = k % 2 ? 1 : -1; pts.push([x1 + ux * d + px * amp * sgn, y1 + uy * d + py * amp * sgn]); }
+    pts.push([x2 - ux * e, y2 - uy * e], [x2, y2]);
+    return D.poly(pts, { color: o.color || 'm', w: o.w || 1.6 });
+  };
+
+  // ---------- electricity ----------
+  // A point charge: circle with + or −. o.r radius, o.label text drawn beside it.
+  D.charge = function (x, y, q, o) {
+    o = o || {};
+    var c = q > 0 ? 'r' : 'b', r = o.r || 10;
+    return D.circle(x, y, r, { color: c, fill: 'soft', w: 1.8 }) + D.text(x, y + 0.5, q > 0 ? '+' : '−', { color: c, bold: true, size: r * 1.5, raw: true }) +
+      (o.label ? D.text(x + (o.lx || 0), y + (o.ly === undefined ? r + 13 : o.ly), o.label, { size: 12, math: o.math !== false }) : '');
+  };
+  // Electric field lines of point charges [{x, y, q}] in pixel space. Lines start on positive charges (or on negative ones when
+  // there are no positives) and are traced along E until they reach another charge or leave the box [x0, y0, x1, y1].
+  // o: { charges, n: lines per unit charge (8), box, r0 (12), step (3), arrows: positions along a line (fractions, default [0.5]), color }
+  D.field = function (o) {
+    var Q = o.charges, n = o.n || 8, r0 = o.r0 || 12, ds = o.step || 3, box = o.box, out = [];
+    var anyPos = Q.some(function (c) { return c.q > 0; });
+    function E(x, y) {
+      var ex = 0, ey = 0;
+      Q.forEach(function (c) { var dx = x - c.x, dy = y - c.y, r2 = dx * dx + dy * dy, r3 = Math.pow(r2, 1.5) || 1e-9; ex += c.q * dx / r3; ey += c.q * dy / r3; });
+      return [ex, ey];
+    }
+    Q.forEach(function (c) {
+      if (anyPos ? c.q <= 0 : c.q >= 0) return;
+      var N = Math.max(2, Math.round(n * Math.abs(c.q))), sgn = c.q > 0 ? 1 : -1;
+      for (var k = 0; k < N; k++) {
+        var a = 2 * Math.PI * (k + (o.offset || 0)) / N, x = c.x + r0 * Math.cos(a), y = c.y + r0 * Math.sin(a), pts = [[x, y]], ok = true;
+        for (var i = 0; i < 2000 && ok; i++) {
+          var e1 = E(x, y), m1 = Math.hypot(e1[0], e1[1]) || 1;
+          var mx = x + sgn * e1[0] / m1 * ds / 2, my = y + sgn * e1[1] / m1 * ds / 2;
+          var e2 = E(mx, my), m2 = Math.hypot(e2[0], e2[1]) || 1;
+          x += sgn * e2[0] / m2 * ds; y += sgn * e2[1] / m2 * ds; pts.push([x, y]);
+          if (x < box[0] || x > box[2] || y < box[1] || y > box[3]) ok = false;
+          Q.forEach(function (d) { if (d !== c && Math.hypot(x - d.x, y - d.y) < r0 * 0.9) ok = false; });
+        }
+        if (sgn < 0) pts.reverse();
+        out.push(D.poly(pts, { color: o.color || 'o', w: o.w || 1.3 }));
+        (o.arrows || [0.5]).forEach(function (f) {
+          var j = Math.min(pts.length - 3, Math.max(0, Math.floor(pts.length * f)));
+          if (pts.length > 4) out.push(D.arrow(pts[j][0], pts[j][1], pts[j + 2][0], pts[j + 2][1], { color: o.color || 'o', w: 0.01, head: 7 }));
+        });
+      }
+    });
+    Q.forEach(function (c) { out.push(D.charge(c.x, c.y, c.q, { r: c.r || 10 })); });
+    return out.join('');
+  };
+  // Two-terminal circuit elements between (x1,y1) and (x2,y2); the symbol sits in the middle with straight leads.
+  function twoTerm(x1, y1, x2, y2, gap, sym, o) {
+    var len = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / len, uy = (y2 - y1) / len, mx = (x1 + x2) / 2, my = (y1 + y2) / 2, c = (o && o.color) || 'k';
+    var out = D.line(x1, y1, mx - ux * gap / 2, my - uy * gap / 2, { color: c, w: 1.8 }) + D.line(mx + ux * gap / 2, my + uy * gap / 2, x2, y2, { color: c, w: 1.8 }) + sym(mx, my, ux, uy, -uy, ux, c);
+    if (o && o.label) out += D.text(mx + (o.lx === undefined ? -uy * 22 : o.lx), my + (o.ly === undefined ? ux * -20 : o.ly), o.label, { size: o.size || 13, math: o.math !== false, color: o.lcolor || 'k' });
+    return out;
+  }
+  D.cap = function (x1, y1, x2, y2, o) {
+    return twoTerm(x1, y1, x2, y2, 10, function (mx, my, ux, uy, px, py, c) {
+      var h = 14;
+      return D.line(mx - ux * 5 + px * h, my - uy * 5 + py * h, mx - ux * 5 - px * h, my - uy * 5 - py * h, { color: c, w: 2.6 }) +
+        D.line(mx + ux * 5 + px * h, my + uy * 5 + py * h, mx + ux * 5 - px * h, my + uy * 5 - py * h, { color: c, w: 2.6 });
+    }, o);
+  };
+  D.res = function (x1, y1, x2, y2, o) {
+    return twoTerm(x1, y1, x2, y2, 40, function (mx, my, ux, uy, px, py, c) {
+      var pts = [[mx - ux * 20, my - uy * 20]];
+      for (var k = 1; k < 8; k++) { var d = -20 + 40 * k / 8, s = k % 2 ? 7 : -7; pts.push([mx + ux * d + px * s, my + uy * d + py * s]); }
+      pts.push([mx + ux * 20, my + uy * 20]);
+      return D.poly(pts, { color: c, w: 1.8 });
+    }, o);
+  };
+  // Cell: long thin plate (+) towards (x1,y1)... set o.flip to swap. o.cells = number of cells (battery).
+  D.cell = function (x1, y1, x2, y2, o) {
+    o = o || {};
+    var cells = o.cells || 1;
+    return twoTerm(x1, y1, x2, y2, cells * 14 - 6, function (mx, my, ux, uy, px, py, c) {
+      var out = '', f = o.flip ? -1 : 1;
+      for (var k = 0; k < cells; k++) {
+        var d = (-(cells * 14 - 6) / 2 + k * 14) * f;
+        out += D.line(mx + ux * d + px * 14, my + uy * d + py * 14, mx + ux * d - px * 14, my + uy * d - py * 14, { color: c, w: 1.8 });
+        out += D.line(mx + ux * (d + 8 * f) + px * 7, my + uy * (d + 8 * f) + py * 7, mx + ux * (d + 8 * f) - px * 7, my + uy * (d + 8 * f) - py * 7, { color: c, w: 3.4 });
+      }
+      return out;
+    }, o);
+  };
+
   // Labelled block (for free-body diagrams).
   D.block = function (x, y, w, h, label, o) {
     o = o || {};
