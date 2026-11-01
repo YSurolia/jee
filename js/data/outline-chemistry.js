@@ -393,29 +393,29 @@ JEE.outline.chemistry = {
 `,
 
   'environmental-chemistry': `
-# Environmental pollution @0
-- Pollutants and their types
-# Tropospheric pollution @0
-- Gaseous pollutants: oxides of sulphur, nitrogen and carbon; hydrocarbons
-- Particulate pollutants
-- Classical and photochemical smog
-# Stratospheric pollution @1
-- Formation and breakdown of ozone
-- The ozone hole and the role of CFCs
-# Acid rain and global warming @2
-- Acid rain: causes and effects
-- Greenhouse effect and global warming
-# Water pollution @3
-- Causes: pathogens, organic waste and chemical pollutants
-- Dissolved oxygen and biochemical oxygen demand (BOD)
-- International standards for drinking water
-# Soil pollution and industrial waste @4
-- Pesticides and herbicides
-- Industrial and domestic waste
-# Strategies to control pollution @5
-- Waste management and control strategies
-# Green chemistry @5
-- Principles of green chemistry; atom economy and safer solvents
+# Environmental pollution @0 >1
+- Pollutants and their types >1
+# Tropospheric pollution @0 >2
+- Gaseous pollutants: oxides of sulphur, nitrogen and carbon; hydrocarbons >2
+- Particulate pollutants >3
+- Classical and photochemical smog >4
+# Stratospheric pollution @1 >5
+- Formation and breakdown of ozone >5
+- The ozone hole and the role of CFCs >6
+# Acid rain and global warming @2 >7
+- Acid rain: causes and effects >7
+- Greenhouse effect and global warming >8
+# Water pollution @3 >9
+- Causes: pathogens, organic waste and chemical pollutants >9
+- Dissolved oxygen and biochemical oxygen demand (BOD) >10
+- International standards for drinking water >11
+# Soil pollution and industrial waste @4 >12
+- Pesticides and herbicides >12
+- Industrial and domestic waste >13
+# Strategies to control pollution @5 >14
+- Waste management and control strategies >14
+# Green chemistry @5 >15
+- Principles of green chemistry; atom economy and safer solvents >15
 `,
 
   'solid-state': `
@@ -590,99 +590,99 @@ JEE.outline.chemistry = {
 `,
 
   'p-block': `
-# General introduction to groups 13 to 18 @0
-- Electronic configuration @1
-- General trends in physical and chemical properties across periods and down groups
-- Oxidation states and trends in chemical reactivity
-- Inert pair effect @3
-# Unique behaviour of the first element @2
-- Anomalous properties of boron, carbon, nitrogen, oxygen and fluorine
-# Group 13: the boron family [A] @4
-- Reactivity towards acids, alkalis and halogens
-- Borax, orthoboric acid and diborane
-- Boron trifluoride, aluminium chloride and alums
-- Uses of boron and aluminium
-# Group 14: the carbon family [A]
-- Reactivity towards water and halogens
-- Allotropes of carbon and uses of carbon
-- Carbon monoxide and carbon dioxide
-- Silicon dioxide, silicones, silicates and zeolites
-# Group 15: the nitrogen family [A]
-- Reactivity towards hydrogen, oxygen and halogens
-- Allotropes of phosphorus
-- Dinitrogen, ammonia and nitric acid
-- Phosphine, phosphorus trichloride and phosphorus pentachloride
-- Oxides of nitrogen and oxoacids of phosphorus
-# Group 16: the oxygen family [A]
-- Reactivity towards hydrogen, oxygen and halogens; simple oxides
-- Allotropes of sulphur
-- Dioxygen and ozone
-- Sulphur dioxide, sulphuric acid and the oxoacids of sulphur
-# Group 17: the halogens [A]
-- Reactivity towards hydrogen, oxygen and metals
-- Chlorine and hydrogen chloride
-- Interhalogen compounds and oxoacids of halogens
-- Bleaching powder
-# Group 18: the noble gases [A]
-- Chemical properties and uses
-- Compounds of xenon with fluorine and oxygen
+# General introduction to groups 13 to 18 @0 >1
+- Electronic configuration @1 >1
+- General trends in physical and chemical properties across periods and down groups >1
+- Oxidation states and trends in chemical reactivity >2
+- Inert pair effect @3 >2
+# Unique behaviour of the first element @2 >3
+- Anomalous properties of boron, carbon, nitrogen, oxygen and fluorine >3
+# Group 13: the boron family [A] @4 >4
+- Reactivity towards acids, alkalis and halogens >4
+- Borax, orthoboric acid and diborane >5
+- Boron trifluoride, aluminium chloride and alums >6
+- Uses of boron and aluminium >6
+# Group 14: the carbon family [A] >7
+- Reactivity towards water and halogens >7
+- Allotropes of carbon and uses of carbon >8
+- Carbon monoxide and carbon dioxide >9
+- Silicon dioxide, silicones, silicates and zeolites >10
+# Group 15: the nitrogen family [A] >11
+- Reactivity towards hydrogen, oxygen and halogens >11
+- Allotropes of phosphorus >14
+- Dinitrogen, ammonia and nitric acid >12
+- Phosphine, phosphorus trichloride and phosphorus pentachloride >14
+- Oxides of nitrogen and oxoacids of phosphorus >13
+# Group 16: the oxygen family [A] >16
+- Reactivity towards hydrogen, oxygen and halogens; simple oxides >16
+- Allotropes of sulphur >18
+- Dioxygen and ozone >17
+- Sulphur dioxide, sulphuric acid and the oxoacids of sulphur >18
+# Group 17: the halogens [A] >20
+- Reactivity towards hydrogen, oxygen and metals >20
+- Chlorine and hydrogen chloride >21
+- Interhalogen compounds and oxoacids of halogens >22
+- Bleaching powder >21
+# Group 18: the noble gases [A] >23
+- Chemical properties and uses >23
+- Compounds of xenon with fluorine and oxygen >23
 `,
 
   'd-f-block': `
-# Transition elements: introduction @0
-- Position in the periodic table
-- Electronic configurations of the d-block elements
-# Occurrence and general characteristics @1
-- Occurrence and characteristics of transition elements
-# General trends in the first transition series @2
-- Physical properties and metallic character
-- Atomic and ionic radii
-- Ionisation enthalpy
-- Oxidation states and their stability; standard electrode potentials
-- Colour and magnetic properties
-- Catalytic behaviour
-- Complex formation, interstitial compounds and alloy formation
-# Potassium dichromate and potassium permanganate @3
-- Preparation, properties and uses
-- Structures and reactions of the oxoanions of chromium and manganese
-# Lanthanoids @4
-- Electronic configuration and oxidation states
-- Lanthanoid contraction and its consequences
-# Actinoids @5
-- Electronic configuration and oxidation states
-- Actinoid contraction and general characteristics
-# Applications of d- and f-block elements [A]
-- Uses of transition and inner transition elements and their compounds
+# Transition elements: introduction @0 >1
+- Position in the periodic table >1
+- Electronic configurations of the d-block elements >1
+# Occurrence and general characteristics @1 >2
+- Occurrence and characteristics of transition elements >2
+# General trends in the first transition series @2 >3
+- Physical properties and metallic character >3
+- Atomic and ionic radii >4
+- Ionisation enthalpy >5
+- Oxidation states and their stability; standard electrode potentials >6
+- Colour and magnetic properties >8
+- Catalytic behaviour >10
+- Complex formation, interstitial compounds and alloy formation >11
+# Potassium dichromate and potassium permanganate @3 >12
+- Preparation, properties and uses >12
+- Structures and reactions of the oxoanions of chromium and manganese >12
+# Lanthanoids @4 >14
+- Electronic configuration and oxidation states >14
+- Lanthanoid contraction and its consequences >15
+# Actinoids @5 >16
+- Electronic configuration and oxidation states >16
+- Actinoid contraction and general characteristics >17
+# Applications of d- and f-block elements [A] >18
+- Uses of transition and inner transition elements and their compounds >18
 `,
 
   'coordination-compounds': `
-# Werner's theory @0
-- Double salts and coordination compounds
-- Werner's theory: primary and secondary valencies
-# Important terms @1
-- Coordination entity, central atom, ligands and coordination sphere
-- Coordination number, denticity, chelation and ambidentate ligands
-- Oxidation number of the central atom; homoleptic and heteroleptic complexes
-# IUPAC nomenclature @2
-- Writing formulas and names of mononuclear coordination compounds
-# Isomerism @3
-- Structural isomerism: ionisation, linkage, coordination and hydrate isomerism
-- Stereoisomerism: geometrical (cis–trans) and optical isomerism
-# Valence bond theory @4
-- Hybridisation and geometry: linear, tetrahedral, square planar and octahedral
-- Inner- and outer-orbital complexes; magnetic properties
-- Limitations of valence bond theory
-# Crystal field theory @5
-- Crystal field splitting in octahedral and tetrahedral fields
-- Spectrochemical series; strong- and weak-field ligands
-- Crystal field stabilisation energy; high-spin and low-spin complexes
-- Colour and magnetic properties (spin-only moment) of 3d-series complexes
-# Stability of coordination compounds [A]
-- Stability of complexes and the chelate effect
-# Metal carbonyls [A]
-- Structure and bonding in metal carbonyls
-# Importance and applications @6
-- Uses in qualitative analysis, extraction of metals and biological systems
+# Werner's theory @0 >1
+- Double salts and coordination compounds >1
+- Werner's theory: primary and secondary valencies >1
+# Important terms @1 >2
+- Coordination entity, central atom, ligands and coordination sphere >2
+- Coordination number, denticity, chelation and ambidentate ligands >3
+- Oxidation number of the central atom; homoleptic and heteroleptic complexes >4
+# IUPAC nomenclature @2 >5
+- Writing formulas and names of mononuclear coordination compounds >5
+# Isomerism @3 >6
+- Structural isomerism: ionisation, linkage, coordination and hydrate isomerism >6
+- Stereoisomerism: geometrical (cis–trans) and optical isomerism >7
+# Valence bond theory @4 >9
+- Hybridisation and geometry: linear, tetrahedral, square planar and octahedral >9
+- Inner- and outer-orbital complexes; magnetic properties >10
+- Limitations of valence bond theory >11
+# Crystal field theory @5 >12
+- Crystal field splitting in octahedral and tetrahedral fields >12
+- Spectrochemical series; strong- and weak-field ligands >13
+- Crystal field stabilisation energy; high-spin and low-spin complexes >14
+- Colour and magnetic properties (spin-only moment) of 3d-series complexes >15
+# Stability of coordination compounds [A] >16
+- Stability of complexes and the chelate effect >16
+# Metal carbonyls [A] >17
+- Structure and bonding in metal carbonyls >17
+# Importance and applications @6 >18
+- Uses in qualitative analysis, extraction of metals and biological systems >18
 `,
 
   'haloalkanes': `

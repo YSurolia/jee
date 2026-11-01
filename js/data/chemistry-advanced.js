@@ -3,7 +3,7 @@
 // which is turned into the exact topic string below. Chapters not yet in WITH_LESSON have no lesson file (lesson: false).
 (function () {
   var R = String.raw, list = JEE.chemistry.chapters;
-  var WITH_LESSON = ['states-of-matter', 'solid-state', 'surface-chemistry', 'hydrogen', 's-block', 'metallurgy'];
+  var WITH_LESSON = ['states-of-matter', 'solid-state', 'surface-chemistry', 'hydrogen', 's-block', 'metallurgy', 'environmental-chemistry'];
   function add(where, o) {
     o.adv = true;
     if (WITH_LESSON.indexOf(o.id) < 0) o.lesson = false;

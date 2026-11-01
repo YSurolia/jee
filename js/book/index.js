@@ -36,5 +36,9 @@ JEE.bookList = [
   'chemistry/periodicity',
   'chemistry/hydrogen',
   'chemistry/s-block',
-  'chemistry/metallurgy'
+  'chemistry/metallurgy',
+  'chemistry/p-block',
+  'chemistry/d-f-block',
+  'chemistry/coordination-compounds',
+  'chemistry/environmental-chemistry'
 ];
