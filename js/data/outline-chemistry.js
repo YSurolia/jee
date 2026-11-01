@@ -509,56 +509,56 @@ JEE.outline.chemistry = {
 `,
 
   'chemical-kinetics': `
-# Rate of a chemical reaction @0
-- Average and instantaneous rate
-- Expressing rate in terms of different reactants and products
-# Factors affecting the rate @1
-- Concentration, temperature, pressure and catalyst
-# Elementary and complex reactions @2
-- Elementary steps and the rate-determining step
-# Order and molecularity @3
-- Order and molecularity of a reaction and the difference between them
-- Pseudo-first-order reactions
-# Rate law and rate constant @4
-- Rate law (differential form); units of the rate constant
-- Finding the order: initial-rate method
-# Integrated rate equations @5
-- Zero-order reactions: integrated form, characteristics and half-life
-- First-order reactions: integrated form, characteristics and half-life
-# Effect of temperature on rate @6
-- Arrhenius equation
-- Activation energy and its calculation
-# Collision theory [M] @7
-- Collision theory of bimolecular gaseous reactions (no derivation)
-# Catalysis [A]
-- Homogeneous and heterogeneous catalysis
-- Activity and selectivity of solid catalysts
-- Enzyme catalysis and its mechanism
+# Rate of a chemical reaction @0 >1
+- Average and instantaneous rate >1
+- Expressing rate in terms of different reactants and products >1
+# Factors affecting the rate @1 >2
+- Concentration, temperature, pressure and catalyst >2
+# Elementary and complex reactions @2 >3
+- Elementary steps and the rate-determining step >3
+# Order and molecularity @3 >4
+- Order and molecularity of a reaction and the difference between them >4
+- Pseudo-first-order reactions >4
+# Rate law and rate constant @4 >5
+- Rate law (differential form); units of the rate constant >5
+- Finding the order: initial-rate method >5
+# Integrated rate equations @5 >6
+- Zero-order reactions: integrated form, characteristics and half-life >6
+- First-order reactions: integrated form, characteristics and half-life >7
+# Effect of temperature on rate @6 >8
+- Arrhenius equation >8
+- Activation energy and its calculation >9
+# Collision theory [M] @7 >10
+- Collision theory of bimolecular gaseous reactions (no derivation) >10
+# Catalysis [A] >11
+- Homogeneous and heterogeneous catalysis >11
+- Activity and selectivity of solid catalysts >11
+- Enzyme catalysis and its mechanism >11
 `,
 
   'surface-chemistry': `
-# Adsorption @0
-- Adsorption and absorption; adsorbate and adsorbent
-- Physisorption and chemisorption
-# Factors affecting adsorption @1
-- Effect of the nature of the gas, surface area, pressure and temperature
-- Freundlich adsorption isotherm
-- Applications of adsorption
-# Colloids and their classification @2
-- True solutions, colloids and suspensions
-- Classification by physical state, by interaction with the medium (lyophilic, lyophobic) and by type of particle
-# Preparation and purification of colloids @3
-- Chemical methods, Bredig's arc method and peptisation
-- Dialysis, electrodialysis and ultrafiltration
-# Properties of colloids @4
-- Tyndall effect and colour
-- Brownian movement
-- Charge on colloidal particles; electrophoresis
-- Coagulation and the Hardy–Schulze rule; protection of colloids
-# Emulsions, surfactants and micelles @5
-- Emulsions: oil-in-water and water-in-oil; emulsifiers
-- Surfactants
-- Micelles and the critical micelle concentration
+# Adsorption @0 >1
+- Adsorption and absorption; adsorbate and adsorbent >1
+- Physisorption and chemisorption >2
+# Factors affecting adsorption @1 >3
+- Effect of the nature of the gas, surface area, pressure and temperature >3
+- Freundlich adsorption isotherm >4
+- Applications of adsorption >5
+# Colloids and their classification @2 >6
+- True solutions, colloids and suspensions >6
+- Classification by physical state, by interaction with the medium (lyophilic, lyophobic) and by type of particle >7
+# Preparation and purification of colloids @3 >8
+- Chemical methods, Bredig's arc method and peptisation >8
+- Dialysis, electrodialysis and ultrafiltration >9
+# Properties of colloids @4 >10
+- Tyndall effect and colour >10
+- Brownian movement >11
+- Charge on colloidal particles; electrophoresis >12
+- Coagulation and the Hardy–Schulze rule; protection of colloids >13
+# Emulsions, surfactants and micelles @5 >14
+- Emulsions: oil-in-water and water-in-oil; emulsifiers >14
+- Surfactants >15
+- Micelles and the critical micelle concentration >16
 `,
 
   'metallurgy': `

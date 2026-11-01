@@ -30,5 +30,7 @@ JEE.bookList = [
   'chemistry/solid-state',
   'chemistry/solutions',
   'chemistry/equilibrium',
-  'chemistry/redox-electrochemistry'
+  'chemistry/redox-electrochemistry',
+  'chemistry/chemical-kinetics',
+  'chemistry/surface-chemistry'
 ];
