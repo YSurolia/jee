@@ -8,5 +8,8 @@ JEE.bookList = [
   'physics/laws-of-motion',
   'physics/work-energy-power',
   'physics/rotational-motion',
-  'physics/gravitation'
+  'physics/gravitation',
+  'physics/solids-liquids',
+  'physics/thermodynamics',
+  'physics/kinetic-theory'
 ];

@@ -249,53 +249,53 @@ JEE.outline.physics = {
 `,
 
   'solids-liquids': `
-# Elastic behaviour of solids @0
+# Elastic behaviour of solids @0 >1
 - Elasticity and plasticity
-- Stress and strain: longitudinal, volume and shear
-- Hooke's law; the stress–strain curve
-- Elastic potential energy of a stretched wire
-# Elastic moduli @1
+- Stress and strain: longitudinal, volume and shear >2
+- Hooke's law; the stress–strain curve >3
+- Elastic potential energy of a stretched wire >4
+# Elastic moduli @1 >4
 - Young's modulus
 - Bulk modulus and compressibility
 - Modulus of rigidity (shear modulus)
-# Pressure in fluids @2
+# Pressure in fluids @2 >5
 - Pressure due to a fluid column; effect of gravity on fluid pressure
 - Atmospheric pressure and gauge pressure
-# Pascal's law and its applications @3
+# Pascal's law and its applications @3 >6
 - Pascal's law
 - Hydraulic lift and hydraulic brakes
-# Buoyancy [A]
+# Buoyancy [A] >7
 - Archimedes' principle
 - Floating bodies
-# Viscosity @4
+# Viscosity @4 >8
 - Coefficient of viscosity
-- Stokes' law
-- Terminal velocity
-# Streamline and turbulent flow @5
+- Stokes' law >9
+- Terminal velocity >9
+# Streamline and turbulent flow @5 >10
 - Streamline flow and the equation of continuity
-- Turbulent flow; critical velocity and Reynolds number [M]
-# Bernoulli's principle and its applications @6
+- Turbulent flow; critical velocity and Reynolds number [M] >11
+# Bernoulli's principle and its applications @6 >12
 - Bernoulli's equation
-- Speed of efflux (Torricelli's law), venturimeter, dynamic lift
-# Surface tension @7
+- Speed of efflux (Torricelli's law), venturimeter, dynamic lift >13
+# Surface tension @7 >14
 - Surface energy and surface tension
-- Angle of contact
-- Excess pressure across a curved surface: drops and bubbles
-- Capillary rise; effect of detergents
-# Heat, temperature and thermal expansion @8
+- Angle of contact >15
+- Excess pressure across a curved surface: drops and bubbles >15
+- Capillary rise; effect of detergents >16
+# Heat, temperature and thermal expansion @8 >17
 - Heat and temperature; temperature scales
-- Thermal expansion of solids, liquids and gases
-- Anomalous expansion of water
-# Calorimetry and change of state @8
+- Thermal expansion of solids, liquids and gases >18
+- Anomalous expansion of water >18
+# Calorimetry and change of state @8 >19
 - Specific heat capacity and heat capacity
 - Calorimetry: the method of mixtures
-- Change of state; latent heat
-# Heat transfer @9
+- Change of state; latent heat >20
+# Heat transfer @9 >21
 - Conduction; thermal conductivity; heat conduction in one dimension
-- Convection
-- Radiation
-- Newton's law of cooling [A]
-# Blackbody radiation [A]
+- Convection >22
+- Radiation >22
+- Newton's law of cooling [A] >23
+# Blackbody radiation [A] >24
 - Absorptive and emissive powers
 - Kirchhoff's law
 - Wien's displacement law
@@ -303,60 +303,60 @@ JEE.outline.physics = {
 `,
 
   'thermodynamics': `
-# Thermal equilibrium and temperature @0
-- Thermal equilibrium
-- Zeroth law of thermodynamics and the concept of temperature
-# Heat, work and internal energy @1
-- Internal energy as a state function
-- Work done by a gas (pressure–volume work); P–V diagrams
-- Equivalence of heat and work
-# First law of thermodynamics @2
-- Statement and sign conventions
-- Specific heats of a gas: Cp, Cv and Mayer's relation
-- Cp and Cv for monatomic and diatomic gases
-# Thermodynamic processes @3
-- Isothermal and adiabatic processes
-- Isobaric and isochoric processes
-- Work done in each process; adiabatic relation PV^γ = constant
-- Bulk modulus of gases (isothermal and adiabatic) [A]
-- Cyclic processes
-# Second law of thermodynamics @4
-- Kelvin–Planck and Clausius statements
-- Heat engines and refrigerators; efficiency and coefficient of performance
-# Reversible and irreversible processes @5
-- Reversible and irreversible processes
-# Carnot engine [A] @6
-- The Carnot cycle
-- Efficiency of a Carnot engine
+# Thermal equilibrium and temperature @0 >1
+- Thermal equilibrium >1
+- Zeroth law of thermodynamics and the concept of temperature >1
+# Heat, work and internal energy @1 >2
+- Internal energy as a state function >2
+- Work done by a gas (pressure–volume work); P–V diagrams >2
+- Equivalence of heat and work >2
+# First law of thermodynamics @2 >3
+- Statement and sign conventions >3
+- Specific heats of a gas: Cp, Cv and Mayer's relation >4
+- Cp and Cv for monatomic and diatomic gases >4
+# Thermodynamic processes @3 >5
+- Isothermal and adiabatic processes >5
+- Isobaric and isochoric processes >5
+- Work done in each process; adiabatic relation PV^γ = constant >5
+- Bulk modulus of gases (isothermal and adiabatic) [A] >6
+- Cyclic processes >7
+# Second law of thermodynamics @4 >10
+- Kelvin–Planck and Clausius statements >10
+- Heat engines and refrigerators; efficiency and coefficient of performance >8
+# Reversible and irreversible processes @5 >11
+- Reversible and irreversible processes >11
+# Carnot engine [A] @6 >12
+- The Carnot cycle >12
+- Efficiency of a Carnot engine >12
 `,
 
   'kinetic-theory': `
-# Equation of state of a perfect gas @0
-- Boyle's, Charles' and Avogadro's laws
-- Ideal gas equation PV = nRT
-- Dalton's law of partial pressures
-# Work done on compressing a gas @1
-- Work done in compressing a gas
-# Kinetic theory of gases: assumptions @2
-- Molecular nature of matter
-- Assumptions of the kinetic theory of an ideal gas
-# Concept of pressure @3
-- Pressure of an ideal gas: P = ⅓ρv²(rms)
-# Kinetic interpretation of temperature @4
-- Average kinetic energy of a molecule is proportional to T
-- The Boltzmann constant
-# Speeds of gas molecules @5
-- RMS speed of gas molecules
-- Average and most probable speeds
-# Degrees of freedom @6
-- Translational, rotational and vibrational degrees of freedom
-# Law of equipartition of energy @7
-- Equipartition of energy
-- Specific heat capacities of monatomic, diatomic and polyatomic gases
-# Mean free path [M] @8
-- Mean free path of gas molecules
-# Avogadro's number @9
-- Avogadro's number and the mole
+# Equation of state of a perfect gas @0 >2
+- Boyle's, Charles' and Avogadro's laws >2
+- Ideal gas equation PV = nRT >3
+- Dalton's law of partial pressures >4
+# Work done on compressing a gas @1 >5
+- Work done in compressing a gas >5
+# Kinetic theory of gases: assumptions @2 >6
+- Molecular nature of matter >1
+- Assumptions of the kinetic theory of an ideal gas >6
+# Concept of pressure @3 >7
+- Pressure of an ideal gas: P = ⅓ρv²(rms) >7
+# Kinetic interpretation of temperature @4 >8
+- Average kinetic energy of a molecule is proportional to T >8
+- The Boltzmann constant >8
+# Speeds of gas molecules @5 >9
+- RMS speed of gas molecules >9
+- Average and most probable speeds >9
+# Degrees of freedom @6 >10
+- Translational, rotational and vibrational degrees of freedom >10
+# Law of equipartition of energy @7 >11
+- Equipartition of energy >11
+- Specific heat capacities of monatomic, diatomic and polyatomic gases >11
+# Mean free path [M] @8 >12
+- Mean free path of gas molecules >12
+# Avogadro's number @9 >13
+- Avogadro's number and the mole >13
 `,
 
   'oscillations-waves': `
