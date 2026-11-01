@@ -236,6 +236,14 @@
     }, o);
   };
 
+  // Meter (G, A or V) as a circle in a wire from (x1,y1) to (x2,y2).
+  D.meter = function (x1, y1, x2, y2, o) {
+    o = o || {};
+    return twoTerm(x1, y1, x2, y2, 26, function (mx, my, ux, uy, px, py, c) {
+      return D.circle(mx, my, 13, { color: c, fill: 'soft', w: 1.8 }) + D.text(mx, my + 0.5, o.s || 'G', { size: 13, bold: true, raw: true, color: c });
+    }, o);
+  };
+
   // Labelled block (for free-body diagrams).
   D.block = function (x, y, w, h, label, o) {
     o = o || {};

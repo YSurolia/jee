@@ -450,70 +450,70 @@ JEE.outline.physics = {
 `,
 
   'current-electricity': `
-# Electric current @0
-- Electric current and current density
-- Drift velocity and mobility; their relation with current
-# Ohm's law @1
-- Ohm's law
-- I–V characteristics of ohmic and non-ohmic conductors @3
-# Resistance and resistivity @2
-- Electrical resistance, resistivity and conductivity
-- Colour code of carbon resistors @5
-# Temperature dependence of resistance @7
-- Variation of resistivity with temperature
-# Combination of resistors @6
-- Resistors in series and in parallel
-- Equivalent resistance of networks
-# Electrical energy and power @4
-- Electrical energy and power
-- Heating effect of current (Joule's law)
-# Cells, emf and internal resistance @8
-- Emf, terminal potential difference and internal resistance
-# Combination of cells @9
-- Cells in series and in parallel
-# Kirchhoff's laws and their applications @10
-- Junction rule and loop rule
-# Wheatstone bridge @11
-- Balanced Wheatstone bridge
-# Metre bridge @12
-- Metre bridge
-- Post office box [A]
+# Electric current @0 >1
+- Electric current and current density >2
+- Drift velocity and mobility; their relation with current >2
+# Ohm's law @1 >4
+- Ohm's law >4
+- I–V characteristics of ohmic and non-ohmic conductors @3 >5
+# Resistance and resistivity @2 >6
+- Electrical resistance, resistivity and conductivity >6
+- Colour code of carbon resistors @5 >7
+# Temperature dependence of resistance @7 >8
+- Variation of resistivity with temperature >8
+# Combination of resistors @6 >9
+- Resistors in series and in parallel >9
+- Equivalent resistance of networks >10
+# Electrical energy and power @4 >11
+- Electrical energy and power >11
+- Heating effect of current (Joule's law) >12
+# Cells, emf and internal resistance @8 >13
+- Emf, terminal potential difference and internal resistance >13
+# Combination of cells @9 >14
+- Cells in series and in parallel >14
+# Kirchhoff's laws and their applications @10 >15
+- Junction rule and loop rule >15
+# Wheatstone bridge @11 >16
+- Balanced Wheatstone bridge >16
+# Metre bridge @12 >17
+- Metre bridge >17
+- Post office box [A] >17
 `,
 
   'magnetism': `
-# Biot–Savart law @0
-- Magnetic field due to a current element
-- Field on the axis of a circular current loop
-- Field due to a straight current-carrying wire
-# Ampère's circuital law @1
-- Ampère's law
-- Field of an infinitely long straight wire
-- Field inside a long straight solenoid
-# Force on a moving charge @2
-- Lorentz force
-- Motion of a charge in a uniform magnetic field
-- Force on a moving charge in uniform electric and magnetic fields
-# Force on a current-carrying conductor @3
-- Force on a conductor in a uniform magnetic field
-# Force between two parallel currents @4
-- Force between parallel current-carrying conductors
-- Definition of the ampere
-# Torque on a current loop @5
-- Torque on a current loop in a uniform magnetic field
-# Moving-coil galvanometer @6
-- Moving-coil galvanometer and its sensitivity
-- Conversion into an ammeter and a voltmeter
-# Current loop as a magnetic dipole @7
-- Magnetic dipole moment of a current loop
-- Magnetic moment of a revolving electron
-# Bar magnet [M] @8
-- Bar magnet as an equivalent solenoid
-- Magnetic field lines
-- Field of a magnetic dipole along its axis and perpendicular to its axis
-- Torque on a magnetic dipole in a uniform magnetic field
-# Magnetic materials [M] @9
-- Para-, dia- and ferromagnetic substances with examples
-- Effect of temperature on magnetic properties
+# Biot–Savart law @0 >1
+- Magnetic field due to a current element >1
+- Field on the axis of a circular current loop >3
+- Field due to a straight current-carrying wire >2
+# Ampère's circuital law @1 >4
+- Ampère's law >4
+- Field of an infinitely long straight wire >2
+- Field inside a long straight solenoid >5
+# Force on a moving charge @2 >6
+- Lorentz force >6
+- Motion of a charge in a uniform magnetic field >7
+- Force on a moving charge in uniform electric and magnetic fields >8
+# Force on a current-carrying conductor @3 >9
+- Force on a conductor in a uniform magnetic field >9
+# Force between two parallel currents @4 >10
+- Force between parallel current-carrying conductors >10
+- Definition of the ampere >10
+# Torque on a current loop @5 >11
+- Torque on a current loop in a uniform magnetic field >11
+# Moving-coil galvanometer @6 >12
+- Moving-coil galvanometer and its sensitivity >12
+- Conversion into an ammeter and a voltmeter >13
+# Current loop as a magnetic dipole @7 >14
+- Magnetic dipole moment of a current loop >14
+- Magnetic moment of a revolving electron >14
+# Bar magnet [M] @8 >15
+- Bar magnet as an equivalent solenoid >15
+- Magnetic field lines >15
+- Field of a magnetic dipole along its axis and perpendicular to its axis >15
+- Torque on a magnetic dipole in a uniform magnetic field >15
+# Magnetic materials [M] @9 >16
+- Para-, dia- and ferromagnetic substances with examples >16
+- Effect of temperature on magnetic properties >16
 `,
 
   'emi-ac': `
