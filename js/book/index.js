@@ -50,5 +50,9 @@ JEE.bookList = [
   'chemistry/biomolecules',
   'chemistry/polymers',
   'chemistry/everyday-chemistry',
-  'chemistry/practical-chemistry'
+  'chemistry/practical-chemistry',
+  'maths/sets-relations-functions',
+  'maths/complex-quadratic',
+  'maths/matrices-determinants',
+  'maths/permutations-combinations'
 ];

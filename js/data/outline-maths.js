@@ -9,89 +9,89 @@ window.JEE = window.JEE || {};
 JEE.outline = JEE.outline || {};
 JEE.outline.maths = {
   'sets-relations-functions': `
-# Sets and their representation @0
-- Sets and their elements; roster and set-builder forms
-- Empty, finite and infinite sets; equal sets
-- Subsets; intervals as subsets of the real line
-- Universal set and Venn diagrams
-# Operations on sets @1
-- Union, intersection and complement
-- Difference of sets
-- Symmetric difference [A]
-- Algebraic properties of set operations; De Morgan's laws
-- Practical problems on union and intersection
-# Power set [M] @2
-- Power set and the number of its elements
-# Cartesian product and relations @3
-- Ordered pairs and the Cartesian product of sets
-- Relations; domain, codomain and range of a relation
-- Types of relations: empty, universal, reflexive, symmetric and transitive
-- Equivalence relations and equivalence classes
-# Functions @4
-- Function as a special relation; functions as mappings
-- Domain, codomain and range of a function @7
-- One-one, many-one, into and onto functions; bijections
-- Even and odd functions [A]
-# Special functions
-- Polynomial, power, exponential, logarithmic and trigonometric functions
-- Absolute value and greatest integer functions
-# Algebra and composition of functions @5
-- Sum, difference, product and quotient of functions
-- Composition of functions
-# Invertible functions @6
-- Inverse of a function and the condition for invertibility
-# Logarithms [A]
-- Definition of a logarithm; laws of logarithms
-- Change of base; solving simple logarithmic equations
+# Sets and their representation @0 >1
+- Sets and their elements; roster and set-builder forms >1
+- Empty, finite and infinite sets; equal sets >1
+- Subsets; intervals as subsets of the real line >2
+- Universal set and Venn diagrams >3
+# Operations on sets @1 >4
+- Union, intersection and complement >4
+- Difference of sets >4
+- Symmetric difference [A] >5
+- Algebraic properties of set operations; De Morgan's laws >6
+- Practical problems on union and intersection >7
+# Power set [M] @2 >8
+- Power set and the number of its elements >8
+# Cartesian product and relations @3 >9
+- Ordered pairs and the Cartesian product of sets >9
+- Relations; domain, codomain and range of a relation >10
+- Types of relations: empty, universal, reflexive, symmetric and transitive >11
+- Equivalence relations and equivalence classes >12
+# Functions @4 >13
+- Function as a special relation; functions as mappings >13
+- Domain, codomain and range of a function @7 >13
+- One-one, many-one, into and onto functions; bijections >14
+- Even and odd functions [A] >15
+# Special functions >16
+- Polynomial, power, exponential, logarithmic and trigonometric functions >16
+- Absolute value and greatest integer functions >16
+# Algebra and composition of functions @5 >17
+- Sum, difference, product and quotient of functions >17
+- Composition of functions >18
+# Invertible functions @6 >19
+- Inverse of a function and the condition for invertibility >19
+# Logarithms [A] >20
+- Definition of a logarithm; laws of logarithms >20
+- Change of base; solving simple logarithmic equations >20
 `,
 
   'complex-quadratic': `
-# Complex numbers @0
-- Need for complex numbers; powers of i
-- Complex numbers as ordered pairs of reals; the form a + ib
-- Equality of complex numbers
-# Algebra of complex numbers @1
-- Addition, subtraction, multiplication and division
-- Conjugate and its properties
-- Square root of a complex number
-# Argand plane @2
-- Representation of complex numbers in a plane (Argand diagram)
-- Geometric interpretations of complex numbers and their operations [A]
-# Modulus and argument @3
-- Modulus and its properties
-- Triangle inequality [A]
-- Argument (amplitude) and principal argument
-- Polar representation of a complex number @4
-# Cube roots of unity [A] @5
-- Cube roots of unity and their properties
-# Quadratic equations @6
-- Quadratic equations in the real and complex number systems and their solutions
-- Statement of the fundamental theorem of algebra [A]
-# Relations between roots and coefficients @7
-- Sum and product of roots
-- Symmetric functions of roots [A]
-# Nature of roots @8
-- Discriminant and the nature of roots
-# Formation of quadratic equations @9
-- Forming a quadratic equation with given roots
+# Complex numbers @0 >1
+- Need for complex numbers; powers of i >1
+- Complex numbers as ordered pairs of reals; the form a + ib >2
+- Equality of complex numbers >2
+# Algebra of complex numbers @1 >3
+- Addition, subtraction, multiplication and division >3
+- Conjugate and its properties >4
+- Square root of a complex number >5
+# Argand plane @2 >6
+- Representation of complex numbers in a plane (Argand diagram) >6
+- Geometric interpretations of complex numbers and their operations [A] >7
+# Modulus and argument @3 >8
+- Modulus and its properties >8
+- Triangle inequality [A] >9
+- Argument (amplitude) and principal argument >10
+- Polar representation of a complex number @4 >11
+# Cube roots of unity [A] @5 >12
+- Cube roots of unity and their properties >12
+# Quadratic equations @6 >13
+- Quadratic equations in the real and complex number systems and their solutions >13
+- Statement of the fundamental theorem of algebra [A] >14
+# Relations between roots and coefficients @7 >15
+- Sum and product of roots >15
+- Symmetric functions of roots [A] >16
+# Nature of roots @8 >17
+- Discriminant and the nature of roots >17
+# Formation of quadratic equations @9 >18
+- Forming a quadratic equation with given roots >18
 `,
 
   'permutations-combinations': `
-# Fundamental principle of counting @0
-- Multiplication and addition principles
-- Factorial notation
-# Permutations @1
-- Permutation as an arrangement; meaning of P(n, r) @3
-- Permutations when some objects are alike
-- Permutations with repetition allowed
-- Permutations with restrictions
-# Combinations @2
-- Combination as a selection; meaning of C(n, r) and its properties
-- Relation between P(n, r) and C(n, r)
-- Selections with restrictions
-# Simple applications @4
-- Arrangement and selection problems
-- Counting lines, triangles and diagonals from given points
+# Fundamental principle of counting @0 >1
+- Multiplication and addition principles >1
+- Factorial notation >2
+# Permutations @1 >3
+- Permutation as an arrangement; meaning of P(n, r) @3 >3
+- Permutations when some objects are alike >4
+- Permutations with repetition allowed >5
+- Permutations with restrictions >6
+# Combinations @2 >7
+- Combination as a selection; meaning of C(n, r) and its properties >7
+- Relation between P(n, r) and C(n, r) >8
+- Selections with restrictions >9
+# Simple applications @4 >10
+- Arrangement and selection problems >10
+- Counting lines, triangles and diagonals from given points >11
 `,
 
   'binomial-theorem': `
@@ -191,28 +191,28 @@ JEE.outline.maths = {
 `,
 
   'matrices-determinants': `
-# Matrices @0
-- Matrix as a rectangular array of real numbers; order; equality of matrices
-- Types of matrices: row, column, square, diagonal, scalar, identity and zero
-# Algebra of matrices @0
-- Addition and multiplication by a scalar
-- Product of matrices and its properties
-- Transpose of a matrix
-- Symmetric and skew-symmetric matrices and their properties
-- Elementary row and column transformations [A]
-# Determinants @1
-- Determinants of order two and three; minors and cofactors
-- Evaluation and properties of determinants @2
-# Area of a triangle using determinants [M] @3
-- Area of a triangle; condition for collinearity
-# Adjoint and inverse of a matrix @4
-- Adjoint of a square matrix
-- Inverse of a square matrix of order up to three
-- Properties of the adjoint and the inverse
-# Systems of linear equations @5
-- Test of consistency of a system of equations
-- Solution of simultaneous linear equations in two or three variables using matrices
-- Solution using determinants (Cramer's rule)
+# Matrices @0 >1
+- Matrix as a rectangular array of real numbers; order; equality of matrices >1
+- Types of matrices: row, column, square, diagonal, scalar, identity and zero >2
+# Algebra of matrices @0 >3
+- Addition and multiplication by a scalar >3
+- Product of matrices and its properties >4
+- Transpose of a matrix >5
+- Symmetric and skew-symmetric matrices and their properties >6
+- Elementary row and column transformations [A] >7
+# Determinants @1 >8
+- Determinants of order two and three; minors and cofactors >8
+- Evaluation and properties of determinants @2 >9
+# Area of a triangle using determinants [M] @3 >10
+- Area of a triangle; condition for collinearity >10
+# Adjoint and inverse of a matrix @4 >11
+- Adjoint of a square matrix >11
+- Inverse of a square matrix of order up to three >12
+- Properties of the adjoint and the inverse >13
+# Systems of linear equations @5 >14
+- Test of consistency of a system of equations >14
+- Solution of simultaneous linear equations in two or three variables using matrices >15
+- Solution using determinants (Cramer's rule) >16
 `,
 
   'limits-continuity-differentiability': `
