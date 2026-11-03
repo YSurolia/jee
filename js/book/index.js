@@ -62,5 +62,6 @@ JEE.bookList = [
   'maths/differential-equations',
   'maths/coordinate-geometry',
   'maths/vector-algebra',
-  'maths/3d-geometry'
+  'maths/3d-geometry',
+  'maths/statistics-probability'
 ];

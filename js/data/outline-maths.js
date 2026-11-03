@@ -364,26 +364,26 @@ JEE.outline.maths = {
 `,
 
   'statistics-probability': `
-# Measures of central tendency @0
-- Mean, median and mode of ungrouped data
-- Mean, median and mode of grouped data
-# Measures of dispersion @1
-- Range and mean deviation
-- Variance and standard deviation of ungrouped and grouped data
-- Analysis of frequency distributions with the same mean but different variances [A]
-# Random experiments and events @2
-- Random experiment, outcomes and sample space
-- Types of events: impossible, simple and compound; mutually exclusive and exhaustive events
-- Probability of an event; computing probabilities using permutations and combinations
-# Addition and multiplication theorems @3
-- Addition theorem of probability
-- Conditional probability
-- Multiplication theorem; independent events
-# Total probability and Bayes' theorem @4
-- Theorem of total probability
-- Bayes' theorem
-# Random variables and their distributions @5
-- Random variable and its probability distribution
-- Mean and variance of a random variable
+# Measures of central tendency @0 >1
+- Mean, median and mode of ungrouped data >1
+- Mean, median and mode of grouped data >2
+# Measures of dispersion @1 >3
+- Range and mean deviation >3
+- Variance and standard deviation of ungrouped and grouped data >4
+- Analysis of frequency distributions with the same mean but different variances [A] >5
+# Random experiments and events @2 >6
+- Random experiment, outcomes and sample space >6
+- Types of events: impossible, simple and compound; mutually exclusive and exhaustive events >7
+- Probability of an event; computing probabilities using permutations and combinations >8
+# Addition and multiplication theorems @3 >9
+- Addition theorem of probability >9
+- Conditional probability >10
+- Multiplication theorem; independent events >11
+# Total probability and Bayes' theorem @4 >12
+- Theorem of total probability >12
+- Bayes' theorem >13
+# Random variables and their distributions @5 >14
+- Random variable and its probability distribution >14
+- Mean and variance of a random variable >15
 `
 };
