@@ -12,9 +12,10 @@ Every chapter page has an **"All chapters" index** on the left (a slide-in drawe
 subjects, with your completed chapters ticked; open any chapter in it to see all its topics and subtopics, so you can jump anywhere.
 Each chapter works like a coaching-centre app, with four tabs:
 
-- **Theory**: simple explanations of every syllabus topic, with "think of it like this" analogies, key points, common mistakes and quick checks.
-  Chapters with a **book chapter** (see below) show a full textbook-style chapter here instead: numbered sections, diagrams, derivations,
-  worked illustrations and a "Chapter at a glance" summary, with a Print / Save as PDF button
+- **Theory**: a full textbook-style **book chapter** (all 63 chapters have one). It has numbered sections covering every topic and
+  subtopic of the chapter's outline, simple explanations with analogies, diagrams and graphs (drawn organic structures in the organic
+  chemistry chapters), derivations, worked illustrations, common mistakes, quick checks, "JEE tip" and "JEE Advanced" boxes, a
+  "Chapter at a glance" summary and a **Further reading** list of free OpenStax and Wikipedia pages, with a Print / Save as PDF button
 - **Examples**: solved examples ordered from Basic → JEE Main → JEE Advanced, with a level filter
 - **Practice**: multiple-choice and numerical questions with instant right/wrong feedback, full solutions and a saved score
 - **Formulas**: the chapter's formula sheet
@@ -27,7 +28,8 @@ python3 -m http.server 8000
 ```
 
 Then visit http://localhost:8000. No internet connection is needed: the math renderer (KaTeX 0.16.9, MIT licence)
-is bundled in `vendor/katex/`. Your "done" progress is saved in the browser you use.
+is bundled in `vendor/katex/`, and the organic-structure drawer (SmilesDrawer 2.4.1, MIT licence) in `vendor/smiles-drawer/`.
+Your "done" progress is saved in the browser you use.
 
 ## Live site
 The site is published at **https://jee.yatharth.org** from the GitHub repo `YSurolia/jee`.
@@ -121,10 +123,14 @@ JEE.book('physics', 'kinematics', {
         { ex: { q: R`...`, steps: [R`...`], ans: R`...` } },          // worked "Illustration"
         { table: { head: [R`...`], rows: [[R`...`]] } },
         { analogy: R`...` }, { points: [R`...`] }, { mistake: R`...` },
-        { note: R`...`, title: 'Good to know' }, { check: { q: R`...`, ans: R`...` } }
+        { note: R`...`, title: 'Good to know' }, { check: { q: R`...`, ans: R`...` } },
+        { tip: R`...` },                                       // "JEE tip" box
+        { adv: R`...` },                                       // "JEE Advanced" box (a string or an array of paragraphs)
+        { mol: [['CC(=O)O', 'acetic acid'], ['c1ccccc1', 'benzene', 180, 120]], cap: R`...` }  // skeletal structures from SMILES
       ] }
   ],
-  summary: [R`...`]                                // "Chapter at a glance"
+  summary: [R`...`],                               // "Chapter at a glance"
+  refs: [{ t: R`OpenStax ... §1.2 ...`, url: 'https://openstax.org/...' }]   // "Further reading"
 });
 ```
 
@@ -135,6 +141,8 @@ Diagrams come from `js/diagrams.js` (`JEE.D`). Every helper returns an SVG strin
 - `D.molecule({ atoms, bonds })` / `D.mol(...)`: Lewis structures and 3-D shapes (bond types 1, 2, 3, `'w'` wedge, `'h'` hashed, `'hb'` hydrogen bond)
 - `D.levels({ cols, links })`: energy-level and molecular-orbital diagrams
 - `D.row([[svg, 'caption'], ...])`: several small figures side by side
+- `mol` blocks (not a `D` helper): skeletal formulas drawn from SMILES strings by SmilesDrawer, which loads only on pages that use them.
+  Each entry is `[SMILES, label, width?, height?]`; every structure is drawn at the same bond length, with atom colours that follow the theme.
 
 Colours are keys: `'k'` ink, `'c'` subject colour, `'m'` muted, `'o'` orange, `'b'` blue, `'g'` green, `'r'` red, `'p'` purple. Labels accept `v_0`, `x^2` and `*italic*`.
 
@@ -144,11 +152,12 @@ single backslashes. Don't use a backtick or `${` inside these strings. A supersc
 ## Files
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
 - `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, dark mode, and progress and practice scores (saved in the browser's localStorage)
-- `js/lessons/`: one lesson file per chapter (54 in total)
+- `js/lessons/`: one lesson file per chapter (63 in total)
 - `js/data/outline-*.js`: the complete topic and subtopic outline of every chapter
 - `js/data/chemistry-advanced.js`: the 9 chemistry chapters that are only in JEE Advanced
 - `js/book/`: full book chapters with diagrams (`index.js` lists which chapters have one)
 - `js/diagrams.js`: the SVG diagram helpers used by the book chapters
 - `css/style.css`: styles (light and dark themes, mobile-friendly)
 - `vendor/katex/`: local copy of KaTeX so formulas work offline
+- `vendor/smiles-drawer/`: local copy of SmilesDrawer (with its MIT licence) for the organic structures
 - `js/icons.js`: the Lucide icons used on the home page (ISC licence), stored locally so they work offline
