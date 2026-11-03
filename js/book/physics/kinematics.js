@@ -242,6 +242,7 @@ JEE.book('physics', 'kinematics', {
       R`To describe a position with numbers, we need a <b>frame of reference</b>. It has three parts: (1) an <b>origin</b>, the fixed point we measure from; (2) <b>axes</b>, the directions we measure along, such as x (east), y (north) and z (up); and (3) a <b>clock</b> to measure time.`,
       { fig: kinFigNumberLine, cap: R`A frame of reference in one dimension. The origin O is the zero point. Positions to its right are positive and positions to its left are negative.` },
       R`For motion along a straight road, one number is enough. \(x = +3\) m means 3 m to the right of O, and \(x = -2\) m means 2 m to the left. <b>The sign tells the direction.</b> For motion on a flat field we need two numbers (x, y), and in space three (x, y, z).`,
+      R`<b>The particle (point-object) approximation.</b> If an object is small compared with the distance it travels, we can ignore its size and treat it as a single point. A car on a 300 km journey or the Earth going round the Sun can be treated as a particle; a spinning wheel cannot. <b>How many coordinates?</b> A train on a straight track needs one (x): motion in <b>one dimension</b>. A ball rolling on a football field needs two (x, y): <b>two dimensions</b>. A bird flying needs three (x, y, z): <b>three dimensions</b>.`,
       { analogy: R`A frame of reference is like the address system of your town. "Second house to the left of the temple" only makes sense once everyone agrees where the temple is (the origin) and which way "left" is (the axis).` },
       { points: [R`Rest and motion are relative to the observer.`, R`Choose the origin and the positive direction once, at the start of a problem, and stick with them.`, R`Unless a question says otherwise, the ground (Earth) is the frame of reference.`] },
       { check: { q: R`A passenger sits in a bus moving at 40 km/h. What is the passenger's speed (a) relative to the bus (b) relative to the road?`, ans: R`(a) 0 (b) 40 km/h.` } }
@@ -313,7 +314,15 @@ JEE.book('physics', 'kinematics', {
       { ex: { q: R`A body starts from rest with an acceleration of 4 m/s². How far does it travel in the 3rd second?`,
         steps: [R`\(s_n = u + \frac a2(2n - 1) = 0 + 2\times(2\times3 - 1) = 2\times5\).`, R`Check: in 3 s it covers \(\frac12\times4\times9 = 18\) m and in 2 s it covers 8 m, a difference of 10 m.`],
         ans: R`10 m` } },
-      { mistake: R`Using these equations when the acceleration is not constant (for example a = 3t). Then you must use calculus: \(v = \int a\,dt\) and \(x = \int v\,dt\).` },
+      { h3: R`When the acceleration is not constant: use calculus` },
+      R`The equations above hold only for constant acceleration. In general, go back to the definitions \(v = \dfrac{dx}{dt}\) and \(a = \dfrac{dv}{dt}\): differentiate to go from x to v to a, and integrate to come back: \[v = u + \int_0^t a\,dt, \qquad x = x_0 + \int_0^t v\,dt.\] If a is given in terms of position, use \(a = v\,\dfrac{dv}{dx}\).`,
+      { ex: { q: R`A particle starts from rest at the origin with acceleration a = 6t m/s². Find its velocity and position at t = 2 s.`,
+        steps: [R`\(v = \int_0^t 6t\,dt = 3t^2\); \(x = \int_0^t 3t^2\,dt = t^3\).`, R`At t = 2 s: v = 12 m/s and x = 8 m.`],
+        ans: R`12 m/s; 8 m` } },
+      { ex: { q: R`A particle moves so that v = 3x (in m/s, with x in metres). Find its acceleration at x = 2 m.`,
+        steps: [R`\(a = v\,\dfrac{dv}{dx} = 3x\times3 = 9x\).`, R`At x = 2 m: a = 18 m/s².`],
+        ans: R`18 m/s²` } },
+      { mistake: R`Using the constant-acceleration equations when the acceleration changes (for example a = 3t). Then you must use calculus, as above.` },
       { check: { q: R`A stone is dropped from a height of 45 m. How long does it take to reach the ground? (g = 10 m/s²)`, ans: R`\(45 = \frac12\times10\times t^2\), so \(t^2 = 9\) and t = 3 s.` } }
     ] },
 
@@ -469,6 +478,16 @@ JEE.book('physics', 'kinematics', {
     R`In a plane, the x and y motions are independent; the velocity is always along the tangent to the path.`,
     R`River crossing: quickest time d/v (head straight across); straight-across path when heading upstream with \(\sin\theta = u/v\).`,
     R`Projectile: \(T = \frac{2u\sin\theta}{g}\), \(H = \frac{u^2\sin^2\theta}{2g}\), \(R = \frac{u^2\sin2\theta}{g}\); the range is greatest at 45°, and θ and 90° − θ give equal ranges.`,
-    R`Uniform circular motion: constant speed, but acceleration \(v^2/r = \omega^2r\) towards the centre; \(v = \omega r\), \(\omega = 2\pi f = 2\pi/T\).`
+    R`Uniform circular motion: constant speed, but acceleration \(v^2/r = \omega^2r\) towards the centre; \(v = \omega r\), \(\omega = 2\pi f = 2\pi/T\).`,
+    R`Variable acceleration: integrate a to get v and v to get x; if a depends on x, use a = v dv/dx.`
+  ],
+  refs: [
+    { t: R`OpenStax University Physics Volume 1, §2.1 Scalars and Vectors`, url: 'https://openstax.org/books/university-physics-volume-1/pages/2-1-scalars-and-vectors' },
+    { t: R`OpenStax University Physics Volume 1, §3.1 Position, Displacement, and Average Velocity`, url: 'https://openstax.org/books/university-physics-volume-1/pages/3-1-position-displacement-and-average-velocity' },
+    { t: R`OpenStax University Physics Volume 1, §3.4 Motion with Constant Acceleration`, url: 'https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration' },
+    { t: R`OpenStax University Physics Volume 1, §3.6 Finding Velocity and Displacement from Acceleration`, url: 'https://openstax.org/books/university-physics-volume-1/pages/3-6-finding-velocity-and-displacement-from-acceleration' },
+    { t: R`OpenStax University Physics Volume 1, §4.3 Projectile Motion`, url: 'https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion' },
+    { t: R`OpenStax University Physics Volume 1, §4.4 Uniform and Nonuniform Circular Motion`, url: 'https://openstax.org/books/university-physics-volume-1/pages/4-4-uniform-and-nonuniform-circular-motion' },
+    { t: R`OpenStax University Physics Volume 1, §4.5 Relative Motion in One and Two Dimensions`, url: 'https://openstax.org/books/university-physics-volume-1/pages/4-5-relative-motion-in-one-and-two-dimensions' }
   ]
 });

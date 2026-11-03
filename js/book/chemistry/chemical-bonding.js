@@ -160,6 +160,25 @@ var cbFigHBond = D.row([
     bonds: [[0, 1], [1, 2, 'hb'], [2, 3], [3, 4, 'hb'], [4, 5]] }), 'HF: zig-zag chains']
 ]);
 
+var cbFigMetal = (function () {
+  function ion(x, y) { return D.circle(x, y, 13, { color: 'b', fill: 'soft', w: 1.6 }) + D.text(x, y + 0.5, '+', { color: 'b', bold: true, size: 16, raw: true }); }
+  function sea(shift) {
+    var rows = [35, 85, 130], p = [D.rect(8, 12, 266, 146, { color: 'o', fill: 'soft', w: 0.8, r: 10 })];
+    rows.forEach(function (y, j) { for (var i = 0; i < 5; i++) p.push(ion(36 + 51 * i + (j === 0 ? shift : 0), y)); });
+    var e = [];
+    [0, 1, 2, 3].forEach(function (i) { e.push([61.5 + 51 * i + (i % 2 ? 4 : -3), 60 + (i % 2 ? 3 : -2)], [61.5 + 51 * i + (i % 2 ? -4 : 3), 108 + (i % 2 ? -2 : 3)]); });
+    [[0, 0], [2, 0], [3, 0], [1, 1], [3, 1], [0, 2], [2, 2]].forEach(function (q) { e.push([61.5 + 51 * q[0] + (q[1] === 0 ? shift : 0), rows[q[1]]]); });
+    e.forEach(function (d) { p.push(D.dot(d[0], d[1], { r: 3, color: 'o' })); });
+    return p;
+  }
+  var a = sea(0), b = sea(18);
+  b.push(D.arrow(150, 6, 205, 6, { color: 'r', w: 1.8, head: 7 }));
+  return D.row([
+    [D.svg(282, 165, a, 'Metal ions in a sea of delocalised electrons'), 'positive ions in a sea of electrons (orange dots)'],
+    [D.svg(282, 165, b, 'One layer of metal ions sliding over another'), 'push a layer: it slides, but the sea still holds it']
+  ]);
+})();
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'chemical-bonding', {
   intro: [
@@ -354,6 +373,25 @@ JEE.book('chemistry', 'chemical-bonding', {
       { check: { q: R`Why does He₂ not exist?`, ans: R`It would have 2 bonding and 2 antibonding electrons, so bond order = ½(2 − 2) = 0: no bond.` } }
     ] },
 
+    { h: R`Metallic bonding`, t: [0], blocks: [
+      R`Metals are neither ionic nor covalent. A metal atom has only a few loosely held valence electrons and many empty orbitals. In the solid, each atom releases its valence electrons into a shared pool. The <b>metallic bond</b> is the attraction between the lattice of positive metal ions (kernels) and this "<b>sea</b>" of <b>delocalised electrons</b> that moves freely through the whole crystal (the <b>electron-sea</b> or free-electron model).`,
+      { fig: cbFigMetal, cap: R`The electron-sea model. The bond is not between two particular atoms: every ion is held by the whole sea, so layers can slide without the crystal breaking apart.` },
+      { h3: R`What the model explains` },
+      { table: { head: [R`Property`, R`Explanation`], rows: [
+        [R`Electrical conductivity`, R`The free electrons drift towards the positive end when a voltage is applied.`],
+        [R`Thermal conductivity`, R`Mobile electrons carry kinetic energy quickly through the metal.`],
+        [R`Malleability and ductility`, R`Layers of ions slide over each other while the electron sea keeps holding them. (In an ionic crystal, sliding brings like charges together and the crystal shatters.)`],
+        [R`Metallic lustre`, R`Free electrons absorb and re-emit light of many wavelengths, so the surface shines.`],
+        [R`High melting points (mostly)`, R`The attraction acts in all directions throughout the crystal.`]] } },
+      { h3: R`Strength of metallic bonding` },
+      R`Metallic bonding is stronger when there are <b>more valence electrons per atom</b> and the <b>ions are smaller</b>. So melting points rise across a period, Na (98 °C) < Mg (650 °C) < Al (660 °C), and fall down group 1, Li (181 °C) > Na (98 °C) > K (63 °C) > Rb (39 °C) > Cs (28 °C). Transition metals, which also use d electrons, are very hard and high-melting: tungsten melts at 3422 °C. Mercury (−39 °C) is the famous exception.`,
+      { ex: { q: R`Why is magnesium harder and higher-melting than sodium?`,
+        steps: [R`Mg gives 2 electrons per atom to the electron sea; Na gives only 1.`, R`Mg²⁺ is smaller and more highly charged than Na⁺.`, R`More electrons and a smaller, more charged kernel mean a stronger attraction between the ions and the sea.`],
+        ans: R`Stronger metallic bonding in Mg` } },
+      { mistake: R`Calling metallic bonding "ionic" because it involves positive ions. There are no negative ions; the positive kernels are held by delocalised electrons, which is why metals conduct as solids and ionic solids do not.` },
+      { check: { q: R`Which has the stronger metallic bonding, sodium or potassium?`, ans: R`Sodium: its ion is smaller, so the attraction to the electron sea is stronger (Na melts at 98 °C, K at 63 °C).` } }
+    ] },
+
     { h: R`Hydrogen bonding`, t: [8], blocks: [
       R`When hydrogen is bonded to a very electronegative small atom (<b>F, O or N</b>), the bond is so polar that the H becomes strongly δ+. This H is then attracted to a lone pair on an F, O or N atom of a neighbouring molecule. This attraction is a <b>hydrogen bond</b>, drawn as a dotted line: X–H···Y.`,
       { fig: cbFigHBond, cap: R`Hydrogen bonds (dotted orange lines). In water, each H of one molecule is attracted to the O of the next. In hydrogen fluoride, the molecules link into zig-zag chains.` },
@@ -383,6 +421,18 @@ JEE.book('chemistry', 'chemical-bonding', {
     R`Hybridisation follows the steric number: sp (180°), sp² (120°), sp³ (109.5°), sp³d (TBP), sp³d² (octahedral).`,
     R`Resonance: the real molecule is a hybrid of resonance structures; bond order in CO₃²⁻ and NO₃⁻ is 4/3.`,
     R`MO theory: bond order = ½(N_b − N_a); unpaired electrons → paramagnetic. O₂ is paramagnetic with bond order 2; N₂ has bond order 3. σ2p lies above π2p for molecules up to N₂.`,
-    R`Hydrogen bonding (H bonded to F, O or N) explains the high boiling point of water, ice floating, solubility of alcohols and the structure of DNA.`
+    R`Hydrogen bonding (H bonded to F, O or N) explains the high boiling point of water, ice floating, solubility of alcohols and the structure of DNA.`,
+    R`Metallic bonding: positive kernels in a sea of delocalised electrons. Explains conductivity, malleability and lustre; stronger with more valence electrons and smaller ions.`
+  ],
+  refs: [
+    { t: R`OpenStax Chemistry 2e, §7.1 Ionic Bonding`, url: 'https://openstax.org/books/chemistry-2e/pages/7-1-ionic-bonding' },
+    { t: R`OpenStax Chemistry 2e, §7.3 Lewis Symbols and Structures`, url: 'https://openstax.org/books/chemistry-2e/pages/7-3-lewis-symbols-and-structures' },
+    { t: R`OpenStax Chemistry 2e, §7.4 Formal Charges and Resonance`, url: 'https://openstax.org/books/chemistry-2e/pages/7-4-formal-charges-and-resonance' },
+    { t: R`OpenStax Chemistry 2e, §7.5 Strengths of Ionic and Covalent Bonds`, url: 'https://openstax.org/books/chemistry-2e/pages/7-5-strengths-of-ionic-and-covalent-bonds' },
+    { t: R`OpenStax Chemistry 2e, §7.6 Molecular Structure and Polarity`, url: 'https://openstax.org/books/chemistry-2e/pages/7-6-molecular-structure-and-polarity' },
+    { t: R`OpenStax Chemistry 2e, §8.2 Hybrid Atomic Orbitals`, url: 'https://openstax.org/books/chemistry-2e/pages/8-2-hybrid-atomic-orbitals' },
+    { t: R`OpenStax Chemistry 2e, §8.4 Molecular Orbital Theory`, url: 'https://openstax.org/books/chemistry-2e/pages/8-4-molecular-orbital-theory' },
+    { t: R`OpenStax Chemistry 2e, §10.1 Intermolecular Forces`, url: 'https://openstax.org/books/chemistry-2e/pages/10-1-intermolecular-forces' },
+    { t: R`Wikipedia: Metallic bonding`, url: 'https://en.wikipedia.org/wiki/Metallic_bonding' }
   ]
 });

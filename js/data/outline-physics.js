@@ -45,58 +45,58 @@ JEE.outline.physics = {
 
   'kinematics': `
 # Frame of reference @0 >1
-- Rest and motion are relative
-- Frame of reference: origin, axes and a clock
-- Motion in one, two and three dimensions
-- The particle (point-object) approximation
+- Rest and motion are relative >1
+- Frame of reference: origin, axes and a clock >1
+- Motion in one, two and three dimensions >1
+- The particle (point-object) approximation >1
 # Position, path length and displacement @1 >2
-- Position on a straight line and choice of positive direction
-- Path length (distance) and displacement
-- Position–time relation for motion in a straight line
+- Position on a straight line and choice of positive direction >2
+- Path length (distance) and displacement >2
+- Position–time relation for motion in a straight line >2
 # Speed and velocity @2 >3
-- Average speed and average velocity
-- Instantaneous velocity (v = dx/dt) and instantaneous speed
-- Unit conversion between km/h and m/s
+- Average speed and average velocity >3
+- Instantaneous velocity (v = dx/dt) and instantaneous speed >3
+- Unit conversion between km/h and m/s >3
 # Uniform and non-uniform motion; acceleration @3 >4
-- Uniform and non-uniform motion
-- Average and instantaneous acceleration
-- Uniformly accelerated motion
-- Motion with variable acceleration using calculus
+- Uniform and non-uniform motion >4
+- Average and instantaneous acceleration >4
+- Uniformly accelerated motion >4
+- Motion with variable acceleration using calculus >5
 # Equations of uniformly accelerated motion @3 >5
-- v = u + at, s = ut + ½at² and v² = u² + 2as
-- Derivations using graphs and using calculus
-- Distance covered in the nth second
-- Motion under gravity: free fall and bodies thrown upward
+- v = u + at, s = ut + ½at² and v² = u² + 2as >5
+- Derivations using graphs and using calculus >5
+- Distance covered in the nth second >5
+- Motion under gravity: free fall and bodies thrown upward >5
 # Position–time and velocity–time graphs @4 >6
-- Position–time graphs: slope gives velocity
+- Position–time graphs: slope gives velocity >6
 - Velocity–time graphs: slope gives acceleration, area gives displacement >7
-- Acceleration–time graphs
-- Finding distance and displacement from graphs
+- Acceleration–time graphs >7
+- Finding distance and displacement from graphs >7
 # Relative velocity @5 >8
-- Relative velocity in one dimension
-- Overtaking and crossing problems
+- Relative velocity in one dimension >8
+- Overtaking and crossing problems >8
 # Scalars and vectors @6 >9
-- Scalar and vector quantities
-- Position and displacement vectors; equality of vectors
-- Multiplying a vector by a real number
-- Addition and subtraction: triangle and parallelogram laws
-- Resolution of a vector; unit vectors
-- Adding vectors by components
+- Scalar and vector quantities >9
+- Position and displacement vectors; equality of vectors >9
+- Multiplying a vector by a real number >9
+- Addition and subtraction: triangle and parallelogram laws >9
+- Resolution of a vector; unit vectors >9
+- Adding vectors by components >9
 # Motion in a plane @7 >10
-- Position vector and displacement in a plane
-- Velocity and acceleration in two dimensions
-- Motion in a plane with constant acceleration
+- Position vector and displacement in a plane >10
+- Velocity and acceleration in two dimensions >10
+- Motion in a plane with constant acceleration >10
 - Relative velocity in two dimensions: rain and umbrella, river crossing >11
 # Projectile motion @8 >12
-- Independence of horizontal and vertical motion
-- Equation of the path: a parabola
-- Time of flight, maximum height and horizontal range
-- Maximum range and complementary angles
-- Projectile thrown horizontally from a height
+- Independence of horizontal and vertical motion >12
+- Equation of the path: a parabola >12
+- Time of flight, maximum height and horizontal range >12
+- Maximum range and complementary angles >12
+- Projectile thrown horizontally from a height >12
 # Uniform circular motion @9 >13
-- Angular displacement, angular velocity, period and frequency
-- Relation between linear and angular speed (v = ωr)
-- Centripetal acceleration (v²/r)
+- Angular displacement, angular velocity, period and frequency >13
+- Relation between linear and angular speed (v = ωr) >13
+- Centripetal acceleration (v²/r) >13
 `,
 
   'laws-of-motion': `

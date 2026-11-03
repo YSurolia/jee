@@ -134,6 +134,26 @@ var lcdFigExtrema = (function () {
     label: 'A curve on a closed interval with a local maximum, a local minimum and the absolute maximum at the right end'
   });
 })();
+var lcdFigTangent = D.plot({ w: 320, h: 280, x: [-1.6, 3.2], y: [-1, 3], eq: true, xticks: [[1, '1']], yticks: [[1, '1']],
+  fns: [{ f: function (x) { return x * x; }, from: -1.78, to: 1.78, label: 'y = x²', lx: -1.55, ly: 2.75 },
+    { f: function (x) { return 2 * x - 1; }, from: 0, to: 2.05, color: 'g', label: 'tangent', lx: 2.12, ly: 3.0, math: false },
+    { f: function (x) { return (3 - x) / 2; }, from: -1.3, to: 3.1, color: 'o', label: 'normal', lx: 2.3, ly: 0.75, math: false }],
+  pts: [{ x: 1, y: 1, label: 'P(1, 1)', pos: 'e', math: false }],
+  label: 'The parabola y = x squared with its tangent and normal at the point (1, 1)' });
+var lcdFigMVT = (function () {
+  function g(x) { return 0.6 + 0.35 * (x - 0.5) * (3.5 - x); }
+  var a = 0.5, b = 4, m = (Math.sqrt(b) - Math.sqrt(a)) / (b - a), c = 1 / (4 * m * m);
+  return D.row([
+    [D.plot({ w: 230, h: 190, x: [0, 4], y: [0, 2], noOrigin: true, xticks: [[0.5, 'a'], [2, 'c'], [3.5, 'b']], yticks: [],
+      fns: [{ f: g, from: 0.5, to: 3.5 }],
+      segs: [{ x1: 0.5, y1: 0.6, x2: 3.5, y2: 0.6, color: 'm', w: 1.2, dash: '4 3' }, { x1: 1.1, y1: g(2), x2: 2.9, y2: g(2), color: 'g', w: 1.6 }, { x1: 2, y1: 0, x2: 2, y2: g(2), color: 'm', w: 1, dash: '2 3' }],
+      pts: [{ x: 0.5, y: 0.6, label: 'A', pos: 's' }, { x: 3.5, y: 0.6, label: 'B', pos: 'ne' }, { x: 2, y: g(2) }], label: "Rolle's theorem" }), "(a) Rolle: f(a) = f(b), so somewhere the tangent is flat"],
+    [D.plot({ w: 230, h: 190, x: [0, 4.4], y: [0, 2.4], noOrigin: true, xticks: [[a, 'a'], [c, 'c'], [b, 'b']], yticks: [],
+      fns: [{ f: Math.sqrt, from: a, to: b }],
+      segs: [{ x1: a, y1: Math.sqrt(a), x2: b, y2: 2, color: 'm', w: 1.2, dash: '4 3' }, { x1: c - 1.25, y1: Math.sqrt(c) - 1.25 * m, x2: c + 1.25, y2: Math.sqrt(c) + 1.25 * m, color: 'g', w: 1.6 }, { x1: c, y1: 0, x2: c, y2: Math.sqrt(c), color: 'm', w: 1, dash: '2 3' }],
+      pts: [{ x: a, y: Math.sqrt(a), label: 'A', pos: 'se' }, { x: b, y: 2, label: 'B', pos: 'nw' }, { x: c, y: Math.sqrt(c) }], label: 'Lagrange mean value theorem' }), '(b) Lagrange: some tangent is parallel to the chord AB']
+  ]);
+})();
 
 // ---------- chapter text ----------
 JEE.book('maths', 'limits-continuity-differentiability', {
@@ -255,7 +275,16 @@ JEE.book('maths', 'limits-continuity-differentiability', {
       { ex: { q: R`Where is the greatest integer function \(f(x) = [x]\) discontinuous?`,
         steps: [R`At an integer n: LHL = n − 1 (just to the left, [x] = n − 1) but RHL = n.`, R`Between integers, [x] is constant, so it is continuous there.`],
         ans: R`At every integer` } },
-      { note: R`If f is continuous on [a, b], it takes every value between f(a) and f(b) (the <b>intermediate value theorem</b>). So if f(a) and f(b) have opposite signs, f(x) = 0 has a root between a and b.`, title: 'A useful consequence' },
+      R`<b>Continuity on an interval.</b> f is continuous on an open interval (a, b) if it is continuous at every point of it. It is continuous on a closed interval [a, b] if, in addition, it is right-continuous at a (\(\lim_{x\to a^+}f(x) = f(a)\)) and left-continuous at b.`,
+      { h3: R`Continuity of composite functions and the intermediate value property` },
+      { adv: [R`<b>Composite functions.</b> If g is continuous at a and f is continuous at g(a), then \(f\circ g\) is continuous at a, and \(\lim_{x\to a}f(g(x)) = f\big(\lim_{x\to a}g(x)\big)\): the limit can be taken "inside" a continuous function. So \(\sin(x^2)\), \(e^{\cos x}\), \(|x - 1|\) and \(\sqrt{1 + x^2}\) are continuous everywhere.`,
+        R`<b>Intermediate value property (IVP).</b> If f is continuous on [a, b] and k is any number between f(a) and f(b), then f(c) = k for at least one c in (a, b). In particular, if f(a) and f(b) have opposite signs, the equation f(x) = 0 has a root between a and b. The graph cannot get from one height to another without crossing every height in between.`] },
+      { ex: { q: R`Show that \(x^3 + x - 1 = 0\) has a root between 0 and 1.`,
+        steps: [R`\(f(x) = x^3 + x - 1\) is a polynomial, so it is continuous on [0, 1].`, R`f(0) = −1 < 0 and f(1) = 1 > 0: opposite signs.`, R`By the IVP, f(c) = 0 for some c in (0, 1). (In fact c ≈ 0.682, and since f'(x) = 3x² + 1 > 0, it is the only real root.)`],
+        ans: R`A root lies in (0, 1)` } },
+      { ex: { q: R`Where is \(h(x) = \left|\dfrac{1}{x - 2}\right|\) continuous?`,
+        steps: [R`\(g(x) = \frac{1}{x - 2}\) is continuous for x ≠ 2, and |·| is continuous everywhere.`, R`So h = |g| is continuous wherever g is.`],
+        ans: R`Everywhere except x = 2` } },
       { check: { q: R`Is \(f(x) = \dfrac{1}{x - 3}\) continuous at x = 3?`, ans: R`No. f(3) is not defined (infinite discontinuity).` } }
     ] },
 
@@ -386,6 +415,27 @@ JEE.book('maths', 'limits-continuity-differentiability', {
       { check: { q: R`The side of a square grows at 2 cm/s. How fast is its area growing when the side is 10 cm?`, ans: R`\(A = s^2\), so \(\frac{dA}{dt} = 2s\frac{ds}{dt} = 2\times10\times2 = 40\) cm²/s.` } }
     ] },
 
+    { h: R`Tangents and normals`, t: [7], blocks: [
+      R`The derivative is the slope of the tangent. If the tangent at a point makes an angle θ with the positive x-axis, then \(\dfrac{dy}{dx} = \tan\theta\). The <b>normal</b> is the line through the same point perpendicular to the tangent, so the product of their slopes is −1.`,
+      { fig: lcdFigTangent, cap: R`The tangent to \(y = x^2\) at P(1, 1) has slope 2; the normal has slope \(-\tfrac12\) and meets the tangent at right angles.` },
+      R`At the point \((x_1, y_1)\) with slope \(m = \left.\dfrac{dy}{dx}\right|_{(x_1, y_1)}\): \[\text{tangent: } y - y_1 = m(x - x_1), \qquad \text{normal: } y - y_1 = -\frac1m(x - x_1).\]`,
+      { points: [R`m = 0: the tangent is horizontal (\(y = y_1\)) and the normal is vertical (\(x = x_1\)).`, R`\(\frac{dx}{dy} = 0\) (m infinite): the tangent is vertical (\(x = x_1\)) and the normal horizontal.`, R`For a parametric curve x = x(t), y = y(t), use \(m = \dfrac{dy/dt}{dx/dt}\) at the given t.`] },
+      { ex: { q: R`Find the equations of the tangent and the normal to \(y = x^2\) at (1, 1).`,
+        steps: [R`\(\frac{dy}{dx} = 2x = 2\) at x = 1.`, R`Tangent: y − 1 = 2(x − 1), i.e. y = 2x − 1.`, R`Normal: \(y - 1 = -\frac12(x - 1)\), i.e. x + 2y = 3.`],
+        ans: R`Tangent y = 2x − 1; normal x + 2y = 3` } },
+      { ex: { q: R`Find the tangent and normal to \(y = x^3 - 2x\) at x = 2.`,
+        steps: [R`y(2) = 8 − 4 = 4. Slope \(3x^2 - 2 = 10\).`, R`Tangent: y − 4 = 10(x − 2), i.e. y = 10x − 16.`, R`Normal: \(y - 4 = -\frac{1}{10}(x - 2)\), i.e. x + 10y = 42.`],
+        ans: R`y = 10x − 16; x + 10y = 42` } },
+      { ex: { q: R`Find the tangent to the curve \(x = t^2,\ y = 2t\) at t = 1.`,
+        steps: [R`Point: (1, 2). \(\frac{dy}{dx} = \frac{2}{2t} = 1\) at t = 1.`, R`Tangent: y − 2 = x − 1.`],
+        ans: R`y = x + 1` } },
+      { ex: { q: R`At which points on \(y = x^3 - 3x\) is the tangent parallel to the x-axis?`,
+        steps: [R`Parallel to the x-axis means slope 0: \(3x^2 - 3 = 0\), so x = ±1.`, R`y(1) = −2 and y(−1) = 2.`],
+        ans: R`(1, −2) and (−1, 2)` } },
+      { mistake: R`Using the general derivative (like 2x) as the slope instead of its value at the point. The slope of a straight line must be a number.` },
+      { check: { q: R`The tangent at a point has slope 3. What is the slope of the normal?`, ans: R`−1/3.` } }
+    ] },
+
     { h: R`Increasing and decreasing functions`, t: [7], blocks: [
       R`A function is <b>increasing</b> on an interval if its graph rises as you move to the right, and <b>decreasing</b> if it falls. A function that is only increasing or only decreasing on an interval is called <b>monotonic</b> there. The derivative tells us which, because it is the slope:`,
       { points: [R`f'(x) > 0 on an interval ⇒ f is (strictly) increasing there.`, R`f'(x) < 0 on an interval ⇒ f is (strictly) decreasing there.`, R`f'(x) = 0 on a whole interval ⇒ f is constant there.`] },
@@ -416,6 +466,25 @@ JEE.book('maths', 'limits-continuity-differentiability', {
       { mistake: R`Forgetting to check the end points when looking for the absolute maximum or minimum on a closed interval. As the figure shows, the answer can be at an end.` },
       { check: { q: R`f'(c) = 0 and f''(c) = 4. What kind of point is c?`, ans: R`A local minimum (f'' > 0: the curve is cup-shaped there).` } },
       { note: R`For limits of the form \(\frac00\) or \(\frac\infty\infty\), you may differentiate the top and bottom separately: \(\lim\frac{f(x)}{g(x)} = \lim\frac{f'(x)}{g'(x)}\). For example, \(\lim_{x\to0}\frac{e^x - 1 - x}{x^2} = \lim_{x\to0}\frac{e^x - 1}{2x} = \frac12\). It is a quick way to check your answers.`, title: "L'Hôpital's rule (a handy shortcut)" }
+    ] },
+
+    { h: R`Mean value theorems`, t: [7], blocks: [
+      R`Drive 120 km in 2 hours and your average speed is 60 km/h. Common sense says that at some instant the speedometer read exactly 60. The mean value theorems turn this idea into mathematics.`,
+      { adv: [R`<b>Rolle's theorem.</b> If f is (1) continuous on [a, b], (2) differentiable on (a, b) and (3) f(a) = f(b), then there is at least one c in (a, b) with \(f'(c) = 0\).`,
+        R`<b>Lagrange's mean value theorem (LMVT).</b> If f is continuous on [a, b] and differentiable on (a, b), then there is at least one c in (a, b) with \[f'(c) = \frac{f(b) - f(a)}{b - a}.\] Rolle's theorem is the special case f(a) = f(b).`] },
+      { fig: lcdFigMVT, cap: R`Geometric meaning. (a) If the curve starts and ends at the same height, somewhere in between the tangent is horizontal. (b) Somewhere the tangent is parallel to the chord joining the end points: the instantaneous slope equals the average slope.` },
+      { ex: { q: R`Verify Rolle's theorem for \(f(x) = x^2 - 4x + 3\) on [1, 3].`,
+        steps: [R`f is a polynomial: continuous and differentiable. f(1) = 0 = f(3).`, R`f'(c) = 2c − 4 = 0 gives c = 2, which lies in (1, 3).`],
+        ans: R`c = 2` } },
+      { ex: { q: R`Find c in Lagrange's mean value theorem for \(f(x) = x^3\) on [0, 2].`,
+        steps: [R`\(\frac{f(2) - f(0)}{2 - 0} = \frac{8}{2} = 4\).`, R`\(f'(c) = 3c^2 = 4\), so \(c = \frac{2}{\sqrt3} \approx 1.155\), which lies in (0, 2).`],
+        ans: R`\(c = 2/\sqrt3\)` } },
+      { ex: { q: R`Use the mean value theorem to show that \(|\sin a - \sin b| \le |a - b|\).`,
+        steps: [R`Apply LMVT to sin x between a and b: \(\sin a - \sin b = \cos c\,(a - b)\) for some c between them.`, R`Since \(|\cos c| \le 1\), \(|\sin a - \sin b| \le |a - b|\).`],
+        ans: R`Proved` } },
+      { mistake: R`Applying Rolle's theorem without checking the conditions. f(x) = |x| on [−1, 1] has f(−1) = f(1), but there is no point with f'(c) = 0, because f is not differentiable at 0.` },
+      { tip: R`A consequence worth remembering: if f'(x) = 0 at every point of an interval, f is constant there, and if f' = g' on an interval, f and g differ by a constant.` },
+      { check: { q: R`For f(x) = x² on [1, 3], find the c given by the mean value theorem.`, ans: R`(9 − 1)/2 = 4 = 2c, so c = 2.` } }
     ] }
   ],
   summary: [
@@ -432,6 +501,19 @@ JEE.book('maths', 'limits-continuity-differentiability', {
     R`Implicit: differentiate both sides, treating y as a function of x. Logarithmic: take ln first (for \(x^x\)). Parametric: \(\frac{dy}{dx} = \frac{dy/dt}{dx/dt}\).`,
     R`Second derivative: the rate of change of the slope; f'' > 0 concave up, f'' < 0 concave down.`,
     R`Related rates: differentiate the linking equation with respect to t, then substitute.`,
-    R`f' > 0 increasing, f' < 0 decreasing. Critical points: f'(c) = 0. f''(c) < 0 → local max, f''(c) > 0 → local min. For absolute extremes on [a, b], also check the end points.`
+    R`f' > 0 increasing, f' < 0 decreasing. Critical points: f'(c) = 0. f''(c) < 0 → local max, f''(c) > 0 → local min. For absolute extremes on [a, b], also check the end points.`,
+    R`IVP: a function continuous on [a, b] takes every value between f(a) and f(b); a sign change means a root. Composites of continuous functions are continuous.`,
+    R`Tangent \(y - y_1 = m(x - x_1)\), normal \(y - y_1 = -\frac1m(x - x_1)\), with m = f'(x₁).`,
+    R`Rolle: f(a) = f(b) ⇒ f'(c) = 0 for some c in (a, b). LMVT: \(f'(c) = \frac{f(b) - f(a)}{b - a}\): a tangent parallel to the chord.`
+  ],
+  refs: [
+    { t: R`OpenStax Calculus Volume 1, §2.2 The Limit of a Function`, url: 'https://openstax.org/books/calculus-volume-1/pages/2-2-the-limit-of-a-function' },
+    { t: R`OpenStax Calculus Volume 1, §2.4 Continuity`, url: 'https://openstax.org/books/calculus-volume-1/pages/2-4-continuity' },
+    { t: R`OpenStax Calculus Volume 1, §3.2 The Derivative as a Function`, url: 'https://openstax.org/books/calculus-volume-1/pages/3-2-the-derivative-as-a-function' },
+    { t: R`OpenStax Calculus Volume 1, §3.8 Implicit Differentiation`, url: 'https://openstax.org/books/calculus-volume-1/pages/3-8-implicit-differentiation' },
+    { t: R`OpenStax Calculus Volume 1, §4.1 Related Rates`, url: 'https://openstax.org/books/calculus-volume-1/pages/4-1-related-rates' },
+    { t: R`OpenStax Calculus Volume 1, §4.3 Maxima and Minima`, url: 'https://openstax.org/books/calculus-volume-1/pages/4-3-maxima-and-minima' },
+    { t: R`OpenStax Calculus Volume 1, §4.4 The Mean Value Theorem`, url: 'https://openstax.org/books/calculus-volume-1/pages/4-4-the-mean-value-theorem' },
+    { t: R`OpenStax Precalculus, §1.7 Inverse Functions`, url: 'https://openstax.org/books/precalculus-2e/pages/1-7-inverse-functions' }
   ]
 });

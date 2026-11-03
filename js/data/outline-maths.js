@@ -217,55 +217,55 @@ JEE.outline.maths = {
 
   'limits-continuity-differentiability': `
 # Real-valued functions and algebra of functions @0 >1
-- Real-valued functions; domain and range
-- Sum, difference, product, quotient and composition of functions
+- Real-valued functions; domain and range >1
+- Sum, difference, product, quotient and composition of functions >1
 # Standard functions and their graphs @1 >2
-- Polynomial and rational functions
-- Trigonometric, exponential and logarithmic functions
-- Modulus, greatest integer and other simple functions; their graphs
+- Polynomial and rational functions >2
+- Trigonometric, exponential and logarithmic functions >2
+- Modulus, greatest integer and other simple functions; their graphs >2
 # Inverse functions @2 >3
-- Inverse of a function and its graph
-- Inverse trigonometric functions
+- Inverse of a function and its graph >3
+- Inverse trigonometric functions >3
 # Limits @3 >4
-- Limit of a function at a real number; left-hand and right-hand limits
+- Limit of a function at a real number; left-hand and right-hand limits >4
 - Limits of the sum, difference, product and quotient of two functions >5
 - Standard limits and methods of evaluating limits >5
-- L'Hospital's rule for evaluating limits [A] >15
+- L'Hospital's rule for evaluating limits [A] >16
 # Continuity @3 >6
-- Continuity of a function at a point and on an interval
-- Continuity of the sum, difference, product and quotient of two functions
-- Continuity of composite functions [A]
-- Intermediate value property of continuous functions [A]
+- Continuity of a function at a point and on an interval >6
+- Continuity of the sum, difference, product and quotient of two functions >6
+- Continuity of composite functions [A] >6
+- Intermediate value property of continuous functions [A] >6
 # Differentiability @3 >8
 - Derivative as the slope of the tangent; differentiation from first principles >7
-- Differentiability and its relation to continuity
+- Differentiability and its relation to continuity >8
 # Rules of differentiation @4 >9
-- Derivatives of the sum, difference, product and quotient of two functions
+- Derivatives of the sum, difference, product and quotient of two functions >9
 - Chain rule: derivatives of composite functions >11
 # Derivatives of standard functions @5 >10
-- Polynomial and rational functions
-- Trigonometric and inverse trigonometric functions
-- Exponential and logarithmic functions
+- Polynomial and rational functions >10
+- Trigonometric and inverse trigonometric functions >10
+- Exponential and logarithmic functions >10
 # Implicit, logarithmic and parametric differentiation @5 >11
-- Derivatives of implicit functions
-- Logarithmic differentiation
-- Derivatives of functions in parametric form
+- Derivatives of implicit functions >11
+- Logarithmic differentiation >11
+- Derivatives of functions in parametric form >11
 # Derivatives of order two @6 >12
-- Second-order derivatives, including those of implicit functions
+- Second-order derivatives, including those of implicit functions >12
 # Rate of change of quantities @7 >13
-- Rate of change; related rates
-# Tangents and normals [A]
-- Equations of tangents and normals; geometric interpretation of the derivative
-# Increasing and decreasing functions @7 >14
-- Monotonic functions and the sign of the derivative
-# Maxima and minima @7 >15
-- Local maxima and minima; first and second derivative tests
-- Absolute maximum and minimum on a closed interval
-- Applied problems
-# Mean value theorems [A]
-- Rolle's theorem
-- Lagrange's mean value theorem
-- Geometric interpretation of the two theorems
+- Rate of change; related rates >13
+# Tangents and normals [A] >14
+- Equations of tangents and normals; geometric interpretation of the derivative >14
+# Increasing and decreasing functions @7 >15
+- Monotonic functions and the sign of the derivative >15
+# Maxima and minima @7 >16
+- Local maxima and minima; first and second derivative tests >16
+- Absolute maximum and minimum on a closed interval >16
+- Applied problems >16
+# Mean value theorems [A] >17
+- Rolle's theorem >17
+- Lagrange's mean value theorem >17
+- Geometric interpretation of the two theorems >17
 `,
 
   'integral-calculus': `

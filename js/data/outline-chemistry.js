@@ -87,41 +87,41 @@ JEE.outline.chemistry = {
 
   'chemical-bonding': `
 # Kossel–Lewis approach @0 >2
-- Octet rule and Lewis symbols
-- Concept of ionic and covalent bonds
-- Limitations of the octet rule
+- Octet rule and Lewis symbols >2
+- Concept of ionic and covalent bonds >2
+- Limitations of the octet rule >2
 # Ionic bonding @1 >3
-- Formation of ionic bonds and factors affecting it
+- Formation of ionic bonds and factors affecting it >3
 - Calculation of lattice enthalpy (Born–Haber cycle) >4
 # Covalent bonding @2 >5
-- Lewis structures and formal charge
+- Lewis structures and formal charge >5
 - Bond parameters: bond length, bond angle, bond enthalpy and bond order >6
 - Electronegativity and polar covalent bonds >7
 - Fajans' rules [M] >7
 # Dipole moment @3 >8
-- Dipole moment and polarity of molecules
-- Percentage ionic character
+- Dipole moment and polarity of molecules >8
+- Percentage ionic character >8
 # VSEPR theory and shapes of molecules @4 >9
-- The VSEPR model and the effect of lone pairs
-- Linear, angular, triangular, tetrahedral, pyramidal, square planar, square pyramidal, trigonal bipyramidal and octahedral shapes
+- The VSEPR model and the effect of lone pairs >9
+- Linear, angular, triangular, tetrahedral, pyramidal, square planar, square pyramidal, trigonal bipyramidal and octahedral shapes >9
 # Valence bond theory @5 >10
-- Important features of valence bond theory; orbital overlap
-- σ and π bonds
+- Important features of valence bond theory; orbital overlap >10
+- σ and π bonds >10
 # Hybridisation @5 >11
-- Hybridisation involving s, p and d orbitals (sp, sp², sp³, sp³d, sp³d²)
-- Shapes of molecules from hybridisation
+- Hybridisation involving s, p and d orbitals (sp, sp², sp³, sp³d, sp³d²) >11
+- Shapes of molecules from hybridisation >11
 # Resonance @6 >12
-- Resonance structures and the resonance hybrid
+- Resonance structures and the resonance hybrid >12
 # Molecular orbital theory @7 >13
-- Important features; linear combination of atomic orbitals (LCAO)
-- Bonding and antibonding molecular orbitals; σ and π molecular orbitals
-- MO energy diagrams and configurations of homonuclear diatomic molecules (up to Ne₂)
-- Bond order, bond length, bond energy and magnetic behaviour
-# Metallic bonding [M]
-- Elementary idea of metallic bonding
-# Hydrogen bonding @8 >14
-- Intermolecular and intramolecular hydrogen bonds
-- Applications of hydrogen bonding
+- Important features; linear combination of atomic orbitals (LCAO) >13
+- Bonding and antibonding molecular orbitals; σ and π molecular orbitals >13
+- MO energy diagrams and configurations of homonuclear diatomic molecules (up to Ne₂) >13
+- Bond order, bond length, bond energy and magnetic behaviour >13
+# Metallic bonding [M] >14
+- Elementary idea of metallic bonding >14
+# Hydrogen bonding @8 >15
+- Intermolecular and intramolecular hydrogen bonds >15
+- Applications of hydrogen bonding >15
 `,
 
   'states-of-matter': `
