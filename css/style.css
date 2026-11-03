@@ -442,6 +442,8 @@ summary { cursor: pointer; color: var(--accent); font-weight: 600; }
 .fig-sub { font-size: .82rem; color: var(--muted); margin-top: 2px; }
 .dia { display: block; max-width: 100%; height: auto; margin: 0 auto; overflow: visible; font-size: 14px; }
 .fig-cell .dia { max-width: 100%; }
+.fig-cell svg.smiles { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.mol-row { align-items: flex-end; }
 .dia text { font-family: inherit; }
 .dia .t-math { font-family: "KaTeX_Main", "Times New Roman", serif; font-style: italic; font-size: 16px; }
 .dia .t-bold { font-weight: 700; }

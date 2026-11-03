@@ -302,59 +302,59 @@ JEE.outline.chemistry = {
 `,
 
   'purification-characterisation': `
-# Methods of purification [M] @0
-- Crystallisation and sublimation
-- Distillation: simple, fractional, under reduced pressure and steam distillation
-- Differential extraction
-- Chromatography: principles and applications
-# Qualitative analysis @1
-- Detection of carbon and hydrogen
-- Lassaigne's test for nitrogen, sulphur and halogens
-- Detection of phosphorus [M]
-# Quantitative analysis @2
-- Estimation of carbon and hydrogen (combustion method)
-- Estimation of nitrogen: Dumas and Kjeldahl methods [M]
-- Estimation of halogens, sulphur and phosphorus (Carius method) [M]
-# Empirical and molecular formulae @3
-- Calculating empirical and molecular formulae from analysis data
-# Numerical problems @4
-- Numerical problems in organic quantitative analysis
+# Methods of purification [M] @0 >1
+- Crystallisation and sublimation >1
+- Distillation: simple, fractional, under reduced pressure and steam distillation >2
+- Differential extraction >3
+- Chromatography: principles and applications >4
+# Qualitative analysis @1 >5
+- Detection of carbon and hydrogen >5
+- Lassaigne's test for nitrogen, sulphur and halogens >6
+- Detection of phosphorus [M] >7
+# Quantitative analysis @2 >8
+- Estimation of carbon and hydrogen (combustion method) >8
+- Estimation of nitrogen: Dumas and Kjeldahl methods [M] >9
+- Estimation of halogens, sulphur and phosphorus (Carius method) [M] >10
+# Empirical and molecular formulae @3 >11
+- Calculating empirical and molecular formulae from analysis data >11
+# Numerical problems @4 >12
+- Numerical problems in organic quantitative analysis >12
 `,
 
   'goc': `
-# Tetravalency of carbon and shapes of molecules @0
-- Tetravalency of carbon
-- Hybridisation (sp, sp², sp³) and shapes of simple molecules
-- σ and π bonds
-# Classification of organic compounds @1
-- Classification by structure and by functional groups (containing halogens, oxygen, nitrogen and sulphur)
-- Homologous series
-# Nomenclature @1
-- Trivial (common) names
-- IUPAC nomenclature of hydrocarbons, simple cyclic compounds and their mono- and bi-functional derivatives
-# Isomerism @2
-- Structural isomerism: chain, position, functional group, metamerism and tautomerism
-- Geometrical (cis–trans) isomerism
-- Optical isomerism: chirality and enantiomers
-- Diastereomers and meso compounds (up to two asymmetric centres) [A]
-# Covalent bond fission @3
-- Homolytic and heterolytic fission
-# Reactive intermediates @4
-- Free radicals, carbocations and carbanions: formation and structure
-- Stability of carbocations, carbanions and free radicals
-# Electrophiles and nucleophiles @5
-- Electrophiles and nucleophiles with examples
-# Electronic displacements in a covalent bond @6
-- Inductive effect
-- Electromeric effect [M]
-- Resonance (mesomeric) effect
-- Hyperconjugation
-- Effects of hydrogen bonding [A]
-# Acidity and basicity of organic compounds [A]
-- Effect of structure on the acidity of carboxylic acids, phenols and alcohols
-- Effect of structure on the basicity of amines
-# Common types of organic reactions @7
-- Substitution, addition, elimination and rearrangement reactions
+# Tetravalency of carbon and shapes of molecules @0 >1
+- Tetravalency of carbon >1
+- Hybridisation (sp, sp², sp³) and shapes of simple molecules >1
+- σ and π bonds >2
+# Classification of organic compounds @1 >3
+- Classification by structure and by functional groups (containing halogens, oxygen, nitrogen and sulphur) >3
+- Homologous series >4
+# Nomenclature @1 >5
+- Trivial (common) names >5
+- IUPAC nomenclature of hydrocarbons, simple cyclic compounds and their mono- and bi-functional derivatives >5
+# Isomerism @2 >7
+- Structural isomerism: chain, position, functional group, metamerism and tautomerism >7
+- Geometrical (cis–trans) isomerism >8
+- Optical isomerism: chirality and enantiomers >9
+- Diastereomers and meso compounds (up to two asymmetric centres) [A] >10
+# Covalent bond fission @3 >11
+- Homolytic and heterolytic fission >11
+# Reactive intermediates @4 >12
+- Free radicals, carbocations and carbanions: formation and structure >12
+- Stability of carbocations, carbanions and free radicals >13
+# Electrophiles and nucleophiles @5 >14
+- Electrophiles and nucleophiles with examples >14
+# Electronic displacements in a covalent bond @6 >15
+- Inductive effect >15
+- Electromeric effect [M] >16
+- Resonance (mesomeric) effect >17
+- Hyperconjugation >18
+- Effects of hydrogen bonding [A] >19
+# Acidity and basicity of organic compounds [A] >20
+- Effect of structure on the acidity of carboxylic acids, phenols and alcohols >20
+- Effect of structure on the basicity of amines >21
+# Common types of organic reactions @7 >22
+- Substitution, addition, elimination and rearrangement reactions >22
 `,
 
   'hydrocarbons': `

@@ -40,5 +40,7 @@ JEE.bookList = [
   'chemistry/p-block',
   'chemistry/d-f-block',
   'chemistry/coordination-compounds',
-  'chemistry/environmental-chemistry'
+  'chemistry/environmental-chemistry',
+  'chemistry/purification-characterisation',
+  'chemistry/goc'
 ];

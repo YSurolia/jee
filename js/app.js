@@ -50,6 +50,48 @@
         throwOnError: false
       });
     }
+    drawMolecules(el);
+  }
+  // Skeletal structures from SMILES strings (vendor/smiles-drawer, loaded only when a page has one), coloured from the theme.
+  var molLib = { state: '', queue: [] };
+  function molTheme() {
+    var cs = getComputedStyle(document.documentElement), v = function (n) { return cs.getPropertyValue(n).trim(); };
+    return { C: v('--text'), O: v('--d-r'), N: v('--d-b'), F: v('--d-g'), CL: v('--d-g'), BR: v('--d-o'), I: v('--d-p'), P: v('--d-o'),
+      S: v('--d-o'), B: v('--d-o'), SI: v('--d-o'), H: v('--muted'), BACKGROUND: v('--surface-2') };
+  }
+  function drawMolecules(el) {
+    var svgs = (el || document).querySelectorAll('svg.smiles');
+    if (!svgs.length || molLib.state === 'failed') return;
+    if (!window.SmilesDrawer) {
+      molLib.queue.push(el);
+      if (molLib.state === 'loading') return;
+      molLib.state = 'loading';
+      var sc = document.createElement('script');
+      sc.src = 'vendor/smiles-drawer/smiles-drawer.min.js';
+      sc.onload = function () { molLib.state = 'ready'; var q = molLib.queue; molLib.queue = []; q.forEach(drawMolecules); };
+      sc.onerror = function () { molLib.state = 'failed'; };
+      document.head.appendChild(sc);
+      return;
+    }
+    var theme = molTheme();
+    svgs.forEach(function (svg) {
+      var w = +svg.getAttribute('data-w'), h = +svg.getAttribute('data-h');
+      var drawer = new SmilesDrawer.SvgDrawer({ width: w, height: h, bondThickness: 1.4, bondLength: 26, fontSizeLarge: 10, fontSizeSmall: 8, padding: 10, themes: { site: theme } });
+      SmilesDrawer.parse(svg.getAttribute('data-smiles'), function (tree) {
+        while (svg.firstChild) svg.removeChild(svg.firstChild);
+        drawer.draw(tree, svg, 'site');
+        // Fit the viewBox to the drawing and size it at one fixed scale, so every structure has the same bond length.
+        try {
+          var bb = svg.getBBox(), pad = 6;
+          if (bb.width > 0) {
+            svg.setAttribute('viewBox', [bb.x - pad, bb.y - pad, bb.width + 2 * pad, bb.height + 2 * pad].join(' '));
+            svg.setAttribute('width', Math.round((bb.width + 2 * pad) * 1.15));
+            svg.setAttribute('height', Math.round((bb.height + 2 * pad) * 1.15));
+          }
+        } catch (e) {}
+        svg.setAttribute('data-drawn', '1');
+      }, function () { svg.setAttribute('data-error', '1'); });
+    });
   }
   function strip(html) { return String(html).replace(/<[^>]+>/g, '').replace(/\\[()[\]]/g, ''); }
 
@@ -269,6 +311,13 @@
     if (b.fig) {
       var no = figNo();
       return '<figure class="figure">' + b.fig + (b.cap ? '<figcaption><b>Fig. ' + no + '</b> ' + b.cap + '</figcaption>' : '') + '</figure>';
+    }
+    if (b.mol) {
+      var mno = figNo(), items = typeof b.mol === 'string' ? [[b.mol, '']] : b.mol;
+      return '<figure class="figure"><div class="fig-row mol-row">' + items.map(function (m) {
+        return '<div class="fig-cell"><svg class="smiles" data-smiles="' + esc(m[0]) + '" data-w="' + (m[2] || b.w || 200) + '" data-h="' + (m[3] || b.h || 150) + '" role="img" aria-label="' + esc(strip(m[1] || 'structure')) + '"></svg>' +
+          (m[1] ? '<div class="fig-sub">' + m[1] + '</div>' : '') + '</div>';
+      }).join('') + '</div>' + (b.cap ? '<figcaption><b>Fig. ' + mno + '</b> ' + b.cap + '</figcaption>' : '') + '</figure>';
     }
     if (b.derive) return '<details class="derive"' + (b.open ? ' open' : '') + '><summary>' + icon('sigma') + b.derive + '</summary><ol>' +
       b.steps.map(function (st) { return '<li>' + st + '</li>'; }).join('') + '</ol>' + (b.result ? '<p>' + b.result + '</p>' : '') + '</details>';
@@ -737,7 +786,9 @@
     var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     root.dataset.theme = dark ? 'light' : 'dark';
     try { localStorage.setItem('jee-theme', root.dataset.theme); } catch (e) {}
+    drawMolecules(app);
   });
+  try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { drawMolecules(app); }); } catch (e) {}
 
   // Printing a book chapter: open every collapsed derivation and answer so they appear on paper.
   window.addEventListener('beforeprint', function () {
