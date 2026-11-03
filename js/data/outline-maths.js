@@ -151,43 +151,43 @@ JEE.outline.maths = {
 `,
 
   'coordinate-geometry': `
-# Cartesian coordinates @0
-- Cartesian system of rectangular coordinates in a plane
-- Distance formula
-- Section formula
-- Shift of origin [A]
-# Locus @0
-- Locus and its equation
-- Locus problems
-# Slope of a line @1
-- Slope of a line; angle between two lines
-- Conditions for parallel and perpendicular lines
-- Intercepts of a line on the coordinate axes
-# Straight lines @2
-- Various forms of the equation of a line
-- Intersection of lines; condition for concurrence of three lines
-- Lines through the point of intersection of two given lines [A]
-- Equations of the bisectors of the angles between two lines [A]
-# Distance of a point from a line @3
-- Distance of a point from a line
-- Distance between parallel lines
-# Centres of a triangle @4
-- Coordinates of the centroid, orthocentre and circumcentre
-- Incentre [A]
-# Circle @5
-- Standard and general forms of the equation of a circle; centre and radius
-- Equation of a circle when the endpoints of a diameter are given
-- Points of intersection of a line and a circle
-- Parametric equations of a circle [A]
-- Equations of tangent, normal and chord [A]
-- Intersection of two circles; circles through the points of intersection of two circles, or of a circle and a line [A]
-# Conic sections @6
-- Sections of a cone
-- Parabola in standard form: focus, directrix and latus rectum
-- Ellipse in standard form: foci, directrices and eccentricity
-- Hyperbola in standard form: foci, directrices and eccentricity
-- Parametric equations of conics [A]
-- Equations of tangent and normal to conics [A]
+# Cartesian coordinates @0 >1
+- Cartesian system of rectangular coordinates in a plane >1
+- Distance formula >2
+- Section formula >3
+- Shift of origin [A] >4
+# Locus @0 >5
+- Locus and its equation >5
+- Locus problems >6
+# Slope of a line @1 >7
+- Slope of a line; angle between two lines >7
+- Conditions for parallel and perpendicular lines >8
+- Intercepts of a line on the coordinate axes >9
+# Straight lines @2 >10
+- Various forms of the equation of a line >10
+- Intersection of lines; condition for concurrence of three lines >11
+- Lines through the point of intersection of two given lines [A] >12
+- Equations of the bisectors of the angles between two lines [A] >13
+# Distance of a point from a line @3 >14
+- Distance of a point from a line >14
+- Distance between parallel lines >14
+# Centres of a triangle @4 >15
+- Coordinates of the centroid, orthocentre and circumcentre >15
+- Incentre [A] >15
+# Circle @5 >16
+- Standard and general forms of the equation of a circle; centre and radius >16
+- Equation of a circle when the endpoints of a diameter are given >17
+- Points of intersection of a line and a circle >18
+- Parametric equations of a circle [A] >19
+- Equations of tangent, normal and chord [A] >19
+- Intersection of two circles; circles through the points of intersection of two circles, or of a circle and a line [A] >20
+# Conic sections @6 >21
+- Sections of a cone >21
+- Parabola in standard form: focus, directrix and latus rectum >22
+- Ellipse in standard form: foci, directrices and eccentricity >23
+- Hyperbola in standard form: foci, directrices and eccentricity >24
+- Parametric equations of conics [A] >25
+- Equations of tangent and normal to conics [A] >25
 `,
 
   'matrices-determinants': `
@@ -298,69 +298,69 @@ JEE.outline.maths = {
 `,
 
   'differential-equations': `
-# Basic concepts @0
-- Ordinary differential equations; order and degree
-- General and particular solutions
-- Formation of ordinary differential equations [A]
-# Variables separable method @1
-- Solving equations by separating the variables
-# Homogeneous differential equations @2
-- Homogeneous equations of first order and first degree; the substitution y = vx
-# Linear differential equations @3
-- Equations of the form dy/dx + P(x)y = Q(x)
-- Integrating factor
+# Basic concepts @0 >1
+- Ordinary differential equations; order and degree >1
+- General and particular solutions >2
+- Formation of ordinary differential equations [A] >3
+# Variables separable method @1 >4
+- Solving equations by separating the variables >4
+# Homogeneous differential equations @2 >5
+- Homogeneous equations of first order and first degree; the substitution y = vx >5
+# Linear differential equations @3 >6
+- Equations of the form dy/dx + P(x)y = Q(x) >6
+- Integrating factor >7
 `,
 
   '3d-geometry': `
-# Coordinates of a point in space @0
-- Coordinate axes, coordinate planes and octants
-# Distance between two points @1
-- Distance formula in three dimensions
-# Section formula @2
-- Internal and external division; midpoint and centroid
-# Direction cosines and direction ratios @3
-- Direction cosines and direction ratios of a line
-- Direction ratios of the line through two points
-# Equation of a line @6
-- Vector and Cartesian equations of a line through a point in a given direction
-- Line through two points
-# Angle between two lines @4
-- Angle between two intersecting lines; perpendicular and parallel lines
-# Skew lines and the shortest distance @5
-- Skew lines
-- Shortest distance between two lines and its equation
-- Distance between parallel lines
-- Coplanar lines [A]
-# Plane [A]
-- Equation of a plane in its various forms
-- Plane through the intersection of two planes
-- Distance of a point from a plane
-- Angle between two planes
-- Angle between a line and a plane
+# Coordinates of a point in space @0 >1
+- Coordinate axes, coordinate planes and octants >1
+# Distance between two points @1 >2
+- Distance formula in three dimensions >2
+# Section formula @2 >3
+- Internal and external division; midpoint and centroid >3
+# Direction cosines and direction ratios @3 >4
+- Direction cosines and direction ratios of a line >4
+- Direction ratios of the line through two points >5
+# Equation of a line @6 >6
+- Vector and Cartesian equations of a line through a point in a given direction >6
+- Line through two points >7
+# Angle between two lines @4 >8
+- Angle between two intersecting lines; perpendicular and parallel lines >8
+# Skew lines and the shortest distance @5 >9
+- Skew lines >9
+- Shortest distance between two lines and its equation >10
+- Distance between parallel lines >11
+- Coplanar lines [A] >12
+# Plane [A] >13
+- Equation of a plane in its various forms >13
+- Plane through the intersection of two planes >14
+- Distance of a point from a plane >15
+- Angle between two planes >16
+- Angle between a line and a plane >17
 `,
 
   'vector-algebra': `
-# Vectors and scalars @0
-- Vectors and scalars; magnitude and direction; position vector
-- Types of vectors: zero, unit, collinear, coinitial and equal vectors
-# Addition of vectors @1
-- Triangle and parallelogram laws; properties of addition
-- Multiplication of a vector by a scalar
-- Section formula in vector form
-# Components of a vector @2
-- Components in two and three dimensions; unit vectors i, j and k
-- Direction cosines and direction ratios of a vector
-# Scalar (dot) product @3
-- Definition and properties
-- Angle between two vectors; projection of a vector on a line
-# Vector (cross) product @3
-- Definition and properties
-- Area of a triangle and a parallelogram
-# Scalar triple product [A] @4
-- Scalar triple product and its geometrical meaning
-- Condition for coplanarity of three vectors
-# Vector triple product [A]
-- Vector triple product and its expansion
+# Vectors and scalars @0 >1
+- Vectors and scalars; magnitude and direction; position vector >1
+- Types of vectors: zero, unit, collinear, coinitial and equal vectors >2
+# Addition of vectors @1 >3
+- Triangle and parallelogram laws; properties of addition >3
+- Multiplication of a vector by a scalar >4
+- Section formula in vector form >5
+# Components of a vector @2 >6
+- Components in two and three dimensions; unit vectors i, j and k >6
+- Direction cosines and direction ratios of a vector >7
+# Scalar (dot) product @3 >8
+- Definition and properties >8
+- Angle between two vectors; projection of a vector on a line >9
+# Vector (cross) product @3 >10
+- Definition and properties >10
+- Area of a triangle and a parallelogram >11
+# Scalar triple product [A] @4 >12
+- Scalar triple product and its geometrical meaning >12
+- Condition for coplanarity of three vectors >13
+# Vector triple product [A] >14
+- Vector triple product and its expansion >14
 `,
 
   'statistics-probability': `

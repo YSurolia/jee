@@ -58,5 +58,9 @@ JEE.bookList = [
   'maths/binomial-theorem',
   'maths/sequences-series',
   'maths/trigonometry',
-  'maths/integral-calculus'
+  'maths/integral-calculus',
+  'maths/differential-equations',
+  'maths/coordinate-geometry',
+  'maths/vector-algebra',
+  'maths/3d-geometry'
 ];
