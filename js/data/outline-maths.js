@@ -95,59 +95,59 @@ JEE.outline.maths = {
 `,
 
   'binomial-theorem': `
-# Binomial theorem for a positive integral index @0
-- Statement and proof
-- Pascal's triangle
-- Binomial coefficients
-# General term and middle term @1
-- General term
-- Middle term(s)
-- Coefficient of a given power; term independent of x
-# Properties of binomial coefficients [A]
-- Sums of binomial coefficients
-- Identities involving binomial coefficients
-# Simple applications @2
-- Approximations, divisibility and remainders
+# Binomial theorem for a positive integral index @0 >1
+- Statement and proof >1
+- Pascal's triangle >2
+- Binomial coefficients >3
+# General term and middle term @1 >4
+- General term >4
+- Middle term(s) >5
+- Coefficient of a given power; term independent of x >6
+# Properties of binomial coefficients [A] >7
+- Sums of binomial coefficients >7
+- Identities involving binomial coefficients >8
+# Simple applications @2 >9
+- Approximations, divisibility and remainders >9
 `,
 
   'sequences-series': `
-# Sequences and series @0
-- Sequences, series and progressions
-# Arithmetic progression @0
-- nth term and sum of n terms
-- Properties of an arithmetic progression
-# Geometric progression @0
-- nth term and sum of n terms
-- Infinite geometric series [A]
-# Arithmetic and geometric means @1
-- Arithmetic mean; inserting arithmetic means between two numbers
-- Geometric mean; inserting geometric means between two numbers
-# Relation between AM and GM @2
-- AM ≥ GM and its applications
-# Special sums [A]
-- Sum of the first n natural numbers
-- Sums of the squares and cubes of the first n natural numbers
+# Sequences and series @0 >1
+- Sequences, series and progressions >1
+# Arithmetic progression @0 >2
+- nth term and sum of n terms >2
+- Properties of an arithmetic progression >3
+# Geometric progression @0 >4
+- nth term and sum of n terms >4
+- Infinite geometric series [A] >5
+# Arithmetic and geometric means @1 >6
+- Arithmetic mean; inserting arithmetic means between two numbers >6
+- Geometric mean; inserting geometric means between two numbers >7
+# Relation between AM and GM @2 >8
+- AM ≥ GM and its applications >8
+# Special sums [A] >9
+- Sum of the first n natural numbers >9
+- Sums of the squares and cubes of the first n natural numbers >10
 `,
 
   'trigonometry': `
-# Angles and their measurement
-- Degree and radian measure; length of an arc
-# Trigonometric functions @1
-- Trigonometric functions of any angle; signs in the four quadrants
-- Domain and range of trigonometric functions
-- Periodicity and graphs of trigonometric functions
-# Trigonometric identities @0
-- Fundamental identities
-- Addition and subtraction formulae
-- Multiple and sub-multiple angle formulae
-- Sum-to-product and product-to-sum formulae
-# Trigonometric equations [A] @3
-- Principal and general solutions
-- Solving trigonometric equations
-# Inverse trigonometric functions @2
-- Definitions, domains and principal value branches
-- Graphs of inverse trigonometric functions
-- Elementary properties of inverse trigonometric functions
+# Angles and their measurement >1
+- Degree and radian measure; length of an arc >1
+# Trigonometric functions @1 >2
+- Trigonometric functions of any angle; signs in the four quadrants >2
+- Domain and range of trigonometric functions >3
+- Periodicity and graphs of trigonometric functions >4
+# Trigonometric identities @0 >5
+- Fundamental identities >5
+- Addition and subtraction formulae >6
+- Multiple and sub-multiple angle formulae >7
+- Sum-to-product and product-to-sum formulae >8
+# Trigonometric equations [A] @3 >9
+- Principal and general solutions >9
+- Solving trigonometric equations >10
+# Inverse trigonometric functions @2 >11
+- Definitions, domains and principal value branches >11
+- Graphs of inverse trigonometric functions >12
+- Elementary properties of inverse trigonometric functions >13
 `,
 
   'coordinate-geometry': `
@@ -269,32 +269,32 @@ JEE.outline.maths = {
 `,
 
   'integral-calculus': `
-# Integration as an anti-derivative @0
-- Indefinite integral as the inverse process of differentiation
-- Properties of indefinite integrals
-# Fundamental integrals @1
-- Integrals of algebraic, trigonometric, exponential and logarithmic functions
-# Methods of integration @2
-- Integration by substitution
-- Integration by parts
-- Integration by partial fractions
-# Integration using trigonometric identities @3
-- Using identities to simplify integrands
-# Integrals of special forms @4
-- ∫dx/(x² ± a²), ∫dx/√(x² ± a²), ∫dx/(a² − x²), ∫dx/√(a² − x²)
-- ∫dx/(ax² + bx + c), ∫dx/√(ax² + bx + c)
-- ∫(px + q)dx/(ax² + bx + c), ∫(px + q)dx/√(ax² + bx + c)
-- ∫√(a² ± x²)dx and ∫√(x² − a²)dx
-# Definite integrals @5
-- Definite integral as the limit of a sum [A]
-- Fundamental theorem of calculus
-- Evaluation of definite integrals
-# Properties of definite integrals @6
-- Properties of definite integrals and their use
-# Area under simple curves @7
-- Area bounded by a curve and an axis
-- Area between two curves
-- Areas of regions bounded by lines, circles, parabolas and ellipses
+# Integration as an anti-derivative @0 >1
+- Indefinite integral as the inverse process of differentiation >1
+- Properties of indefinite integrals >2
+# Fundamental integrals @1 >3
+- Integrals of algebraic, trigonometric, exponential and logarithmic functions >3
+# Methods of integration @2 >4
+- Integration by substitution >4
+- Integration by parts >5
+- Integration by partial fractions >6
+# Integration using trigonometric identities @3 >7
+- Using identities to simplify integrands >7
+# Integrals of special forms @4 >8
+- ∫dx/(x² ± a²), ∫dx/√(x² ± a²), ∫dx/(a² − x²), ∫dx/√(a² − x²) >8
+- ∫dx/(ax² + bx + c), ∫dx/√(ax² + bx + c) >9
+- ∫(px + q)dx/(ax² + bx + c), ∫(px + q)dx/√(ax² + bx + c) >10
+- ∫√(a² ± x²)dx and ∫√(x² − a²)dx >11
+# Definite integrals @5 >12
+- Definite integral as the limit of a sum [A] >12
+- Fundamental theorem of calculus >13
+- Evaluation of definite integrals >14
+# Properties of definite integrals @6 >15
+- Properties of definite integrals and their use >15
+# Area under simple curves @7 >16
+- Area bounded by a curve and an axis >16
+- Area between two curves >17
+- Areas of regions bounded by lines, circles, parabolas and ellipses >18
 `,
 
   'differential-equations': `

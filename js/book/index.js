@@ -54,5 +54,9 @@ JEE.bookList = [
   'maths/sets-relations-functions',
   'maths/complex-quadratic',
   'maths/matrices-determinants',
-  'maths/permutations-combinations'
+  'maths/permutations-combinations',
+  'maths/binomial-theorem',
+  'maths/sequences-series',
+  'maths/trigonometry',
+  'maths/integral-calculus'
 ];
