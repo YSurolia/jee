@@ -42,5 +42,8 @@ JEE.bookList = [
   'chemistry/coordination-compounds',
   'chemistry/environmental-chemistry',
   'chemistry/purification-characterisation',
-  'chemistry/goc'
+  'chemistry/goc',
+  'chemistry/hydrocarbons',
+  'chemistry/haloalkanes',
+  'chemistry/oxygen-compounds'
 ];

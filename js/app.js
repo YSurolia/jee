@@ -76,7 +76,7 @@
     var theme = molTheme();
     svgs.forEach(function (svg) {
       var w = +svg.getAttribute('data-w'), h = +svg.getAttribute('data-h');
-      var drawer = new SmilesDrawer.SvgDrawer({ width: w, height: h, bondThickness: 1.4, bondLength: 26, fontSizeLarge: 10, fontSizeSmall: 8, padding: 10, themes: { site: theme } });
+      var drawer = new SmilesDrawer.SvgDrawer({ width: w, height: h, bondThickness: 1.4, bondLength: 26, fontSizeLarge: 10, fontSizeSmall: 8, padding: 10, compactDrawing: false, themes: { site: theme } });
       SmilesDrawer.parse(svg.getAttribute('data-smiles'), function (tree) {
         while (svg.firstChild) svg.removeChild(svg.firstChild);
         drawer.draw(tree, svg, 'site');

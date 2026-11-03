@@ -358,38 +358,38 @@ JEE.outline.chemistry = {
 `,
 
   'hydrocarbons': `
-# Alkanes @0
-- Classification, isomerism and IUPAC nomenclature of hydrocarbons
-- Physical properties; effect of branching on melting point, boiling point and density
-- Preparation from alkyl halides and from aliphatic carboxylic acids
-- Conformations of ethane: Sawhorse and Newman projections
-- Conformations of butane (Newman projections) [A]
-- Reactions: combustion, halogenation and its free-radical mechanism, oxidation
-- Allylic and benzylic halogenation [A]
-# Alkenes @1
-- Structure, geometrical isomerism and physical properties
-- Preparation by elimination reactions
-- Mechanism of electrophilic addition; addition of hydrogen, halogens, water and hydrogen halides
-- Markovnikov's rule and the peroxide effect
-- Addition of HOX [A]
-- Acid-catalysed hydration
-- Reactions with KMnO₄ and ozone (ozonolysis)
-- Polymerisation
-# Alkynes @2
-- Structure and preparation
-- Acidic character; metal acetylides
-- Addition of hydrogen, halogens, water and hydrogen halides
-- Reduction of alkenes and alkynes
-- Polymerisation; cyclic polymerisation of alkynes
-# Aromatic hydrocarbons @3
-- Nomenclature and isomerism
-- Structure of benzene; resonance and aromaticity
-- Mechanism of electrophilic substitution
-- Halogenation, nitration and sulphonation
-- Friedel–Crafts alkylation and acylation
-# Directive influence of substituents @4
-- Ortho/para- and meta-directing groups in monosubstituted benzene
-- Activating and deactivating groups
+# Alkanes @0 >1
+- Classification, isomerism and IUPAC nomenclature of hydrocarbons >1
+- Physical properties; effect of branching on melting point, boiling point and density >2
+- Preparation from alkyl halides and from aliphatic carboxylic acids >3
+- Conformations of ethane: Sawhorse and Newman projections >4
+- Conformations of butane (Newman projections) [A] >5
+- Reactions: combustion, halogenation and its free-radical mechanism, oxidation >6
+- Allylic and benzylic halogenation [A] >7
+# Alkenes @1 >8
+- Structure, geometrical isomerism and physical properties >8
+- Preparation by elimination reactions >9
+- Mechanism of electrophilic addition; addition of hydrogen, halogens, water and hydrogen halides >10
+- Markovnikov's rule and the peroxide effect >11
+- Addition of HOX [A] >12
+- Acid-catalysed hydration >13
+- Reactions with KMnO₄ and ozone (ozonolysis) >14
+- Polymerisation >15
+# Alkynes @2 >16
+- Structure and preparation >16
+- Acidic character; metal acetylides >17
+- Addition of hydrogen, halogens, water and hydrogen halides >18
+- Reduction of alkenes and alkynes >19
+- Polymerisation; cyclic polymerisation of alkynes >20
+# Aromatic hydrocarbons @3 >21
+- Nomenclature and isomerism >21
+- Structure of benzene; resonance and aromaticity >22
+- Mechanism of electrophilic substitution >23
+- Halogenation, nitration and sulphonation >24
+- Friedel–Crafts alkylation and acylation >25
+# Directive influence of substituents @4 >26
+- Ortho/para- and meta-directing groups in monosubstituted benzene >26
+- Activating and deactivating groups >27
 `,
 
   'environmental-chemistry': `
@@ -686,78 +686,78 @@ JEE.outline.chemistry = {
 `,
 
   'haloalkanes': `
-# Classification and nomenclature @0
-- Classification of haloalkanes and haloarenes
-- IUPAC nomenclature
-# Nature of the C–X bond @1
-- Polarity, length and strength of the carbon–halogen bond
-# Methods of preparation @0
-- From alcohols and from hydrocarbons
-- Halogen exchange (Finkelstein and Swarts reactions)
-- Preparation of haloarenes
-# Physical properties
-- Melting and boiling points, density and solubility
-# Nucleophilic substitution reactions @2
-- SN2 mechanism and inversion of configuration
-- SN1 mechanism, carbocation rearrangements and racemisation
-- Stereochemical aspects of nucleophilic substitution
-# Elimination reactions @3
-- Dehydrohalogenation and Saytzeff's rule
-- Elimination versus substitution
-# Reactions with metals
-- Grignard reagents and their reactions
-- Wurtz, Fittig and Wurtz–Fittig reactions
-# Reactions of haloarenes
-- Nucleophilic aromatic substitution in haloarenes and substituted haloarenes
-- Electrophilic substitution in haloarenes
-# Polyhalogen compounds @4
-- Uses and environmental effects of chloroform, iodoform, freons and DDT [M]
+# Classification and nomenclature @0 >1
+- Classification of haloalkanes and haloarenes >1
+- IUPAC nomenclature >2
+# Nature of the C–X bond @1 >3
+- Polarity, length and strength of the carbon–halogen bond >3
+# Methods of preparation @0 >4
+- From alcohols and from hydrocarbons >4
+- Halogen exchange (Finkelstein and Swarts reactions) >5
+- Preparation of haloarenes >6
+# Physical properties >7
+- Melting and boiling points, density and solubility >7
+# Nucleophilic substitution reactions @2 >8
+- SN2 mechanism and inversion of configuration >8
+- SN1 mechanism, carbocation rearrangements and racemisation >9
+- Stereochemical aspects of nucleophilic substitution >10
+# Elimination reactions @3 >11
+- Dehydrohalogenation and Saytzeff's rule >11
+- Elimination versus substitution >12
+# Reactions with metals >13
+- Grignard reagents and their reactions >13
+- Wurtz, Fittig and Wurtz–Fittig reactions >14
+# Reactions of haloarenes >15
+- Nucleophilic aromatic substitution in haloarenes and substituted haloarenes >15
+- Electrophilic substitution in haloarenes >16
+# Polyhalogen compounds @4 >17
+- Uses and environmental effects of chloroform, iodoform, freons and DDT [M] >17
 `,
 
   'oxygen-compounds': `
-# Alcohols: preparation and properties @0
-- Classification and nomenclature
-- Preparation of alcohols
-- Physical properties and hydrogen bonding
-# Reactions of alcohols @0
-- Reactions with sodium, phosphorus halides, ZnCl₂/conc. HCl and thionyl chloride
-- Identification of primary, secondary and tertiary alcohols
-- Esterification
-- Dehydration to alkenes and ethers; mechanism of dehydration
-- Oxidation to aldehydes, ketones and carboxylic acids
-# Phenols @1
-- Preparation and physical properties
-- Acidic nature of phenol and effect of substituents
-- Electrophilic substitution: halogenation, nitration and sulphonation
-- Reimer–Tiemann reaction
-- Kolbe's reaction
-- Esterification, etherification and the synthesis of aspirin
-- Oxidation and reduction of phenol
-# Ethers @2
-- Structure and nomenclature
-- Williamson synthesis
-- Cleavage of the C–O bond
-# Aldehydes and ketones: structure and preparation @3
-- Nature of the carbonyl group
-- Preparation from alcohols, acid chlorides, nitriles and esters
-- Benzaldehyde from toluene and benzene
-# Nucleophilic addition reactions @3
-- Relative reactivities of aldehydes and ketones
-- Addition of HCN, NaHSO₃, alcohols and Grignard reagents
-- Addition of ammonia and its derivatives: oximes and hydrazones
-# Other reactions of aldehydes and ketones @4
-- Oxidation; reduction (Clemmensen and Wolff–Kishner)
-- Acidity of α-hydrogen; aldol condensation
-- Cannizzaro reaction
-- Haloform reaction
-# Tests for aldehydes and ketones @5
-- Tollens' and Fehling's tests; distinguishing aldehydes from ketones
-# Carboxylic acids @6
-- Physical properties
-- Preparation from nitriles, Grignard reagents and hydrolysis of esters and amides
-- Benzoic acid from alkylbenzenes
-- Acidic strength and the factors affecting it
-- Reactions: reduction, halogenation and formation of esters, acid chlorides and amides
+# Alcohols: preparation and properties @0 >1
+- Classification and nomenclature >1
+- Preparation of alcohols >2
+- Physical properties and hydrogen bonding >3
+# Reactions of alcohols @0 >4
+- Reactions with sodium, phosphorus halides, ZnCl₂/conc. HCl and thionyl chloride >4
+- Identification of primary, secondary and tertiary alcohols >5
+- Esterification >6
+- Dehydration to alkenes and ethers; mechanism of dehydration >7
+- Oxidation to aldehydes, ketones and carboxylic acids >8
+# Phenols @1 >9
+- Preparation and physical properties >9
+- Acidic nature of phenol and effect of substituents >10
+- Electrophilic substitution: halogenation, nitration and sulphonation >11
+- Reimer–Tiemann reaction >12
+- Kolbe's reaction >13
+- Esterification, etherification and the synthesis of aspirin >14
+- Oxidation and reduction of phenol >15
+# Ethers @2 >16
+- Structure and nomenclature >16
+- Williamson synthesis >17
+- Cleavage of the C–O bond >18
+# Aldehydes and ketones: structure and preparation @3 >19
+- Nature of the carbonyl group >19
+- Preparation from alcohols, acid chlorides, nitriles and esters >20
+- Benzaldehyde from toluene and benzene >21
+# Nucleophilic addition reactions @3 >23
+- Relative reactivities of aldehydes and ketones >22
+- Addition of HCN, NaHSO₃, alcohols and Grignard reagents >23
+- Addition of ammonia and its derivatives: oximes and hydrazones >24
+# Other reactions of aldehydes and ketones @4 >25
+- Oxidation; reduction (Clemmensen and Wolff–Kishner) >25
+- Acidity of α-hydrogen; aldol condensation >26
+- Cannizzaro reaction >27
+- Haloform reaction >28
+# Tests for aldehydes and ketones @5 >29
+- Tollens' and Fehling's tests; distinguishing aldehydes from ketones >29
+# Carboxylic acids @6 >30
+- Physical properties >30
+- Preparation from nitriles, Grignard reagents and hydrolysis of esters and amides >31
+- Benzoic acid from alkylbenzenes >32
+- Acidic strength and the factors affecting it >33
+- Reactions: reduction, halogenation and formation of esters, acid chlorides and amides >34
 `,
 
   'nitrogen-compounds': `
