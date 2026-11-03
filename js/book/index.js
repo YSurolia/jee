@@ -45,5 +45,10 @@ JEE.bookList = [
   'chemistry/goc',
   'chemistry/hydrocarbons',
   'chemistry/haloalkanes',
-  'chemistry/oxygen-compounds'
+  'chemistry/oxygen-compounds',
+  'chemistry/nitrogen-compounds',
+  'chemistry/biomolecules',
+  'chemistry/polymers',
+  'chemistry/everyday-chemistry',
+  'chemistry/practical-chemistry'
 ];

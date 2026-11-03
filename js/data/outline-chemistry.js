@@ -761,133 +761,133 @@ JEE.outline.chemistry = {
 `,
 
   'nitrogen-compounds': `
-# Structure, classification and nomenclature of amines @0
-- Primary, secondary and tertiary amines
-- Structure and IUPAC nomenclature
-# Preparation of amines
-- Reduction of nitro compounds, nitriles and amides
-- Hoffmann bromamide degradation
-- Gabriel phthalimide synthesis
-# Basic character of amines @1
-- Basicity of aliphatic and aromatic amines; effect of substituents
-# Chemical reactions of amines
-- Alkylation and acylation
-- Carbylamine reaction
-- Reaction with nitrous acid
-# Identification of primary, secondary and tertiary amines @2
-- Hinsberg test and other distinguishing tests
-# Diazonium salts @3
-- Preparation (diazotisation) and importance in synthetic organic chemistry
-- Sandmeyer and related replacement reactions
-- Azo coupling reactions
+# Structure, classification and nomenclature of amines @0 >1
+- Primary, secondary and tertiary amines >1
+- Structure and IUPAC nomenclature >2
+# Preparation of amines >3
+- Reduction of nitro compounds, nitriles and amides >3
+- Hoffmann bromamide degradation >4
+- Gabriel phthalimide synthesis >5
+# Basic character of amines @1 >6
+- Basicity of aliphatic and aromatic amines; effect of substituents >6
+# Chemical reactions of amines >7
+- Alkylation and acylation >7
+- Carbylamine reaction >8
+- Reaction with nitrous acid >9
+# Identification of primary, secondary and tertiary amines @2 >10
+- Hinsberg test and other distinguishing tests >10
+# Diazonium salts @3 >11
+- Preparation (diazotisation) and importance in synthetic organic chemistry >11
+- Sandmeyer and related replacement reactions >12
+- Azo coupling reactions >13
 `,
 
   'biomolecules': `
-# Carbohydrates: classification @0
-- Monosaccharides, oligosaccharides and polysaccharides
-- Aldoses and ketoses; reducing and non-reducing sugars
-# Monosaccharides @0
-- Glucose: open-chain and cyclic structures; anomers
-- Oxidation and reduction of glucose
-- Glycoside formation
-- Fructose
-# Disaccharides and polysaccharides @0
-- Sucrose, maltose and lactose: constituent monosaccharides and hydrolysis
-- Starch, cellulose and glycogen
-# Proteins @1
-- α-Amino acids and zwitterions
-- Peptide bond and polypeptides
-- Fibrous and globular proteins
-- Primary, secondary, tertiary and quaternary structures
-- Denaturation of proteins
-# Enzymes [M]
-- Enzymes as biological catalysts
-# Vitamins [M] @2
-- Classification and functions of vitamins; deficiency diseases
-# Nucleic acids @3
-- Chemical composition: nucleosides and nucleotides
-- Structure of DNA and RNA
-- Biological functions of nucleic acids @4
-# Hormones [M] @5
-- General introduction to hormones
+# Carbohydrates: classification @0 >1
+- Monosaccharides, oligosaccharides and polysaccharides >1
+- Aldoses and ketoses; reducing and non-reducing sugars >2
+# Monosaccharides @0 >3
+- Glucose: open-chain and cyclic structures; anomers >3
+- Oxidation and reduction of glucose >4
+- Glycoside formation >5
+- Fructose >6
+# Disaccharides and polysaccharides @0 >7
+- Sucrose, maltose and lactose: constituent monosaccharides and hydrolysis >7
+- Starch, cellulose and glycogen >8
+# Proteins @1 >9
+- α-Amino acids and zwitterions >9
+- Peptide bond and polypeptides >10
+- Fibrous and globular proteins >11
+- Primary, secondary, tertiary and quaternary structures >12
+- Denaturation of proteins >13
+# Enzymes [M] >14
+- Enzymes as biological catalysts >14
+# Vitamins [M] @2 >15
+- Classification and functions of vitamins; deficiency diseases >15
+# Nucleic acids @3 >16
+- Chemical composition: nucleosides and nucleotides >16
+- Structure of DNA and RNA >17
+- Biological functions of nucleic acids @4 >18
+# Hormones [M] @5 >19
+- General introduction to hormones >19
 `,
 
   'polymers': `
-# Classification of polymers @0
-- By source: natural, semi-synthetic and synthetic
-- By structure: linear, branched and cross-linked
-- By molecular forces: elastomers, fibres, thermoplastics and thermosetting polymers
-# Addition polymerisation @1
-- Free-radical (chain-growth) mechanism
-- Polythene, Teflon, polyacrylonitrile and PVC
-# Condensation polymerisation @2
-- Step-growth polymerisation
-- Polyamides: nylon-6,6 and nylon-6
-- Polyesters
-- Phenol–formaldehyde polymers: Bakelite
-# Homopolymers and copolymers @3
-- Homopolymers and copolymers (Buna-S, Buna-N)
-# Rubber and cellulose @4
-- Natural rubber and vulcanisation
-- Synthetic rubbers
-- Cellulose as a natural polymer
-# Important polymers @5
-- Monomers, properties and uses of polythene, Teflon, PVC, nylon and Bakelite
-# Biodegradable polymers and applications @6
-- Biodegradable polymers (PHBV, nylon-2-nylon-6)
-- Applications of polymers
+# Classification of polymers @0 >1
+- By source: natural, semi-synthetic and synthetic >1
+- By structure: linear, branched and cross-linked >2
+- By molecular forces: elastomers, fibres, thermoplastics and thermosetting polymers >3
+# Addition polymerisation @1 >4
+- Free-radical (chain-growth) mechanism >4
+- Polythene, Teflon, polyacrylonitrile and PVC >5
+# Condensation polymerisation @2 >6
+- Step-growth polymerisation >6
+- Polyamides: nylon-6,6 and nylon-6 >7
+- Polyesters >8
+- Phenol–formaldehyde polymers: Bakelite >9
+# Homopolymers and copolymers @3 >10
+- Homopolymers and copolymers (Buna-S, Buna-N) >10
+# Rubber and cellulose @4 >11
+- Natural rubber and vulcanisation >11
+- Synthetic rubbers >12
+- Cellulose as a natural polymer >13
+# Important polymers @5 >14
+- Monomers, properties and uses of polythene, Teflon, PVC, nylon and Bakelite >14
+# Biodegradable polymers and applications @6 >15
+- Biodegradable polymers (PHBV, nylon-2-nylon-6) >15
+- Applications of polymers >16
 `,
 
   'everyday-chemistry': `
-# Drugs and drug–target interaction @0
-- Classification of drugs
-- Enzymes as drug targets: catalytic action and inhibition
-- Receptors as drug targets: agonists and antagonists
-# Antacids and antihistamines @1
-- Antacids
-- Antihistamines
-# Tranquilizers and analgesics @2
-- Tranquilizers
-- Non-narcotic and narcotic analgesics
-# Antimicrobials @3
-- Antibiotics: bactericidal and bacteriostatic; broad- and narrow-spectrum
-- Antiseptics and disinfectants
-# Antifertility drugs @4
-- Synthetic hormones used in antifertility drugs (examples, no structures)
-# Artificial sweeteners @5
-- Artificial sweetening agents (names only)
-# Soaps and detergents @6
-- Soaps: saponification
-- Synthetic detergents: anionic, cationic and non-ionic
-- Cleansing action
+# Drugs and drug–target interaction @0 >1
+- Classification of drugs >1
+- Enzymes as drug targets: catalytic action and inhibition >2
+- Receptors as drug targets: agonists and antagonists >3
+# Antacids and antihistamines @1 >4
+- Antacids >4
+- Antihistamines >5
+# Tranquilizers and analgesics @2 >6
+- Tranquilizers >6
+- Non-narcotic and narcotic analgesics >7
+# Antimicrobials @3 >8
+- Antibiotics: bactericidal and bacteriostatic; broad- and narrow-spectrum >8
+- Antiseptics and disinfectants >9
+# Antifertility drugs @4 >10
+- Synthetic hormones used in antifertility drugs (examples, no structures) >10
+# Artificial sweeteners @5 >11
+- Artificial sweetening agents (names only) >11
+# Soaps and detergents @6 >12
+- Soaps: saponification >12
+- Synthetic detergents: anionic, cationic and non-ionic >13
+- Cleansing action >14
 `,
 
   'practical-chemistry': `
-# Detection of extra elements @0
-- Nitrogen, sulphur and halogens in organic compounds
-# Tests for functional groups @1
-- Hydroxyl group: alcoholic and phenolic
-- Carbonyl group: aldehydes and ketones
-- Carboxyl group
-- Amino group
-- Nitro group [A]
-# Preparation of compounds [M] @2
-- Inorganic compounds: Mohr's salt and potash alum
-- Organic compounds: acetanilide, p-nitroacetanilide, aniline yellow and iodoform
-# Titrimetric analysis [M] @3
-- Acids, bases and the use of indicators
-- Oxalic acid vs KMnO₄ and Mohr's salt vs KMnO₄
-# Qualitative salt analysis: cations @4
-- Group separation of cations
-- JEE Main list: Pb²⁺, Cu²⁺, Al³⁺, Fe³⁺, Zn²⁺, Ni²⁺, Ca²⁺, Ba²⁺, Mg²⁺, NH₄⁺ [M]
-- JEE Advanced list (groups I–V): Ag⁺, Hg²⁺, Cu²⁺, Pb²⁺, Fe³⁺, Cr³⁺, Al³⁺, Ca²⁺, Ba²⁺, Zn²⁺, Mn²⁺, Mg²⁺ [A]
-# Qualitative salt analysis: anions @4
-- JEE Main list: CO₃²⁻, S²⁻, SO₄²⁻, NO₃⁻, NO₂⁻, Cl⁻, Br⁻, I⁻ [M]
-- JEE Advanced list: nitrate, halides (except fluoride), carbonate, bicarbonate, sulphate and sulphide [A]
-# Physical chemistry experiments [M] @5
-- Enthalpy of solution of CuSO₄
-- Enthalpy of neutralisation of a strong acid and a strong base
-- Preparation of lyophilic and lyophobic sols @6
-- Kinetic study of the reaction of iodide ions with hydrogen peroxide @7
+# Detection of extra elements @0 >1
+- Nitrogen, sulphur and halogens in organic compounds >1
+# Tests for functional groups @1 >2
+- Hydroxyl group: alcoholic and phenolic >2
+- Carbonyl group: aldehydes and ketones >3
+- Carboxyl group >4
+- Amino group >5
+- Nitro group [A] >6
+# Preparation of compounds [M] @2 >7
+- Inorganic compounds: Mohr's salt and potash alum >7
+- Organic compounds: acetanilide, p-nitroacetanilide, aniline yellow and iodoform >8
+# Titrimetric analysis [M] @3 >9
+- Acids, bases and the use of indicators >9
+- Oxalic acid vs KMnO₄ and Mohr's salt vs KMnO₄ >10
+# Qualitative salt analysis: cations @4 >11
+- Group separation of cations >11
+- JEE Main list: Pb²⁺, Cu²⁺, Al³⁺, Fe³⁺, Zn²⁺, Ni²⁺, Ca²⁺, Ba²⁺, Mg²⁺, NH₄⁺ [M] >12
+- JEE Advanced list (groups I–V): Ag⁺, Hg²⁺, Cu²⁺, Pb²⁺, Fe³⁺, Cr³⁺, Al³⁺, Ca²⁺, Ba²⁺, Zn²⁺, Mn²⁺, Mg²⁺ [A] >13
+# Qualitative salt analysis: anions @4 >14
+- JEE Main list: CO₃²⁻, S²⁻, SO₄²⁻, NO₃⁻, NO₂⁻, Cl⁻, Br⁻, I⁻ [M] >14
+- JEE Advanced list: nitrate, halides (except fluoride), carbonate, bicarbonate, sulphate and sulphide [A] >15
+# Physical chemistry experiments [M] @5 >16
+- Enthalpy of solution of CuSO₄ >16
+- Enthalpy of neutralisation of a strong acid and a strong base >17
+- Preparation of lyophilic and lyophobic sols @6 >18
+- Kinetic study of the reaction of iodide ions with hydrogen peroxide @7 >19
 `
 };
