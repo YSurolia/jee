@@ -47,6 +47,14 @@ var figTrends = D.svg(420, 200, [
   D.text(300, 190, 'most electronegative: F (top right)', { size: 10, math: false, color: 'b' })
 ], 'Summary of periodic trends');
 
+var figSucc = D.plot({ w: 320, h: 220, x: [0.3, 4.7], y: [0, 13000], noOrigin: true, ylabel: 'kJ/mol', mathLabels: false, xticks: [[1, 'IE₁'], [2, 'IE₂'], [3, 'IE₃'], [4, 'IE₄']], yticks: [[5000, '5000'], [10000, '10 000']],
+  extra: function (X, Y) { return [578, 1817, 2745, 11577].map(function (v, i) { return D.rect(X(i + 1 - 0.3), Y(v), X(0.6) - X(0), Y(0) - Y(v), { color: i === 3 ? 'r' : 'b', fill: 'soft', w: 1.4 }) + D.text(X(i + 1), Y(v) - 9, String(v), { size: 10 }); }); },
+  label: 'Successive ionisation enthalpies of aluminium' });
+
+var figEGE = D.plot({ w: 320, h: 210, x: [0.3, 4.7], y: [-400, 0], noOrigin: true, mathLabels: false, xticks: [], yticks: [[-100, '−100'], [-200, '−200'], [-300, '−300']],
+  extra: function (X, Y) { return [['F', -328], ['Cl', -349], ['Br', -325], ['I', -295]].map(function (d, i) { return D.rect(X(i + 1 - 0.3), Y(0), X(0.6) - X(0), Y(d[1]) - Y(0), { color: i === 1 ? 'r' : 'g', fill: 'soft', w: 1.4 }) + D.text(X(i + 1), Y(d[1]) + 12, '−' + String(-d[1]), { size: 10 }) + D.text(X(i + 1), Y(0) + 16, d[0], { size: 12, bold: true }); }); },
+  label: 'Electron gain enthalpies of the halogens' });
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'periodicity', {
   intro: [
@@ -62,6 +70,8 @@ JEE.book('chemistry', 'periodicity', {
         R`<b>Mendeleev's periodic law</b> (1869): the properties of elements are a periodic function of their <b>atomic masses</b>. He arranged elements in rows and columns by mass and similar properties, boldly <b>left gaps</b> for undiscovered elements and predicted their properties (eka-aluminium = gallium, eka-silicon = germanium), and corrected some atomic masses. Lothar Meyer independently found similar patterns.`
       ] },
       R`Mendeleev's table had anomalies: some elements had to be placed out of mass order (Ar 39.9 before K 39.1; Te 127.6 before I 126.9), and isotopes had no proper place.`,
+      { ex: { q: R`Check whether Ca (40.1), Sr (87.6) and Ba (137.3) form a Döbereiner triad.`,
+        steps: [R`Average of the outer two: (40.1 + 137.3)/2 = 88.7, close to Sr (87.6).`], ans: R`Yes, roughly a triad` } },
       { check: { q: R`What was the most remarkable feature of Mendeleev's table?`, ans: R`The gaps he left for undiscovered elements, whose properties he predicted correctly.` } }
     ] },
 
@@ -69,6 +79,7 @@ JEE.book('chemistry', 'periodicity', {
       R`In 1913 Moseley showed (from X-ray spectra) that atomic number, not atomic mass, is the fundamental property. <b>Modern periodic law:</b> the physical and chemical properties of elements are periodic functions of their <b>atomic numbers</b>. This resolved Mendeleev's anomalies.`,
       { fig: figTable, cap: R`The long form of the periodic table: 18 groups and 7 periods, divided into s, p, d and f blocks.` },
       R`The <b>long form</b> of the periodic table has 7 horizontal rows (<b>periods</b>) and 18 vertical columns (<b>groups</b>, numbered 1–18 by IUPAC). The period number equals the principal quantum number of the outermost shell. Periods contain 2, 8, 8, 18, 18, 32 and 32 elements. The lanthanoids (Z = 58–71) and actinoids (Z = 90–103) are placed separately at the bottom.`,
+      R`Why 2, 8, 8, 18, 18, 32, 32? Each period fills the subshells available at that stage in the order of increasing energy: period 1 only 1s (2); periods 2 and 3, ns and np (2 + 6 = 8); periods 4 and 5 add the (n − 1)d subshell (2 + 10 + 6 = 18); periods 6 and 7 add (n − 2)f as well (2 + 14 + 10 + 6 = 32).`,
       { check: { q: R`How many elements are in the 4th period, and why?`, ans: R`18: filling 4s (2), 3d (10) and 4p (6).` } }
     ] },
 
@@ -77,6 +88,7 @@ JEE.book('chemistry', 'periodicity', {
       { table: { head: [R`Digit`, R`0`, R`1`, R`2`, R`3`, R`4`, R`5`, R`6`, R`7`, R`8`, R`9`], rows: [[R`Root`, R`nil`, R`un`, R`bi`, R`tri`, R`quad`, R`pent`, R`hex`, R`sept`, R`oct`, R`enn`], [R`Symbol`, R`n`, R`u`, R`b`, R`t`, R`q`, R`p`, R`h`, R`s`, R`o`, R`e`]] } },
       { ex: { q: R`Give the IUPAC temporary name and symbol for Z = 109 and Z = 120.`,
         steps: [R`109: un-nil-enn-ium; 120: un-bi-nil-ium.`], ans: R`Unnilennium (Une, now meitnerium); Unbinilium (Ubn)` } },
+      R`The rule exists because newly made superheavy elements are often claimed by more than one laboratory, and naming them can take years. The systematic name gives every element an unambiguous label from the moment it is reported, until IUPAC approves a permanent name (for example, element 109 is now meitnerium, after Lise Meitner).`,
       { check: { q: R`What is the temporary symbol for element 114?`, ans: R`Uuq (ununquadium, now flerovium, Fl).` } }
     ] },
 
@@ -84,6 +96,8 @@ JEE.book('chemistry', 'periodicity', {
       R`The position of an element in the table follows from its electronic configuration. Each period starts with an element having one electron in a new shell (ns¹) and ends with a noble gas (ns²np⁶, except He 1s²). Elements in the same group have the same <b>outer (valence) configuration</b>, which is why they have similar properties: group 1 is ns¹, group 17 is ns²np⁵.`,
       { ex: { q: R`An element has configuration 1s² 2s² 2p⁶ 3s² 3p⁴. Find its period, group and block.`,
         steps: [R`Outermost shell n = 3: period 3.`, R`Last electron in a p subshell: p-block; group = 10 + (2 + 4) = 16.`], ans: R`Period 3, group 16, p-block (sulphur)` } },
+      { ex: { q: R`Find the period, group and block of the elements with Z = 26 and Z = 37.`,
+        steps: [R`Z = 26: [Ar] 3d⁶ 4s². Highest shell n = 4; last electron enters 3d: d-block; group = number of (n − 1)d + ns electrons = 6 + 2 = 8.`, R`Z = 37: [Kr] 5s¹: period 5, s-block, group 1.`], ans: R`Fe: period 4, group 8, d-block; Rb: period 5, group 1, s-block` } },
       { check: { q: R`How is the group number of a p-block element found from its configuration?`, ans: R`10 + number of electrons in the outermost s and p subshells.` } }
     ] },
 
@@ -94,6 +108,9 @@ JEE.book('chemistry', 'periodicity', {
         [R`d-block (transition)`, R`3–12`, R`(n−1)d¹⁻¹⁰ns⁰⁻²`, R`metals; variable oxidation states; coloured, paramagnetic ions; catalysts`],
         [R`f-block (inner transition)`, R`lanthanoids, actinoids`, R`(n−2)f¹⁻¹⁴(n−1)d⁰⁻¹ns²`, R`metals; actinoids radioactive; most beyond U are synthetic`]] } },
       R`Elements are also classified as <b>metals</b> (left and centre, about 78% of elements), <b>non-metals</b> (top right) and <b>metalloids</b> (along the zigzag line: B, Si, Ge, As, Sb, Te), with intermediate properties.`,
+      { ex: { q: R`To which block do these belong: (a) [Rn] 5f³ 6d¹ 7s² (b) [Ne] 3s² 3p³ (c) [Kr] 4d¹⁰ 5s²?`,
+        steps: [R`Look at the subshell that receives the last (differentiating) electron.`], ans: R`(a) f-block (uranium) (b) p-block (phosphorus) (c) d-block (cadmium)` } },
+      R`Metallic character fades towards the top right because those atoms are small and hold their electrons tightly. Metalloids sit on the border: silicon and germanium look metallic and conduct a little, but behave chemically like non-metals, which is exactly what makes them useful as semiconductors.`,
       { check: { q: R`Which block contains elements with configuration (n−1)d¹⁰ns²?`, ans: R`The d-block (group 12: Zn, Cd, Hg).` } }
     ] },
 
@@ -109,6 +126,9 @@ JEE.book('chemistry', 'periodicity', {
       { fig: figRadius, cap: R`Atomic radius decreases across a period and is larger in period 3 than period 2.` },
       { points: [R`<b>Across a period</b> (left to right), radius decreases: electrons enter the same shell while the nuclear charge increases, so the effective nuclear charge pulls them closer.`, R`<b>Down a group</b>, radius increases: a new shell is added each time, outweighing the increase in nuclear charge (inner electrons shield the outer ones).`, R`Noble gases are not compared, since their radii are van der Waals radii (larger).`] },
       R`Exceptions: in the d-block the radius decreases only slightly across (the added electrons enter an inner d subshell and shield well), and the 4d and 5d elements have nearly equal radii (Zr 160 pm, Hf 159 pm) because of the <b>lanthanoid contraction</b>.`,
+      { ex: { q: R`Arrange Mg, Na, K and Cl in order of increasing atomic radius.`,
+        steps: [R`Na, Mg and Cl are in period 3: radius decreases across, so Cl < Mg < Na.`, R`K is below Na (a new shell), so it is largest.`], ans: R`Cl < Mg < Na < K` } },
+      { analogy: R`Think of the outer electrons as children at the back of a crowded hall, trying to see a speaker (the nucleus). The rows of people in front (inner electrons) block some of the pull; this is <b>shielding</b>. The pull the outer electrons actually feel is the <b>effective nuclear charge</b>, Z_eff. Across a period, the speaker gets louder (more protons) but no new rows are added, so Z_eff rises and the electrons move closer.` },
       { check: { q: R`Which is larger: Li or F?`, ans: R`Li (radius decreases across the period).` } }
     ] },
 
@@ -121,6 +141,11 @@ JEE.book('chemistry', 'periodicity', {
       { points: [R`<b>Be > B</b> (and Mg > Al): B loses a 2p electron, which is higher in energy and better shielded than Be's 2s electron.`, R`<b>N > O</b> (and P > S): N has a stable half-filled 2p³; in O, the fourth p electron is paired and repelled by its partner, so it is easier to remove.`] },
       { ex: { q: R`The first four ionisation enthalpies of an element are 578, 1817, 2745 and 11 577 kJ/mol. Which group is it in?`,
         steps: [R`The big jump comes after the third electron.`], ans: R`Three valence electrons: group 13 (it is aluminium)` } },
+      { fig: figSucc, cap: R`The first three electrons of aluminium come from the third shell (3s² 3p¹). The fourth must come from the inner, complete second shell, so IE₄ is about four times IE₃. A jump like this reveals the number of valence electrons.` },
+      { ex: { q: R`Arrange B, C, N and O in order of increasing first ionisation enthalpy.`,
+        steps: [R`The general rise across period 2 is broken at O (paired p electron) and B (p electron above a full 2s).`], ans: R`B < C < O < N` } },
+      { ex: { q: R`Why is the first ionisation enthalpy of sodium low (496 kJ/mol) but its second very high (4562 kJ/mol)?`,
+        steps: [R`The first electron is the lone 3s electron, far from the nucleus and well shielded.`, R`The second must come from the stable, complete 2p⁶ shell of Na⁺, much closer to the nucleus.`], ans: R`Na⁺ has a noble-gas configuration; breaking into it costs a lot of energy` } },
       { check: { q: R`Why does nitrogen have a higher first ionisation enthalpy than oxygen?`, ans: R`Nitrogen's half-filled 2p³ configuration is extra stable; oxygen's paired 2p electron is easier to remove.` } }
     ] },
 
@@ -129,6 +154,9 @@ JEE.book('chemistry', 'periodicity', {
       { points: [R`<b>Across a period</b>, it generally becomes more negative (halogens are the most negative in each period).`, R`<b>Down a group</b>, it generally becomes less negative (the added electron is farther from the nucleus).`] },
       { h3: R`Exceptions` },
       { points: [R`<b>Cl has a more negative electron gain enthalpy than F</b> (−349 vs −328 kJ/mol): fluorine's 2p subshell is so small that the incoming electron is strongly repelled by the electrons already there.`, R`Likewise O is less negative than S.`, R`Be, Mg (filled s²), N (half-filled p³) and the noble gases have positive or nearly zero values.`] },
+      { fig: figEGE, cap: R`Electron gain enthalpies of the halogens (kJ/mol). The value becomes less negative down group 17, except that chlorine (red) beats fluorine: the incoming electron finds the tiny 2p shell of F too crowded.` },
+      { ex: { q: R`Arrange F, Cl, O and S in order of decreasing (most negative first) electron gain enthalpy.`,
+        steps: [R`Values: Cl −349, F −328, S −200, O −141 kJ/mol. Halogens are more negative than chalcogens, and in each pair the period-3 element beats the small period-2 element.`], ans: R`Cl > F > S > O` } },
       { check: { q: R`Which element has the most negative electron gain enthalpy?`, ans: R`Chlorine.` } }
     ] },
 
@@ -136,6 +164,9 @@ JEE.book('chemistry', 'periodicity', {
       R`<b>Electronegativity</b> is the tendency of an atom <b>in a molecule</b> to attract the shared electron pair towards itself. It is not a measurable energy but a relative scale; on the <b>Pauling scale</b>, F = 4.0 (most electronegative), O 3.5, N 3.0, Cl 3.0, C 2.5, H 2.1, Na 0.9, Cs 0.7.`,
       { points: [R`It increases across a period and decreases down a group.`, R`It is linked to non-metallic character: high electronegativity means non-metal.`, R`The difference in electronegativity between bonded atoms decides bond polarity: a large difference (> 1.7) gives mainly ionic bonds.`] },
       { fig: figTrends, cap: R`Summary: across a period, ionisation enthalpy, electron gain enthalpy (more negative) and electronegativity increase while size decreases; down a group the reverse.` },
+      { ex: { q: R`Using Pauling electronegativities (Na 0.9, H 2.1, Cl 3.0), predict the type of bond in NaCl and in HCl.`,
+        steps: [R`NaCl: difference 2.1 (> 1.7): mainly ionic.`, R`HCl: difference 0.9: polar covalent, with the H end δ+.`], ans: R`NaCl ionic; HCl polar covalent` } },
+      { adv: R`Other scales exist. Mulliken defined electronegativity as the average of the ionisation enthalpy and the electron affinity, \(\chi = \frac12(IE + EA)\), which links it to measurable energies: an atom that holds its own electrons tightly and also welcomes an extra one attracts bonding electrons strongly.` },
       { check: { q: R`How is electronegativity different from electron gain enthalpy?`, ans: R`Electronegativity refers to a bonded atom attracting a shared pair (a relative number); electron gain enthalpy is a measurable energy for an isolated gaseous atom gaining an electron.` } }
     ] },
 
@@ -144,6 +175,8 @@ JEE.book('chemistry', 'periodicity', {
       R`Heavier p-block elements also show lower oxidation states (the <b>inert pair effect</b>: Tl⁺ and Pb²⁺ are more stable than Tl³⁺ and Pb⁴⁺), and transition metals show many variable oxidation states (Mn +2 to +7).`,
       { ex: { q: R`Predict the formula of the compound formed between Al and O, and between Si and Cl.`,
         steps: [R`Al +3, O −2: Al₂O₃. Si +4, Cl −1: SiCl₄.`], ans: R`Al₂O₃; SiCl₄` } },
+      { ex: { q: R`Predict the formulas of the highest oxide and the hydride of the element with Z = 15.`,
+        steps: [R`Z = 15 is phosphorus, [Ne] 3s² 3p³: five valence electrons.`, R`Highest oxidation state +5 with oxygen; −3 with hydrogen.`], ans: R`P₄O₁₀ (empirically P₂O₅) and PH₃` } },
       { check: { q: R`Why is the oxidation state of fluorine always −1 in compounds?`, ans: R`It is the most electronegative element and needs just one electron to complete its octet.` } }
     ] },
 
@@ -153,6 +186,10 @@ JEE.book('chemistry', 'periodicity', {
       R`The first member of each group (Li, Be, B, C, N, O, F) differs from the rest of its group because of its very small size, high charge/radius ratio, high electronegativity, and absence of d orbitals (so maximum covalency is 4). For example, Li resembles Mg and Be resembles Al: <b>diagonal relationship</b>. Nitrogen and oxygen form strong pπ–pπ multiple bonds (N≡N, O=O) while their heavier congeners do not.`,
       { h3: R`Acidic and basic character of oxides` },
       R`Across a period, oxides change from strongly <b>basic</b> (Na₂O) through <b>amphoteric</b> (Al₂O₃) to strongly <b>acidic</b> (Cl₂O₇): Na₂O + H₂O → 2NaOH; Cl₂O₇ + H₂O → 2HClO₄. Down a group, basic character increases. Some oxides are <b>neutral</b>: CO, NO, N₂O.`,
+      { ex: { q: R`Arrange in order of increasing acidic character: SO₃, Na₂O, Al₂O₃, P₄O₁₀, MgO, Cl₂O₇, SiO₂.`,
+        steps: [R`Across period 3, the elements change from metals to non-metals, and their oxides change from basic to acidic.`], ans: R`Na₂O < MgO < Al₂O₃ < SiO₂ < P₄O₁₀ < SO₃ < Cl₂O₇` } },
+      { ex: { q: R`Why does lithium resemble magnesium more than sodium in some properties?`,
+        steps: [R`Moving right in the table makes atoms smaller and more charged per unit size; moving down makes them larger. Diagonal neighbours (Li and Mg) end up with similar size and charge density, hence similar polarising power.`], ans: R`Diagonal relationship: similar charge/radius ratio` } },
       { check: { q: R`Is Al₂O₃ acidic or basic?`, ans: R`Amphoteric: it reacts with both acids and bases.` } }
     ] }
   ],
@@ -165,7 +202,8 @@ JEE.book('chemistry', 'periodicity', {
     R`Electron gain enthalpy: most negative for halogens; Cl more negative than F; positive for noble gases.`,
     R`Electronegativity (Pauling): F 4.0; increases across, decreases down.`,
     R`Valence and oxidation states periodic; inert pair effect.`,
-    R`Metallic character down and left; second-period anomalies; diagonal relationship; oxides basic → amphoteric → acidic across a period.`
+    R`Metallic character down and left; second-period anomalies; diagonal relationship; oxides basic → amphoteric → acidic across a period.`,
+    R`A large jump between successive ionisation enthalpies marks the start of an inner shell and reveals the number of valence electrons.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §2.5 The Periodic Table`, url: 'https://openstax.org/books/chemistry-2e/pages/2-5-the-periodic-table' },

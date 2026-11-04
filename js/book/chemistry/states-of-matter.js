@@ -45,6 +45,17 @@ var figVP = D.plot({
   label: 'Vapour pressure against temperature; each liquid boils where its curve reaches 760 mm Hg'
 });
 
+var figTube = D.svg(440, 130, (function () {
+  var x0 = 40, L = 360, ring = x0 + L * 0.594, out = [];
+  out.push(D.rect(x0, 50, L, 30, { color: 'm', w: 1.4 }));
+  out.push(D.rect(x0 - 22, 44, 22, 42, { color: 'b', fill: 'soft', w: 1.2 }), D.rect(x0 + L, 44, 22, 42, { color: 'o', fill: 'soft', w: 1.2 }));
+  out.push(D.text(x0 - 11, 100, 'NH₃', { size: 11, color: 'b', bold: true }), D.text(x0 + L + 11, 100, 'HCl', { size: 11, color: 'o', bold: true }));
+  out.push(D.rect(ring - 5, 50, 10, 30, { color: 'k', fill: 'soft', w: 1.2 }), D.text(ring, 40, 'white ring of NH₄Cl', { size: 11, color: 'k' }));
+  out.push(D.arrow(x0 + 10, 110, ring - 8, 110, { color: 'b', w: 1.6, head: 7 }), D.text((x0 + ring) / 2, 124, '59.4 cm', { size: 10, color: 'b' }));
+  out.push(D.arrow(x0 + L - 10, 110, ring + 8, 110, { color: 'o', w: 1.6, head: 7 }), D.text((ring + x0 + L) / 2, 124, '40.6 cm', { size: 10, color: 'o' }));
+  return out;
+})(), 'Diffusion of ammonia and hydrogen chloride in a 1 m tube');
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'states-of-matter', {
   intro: [
@@ -65,6 +76,9 @@ JEE.book('chemistry', 'states-of-matter', {
       R`Charles found that a gas expands by 1/273.15 of its volume at 0 °C for each degree rise. Extrapolated, every gas would have zero volume at −273.15 °C, the lowest possible temperature, <b>absolute zero</b>. Kelvin's scale starts there: T(K) = t(°C) + 273.15. (Real gases liquefy long before reaching it.)`,
       { ex: { q: R`A gas occupies 2 L at 1 atm. What is its volume at 0.5 atm (same temperature)? A balloon of 1 L at 27 °C is warmed to 87 °C at constant pressure; find its new volume.`,
         steps: [R`Boyle: \(V_2 = 1\times2/0.5\).`, R`Charles: \(V_2 = 1\times360/300\).`], ans: R`4 L; 1.2 L` } },
+      { ex: { q: R`A car tyre is at 2.0 atm at 27 °C. After a long drive its temperature is 57 °C. Find the new pressure (volume constant).`,
+        steps: [R`Gay-Lussac: \(P_2 = P_1\dfrac{T_2}{T_1} = 2.0\times\dfrac{330}{300}\).`], ans: R`2.2 atm (this is why tyres can burst in summer)` } },
+      R`Each law can be pictured with molecules. Squeeze a gas into half the volume and each molecule hits the walls twice as often: pressure doubles (Boyle). Heat it and the molecules move faster, hitting harder and more often: either the pressure rises (fixed volume) or the gas expands until the pressure is back to its old value (Charles).`,
       { check: { q: R`Why must kelvin temperatures be used in gas laws?`, ans: R`Volume and pressure are proportional to absolute temperature, not to Celsius temperature (which can be zero or negative).` } }
     ] },
 
@@ -74,6 +88,9 @@ JEE.book('chemistry', 'states-of-matter', {
       R`With n = m/M: \(PV = \dfrac mMRT\), so the density is \[d = \frac mV = \frac{PM}{RT}\quad\text{and}\quad M = \frac{dRT}{P}\] This is used to find molar masses of gases and vapours.`,
       { ex: { q: R`How many moles of gas are in 10 L at 2 atm and 300 K? A gas has density 1.25 g/L at STP; find its molar mass.`,
         steps: [R`\(n = \dfrac{PV}{RT} = \dfrac{2\times10}{0.0821\times300}\).`, R`At STP, 1 mol occupies 22.4 L: M = 1.25 × 22.4.`], ans: R`≈ 0.81 mol; 28 g/mol (N₂ or CO)` } },
+      { ex: { q: R`A gas has density 2.5 g/L at 27 °C and 1 atm. Find its molar mass. A 500 mL sample of a gas at 27 °C and 760 mm Hg is heated to 127 °C and the pressure lowered to 380 mm Hg; find its new volume.`,
+        steps: [R`\(M = \dfrac{dRT}{P} = 2.5\times0.0821\times300\) ≈ 61.6 g/mol.`, R`\(V_2 = V_1\dfrac{P_1}{P_2}\dfrac{T_2}{T_1} = 500\times\dfrac{760}{380}\times\dfrac{400}{300}\).`], ans: R`≈ 61.6 g/mol; ≈ 1333 mL` } },
+      { mistake: R`Mixing units of R. With P in atm and V in litres, use R = 0.0821 L atm K⁻¹ mol⁻¹; with SI units (Pa, m³), use 8.314 J K⁻¹ mol⁻¹. Using 8.314 with litres and atmospheres gives nonsense.` },
       { check: { q: R`Which is denser at STP: CO₂ or N₂?`, ans: R`CO₂ (density ∝ M: 44 vs 28).` } }
     ] },
 
@@ -82,6 +99,8 @@ JEE.book('chemistry', 'states-of-matter', {
       R`<b>Gas collected over water:</b> the gas is saturated with water vapour, so \(p_{dry\,gas} = P_{total} - \text{aqueous tension}\) (the vapour pressure of water at that temperature).`,
       { ex: { q: R`Oxygen is collected over water at 25 °C, with total pressure 750 mm Hg. The vapour pressure of water at 25 °C is 23.8 mm Hg. Find the pressure of dry oxygen.`,
         steps: [R`\(p_{O_2} = 750 - 23.8\).`], ans: R`726.2 mm Hg` } },
+      { ex: { q: R`8 g of O₂ and 4 g of H₂ are put in a 10 L flask at 300 K. Find the partial pressures and the total pressure.`,
+        steps: [R`n(O₂) = 0.25 mol, n(H₂) = 2 mol. Each gas behaves as if alone: \(p = \dfrac{nRT}{V}\).`, R`p(O₂) = 0.25 × 0.0821 × 300/10 ≈ 0.62 atm; p(H₂) ≈ 4.93 atm.`], ans: R`0.62 atm, 4.93 atm; total ≈ 5.54 atm` } },
       { check: { q: R`A mixture has 2 mol N₂ and 3 mol O₂ at a total pressure of 10 atm. What is the partial pressure of N₂?`, ans: R`(2/5) × 10 = 4 atm.` } }
     ] },
 
@@ -90,6 +109,9 @@ JEE.book('chemistry', 'states-of-matter', {
       { ex: { q: R`Compare the rates of effusion of CH₄ and SO₂.`,
         steps: [R`\(\dfrac{r_{CH_4}}{r_{SO_2}} = \sqrt{\dfrac{64}{16}}\).`], ans: R`Methane effuses twice as fast` } },
       { tip: R`Graham's law follows from kinetic theory: rate ∝ average speed ∝ \(\sqrt{T/M}\). It was used in the Manhattan Project to enrich uranium (²³⁵UF₆ effuses 0.43% faster than ²³⁸UF₆).` },
+      { ex: { q: R`An unknown gas effuses at one-quarter the rate of hydrogen under the same conditions. Find its molar mass.`,
+        steps: [R`\(\dfrac{r_{H_2}}{r_x} = \sqrt{\dfrac{M_x}{2}} = 4\), so \(M_x = 2\times16\).`], ans: R`32 g/mol (oxygen)` } },
+      { fig: figTube, cap: R`Cotton plugs soaked in NH₃ and HCl solutions are placed at the ends of a 1 m tube. NH₃ moves √(36.5/17) ≈ 1.47 times faster, so the white ring of NH₄Cl appears about 59 cm from the ammonia end.` },
       { check: { q: R`Which diffuses faster: NH₃ or HCl? Where does the white ring of NH₄Cl form in a tube with the two gases released from opposite ends?`, ans: R`NH₃ (M = 17) diffuses faster than HCl (36.5), so the ring forms nearer the HCl end.` } }
     ] },
 
@@ -103,6 +125,7 @@ JEE.book('chemistry', 'states-of-matter', {
       ] },
       { ex: { q: R`Find the total kinetic energy of 1 mol of a gas at 300 K.`,
         steps: [R`\(E = \frac32RT = 1.5\times8.314\times300\).`], ans: R`≈ 3741 J (the same for every gas at this temperature)` } },
+      R`The theory explains each gas law. With more molecules (Avogadro) or a smaller volume (Boyle), more molecules hit each square metre of wall per second, so the pressure rises. Raising T raises the average kinetic energy, so the molecules hit harder and more often (Gay-Lussac). And because the molecules do not interact, each gas in a mixture behaves as if alone (Dalton).`,
       { check: { q: R`Two gases are at the same temperature. Do their molecules have the same average speed? The same average kinetic energy?`, ans: R`Same average kinetic energy, but lighter molecules move faster.` } }
     ] },
 
@@ -113,6 +136,8 @@ JEE.book('chemistry', 'states-of-matter', {
       R`All three speeds increase as \(\sqrt T\) and decrease as \(1/\sqrt M\). Use M in kg/mol to get speeds in m/s.`,
       { ex: { q: R`Find the rms speed of N₂ at 300 K. At what temperature would O₂ have the same rms speed?`,
         steps: [R`\(u_{rms} = \sqrt{\dfrac{3\times8.314\times300}{0.028}}\).`, R`Equal speeds need equal T/M: \(T = 300\times\dfrac{32}{28}\).`], ans: R`≈ 517 m/s; ≈ 343 K` } },
+      { ex: { q: R`Show that the rms speed of H₂ at 50 K equals that of O₂ at 800 K.`,
+        steps: [R`\(u_{rms} \propto \sqrt{T/M}\): for H₂, √(50/2) = 5; for O₂, √(800/32) = 5.`], ans: R`Equal` } },
       { check: { q: R`By what factor must T increase to double u_rms?`, ans: R`4.` } }
     ] },
 
@@ -122,6 +147,8 @@ JEE.book('chemistry', 'states-of-matter', {
       { points: [R`<b>Z < 1:</b> the gas is more compressible than ideal; attractive forces dominate (easily liquefiable gases like CO₂, NH₃).`, R`<b>Z > 1:</b> less compressible; the finite size of molecules (repulsion) dominates.`, R`Two faulty assumptions of the ideal model cause this: molecules do have volume, and they do attract each other.`] },
       { ex: { q: R`1 mol of a gas at 0 °C and 100 atm occupies 0.2 L. Find Z and say which force dominates.`,
         steps: [R`\(Z = \dfrac{100\times0.2}{0.0821\times273}\).`], ans: R`Z ≈ 0.89 < 1: attractions dominate` } },
+      { ex: { q: R`Why is Z for hydrogen greater than 1 at all pressures at room temperature, while for CO₂ it first falls below 1?`,
+        steps: [R`H₂ molecules attract each other very weakly (small a), so the only important correction is their volume (b), which makes the gas harder to compress: Z > 1.`, R`CO₂ has strong attractions (large a). At moderate pressure these pull the molecules together (Z < 1); only at very high pressure does their own volume take over.`], ans: R`The balance between attraction (a) and size (b)` } },
       { check: { q: R`Under what conditions do real gases behave most nearly ideally?`, ans: R`Low pressure and high temperature.` } }
     ] },
 
@@ -134,6 +161,9 @@ JEE.book('chemistry', 'states-of-matter', {
       { ex: { q: R`Find the pressure of 1 mol of CO₂ in 1 L at 300 K using the van der Waals equation (a = 3.59, b = 0.0427), and compare with the ideal value.`,
         steps: [R`\(P = \dfrac{nRT}{V - nb} - \dfrac{an^2}{V^2} = \dfrac{24.63}{0.9573} - 3.59\).`], ans: R`≈ 22.1 atm, versus 24.6 atm for an ideal gas` } },
       { adv: R`At low pressure, Z ≈ 1 + (b − a/RT)·(P/RT)·… so Z < 1 when a/RT > b. The <b>Boyle temperature</b> \(T_B = \dfrac{a}{Rb}\) is where a real gas obeys Boyle's law over a wide range. The <b>critical constants</b> are \(T_c = \dfrac{8a}{27Rb}\), \(P_c = \dfrac{a}{27b^2}\), \(V_c = 3b\). For CO₂, \(T_c\) ≈ 303 K: above it, CO₂ cannot be liquefied however much it is compressed. A gas must be cooled below \(T_c\) before pressure can liquefy it.` },
+      { ex: { q: R`The van der Waals constants are: NH₃ a = 4.17, b = 0.037; N₂ a = 1.39, b = 0.039 (L, atm, mol units). Which is more easily liquefied, and which has the larger molecules?`,
+        steps: [R`a measures attraction: NH₃ (hydrogen bonding) has the larger a, so it liquefies more easily.`, R`b measures size: N₂ has the slightly larger b.`], ans: R`NH₃ liquefies more easily; N₂ molecules are slightly larger` } },
+      R`Liquefaction of gases uses these ideas. Ammonia and carbon dioxide (large a, high T_c) are liquefied simply by compressing them at room temperature. Oxygen, nitrogen and hydrogen have critical temperatures far below room temperature, so they must first be cooled, for example by letting the compressed gas expand through a nozzle (the Joule–Thomson effect), before pressure can turn them into liquids.`,
       { check: { q: R`Which gas has the larger value of a: NH₃ or He?`, ans: R`NH₃ (strong intermolecular forces, including hydrogen bonding).` } }
     ] },
 
@@ -147,6 +177,8 @@ JEE.book('chemistry', 'states-of-matter', {
       { fig: figIMF, cap: R`Two molecules attract at moderate distances and repel strongly when pushed together; the balance gives a potential-energy well.` },
       R`<b>Effect on properties:</b> stronger intermolecular forces give higher boiling and melting points, lower vapour pressure, higher viscosity and surface tension. London forces grow with the size (polarisability) of the molecule: boiling points rise from F₂ to I₂, and from CH₄ to C₄H₁₀. Water's unusually high boiling point comes from hydrogen bonding.`,
       R`<b>Thermal energy versus intermolecular forces</b> decides the state: when forces dominate, the substance is solid or liquid; when thermal energy dominates, it is a gas.`,
+      { ex: { q: R`Arrange CH₄, SiH₄, GeH₄ and SnH₄ in order of increasing boiling point, and explain why HF boils higher than HCl.`,
+        steps: [R`The group 14 hydrides are non-polar; London forces grow with size and number of electrons: CH₄ < SiH₄ < GeH₄ < SnH₄.`, R`HF molecules form strong hydrogen bonds; HCl has only dipole–dipole and London forces.`], ans: R`CH₄ < SiH₄ < GeH₄ < SnH₄; hydrogen bonding in HF` } },
       { check: { q: R`Why does H₂O (M = 18) boil at 100 °C while H₂S (M = 34) boils at −60 °C?`, ans: R`Water molecules are linked by strong hydrogen bonds; H₂S has only weaker dipole–dipole and London forces.` } }
     ] },
 
@@ -154,6 +186,8 @@ JEE.book('chemistry', 'states-of-matter', {
       R`Molecules at the surface of a liquid with enough energy escape into the vapour (evaporation). In a closed container, evaporation and condensation reach equilibrium; the pressure of the vapour then is the liquid's <b>vapour pressure</b>. It increases with temperature and is lower for liquids with stronger intermolecular forces.`,
       { fig: figVP, cap: R`A liquid boils when its vapour pressure equals the external pressure. At 1 atm (760 mm Hg) this is its normal boiling point.` },
       R`<b>Boiling point:</b> the temperature at which the vapour pressure equals the external pressure. At 1 atm it is the normal boiling point (at 1 bar, the standard boiling point). At high altitude (lower pressure) water boils below 100 °C, so food takes longer to cook; in a pressure cooker (higher pressure) it boils above 100 °C, so food cooks faster.`,
+      { ex: { q: R`Arrange acetone, ethanol and water in order of decreasing vapour pressure at 25 °C.`,
+        steps: [R`Acetone has no O–H, so no hydrogen bonds between its molecules; ethanol has one O–H per molecule; water can form up to four hydrogen bonds per molecule.`], ans: R`Acetone > ethanol > water` } },
       { check: { q: R`Which has the higher vapour pressure at room temperature: diethyl ether or water?`, ans: R`Diethyl ether (weaker intermolecular forces, lower boiling point).` } }
     ] },
 
@@ -161,6 +195,11 @@ JEE.book('chemistry', 'states-of-matter', {
       R`<b>Surface tension</b> γ: a molecule inside a liquid is pulled equally in all directions, but one at the surface is pulled inward. The surface behaves like a stretched membrane and tries to shrink to the smallest area. γ is the force per unit length acting along the surface (N/m), or the energy needed to increase the surface area by 1 m² (J/m²). It explains spherical drops, capillary rise, and why some insects walk on water. Surface tension <b>decreases</b> as temperature rises (molecules have more kinetic energy) and is lowered by detergents.`,
       R`<b>Viscosity</b> η: the resistance of a liquid to flow, due to friction between layers moving at different speeds. The force between layers is \(F = \eta A\dfrac{dv}{dx}\) (η in Pa s; 1 poise = 0.1 Pa s). Liquids with strong intermolecular forces (glycerol, honey) are very viscous. Viscosity <b>decreases</b> as temperature rises.`,
       { table: { head: [R`Liquid (20 °C)`, R`Surface tension (N/m)`, R`Viscosity (mPa s)`], rows: [[R`Water`, R`0.073`, R`1.0`], [R`Ethanol`, R`0.022`, R`1.2`], [R`Glycerol`, R`0.063`, R`1490`], [R`Mercury`, R`0.487`, R`1.55`]] } },
+      { ex: { q: R`How high does water rise in a clean glass capillary of radius 0.5 mm? (γ = 0.073 N/m, contact angle 0°)`,
+        steps: [R`\(h = \dfrac{2\gamma\cos\theta}{r\rho g} = \dfrac{2\times0.073}{0.0005\times1000\times9.8}\).`], ans: R`≈ 3.0 cm` } },
+      { ex: { q: R`Why is glycerol about 1500 times as viscous as water?`,
+        steps: [R`Each glycerol molecule has three –OH groups, so it forms many hydrogen bonds with its neighbours. Its chains of molecules tangle and hold together strongly, resisting flow.`], ans: R`Extensive hydrogen bonding between large molecules` } },
+      { tip: R`Both surface tension and viscosity fall as temperature rises, because faster-moving molecules escape each other's attractions more easily.` },
       { check: { q: R`Why are falling raindrops nearly spherical?`, ans: R`Surface tension minimises the surface area, and a sphere has the smallest area for a given volume.` } }
     ] }
   ],
@@ -173,7 +212,8 @@ JEE.book('chemistry', 'states-of-matter', {
     R`Real gases: Z = PV/nRT; Z < 1 attractions, Z > 1 size; ideal at low P, high T.`,
     R`van der Waals: (P + an²/V²)(V − nb) = nRT; T_B = a/Rb, T_c = 8a/27Rb.`,
     R`Intermolecular forces: London, dipole–dipole, dipole–induced dipole, H-bonding; stronger forces raise b.p., viscosity and surface tension.`,
-    R`Liquids: vapour pressure rises with T; boils when VP = external P; surface tension and viscosity fall with T.`
+    R`Liquids: vapour pressure rises with T; boils when VP = external P; surface tension and viscosity fall with T.`,
+    R`Graham: the NH₄Cl ring forms where the distances travelled are in the ratio √(M_HCl/M_NH₃); u_rms is equal for gases with equal T/M.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §9.2 Relating Pressure, Volume, Amount, and Temperature: The Ideal Gas Law`, url: 'https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law' },
