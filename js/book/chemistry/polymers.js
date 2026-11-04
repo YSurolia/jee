@@ -30,12 +30,17 @@ JEE.book('chemistry', 'polymers', {
   sections: [
     { h: R`Classification by source`, t: [0], blocks: [
       { points: [R`<b>Natural polymers</b> are found in plants and animals: proteins, cellulose, starch, natural rubber, some resins.`, R`<b>Semi-synthetic polymers</b> are made by chemically modifying natural ones: cellulose acetate (rayon), cellulose nitrate, vulcanised rubber.`, R`<b>Synthetic polymers</b> are man-made: polythene, PVC, nylon-6,6, Buna-S, Bakelite.`] },
+      R`A good way to picture a polymer is a necklace of beads: each bead is a monomer unit and the string is the chain of covalent bonds. A single polythene chain may contain tens of thousands of –CH₂–CH₂– beads. The properties of the material depend on how long the chains are, how they are shaped, and how strongly neighbouring chains hold on to each other.`,
+      { ex: { q: R`Classify by source: (a) starch (b) cellulose acetate (c) Buna-S (d) vulcanised rubber (e) proteins.`,
+        steps: [R`Starch and proteins occur in living things; cellulose acetate and vulcanised rubber are chemically modified natural polymers; Buna-S is made entirely from petrochemicals.`], ans: R`(a) natural (b) semi-synthetic (c) synthetic (d) semi-synthetic (e) natural` } },
       { check: { q: R`Is rayon natural, semi-synthetic or synthetic?`, ans: R`Semi-synthetic (made from cellulose).` } }
     ] },
 
     { h: R`Classification by structure`, t: [0], blocks: [
       { fig: figStructure, cap: R`The shape of the chains decides how closely they pack and how the polymer behaves on heating.` },
       { points: [R`<b>Linear polymers</b> have long straight chains that pack closely: high density, high melting point, high tensile strength (high-density polythene, PVC).`, R`<b>Branched-chain polymers</b> have side chains that prevent close packing: lower density and melting point (low-density polythene).`, R`<b>Cross-linked (network) polymers</b> have strong covalent bonds between chains (usually from bi- or tri-functional monomers): hard, rigid and brittle (Bakelite, melamine, vulcanised rubber).`] },
+      { ex: { q: R`Classify by structure, and predict which is hardest: HDPE, LDPE, Bakelite.`,
+        steps: [R`HDPE: long unbranched chains (linear). LDPE: side branches (branched). Bakelite: chains joined by –CH₂– bridges in three dimensions (cross-linked).`, R`Covalent cross-links lock the chains in place, giving a rigid network.`], ans: R`Linear, branched, cross-linked; Bakelite is the hardest` } },
       { check: { q: R`Why does LDPE have a lower density than HDPE?`, ans: R`Its branched chains cannot pack closely.` } }
     ] },
 
@@ -46,14 +51,21 @@ JEE.book('chemistry', 'polymers', {
         [R`Fibres`, R`strong (H-bonds, dipole) and close packing; crystalline`, R`high tensile strength, thread-forming`, R`nylon-6,6, polyester (terylene)`],
         [R`Thermoplastics`, R`intermediate`, R`soften on heating, harden on cooling (repeatedly)`, R`polythene, polystyrene, PVC`],
         [R`Thermosetting polymers`, R`extensive cross-linking on heating`, R`set permanently on moulding; cannot be re-softened`, R`Bakelite, urea–formaldehyde resin`]] } },
+      R`<b>Thermoplastics versus thermosets.</b> In a thermoplastic the chains are held only by intermolecular forces, so heating lets them slide past each other and the plastic can be melted and remoulded many times; this is why polythene and PET bottles can be recycled. In a thermoset, heating forms permanent covalent cross-links; once set, it chars rather than melts.`,
+      { ex: { q: R`Arrange in order of increasing intermolecular forces: nylon-6,6, Buna-S, polythene.`,
+        steps: [R`Buna-S is an elastomer (weakest forces, a few cross-links); polythene is a thermoplastic (van der Waals forces between long chains); nylon-6,6 is a fibre with strong hydrogen bonds between chains.`], ans: R`Buna-S < polythene < nylon-6,6` } },
       { check: { q: R`Why can't a thermosetting plastic be remoulded?`, ans: R`On heating it forms an infusible, cross-linked network that cannot soften again.` } }
     ] },
 
     { h: R`Addition (chain-growth) polymerisation: free-radical mechanism`, t: [1], blocks: [
       R`In <b>addition polymerisation</b>, monomers with double or triple bonds (alkenes, dienes and their derivatives) add to each other with no loss of atoms. The polymer has the same empirical formula as the monomer. Chains grow quickly by adding one monomer at a time to an active end (a free radical, cation or anion): chain-growth polymerisation.`,
       { fig: figRadical, cap: R`Free-radical polymerisation of ethene with benzoyl peroxide as initiator.` },
+      { points: [R`<b>Initiation:</b> on heating, benzoyl peroxide splits into phenyl radicals (C₆H₅•), which add to an ethene molecule to give a new, larger radical.`, R`<b>Propagation:</b> this radical adds to another ethene, then another, and so on; each step makes a longer radical. Thousands of steps can happen in a fraction of a second.`, R`<b>Termination:</b> two radicals meet and combine (or one takes a hydrogen atom from the other), so the chain stops growing.`] },
       { ex: { q: R`A sample of polythene has an average molar mass of 28 000 g/mol. What is its average degree of polymerisation?`,
         steps: [R`Repeating unit –CH₂–CH₂– has mass 28 g/mol.`, R`n = 28 000/28 = 1000.`], ans: R`1000` } },
+      { ex: { q: R`Identify the monomer of the polymer –[CH₂–CH(CH₃)]ₙ–, and find the degree of polymerisation of a sample of PVC with average molar mass 125 000 g/mol.`,
+        steps: [R`The repeat unit CH₂–CH(CH₃) comes from CH₂=CH–CH₃: propene (giving polypropene).`, R`PVC repeat unit –CH₂–CHCl– has molar mass 62.5 g/mol; n = 125 000/62.5.`], ans: R`Propene; n = 2000` } },
+      { tip: R`To find the monomer of an addition polymer, take the repeating unit and put back the double bond between its two main-chain carbons: –CH₂–CHX– comes from CH₂=CHX.` },
       { check: { q: R`What is the role of benzoyl peroxide in the polymerisation of ethene?`, ans: R`It is the initiator: it decomposes into free radicals that start the chain.` } }
     ] },
 
@@ -66,6 +78,8 @@ JEE.book('chemistry', 'polymers', {
         R`<b>Polyacrylonitrile (PAN, orlon, acrilan)</b>: CH₂=CHCN with a peroxide catalyst; a substitute for wool in fibres.`,
         R`<b>PVC</b>: CH₂=CHCl; pipes, insulation, raincoats, flooring. <b>Polystyrene</b>: insulation, packaging, toys.`
       ] },
+      { ex: { q: R`Why is Teflon used to coat non-stick pans?`,
+        steps: [R`The C–F bond is one of the strongest single bonds, so PTFE does not react with food, acids or bases, even when hot.`, R`The fluorine atoms form a tightly packed, non-polar surface with very weak attractions to other substances, so food does not stick.`], ans: R`It is chemically inert, stable to heat and has a very low-friction, non-stick surface` } },
       { check: { q: R`Which catalyst is used to make HDPE?`, ans: R`Ziegler–Natta catalyst (Al(C₂H₅)₃ + TiCl₄).` } }
     ] },
 
@@ -77,6 +91,9 @@ JEE.book('chemistry', 'polymers', {
         [R`Empirical formula`, R`same as monomer`, R`different`],
         [R`Growth`, R`fast, at a chain end`, R`step by step between any two units`],
         [R`Examples`, R`polythene, PVC, Teflon`, R`nylon, terylene, Bakelite`]] } },
+      R`Why must the monomers have <b>two</b> functional groups? A molecule with only one reactive group can join just one partner and the chain stops at once. With a reactive group at each end, every product still has two free ends that can react again, so the chain keeps growing. A monomer with three groups (such as glycerol or phenol, which can react at three ring positions) can branch out in three directions and form a cross-linked network.`,
+      { ex: { q: R`Classify the polymerisation as addition or condensation: (a) PVC (b) nylon-6 (c) terylene (d) polystyrene (e) Bakelite.`,
+        steps: [R`PVC and polystyrene come from C=C monomers with no by-product. Nylon-6 (from caprolactam), terylene and Bakelite link bifunctional monomers; terylene and Bakelite lose water. (Nylon-6 is a ring-opening step-growth polymer.)`], ans: R`(a) addition (b) condensation (c) condensation (d) addition (e) condensation` } },
       { check: { q: R`Name the small molecule eliminated in forming nylon-6,6.`, ans: R`Water.` } }
     ] },
 
@@ -87,12 +104,16 @@ JEE.book('chemistry', 'polymers', {
       R`The strong hydrogen bonds between –NH– and C=O of neighbouring chains make nylons strong fibres.`,
       { ex: { q: R`What is the molar mass of the repeating unit of nylon-6,6?`,
         steps: [R`Repeat unit –NH(CH₂)₆NH–CO(CH₂)₄CO– = C₁₂H₂₂N₂O₂.`, R`12 × 12.01 + 22 × 1.008 + 2 × 14.01 + 2 × 16.00 = 226.3 g/mol.`], ans: R`≈ 226 g/mol` } },
+      { ex: { q: R`How many water molecules are released when 100 molecules of hexamethylenediamine react completely with 100 molecules of adipic acid to form one chain?`,
+        steps: [R`Each new amide bond releases one H₂O. Joining 200 molecules into one chain needs 199 bonds.`], ans: R`199 (about 2n for n repeat units)` } },
       { check: { q: R`Why is it called nylon-6,6?`, ans: R`Both monomers (hexamethylenediamine and adipic acid) contain six carbon atoms.` } }
     ] },
 
     { h: R`Polyesters`, t: [2], blocks: [
       R`<b>Polyesters</b> are made by condensing a diol with a dicarboxylic acid. <b>Terylene (Dacron)</b> is made from <b>ethylene glycol</b> (ethane-1,2-diol) and <b>terephthalic acid</b> (benzene-1,4-dicarboxylic acid) at 420–460 K with a zinc acetate–antimony trioxide catalyst. It is crease-resistant and used in fabrics (blended with cotton and wool) and in safety helmets. <b>Glyptal</b> (from ethylene glycol and phthalic acid) is used in paints and lacquers.`,
       { mol: [['OCCO', 'ethylene glycol'], ['OC(=O)C1=CC=C(C=C1)C(=O)O', 'terephthalic acid']], w: 180, h: 110, cap: R`Monomers of terylene (Dacron).` },
+      { ex: { q: R`Find the molar mass of the repeating unit of terylene, –[OCH₂CH₂O–CO–C₆H₄–CO]–.`,
+        steps: [R`The repeat unit is C₁₀H₈O₄.`, R`10 × 12.01 + 8 × 1.008 + 4 × 16.00.`], ans: R`≈ 192 g/mol` } },
       { check: { q: R`Name the monomers of terylene.`, ans: R`Ethylene glycol and terephthalic acid.` } }
     ] },
 
@@ -100,6 +121,8 @@ JEE.book('chemistry', 'polymers', {
       R`Phenol and formaldehyde (methanal) condense in the presence of an acid or base catalyst. First o- and p-hydroxymethylphenols form; these join through –CH₂– bridges to give a linear product, <b>Novolac</b> (used in paints). On heating with more formaldehyde, Novolac becomes extensively <b>cross-linked</b>, forming the infusible thermosetting solid <b>Bakelite</b>.`,
       { mol: [['OC1=CC=CC=C1', 'phenol'], ['C=O', 'methanal'], ['OCC1=CC=CC=C1O', 'o-hydroxymethylphenol']], w: 130, h: 100, cap: R`Phenol and methanal form hydroxymethylphenols, which link through –CH₂– groups.` },
       R`Bakelite is used for combs, phonograph records, electrical switches and handles of utensils. A related thermoset, <b>melamine–formaldehyde</b>, makes unbreakable crockery.`,
+      { ex: { q: R`Novolac can be softened on heating, but Bakelite cannot. Explain.`,
+        steps: [R`Novolac is a mostly linear chain of phenol units joined by –CH₂– bridges at the ortho and para positions; its chains can slide apart when heated.`, R`With more formaldehyde, the remaining ring positions also form –CH₂– bridges, joining the chains into one three-dimensional network.`], ans: R`Novolac is linear (thermoplastic); Bakelite is cross-linked (thermosetting)` } },
       { check: { q: R`Is Bakelite a thermoplastic or a thermosetting polymer?`, ans: R`Thermosetting (cross-linked network).` } }
     ] },
 
@@ -107,6 +130,9 @@ JEE.book('chemistry', 'polymers', {
       R`A <b>homopolymer</b> is made from a single kind of monomer (polythene, PVC, nylon-6). A <b>copolymer</b> contains more than one kind of monomer unit (nylon-6,6 strictly has two). Chain-growth copolymers are made by polymerising a mixture of monomers: they have properties quite different from the homopolymers.`,
       { points: [R`<b>Buna-S</b> (styrene–butadiene rubber, SBR): buta-1,3-diene + styrene. Tough; a substitute for natural rubber in tyres, footwear, cable insulation.`, R`<b>Buna-N</b> (nitrile rubber): buta-1,3-diene + acrylonitrile. Resistant to petrol, lubricating oil and organic solvents: oil seals, tank linings.`] },
       { mol: [['C=CC=C', 'buta-1,3-diene'], ['C=CC1=CC=CC=C1', 'styrene'], ['C=CC#N', 'acrylonitrile']], w: 130, h: 100, cap: R`Buna-S = butadiene + styrene; Buna-N = butadiene + acrylonitrile. "Bu" = butadiene, "Na" = sodium (the old catalyst).` },
+      { ex: { q: R`Identify the monomers of –[CH₂–CH=CH–CH₂–CH₂–CH(C₆H₅)]ₙ–.`,
+        steps: [R`Split the repeat unit: CH₂–CH=CH–CH₂ (four carbons with a central double bond) comes from 1,4-addition of buta-1,3-diene; CH₂–CH(C₆H₅) comes from styrene.`], ans: R`Buta-1,3-diene and styrene (Buna-S)` } },
+      { mistake: R`Writing the butadiene unit in a polymer as CH₂=CH–CH=CH₂. In the chain, 1,4-addition moves the double bond to the middle: –CH₂–CH=CH–CH₂–.` },
       { check: { q: R`Which copolymer is used for oil seals, and why?`, ans: R`Buna-N: it resists swelling in oil and solvents.` } }
     ] },
 
@@ -114,6 +140,9 @@ JEE.book('chemistry', 'polymers', {
       R`<b>Natural rubber</b> is obtained as latex (a colloidal dispersion) from rubber trees. It is a linear polymer of <b>isoprene</b> (2-methylbuta-1,3-diene), <b>cis-1,4-polyisoprene</b>: –[CH₂–C(CH₃)=CH–CH₂]ₙ–. The cis arrangement makes the chains coil; they are held only by weak van der Waals forces, so rubber is elastic.`,
       { mol: [['C=CC(C)=C', 'isoprene'], ['C=CC(Cl)=C', 'chloroprene']], w: 140, h: 100, cap: R`Isoprene (natural rubber) and chloroprene (neoprene).` },
       R`Raw natural rubber becomes soft and sticky when warm, brittle when cold, has high water absorption and is attacked by oxidising agents. <b>Vulcanisation</b> (Charles Goodyear): heating rubber with sulphur (and an accelerator such as zinc oxide) at 373–415 K forms <b>sulphur cross-links</b> at the reactive allylic positions of the double bonds. The rubber becomes stiffer, stronger and less sticky over a wider temperature range. Tyre rubber contains about 5% S; more sulphur gives hard ebonite.`,
+      { ex: { q: R`Why is vulcanised rubber used for tyres instead of natural rubber?`,
+        steps: [R`Raw rubber's chains are held only by weak forces, so it becomes sticky in summer, brittle in winter and wears quickly.`, R`Sulphur bridges between chains stop them sliding permanently: the rubber stays elastic over a wider temperature range, is harder, stronger and more resistant to abrasion and oxidation.`], ans: R`Cross-linking makes it tougher, less sticky and stable over a wide range of temperatures` } },
+      { mistake: R`Thinking all polyisoprene is rubbery. The trans isomer (gutta-percha) has straight chains that pack into crystals; it is hard and inelastic. Only cis-1,4-polyisoprene coils and stretches like rubber.` },
       { check: { q: R`What is the monomer of natural rubber, and what is its configuration in the polymer?`, ans: R`Isoprene; cis-1,4 linkage.` } }
     ] },
 
@@ -128,6 +157,7 @@ JEE.book('chemistry', 'polymers', {
 
     { h: R`Cellulose as a natural polymer`, t: [4], blocks: [
       R`<b>Cellulose</b> is the most abundant natural polymer, the structural material of plant cell walls (cotton is almost pure cellulose). It is a linear condensation polymer of <b>β-D-glucose</b> units joined by β(1→4) glycosidic links; hydrogen bonds between chains give strong fibres. Chemical modification gives semi-synthetic polymers: <b>cellulose acetate</b> (rayon, films), <b>cellulose nitrate</b> (gun-cotton, celluloid), and regenerated cellulose such as viscose rayon.`,
+      R`Starch and cellulose are both polymers of glucose, but starch uses α-glucose links that coil the chain into a helix, which our enzymes can digest, while cellulose uses β-links that keep the chains straight and lets them hydrogen-bond side by side into tough fibres. Humans cannot digest cellulose; cows and termites rely on microbes that can.`,
       { check: { q: R`Which monomer makes up cellulose?`, ans: R`β-D-glucose.` } }
     ] },
 
@@ -146,6 +176,7 @@ JEE.book('chemistry', 'polymers', {
         [R`Melamine–formaldehyde`, R`melamine + formaldehyde`, R`condensation, thermoset`, R`unbreakable crockery`],
         [R`Natural rubber`, R`isoprene (cis)`, R`addition`, R`tyres (after vulcanisation)`],
         [R`Neoprene`, R`chloroprene`, R`addition`, R`hoses, gaskets`]] } },
+      R`Read the table by asking two questions for each polymer: is it made by addition or condensation, and what does its structure (linear, branched or cross-linked) and its intermolecular forces make it good for? The answers explain the uses. Strong, hydrogen-bonded linear chains make fibres (nylon); inert, non-polar chains make containers and coatings (polythene, Teflon); rigid networks make heat-resistant fittings (Bakelite).`,
       { adv: [R`<b>Molar mass of polymers:</b> a polymer sample contains chains of different lengths, so we use averages. Number-average Mₙ = ΣNᵢMᵢ/ΣNᵢ; weight-average M_w = ΣNᵢMᵢ²/ΣNᵢMᵢ. The ratio M_w/Mₙ is the <b>polydispersity index</b> (PDI): 1 for natural polymers (monodisperse), more than 1 for synthetic polymers.`, R`Example: 30 molecules of mass 20 000 and 20 molecules of 30 000: Mₙ = (30 × 20 000 + 20 × 30 000)/50 = 24 000; M_w = (30 × 20 000² + 20 × 30 000²)/(1.2 × 10⁶) = 25 000; PDI = 1.04.`] },
       { check: { q: R`Which polymer is used to make unbreakable crockery?`, ans: R`Melamine–formaldehyde resin.` } }
     ] },
@@ -154,12 +185,15 @@ JEE.book('chemistry', 'polymers', {
       R`Most synthetic polymers resist degradation and accumulate as solid waste. <b>Biodegradable polymers</b> contain functional groups (often ester or amide links) like those in biopolymers, so microorganisms can break them down:`,
       { points: [R`<b>PHBV</b> (poly-β-hydroxybutyrate-co-β-hydroxyvalerate): a copolymer of 3-hydroxybutanoic acid and 3-hydroxypentanoic acid. Used in packaging, orthopaedic devices and controlled drug release.`, R`<b>Nylon-2-nylon-6</b>: an alternating polyamide copolymer of glycine (H₂N–CH₂–COOH) and aminocaproic acid (H₂N–(CH₂)₅–COOH).`] },
       { mol: [['CC(O)CC(=O)O', '3-hydroxybutanoic acid'], ['CCC(O)CC(=O)O', '3-hydroxypentanoic acid'], ['NCC(=O)O', 'glycine'], ['NCCCCCC(=O)O', 'aminocaproic acid']], w: 140, h: 100, cap: R`Monomers of PHBV (first two) and nylon-2-nylon-6 (last two).` },
+      R`Why do these break down? Their chains contain ester or amide links, the same kinds of bond found in natural biopolymers. Enzymes of bacteria and fungi recognise and hydrolyse these links, cutting the chains into small molecules that can be metabolised. A polythene chain has only C–C and C–H bonds, which few organisms can attack, so it can last for centuries.`,
+      { ex: { q: R`Which of these polymers is biodegradable: polythene, PHBV, PVC, nylon-2-nylon-6?`,
+        steps: [R`PHBV is a polyester; nylon-2-nylon-6 is a polyamide made from an amino acid (glycine): both contain hydrolysable links that microbes can cut.`, R`Polythene and PVC have all-carbon backbones.`], ans: R`PHBV and nylon-2-nylon-6` } },
       { check: { q: R`Name the monomers of nylon-2-nylon-6.`, ans: R`Glycine and aminocaproic acid (6-aminohexanoic acid).` } }
     ] },
 
     { h: R`Applications of polymers`, t: [6], blocks: [
       R`Polymers are used in almost every part of modern life: packaging (polythene, polystyrene), construction (PVC pipes, insulation), clothing (nylon, polyester, acrylic fibres), transport (tyres, lightweight composites), electrical insulation (PVC, Bakelite), medicine (sutures, implants, drug delivery with biodegradable polymers), household goods (non-stick pans, crockery) and adhesives and paints (glyptal, epoxy resins).`,
-      R`The problem of plastic waste is addressed by recycling, using biodegradable polymers, and reducing single-use plastics.`,
+      R`The problem of plastic waste is addressed by recycling, using biodegradable polymers, and reducing single-use plastics. Thermoplastics such as PET (terylene-type polyester), HDPE and polypropene can be melted and reshaped, which is why they carry recycling codes; thermosets and cross-linked rubbers cannot be remelted and are much harder to recycle, so used tyres are often shredded for road surfaces instead.`,
       { check: { q: R`Give one advantage of biodegradable polymers in medicine.`, ans: R`They can be used as sutures or drug carriers that the body breaks down safely, so they need not be removed.` } }
     ] }
   ],
@@ -168,7 +202,8 @@ JEE.book('chemistry', 'polymers', {
     R`Addition (chain-growth, free radical: initiation, propagation, termination): LDPE (high P, peroxide), HDPE (Ziegler–Natta), Teflon, PAN, PVC, polystyrene.`,
     R`Condensation (step-growth, loses H₂O etc.): nylon-6,6 (hexamethylenediamine + adipic acid), nylon-6 (caprolactam), terylene (ethylene glycol + terephthalic acid), Bakelite (phenol + HCHO; Novolac → cross-linked).`,
     R`Copolymers: Buna-S (butadiene + styrene), Buna-N (butadiene + acrylonitrile). Natural rubber: cis-1,4-polyisoprene; vulcanisation with S (cross-links). Neoprene from chloroprene.`,
-    R`Biodegradable: PHBV (3-hydroxybutanoic + 3-hydroxypentanoic acids), nylon-2-nylon-6 (glycine + aminocaproic acid). Mₙ = ΣNM/ΣN; M_w = ΣNM²/ΣNM; PDI = M_w/Mₙ.`
+    R`Biodegradable: PHBV (3-hydroxybutanoic + 3-hydroxypentanoic acids), nylon-2-nylon-6 (glycine + aminocaproic acid). Mₙ = ΣNM/ΣN; M_w = ΣNM²/ΣNM; PDI = M_w/Mₙ.`,
+    R`Monomer from an addition polymer: restore the C=C between the two main-chain carbons; degree of polymerisation n = M(polymer)/M(repeat unit).`
   ],
   refs: [
     { t: R`OpenStax Organic Chemistry, §31.1 Chain-Growth Polymers`, url: 'https://openstax.org/books/organic-chemistry/pages/31-1-chain-growth-polymers' },
