@@ -40,6 +40,18 @@ var figMicelle = (function () {
   return D.svg(400, 200, p, 'A soap micelle');
 })();
 
+var figElectro = D.svg(320, 210, (function () {
+  var out = [];
+  out.push(D.path('M90,40 L90,160 Q90,190 120,190 L200,190 Q230,190 230,160 L230,40', { color: 'm', w: 2 }));
+  out.push(D.path('M120,40 L120,155 Q120,165 130,165 L190,165 Q200,165 200,155 L200,40', { color: 'm', w: 2 }));
+  out.push(D.rect(92, 90, 26, 70, { color: 'o', fill: 'soft', w: 0.6 }), D.rect(202, 90, 26, 70, { color: 'o', fill: 'soft', w: 0.6 }), D.rect(118, 163, 84, 25, { color: 'o', fill: 'soft', w: 0.6 }));
+  out.push(D.line(105, 20, 105, 70, { color: 'k', w: 3 }), D.line(215, 20, 215, 70, { color: 'k', w: 3 }));
+  out.push(D.text(105, 12, '+ anode', { size: 11, color: 'r', bold: true }), D.text(215, 12, '− cathode', { size: 11, color: 'b', bold: true }));
+  [[106, 150], [180, 176], [208, 96], [220, 104], [212, 116], [222, 126], [208, 134], [218, 144], [210, 154]].forEach(function (p) { out.push(D.circle(p[0], p[1], 4, { color: 'r', fill: 'soft', w: 1 })); });
+  out.push(D.arrow(240, 140, 240, 100, { color: 'r', w: 1.6, head: 6 }), D.text(250, 120, 'Fe(OH)₃ particles (+)', { size: 10, color: 'r', anchor: 'start' }), D.text(250, 134, 'gather at the cathode', { size: 10, color: 'r', anchor: 'start' }));
+  return out;
+})(), 'Electrophoresis of a positive sol in a U-tube');
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'surface-chemistry', {
   intro: [
@@ -51,6 +63,8 @@ JEE.book('chemistry', 'surface-chemistry', {
       R`<b>Adsorption</b> is the accumulation of molecules of a substance at the surface of another, rather than in its bulk. The substance adsorbed is the <b>adsorbate</b> and the surface material is the <b>adsorbent</b> (charcoal, silica gel, alumina, finely divided metals). Removing adsorbed molecules is <b>desorption</b>.`,
       R`<b>Absorption</b> is different: the substance spreads uniformly through the bulk (water absorbed by a sponge, ammonia by water). When both happen together, it is called <b>sorption</b>. Silica gel adsorbs water vapour; anhydrous CaCl₂ absorbs it.`,
       R`Surface particles have unbalanced attractive forces, so adsorption lowers the surface energy: it is always <b>exothermic</b> (ΔH < 0). Although the entropy of the adsorbate decreases (ΔS < 0), ΔG = ΔH − TΔS is negative while ΔH outweighs TΔS; as adsorption continues, ΔH becomes less negative until ΔG = 0 and equilibrium is reached.`,
+      { ex: { q: R`Classify each as adsorption, absorption or sorption: (a) silica gel taking up water vapour (b) anhydrous CaCl₂ taking up water (c) a chalk stick dipped in ink (d) dye picked up by cotton.`,
+        steps: [R`Adsorption stays on the surface; absorption spreads through the bulk.`, R`In (c) the colour stays on the surface while the liquid soaks in.`], ans: R`(a) adsorption (b) absorption (c) both: adsorption of the dye and absorption of the solvent (d) sorption` } },
       { check: { q: R`Is adsorption exothermic or endothermic?`, ans: R`Always exothermic.` } }
     ] },
 
@@ -59,6 +73,8 @@ JEE.book('chemistry', 'surface-chemistry', {
         [R`van der Waals forces`, R`chemical bonds (activated adsorption)`], [R`low enthalpy, 20–40 kJ/mol`, R`high enthalpy, 80–240 kJ/mol`], [R`not specific`, R`highly specific`], [R`reversible`, R`usually irreversible`],
         [R`multimolecular layers`, R`a single (unimolecular) layer`], [R`decreases with rise in temperature`, R`first increases (needs activation energy), then decreases`], [R`easily liquefiable gases (higher T_c) adsorb more`, R`depends on chemical reactivity`]] } },
       { fig: figAdsT, cap: R`Physisorption decreases steadily with temperature; chemisorption first increases (activation energy is needed) and then decreases.` },
+      { ex: { q: R`The enthalpies of adsorption of two gases on a metal are −25 kJ/mol and −180 kJ/mol. Which is physisorbed and which chemisorbed? Why does chemisorption first increase with temperature?`,
+        steps: [R`Physisorption releases 20–40 kJ/mol; chemisorption 80–240 kJ/mol, like a chemical reaction.`, R`Forming a chemical bond with the surface needs activation energy, so raising the temperature at first speeds it up; at still higher temperatures desorption wins.`], ans: R`−25: physisorption; −180: chemisorption. It is an activated process` } },
       { check: { q: R`Which forms a single layer of adsorbed molecules?`, ans: R`Chemisorption.` } }
     ] },
 
@@ -70,6 +86,8 @@ JEE.book('chemistry', 'surface-chemistry', {
         R`<b>Temperature:</b> being exothermic, physisorption decreases with temperature (Le Chatelier).`,
         R`<b>Activation of the adsorbent:</b> heating charcoal in steam, or subdividing it, increases its surface and adsorbing power.`
       ] },
+      { ex: { q: R`Arrange H₂ (T_c = 33 K), CH₄ (190 K), CO₂ (304 K) and SO₂ (430 K) in order of increasing adsorption on charcoal.`,
+        steps: [R`The higher the critical temperature, the stronger the van der Waals forces and the more easily the gas is adsorbed.`], ans: R`H₂ < CH₄ < CO₂ < SO₂` } },
       { check: { q: R`Which is adsorbed more by charcoal: NH₃ or H₂?`, ans: R`NH₃ (higher critical temperature, more easily liquefied).` } }
     ] },
 
@@ -79,6 +97,8 @@ JEE.book('chemistry', 'surface-chemistry', {
       { points: [R`At low pressure, 1/n ≈ 1: x/m ∝ p.`, R`At high pressure, 1/n → 0: x/m is constant (saturation).`, R`The isotherm fails at high pressures; it applies to adsorption from solution too, using concentration C instead of p.`] },
       { ex: { q: R`A plot of log(x/m) against log p is a straight line with slope 0.5 and intercept 0.3. Find k, n and x/m at p = 4 atm.`,
         steps: [R`log k = 0.3, so k = 2; 1/n = 0.5, so n = 2.`, R`x/m = 2 × 4^{0.5}.`], ans: R`k = 2, n = 2, x/m = 4` } },
+      { ex: { q: R`On a certain adsorbent, x/m = 2 at 1 atm and x/m = 4 at 16 atm. Find n in the Freundlich equation.`,
+        steps: [R`\(\dfrac{4}{2} = \left(\dfrac{16}{1}\right)^{1/n}\), so \(2 = 16^{1/n} = 2^{4/n}\).`], ans: R`n = 4` } },
       { check: { q: R`What is the value of 1/n at very high pressure?`, ans: R`Close to 0 (x/m becomes independent of pressure).` } }
     ] },
 
@@ -99,6 +119,8 @@ JEE.book('chemistry', 'surface-chemistry', {
       { table: { head: [R`Property`, R`True solution`, R`Colloid`, R`Suspension`], rows: [
         [R`Nature`, R`homogeneous`, R`heterogeneous (appears homogeneous)`, R`heterogeneous`], [R`Passes through filter paper`, R`yes`, R`yes`, R`no`], [R`Passes through parchment (membrane)`, R`yes`, R`no`, R`no`],
         [R`Visibility of particles`, R`invisible`, R`seen only by scattered light (ultramicroscope)`, R`visible`], [R`Settles on standing`, R`no`, R`no (only in an ultracentrifuge)`, R`yes`], [R`Tyndall effect`, R`no`, R`yes`, R`yes`]] } },
+      { ex: { q: R`Classify as true solution, colloid or suspension: (a) sugar in water (b) milk (c) muddy water (d) starch in hot water.`,
+        steps: [R`Size decides: below 1 nm, 1–1000 nm, or above 1000 nm. Milk and starch show the Tyndall effect but do not settle; mud settles.`], ans: R`(a) true solution (b) colloid (c) suspension (d) colloid` } },
       { check: { q: R`Can colloidal particles be separated by filter paper?`, ans: R`No; they pass through it (but not through parchment or cellophane).` } }
     ] },
 
@@ -111,6 +133,9 @@ JEE.book('chemistry', 'surface-chemistry', {
       { points: [R`<b>Lyophilic</b> ("solvent-loving") colloids: gum, gelatin, starch, rubber. Formed simply by mixing; stable; <b>reversible</b> (can be re-formed after evaporation); highly solvated.`, R`<b>Lyophobic</b> ("solvent-hating") colloids: metal sols, sulphides, hydroxides. Need special methods to prepare; unstable, coagulated easily by electrolytes; <b>irreversible</b>.`] },
       { h3: R`By type of particle` },
       { points: [R`<b>Multimolecular</b>: aggregates of many small molecules (gold sol, sulphur sol) held by van der Waals forces.`, R`<b>Macromolecular</b>: single large molecules of colloidal size (starch, proteins, cellulose, nylon); usually lyophilic.`, R`<b>Associated colloids</b> (micelles): substances like soaps that behave as normal electrolytes at low concentration but form aggregates above a certain concentration.`] },
+      { ex: { q: R`Name the type of colloid: (a) butter (b) smoke (c) pumice (d) starch in water (e) soap solution above its CMC.`,
+        steps: [R`Use the states of the dispersed phase and medium, and the nature of the particles.`], ans: R`(a) gel (b) aerosol (solid in gas) (c) solid foam (d) lyophilic, macromolecular sol (e) associated colloid (micelles)` } },
+      { tip: R`A lyophobic sol cannot be made just by shaking the solid with water; it needs a chemical or electrical method, and it is easily coagulated by a pinch of electrolyte. A lyophilic sol forms on its own and survives electrolytes much better.` },
       { check: { q: R`What type of colloid is fog?`, ans: R`An aerosol (liquid dispersed in gas).` } }
     ] },
 
@@ -120,6 +145,8 @@ JEE.book('chemistry', 'surface-chemistry', {
         R`<b>Electrical disintegration (Bredig's arc method):</b> an electric arc between metal electrodes under water (ice-cooled) vaporises the metal, which condenses into colloidal particles: sols of Au, Ag, Pt.`,
         R`<b>Peptisation:</b> converting a freshly made precipitate into a colloid by shaking it with a small amount of an electrolyte (the peptising agent), whose ions are adsorbed and charge the particles so they repel apart: fresh Fe(OH)₃ with a little FeCl₃.`
       ] },
+      { ex: { q: R`How is a sulphur sol made by oxidation, and a ferric hydroxide sol by hydrolysis?`,
+        steps: [R`Bubble H₂S through a solution of SO₂ (or through bromine water): SO₂ + 2H₂S → 3S + 2H₂O.`, R`Add FeCl₃ solution drop by drop to boiling water: FeCl₃ + 3H₂O → Fe(OH)₃ + 3HCl.`], ans: R`Both make insoluble products as very fine particles` } },
       { check: { q: R`What is the role of the electrolyte in peptisation?`, ans: R`Its common ion is adsorbed on the precipitate particles, giving them the same charge so they repel and disperse.` } }
     ] },
 
@@ -141,6 +168,7 @@ JEE.book('chemistry', 'surface-chemistry', {
     { h: R`Brownian movement`, t: [4], blocks: [
       R`Viewed through an ultramicroscope, colloidal particles move in a continuous random zigzag: <b>Brownian movement</b> (first seen by Robert Brown in pollen grains in water, 1827). It is caused by unbalanced bombardment of the particles by the molecules of the medium, and it is faster for smaller particles and less viscous media.`,
       R`Brownian movement keeps colloidal particles stirred up, opposing the pull of gravity, which is why sols do not settle and are stable.`,
+      R`Brownian movement gave the first direct evidence that molecules are real: in 1905 Einstein showed how the size of the random jiggles depends on the number of molecules in a mole, and Perrin's measurements of it gave a value of Avogadro's number.`,
       { check: { q: R`Does Brownian movement depend on the nature of the colloid?`, ans: R`No: only on particle size and the viscosity of the medium.` } }
     ] },
 
@@ -149,6 +177,9 @@ JEE.book('chemistry', 'surface-chemistry', {
       { points: [R`<b>Positive sols:</b> hydrated metal oxides and hydroxides (Fe(OH)₃, Al(OH)₃), basic dyes (methylene blue), haemoglobin.`, R`<b>Negative sols:</b> metals (Cu, Ag, Au), metal sulphides (As₂S₃), acidic dyes (eosin), starch, gum, clay.`, R`<b>Example:</b> AgI formed from KI in excess adsorbs I⁻ and is negative (AgI/I⁻); formed from AgNO₃ in excess, it adsorbs Ag⁺ and is positive (AgI/Ag⁺).`] },
       R`The adsorbed layer attracts a diffuse layer of opposite ions from the medium (the <b>Helmholtz electrical double layer</b>); the potential difference across it is the <b>zeta (electrokinetic) potential</b>.`,
       R`<b>Electrophoresis:</b> in an electric field, colloidal particles move towards the electrode of opposite charge; this shows their sign. If the particles are held still, the medium moves instead: <b>electro-osmosis</b>.`,
+      { fig: figElectro, cap: R`In electrophoresis, the positively charged particles of a ferric hydroxide sol move towards the cathode, where they gather and the colour deepens.` },
+      { ex: { q: R`AgI sol is made by adding AgNO₃ solution slowly to excess KI solution. What is the charge on the particles, and to which electrode do they move?`,
+        steps: [R`The AgI particles adsorb the ion common to them that is in excess: I⁻.`], ans: R`Negative (AgI/I⁻); they move to the anode` } },
       { check: { q: R`Which way does a ferric hydroxide sol move in electrophoresis?`, ans: R`Towards the cathode (it is positively charged).` } }
     ] },
 
@@ -159,6 +190,10 @@ JEE.book('chemistry', 'surface-chemistry', {
       R`<b>Protection:</b> lyophilic colloids, added to lyophobic sols, form a protective layer around their particles and prevent coagulation by electrolytes. Their protective power is measured by the <b>gold number</b>: the milligrams of protective colloid needed to prevent coagulation of 10 mL of gold sol by 1 mL of 10% NaCl. A smaller gold number means a better protector (gelatin ≈ 0.005–0.01, starch ≈ 15–25).`,
       { ex: { q: R`Arrange NaCl, BaCl₂ and AlCl₃ in order of coagulating power for an As₂S₃ sol.`,
         steps: [R`As₂S₃ is negative, so the cations matter: Na⁺ (1), Ba²⁺ (2), Al³⁺ (3).`], ans: R`AlCl₃ > BaCl₂ > NaCl` } },
+      { ex: { q: R`The coagulating values of NaCl, BaCl₂ and MgSO₄ for a sol are 52, 0.69 and 0.22 mmol/L. Is the sol positive or negative? Which electrolyte is the best coagulant?`,
+        steps: [R`The values fall sharply from Na⁺ (1+) to Ba²⁺ and Mg²⁺ (2+), whereas the anions (Cl⁻ in both NaCl and BaCl₂) are the same: the cations do the work, so the sol is negative.`, R`The smallest coagulating value means the greatest power.`], ans: R`Negative sol (like As₂S₃); MgSO₄` } },
+      { ex: { q: R`The gold numbers of gelatin and starch are 0.01 and 25. Which is the better protective colloid?`,
+        steps: [R`A smaller gold number means less is needed to protect the sol.`], ans: R`Gelatin (2500 times more effective)` } },
       { check: { q: R`Why is alum used to purify muddy water?`, ans: R`Its Al³⁺ ions coagulate the negatively charged clay particles, which settle.` } }
     ] },
 
@@ -166,6 +201,8 @@ JEE.book('chemistry', 'surface-chemistry', {
       R`An <b>emulsion</b> is a colloid of one liquid dispersed in another immiscible liquid. Two types:`,
       { points: [R`<b>Oil in water (o/w):</b> oil drops in water: milk, vanishing cream.`, R`<b>Water in oil (w/o):</b> water drops in oil: butter, cold cream.`] },
       R`Emulsions separate on standing unless an <b>emulsifying agent</b> (emulsifier) is added, which forms a film between the drops. Proteins, gums and soaps stabilise o/w emulsions; heavy metal salts of fatty acids and long-chain alcohols stabilise w/o emulsions. Emulsions show Brownian movement and the Tyndall effect, and can be broken by heating, freezing or centrifuging (demulsification).`,
+      { ex: { q: R`How can you tell whether an emulsion is oil-in-water or water-in-oil?`,
+        steps: [R`Dilution test: an emulsion mixes freely with more of its own dispersion medium. Add water: o/w dilutes smoothly; w/o forms separate drops.`, R`Dye test: an oil-soluble dye colours the drops in o/w but the whole background in w/o.`], ans: R`Dilute with water, or use an oil-soluble dye` } },
       { check: { q: R`Which type of emulsion is milk, and what stabilises it?`, ans: R`Oil (fat) in water; stabilised by the protein casein.` } }
     ] },
 
@@ -176,9 +213,10 @@ JEE.book('chemistry', 'surface-chemistry', {
     ] },
 
     { h: R`Micelles and the critical micelle concentration`, t: [5], blocks: [
-      R`At low concentration a soap behaves as a normal electrolyte. Above a certain concentration, the <b>critical micelle concentration</b> (CMC, about 10⁻⁴ to 10⁻³ mol/L for soaps), and above a certain temperature (the Kraft temperature), the ions cluster into aggregates called <b>micelles</b> (associated colloids), each containing about 100 or more ions.`,
+      R`At low concentration a soap behaves as a normal electrolyte. Above a certain concentration, the <b>critical micelle concentration</b> (CMC, about 10⁻⁴ to 10⁻³ mol/L for soaps), and above a certain temperature (the Krafft temperature), the ions cluster into aggregates called <b>micelles</b> (associated colloids), each containing about 100 or more ions.`,
       { fig: figMicelle, cap: R`In a micelle, the hydrocarbon tails point inward (away from water) and the ionic heads face outward into the water. Grease is held inside.` },
       R`<b>Cleansing action of soap:</b> soap molecules surround a grease drop with their tails dissolved in the grease and their heads in water, forming a micelle around it. The charged micelles repel each other, and the grease is washed away with the water.`,
+      R`Micelles also explain why soap solutions behave oddly: below the CMC, properties such as conductivity change steadily with concentration, but at the CMC the curves bend sharply, because adding more soap now makes more micelles rather than more free ions. This sudden change is how the CMC is measured.`,
       { check: { q: R`What happens to soap molecules below the CMC?`, ans: R`They stay as separate ions (a true solution); micelles form only above the CMC.` } }
     ] }
   ],
@@ -191,7 +229,8 @@ JEE.book('chemistry', 'surface-chemistry', {
     R`Preparation: chemical, Bredig's arc, peptisation. Purification: dialysis, electrodialysis, ultrafiltration.`,
     R`Properties: Tyndall effect, colour, Brownian movement, charge (double layer, zeta potential), electrophoresis.`,
     R`Coagulation; Hardy–Schulze: higher charge of the opposite ion coagulates more; gold number (smaller = better protection).`,
-    R`Emulsions o/w and w/o, emulsifiers; surfactants (anionic, cationic, non-ionic); micelles above the CMC; cleansing action of soap.`
+    R`Emulsions o/w and w/o, emulsifiers; surfactants (anionic, cationic, non-ionic); micelles above the CMC; cleansing action of soap.`,
+    R`Coagulating value: the smaller it is, the stronger the coagulant; gold number: the smaller it is, the better the protector.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §11.5 Colloids`, url: 'https://openstax.org/books/chemistry-2e/pages/11-5-colloids' },

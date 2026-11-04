@@ -114,7 +114,7 @@ var figGates = D.row([[gate('AND'), 'AND: Y = A·B'], [gate('OR'), 'OR: Y = A + 
 JEE.book('physics', 'electronic-devices', {
   intro: [
     R`Your phone holds billions of tiny switches made of silicon. They are built from <b>semiconductors</b>, materials whose conductivity lies between that of metals and insulators, and can be controlled precisely by adding impurities, light or voltage.`,
-    R`This chapter explains energy bands and why semiconductors behave as they do, intrinsic and doped (n-type and p-type) semiconductors, the p–n junction diode and its uses as a rectifier, special diodes (LED, photodiode, solar cell, Zener diode), and the logic gates from which every digital circuit is built.`
+    R`This chapter explains energy bands and why semiconductors behave as they do, intrinsic and doped (n-type and p-type) semiconductors, the p–n junction diode and its uses as a rectifier, special diodes (LED, photodiode, solar cell, Zener diode), and the logic gates from which every digital circuit is built. Numerical illustrations follow each idea.`
   ],
   sections: [
     { h: R`Conductors, semiconductors and insulators`, t: [0], blocks: [
@@ -124,12 +124,17 @@ JEE.book('physics', 'electronic-devices', {
       { table: { head: [R`Material`, R`Energy gap`, R`Resistivity (Ω m)`, R`Examples`], rows: [
         [R`Conductor`, R`none (bands overlap)`, R`10⁻⁸ to 10⁻²`, R`copper, silver, aluminium`], [R`Semiconductor`, R`small, < 3 eV (Si 1.1 eV, Ge 0.7 eV)`, R`10⁻⁵ to 10⁶`, R`silicon, germanium, GaAs`], [R`Insulator`, R`large, > 3 eV (diamond 5.4 eV)`, R`10¹¹ to 10¹⁹`, R`glass, diamond, rubber`]] } },
       R`At room temperature, thermal energy (about 0.025 eV per particle on average, but much more for a few) lifts some electrons across the small gap of a semiconductor, so it conducts a little. Heating it frees more electrons: unlike a metal, a semiconductor's resistance <b>falls</b> as it gets hotter.`,
+      { ex: { q: R`What is the longest wavelength of light that can create an electron–hole pair in silicon (E_g = 1.1 eV)? Could visible light do it?`,
+        steps: [R`\(\lambda_{max} = \dfrac{hc}{E_g} = \dfrac{1240}{1.1}\) nm.`, R`Visible light (400–700 nm) has photons of 1.8–3.1 eV, more than 1.1 eV.`], ans: R`≈ 1130 nm (near infrared); yes, all visible light can` } },
       { check: { q: R`Why is diamond an insulator but silicon a semiconductor, though both have the same crystal structure?`, ans: R`Diamond's band gap (5.4 eV) is far too large for thermal energy to bridge; silicon's (1.1 eV) is small enough for some electrons to cross.` } }
     ] },
 
     { h: R`Intrinsic semiconductors`, t: [0], blocks: [
       R`A pure semiconductor is <b>intrinsic</b>. Silicon and germanium have 4 valence electrons; each atom forms covalent bonds with 4 neighbours. When thermal energy breaks a bond, an electron becomes free, leaving behind a vacancy, a <b>hole</b>, which behaves like a positive charge +e: a neighbouring electron can jump into it, so the hole moves.`,
       R`In an intrinsic semiconductor, electrons and holes are created in pairs, so \[n_e = n_h = n_i\] where \(n_i\) is the intrinsic carrier concentration (about 1.5 × 10¹⁶ m⁻³ for silicon at room temperature, compared with about 10²⁸ m⁻³ free electrons in a metal). Current is carried by both: \(I = I_e + I_h\).`,
+      R`The conductivity of a semiconductor is \(\sigma = e(n_e\mu_e + n_h\mu_h)\), where μ is the <b>mobility</b> (drift speed per unit field). Electrons are more mobile than holes, because a hole moves only when bound electrons hop from bond to bond.`,
+      { ex: { q: R`Find the conductivity and resistivity of pure silicon at room temperature (nᵢ = 1.5 × 10¹⁶ m⁻³, μ_e = 0.135 and μ_h = 0.048 m² V⁻¹ s⁻¹).`,
+        steps: [R`\(\sigma = 1.6\times10^{-19}\times1.5\times10^{16}\times(0.135 + 0.048)\) ≈ 4.4 × 10⁻⁴ S/m.`, R`ρ = 1/σ.`], ans: R`σ ≈ 4.4 × 10⁻⁴ S/m; ρ ≈ 2.3 × 10³ Ω m (about 10¹¹ times that of copper)` } },
       { check: { q: R`In an intrinsic semiconductor, which is greater: the number of free electrons or the number of holes?`, ans: R`They are equal.` } }
     ] },
 
@@ -144,6 +149,9 @@ JEE.book('physics', 'electronic-devices', {
       R`In thermal equilibrium, the product of the carrier concentrations is fixed: \[n_en_h = n_i^2\] Adding donors increases \(n_e\) and so reduces \(n_h\) (more electrons fill holes).`,
       { ex: { q: R`Silicon (\(n_i = 1.5\times10^{16}\) m⁻³) is doped with 10²² donor atoms per m³. Find the hole concentration.`,
         steps: [R`\(n_e \approx 10^{22}\) m⁻³ (each donor gives one electron).`, R`\(n_h = n_i^2/n_e = (1.5\times10^{16})^2/10^{22}\).`], ans: R`≈ 2.25 × 10¹⁰ m⁻³ (electrons outnumber holes by 10¹² to 1)` } },
+      { ex: { q: R`Germanium (4.4 × 10²⁸ atoms/m³, nᵢ = 2.4 × 10¹⁹ m⁻³) is doped with one boron atom per million germanium atoms. Find the hole and electron concentrations.`,
+        steps: [R`Acceptors = 4.4 × 10²⁸ / 10⁶ = 4.4 × 10²² m⁻³, so n_h ≈ 4.4 × 10²² m⁻³.`, R`\(n_e = n_i^2/n_h = (2.4\times10^{19})^2/4.4\times10^{22}\).`], ans: R`n_h ≈ 4.4 × 10²² m⁻³; n_e ≈ 1.3 × 10¹⁶ m⁻³ (p-type)` } },
+      R`Why does such a tiny amount of impurity matter so much? Pure germanium has only one free carrier for every billion atoms. One impurity atom per million therefore supplies about a thousand times as many carriers as the pure crystal has, so the conductivity rises enormously and is set by the doping, not by temperature.`,
       { check: { q: R`Is an n-type semiconductor negatively charged?`, ans: R`No. It is neutral: the extra electrons are balanced by positive donor ions.` } }
     ] },
 
@@ -151,6 +159,7 @@ JEE.book('physics', 'electronic-devices', {
       R`A <b>p–n junction</b> is formed when one side of a single crystal is made p-type and the other n-type. At the junction, electrons diffuse from the n-side (where they are plentiful) into the p-side, and holes diffuse the other way. They recombine, leaving behind a thin layer of fixed, uncovered ions: negative acceptor ions on the p-side and positive donor ions on the n-side.`,
       { fig: figPN, cap: R`The depletion region contains no free carriers, only fixed ions. Their field opposes further diffusion, creating the barrier potential \(V_B\).` },
       { points: [R`This layer, empty of mobile carriers, is the <b>depletion region</b> (about 1 μm thick).`, R`The ions create an electric field from the n-side to the p-side, and a <b>potential barrier</b> \(V_B\) (about 0.7 V for Si, 0.3 V for Ge) that stops further diffusion. In equilibrium, the diffusion current is balanced by a drift current.`, R`The device made from such a junction, with metal contacts, is a <b>semiconductor diode</b>. Its symbol is an arrow (the p-side, anode) pointing to a bar (the n-side, cathode), in the direction of easy current flow.`] },
+      { analogy: R`Picture two crowded rooms, one full of electrons (n) and one full of holes (p), with the door between them opened. People rush across and pair off near the door, leaving a strip with no free people but with the "furniture" (fixed ions) still charged. That charged strip then pushes back on anyone else trying to cross: the barrier.` },
       { check: { q: R`Why is the depletion region so called?`, ans: R`It is depleted of free charge carriers (electrons and holes), containing only fixed ions.` } }
     ] },
 
@@ -163,6 +172,10 @@ JEE.book('physics', 'electronic-devices', {
       R`Because its I–V graph is not a straight line, a diode is non-ohmic. Its <b>dynamic resistance</b> at a point is \(r_d = \dfrac{\Delta V}{\Delta I}\), small in forward bias and very large in reverse bias.`,
       { ex: { q: R`In forward bias, raising the voltage across a diode from 0.70 V to 0.80 V increases the current from 10 mA to 20 mA. Find the dynamic resistance.`,
         steps: [R`\(r_d = \dfrac{0.1}{0.01}\).`], ans: R`10 Ω` } },
+      { ex: { q: R`A silicon diode (threshold 0.7 V) is connected in series with a 1 kΩ resistor across a 5 V battery. Find the current (a) in forward bias (b) in reverse bias (ideal diode).`,
+        steps: [R`(a) The diode takes about 0.7 V, leaving 4.3 V across the resistor: I = 4.3/1000.`, R`(b) A reverse-biased diode blocks current (only a few μA of leakage).`], ans: R`(a) ≈ 4.3 mA (b) ≈ 0` } },
+      { mistake: R`Applying Ohm's law to a diode as if it had a fixed resistance. Its resistance depends on where it is working on its I–V curve; in circuit problems, use a constant voltage drop (≈ 0.7 V for Si) in forward bias.` },
+      { tip: R`A diode is forward biased when its p-side (anode) is at a higher potential than its n-side (cathode). Check the potentials, not just the direction of the battery.` },
       { check: { q: R`What happens to the width of the depletion region in reverse bias?`, ans: R`It increases.` } }
     ] },
 
@@ -174,6 +187,8 @@ JEE.book('physics', 'electronic-devices', {
       { h3: R`Full-wave rectifier` },
       { fig: figFull, cap: R`A centre-tapped transformer with two diodes: D₁ conducts on one half-cycle and D₂ on the other, sending current the same way through \(R_L\) both times.` },
       R`Both halves of each cycle are used, so the output pulses come at twice the input frequency (100 Hz from 50 Hz mains) and the efficiency is higher. A <b>bridge rectifier</b> with four diodes does the same without a centre-tapped transformer. A <b>capacitor filter</b> across the load charges at each peak and discharges slowly in between, smoothing the pulsating output into nearly steady DC.`,
+      { ex: { q: R`A half-wave rectifier is fed with 12 V (rms) AC. Find the peak output voltage for a silicon diode, and the output frequency for 50 Hz mains.`,
+        steps: [R`Peak input = 12√2 ≈ 17.0 V; subtract the diode drop of 0.7 V.`, R`Half-wave: one pulse per input cycle.`], ans: R`≈ 16.3 V; 50 Hz` } },
       { check: { q: R`For 50 Hz input, what is the frequency of the ripple in the output of a full-wave rectifier?`, ans: R`100 Hz.` } }
     ] },
 
@@ -187,6 +202,9 @@ JEE.book('physics', 'electronic-devices', {
       { h3: R`Solar cell` },
       R`A <b>solar cell</b> is a p–n junction with a large area and no external bias. Light creates electron–hole pairs that the junction field separates, building up a voltage (the photovoltaic effect) that drives current through a load. Its I–V curve lies in the fourth quadrant: it supplies power. Key values are the <b>open-circuit voltage</b> \(V_{oc}\) and the <b>short-circuit current</b> \(I_{sc}\). Silicon (\(E_g\) = 1.1 eV) is ideal because it absorbs most of the solar spectrum.`,
       { fig: figPhoto, cap: R`Left: a photodiode's reverse current increases with light intensity. Right: a solar cell's I–V curve, with open-circuit voltage and short-circuit current.` },
+      { ex: { q: R`A solar cell has an open-circuit voltage of 0.6 V and a short-circuit current of 3 A. If its fill factor (P_max/V_oc I_sc) is 0.75, find its maximum power output.`,
+        steps: [R`\(P_{max} = 0.75\times0.6\times3\).`], ans: R`1.35 W` } },
+      { tip: R`Remember the biasing: LED forward biased (emits light), photodiode reverse biased (detects light), solar cell unbiased (makes power), Zener reverse biased in breakdown (holds voltage).` },
       { check: { q: R`A photodiode has a band gap of 2.8 eV. What is the longest wavelength it can detect?`, ans: R`1240/2.8 ≈ 443 nm (violet); longer wavelengths cannot create electron–hole pairs.` } }
     ] },
 
@@ -196,6 +214,7 @@ JEE.book('physics', 'electronic-devices', {
       R`<b>As a voltage regulator:</b> the Zener (reverse-biased) is connected in parallel with the load, with a series resistor \(R_s\). If the input voltage rises, the extra voltage drops across \(R_s\) as the Zener draws more current, while the output stays at \(V_Z\). The current through \(R_s\) splits: \(I = I_Z + I_L\).`,
       { ex: { q: R`An unregulated supply varies from 10 V to 15 V. A 6 V Zener with a 450 Ω series resistor feeds a 1 kΩ load. Find the Zener current at both input voltages.`,
         steps: [R`Load current \(I_L = 6/1000 = 6\) mA (fixed).`, R`At 15 V: \(I = (15 - 6)/450 = 20\) mA, so \(I_Z = 14\) mA.`, R`At 10 V: \(I = 4/450 \approx 8.9\) mA, so \(I_Z \approx 2.9\) mA.`], ans: R`14 mA and ≈ 2.9 mA; the output stays at 6 V` } },
+      R`Why does a Zener break down so sharply? Heavy doping makes its depletion region very thin, so even a few volts produce an enormous electric field (about 10⁷ V/m) across it. This field pulls electrons straight out of their bonds (the Zener effect), and the current rises suddenly at a well-defined voltage. Lightly doped diodes break down at higher voltages by a different process, avalanche multiplication.`,
       { check: { q: R`Why is a Zener diode connected in reverse bias in a regulator?`, ans: R`Its useful property, a constant voltage over a wide range of current, appears only in reverse breakdown.` } }
     ] },
 
@@ -209,6 +228,11 @@ JEE.book('physics', 'electronic-devices', {
       { ex: { q: R`The output of an OR gate is fed into a NOT gate. Which gate does the combination act as, and what is its output for A = 1, B = 0?`,
         steps: [R`NOT(A + B) is NOR.`, R`A + B = 1, so the output is 0.`], ans: R`NOR; output 0` } },
       { tip: R`De Morgan's theorems: \(\overline{A\cdot B} = \bar A + \bar B\) and \(\overline{A + B} = \bar A\cdot\bar B\). They let you convert between NAND/OR and NOR/AND forms quickly.` },
+      { ex: { q: R`Inputs A and B each pass through a NOT gate, and the two outputs feed a NOR gate. Find the output and identify the combination.`,
+        steps: [R`\(Y = \overline{\bar A + \bar B}\). By De Morgan, \(\overline{\bar A + \bar B} = A\cdot B\).`, R`Check: only A = B = 1 makes both NOT outputs 0, so the NOR gives 1.`], ans: R`Y = A·B: the combination is an AND gate` } },
+      { ex: { q: R`Write the truth table of Y = A·B̄ + Ā·B. What is this gate called?`,
+        steps: [R`(0, 0): 0 + 0 = 0; (0, 1): 0 + 1 = 1; (1, 0): 1 + 0 = 1; (1, 1): 0 + 0 = 0.`], ans: R`0, 1, 1, 0: the exclusive-OR (XOR) gate, output 1 when the inputs differ` } },
+      R`Gates are built from transistors working as switches, and millions of them combine into adders, memories and processors. An adder for two binary digits, for example, needs an XOR gate for the sum and an AND gate for the carry.`,
       { check: { q: R`For what inputs is the output of a NOR gate 1?`, ans: R`Only when both inputs are 0.` } }
     ] }
   ],
@@ -220,7 +244,8 @@ JEE.book('physics', 'electronic-devices', {
     R`Half-wave rectifier: output frequency = input; full-wave: twice the input; capacitor filter smooths.`,
     R`LED: forward bias, λ ≈ hc/E_g. Photodiode: reverse bias, current ∝ light. Solar cell: no bias, 4th-quadrant I–V, V_oc and I_sc.`,
     R`Zener: heavily doped, sharp reverse breakdown at V_Z; regulator in parallel with load, I = I_Z + I_L.`,
-    R`Gates: AND, OR, NOT, NAND, NOR (truth tables); NAND and NOR are universal; De Morgan's theorems.`
+    R`Gates: AND, OR, NOT, NAND, NOR (truth tables); NAND and NOR are universal; De Morgan's theorems.`,
+    R`σ = e(n_eμ_e + n_hμ_h); in a series circuit take ≈ 0.7 V across a forward-biased Si diode; NOT inputs into NOR give AND.`
   ],
   refs: [
     { t: R`OpenStax University Physics Vol. 3, §9.5 Band Theory of Solids`, url: 'https://openstax.org/books/university-physics-volume-3/pages/9-5-band-theory-of-solids' },

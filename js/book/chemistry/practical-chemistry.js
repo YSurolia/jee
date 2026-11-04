@@ -22,10 +22,39 @@ var figGroups = D.svg(500, 270, groups.map(function (g, i) {
   return box(10, y, 40, 28, g[0], 'p', 11) + box(60, y, 190, 28, '', 'b') + lab(155, y + 14, g[1], 'k', 9) + box(260, y, 150, 28, '', 'o') + lab(335, y + 14, g[2], 'k', 9) + lab(420, y + 14, g[3], 'g', 9, { anchor: 'start' }) + (i < 6 ? D.arrow(30, y + 28, 30, y + 36, { color: 'm', head: 5 }) : '');
 }), 'Group separation of cations');
 
+function plab(x, y, t, c, size, o) { o = o || {}; return D.text(x, y, t, { size: size || 11, math: false, color: c || 'k', anchor: o.anchor, bold: o.bold }); }
+var figBurette = D.svg(300, 260, [
+  D.line(60, 20, 60, 245, { color: 'm', w: 3 }), D.line(40, 245, 140, 245, { color: 'm', w: 4 }), D.line(60, 60, 112, 60, { color: 'm', w: 2 }),
+  D.rect(112, 20, 16, 150, { color: 'b', w: 1.4 }), D.rect(113, 50, 14, 120, { color: 'b', fill: 'soft', w: 0 }),
+  [40, 70, 100, 130].map(function (y) { return D.line(112, y, 120, y, { color: 'b', w: 0.8 }); }).join(''),
+  D.line(120, 170, 120, 185, { color: 'b', w: 2 }), D.rect(110, 172, 20, 5, { color: 'k', fill: 'soft', w: 1 }),
+  D.path('M100,200 L140,200 L160,240 L80,240 Z', { color: 'o', w: 1.6 }), D.path('M88,225 L152,225 L160,240 L80,240 Z', { color: 'r', fill: 'soft', w: 0 }),
+  plab(140, 35, 'burette (KMnO₄ or NaOH)', 'b', 10, { anchor: 'start' }), plab(140, 175, 'stopcock', 'k', 10, { anchor: 'start' }), plab(170, 230, 'conical flask:', 'o', 10, { anchor: 'start' }), plab(170, 244, 'analyte + indicator', 'o', 10, { anchor: 'start' })
+], 'Titration apparatus');
+
+var figBrownRing = D.svg(260, 230, [
+  D.path('M100,20 L100,190 Q100,215 125,215 Q150,215 150,190 L150,20', { color: 'm', w: 2 }),
+  D.rect(102, 60, 46, 100, { color: 'g', fill: 'soft', w: 0 }), D.path('M102,160 L148,160 L148,190 Q148,212 125,212 Q102,212 102,190 Z', { color: 'b', fill: 'soft', w: 0 }),
+  D.rect(102, 154, 46, 9, { color: 'o', fill: 'soft', w: 1.6 }),
+  plab(160, 100, 'nitrate + FeSO₄ solution', 'g', 10, { anchor: 'start' }), plab(160, 160, 'brown ring', 'o', 11, { anchor: 'start', bold: true }), plab(160, 198, 'conc. H₂SO₄ (denser)', 'b', 10, { anchor: 'start' }),
+  D.arrow(60, 30, 98, 60, { color: 'k', w: 1.2, head: 6 }), plab(56, 24, 'acid poured down', 'k', 10, { anchor: 'end' }), plab(56, 38, 'the side', 'k', 10, { anchor: 'end' })
+], 'Brown ring test for nitrate');
+
+var figCalor = D.svg(300, 230, [
+  D.rect(50, 70, 160, 140, { color: 'm', fill: 'soft', w: 1.4, r: 8 }), D.rect(75, 90, 110, 110, { color: 'b', w: 1.8 }), D.rect(76, 120, 108, 79, { color: 'b', fill: 'soft', w: 0 }),
+  D.line(150, 20, 150, 180, { color: 'r', w: 2 }), D.circle(150, 182, 5, { color: 'r', fill: 'soft', w: 1.4 }), D.line(110, 40, 110, 170, { color: 'k', w: 1.6 }), D.line(98, 170, 122, 170, { color: 'k', w: 2 }),
+  plab(158, 26, 'thermometer', 'r', 10, { anchor: 'start' }), plab(104, 34, 'stirrer', 'k', 10, { anchor: 'end' }), plab(220, 100, 'insulation', 'm', 10, { anchor: 'start' }), plab(220, 150, 'solution', 'b', 10, { anchor: 'start' })
+], 'Simple calorimeter');
+
+var figClock = D.plot({ w: 340, h: 210, x: [0, 0.3], y: [0, 0.06], noOrigin: false, xlabel: '[I⁻] (M)', ylabel: '1/t (s⁻¹)', mathLabels: false, xticks: [[0.05, '0.05'], [0.1, '0.10'], [0.2, '0.20']], yticks: [[0.025, '0.025'], [0.05, '0.050']],
+  fns: [{ f: function (c) { return 0.25 * c; }, from: 0, to: 0.22, color: 'b', w: 1.6, dash: '5 4' }],
+  pts: [[0.05, 0.0125], [0.1, 0.025], [0.15, 0.0375], [0.2, 0.05]].map(function (p) { return { x: p[0], y: p[1], color: 'o' }; }),
+  label: 'Iodine clock: 1 over t against iodide concentration' });
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'practical-chemistry', {
   intro: [
-    R`JEE asks about the chemistry behind the standard laboratory experiments: how elements and functional groups are detected, how some compounds are prepared, how titrations work, how salts are analysed for their cations and anions, and a few physical chemistry experiments. This chapter explains the principle, the reagents and the observations for each, with the equations behind them.`
+    R`JEE asks about the chemistry behind the standard laboratory experiments: how elements and functional groups are detected, how some compounds are prepared, how titrations work, how salts are analysed for their cations and anions, and a few physical chemistry experiments. This chapter explains the principle, the reagents and the observations for each, with the equations behind them, and worked questions of the kind JEE sets.`
   ],
   sections: [
     { h: R`Detection of nitrogen, sulphur and halogens`, t: [0], blocks: [
@@ -35,6 +64,9 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`S`, R`sodium nitroprusside; or lead acetate + acetic acid`, R`violet colour; black PbS`],
         [R`N and S together`, R`FeCl₃`, R`blood-red colour ([Fe(SCN)]²⁺)`],
         [R`Cl, Br, I`, R`boil with dil. HNO₃, add AgNO₃`, R`white AgCl (soluble in NH₃), pale-yellow AgBr (sparingly soluble), yellow AgI (insoluble)`]] } },
+      R`Why fuse with sodium? In organic molecules N, S and halogens are held by covalent bonds and do not give ionic tests. Molten sodium breaks those bonds and converts them into ionic sodium salts that dissolve in water. The colours then come from familiar ionic reactions: cyanide forms the deep-blue iron(III) hexacyanoferrate(II), sulphide gives black PbS, and halides give silver halides of different colours and solubilities in ammonia.`,
+      { ex: { q: R`The sodium extract of an organic compound gives a blood-red colour with FeCl₃ but no Prussian blue. What does it contain?`,
+        steps: [R`When both N and S are present in a 1 : 1 ratio, fusion can give NaSCN instead of NaCN and Na₂S. SCN⁻ gives [Fe(SCN)]²⁺, blood-red.`, R`If excess sodium is used, the thiocyanate is split into NaCN and Na₂S, and the usual separate tests appear.`], ans: R`Both nitrogen and sulphur (as thiocyanate)` } },
       { check: { q: R`Why is the sodium extract boiled with HNO₃ before testing for halogens?`, ans: R`To decompose NaCN and Na₂S, which would otherwise give precipitates with AgNO₃.` } }
     ] },
 
@@ -48,6 +80,8 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`Lucas reagent (ZnCl₂/HCl)`, R`turbidity: 3° immediate, 2° 5 min, 1° none`, R`—`],
         [R`Iodoform test`, R`positive for CH₃CH(OH)– (ethanol, propan-2-ol)`, R`—`]] } },
       R`Liebermann's nitroso test also identifies phenols: with NaNO₂ and conc. H₂SO₄ a deep green or blue colour forms, turning red on dilution and blue/green again with NaOH.`,
+      { ex: { q: R`Three alcohols give turbidity with Lucas reagent: A at once, B after about 5 minutes, and C not at room temperature. Classify them.`,
+        steps: [R`Lucas reagent converts alcohols to insoluble alkyl chlorides via carbocations; the more stable the carbocation, the faster the reaction.`], ans: R`A tertiary, B secondary, C primary` } },
       { check: { q: R`Which reagent distinguishes phenol from ethanol by a colour?`, ans: R`Neutral FeCl₃: phenol gives a violet colour; ethanol does not.` } }
     ] },
 
@@ -60,11 +94,15 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`Sodium nitroprusside + NaOH`, R`—`, R`red colour (methyl ketones like acetone)`],
         [R`Iodoform (I₂ + NaOH)`, R`ethanal only`, R`methyl ketones: yellow CHI₃`],
         [R`NaHSO₃`, R`crystalline adduct`, R`adduct (methyl ketones)`]] } },
+      { ex: { q: R`A compound C₃H₆O gives a yellow-orange precipitate with 2,4-DNP and a yellow precipitate with I₂/NaOH, but no silver mirror with Tollens' reagent. Identify it.`,
+        steps: [R`2,4-DNP: a carbonyl compound. No Tollens' reaction: not an aldehyde, so a ketone. Iodoform test: a CH₃CO– group.`], ans: R`Propanone (acetone), CH₃COCH₃` } },
+      R`The chemistry behind these tests: aldehydes have an H on the carbonyl carbon and are easily oxidised to acids, so they reduce Tollens' reagent (Ag⁺ → Ag) and Fehling's solution (Cu²⁺ → Cu₂O). Ketones have no such H and resist mild oxidation. Both have the C=O group, so both form coloured 2,4-dinitrophenylhydrazones.`,
       { check: { q: R`Which test is given by both aldehydes and ketones?`, ans: R`The 2,4-DNP (Brady's) test: a yellow-orange precipitate.` } }
     ] },
 
     { h: R`Test for the carboxyl group`, t: [1], blocks: [
       { points: [R`<b>Sodium hydrogencarbonate test:</b> brisk effervescence of CO₂ (turns lime water milky): RCOOH + NaHCO₃ → RCOONa + H₂O + CO₂. Phenols do not give this (except strongly acidic ones like picric acid).`, R`<b>Litmus:</b> blue litmus turns red.`, R`<b>Ester test:</b> warming with ethanol and a few drops of conc. H₂SO₄ gives a fruity smell (ester).`, R`<b>Neutral FeCl₃</b> with the neutralised acid: acetate gives a red colour, benzoate a buff precipitate, formate red.`] },
+      R`The NaHCO₃ test works because carboxylic acids (pKa about 4–5) are stronger acids than carbonic acid (pKa 6.4), so they can release CO₂ from hydrogencarbonate. Phenol (pKa 10) is too weak.`,
       { check: { q: R`Which test distinguishes benzoic acid from phenol?`, ans: R`NaHCO₃: benzoic acid gives CO₂ effervescence; phenol does not.` } }
     ] },
 
@@ -83,6 +121,7 @@ JEE.book('chemistry', 'practical-chemistry', {
     { h: R`Preparation of inorganic compounds: Mohr's salt and potash alum`, t: [2], blocks: [
       R`<b>Mohr's salt</b>, FeSO₄·(NH₄)₂SO₄·6H₂O (ferrous ammonium sulphate), is a <b>double salt</b>. Equimolar amounts of ferrous sulphate and ammonium sulphate are dissolved in the minimum amount of hot water containing a little dilute H₂SO₄ (which prevents hydrolysis of Fe²⁺ and its oxidation). The solution is concentrated and cooled to crystallise pale green crystals. Mohr's salt is preferred to FeSO₄ in titrations because it is not oxidised by air easily and is not efflorescent.`,
       R`<b>Potash alum</b>, K₂SO₄·Al₂(SO₄)₃·24H₂O, is made similarly from equimolar potassium sulphate and aluminium sulphate in water with a little dilute H₂SO₄ (to prevent hydrolysis of Al³⁺), giving colourless octahedral crystals.`,
+      R`A <b>double salt</b> such as Mohr's salt or alum exists only in the solid; in water it splits completely into its simple ions (Fe²⁺, NH₄⁺ and SO₄²⁻), so its solution gives the tests of all of them. A complex salt such as K₄[Fe(CN)₆] keeps its complex ion in solution and does not give the tests of Fe²⁺.`,
       { check: { q: R`Why is a little dilute H₂SO₄ added when preparing Mohr's salt?`, ans: R`To prevent hydrolysis of Fe²⁺ (and its oxidation to Fe³⁺).` } }
     ] },
 
@@ -92,6 +131,7 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`p-Nitroacetanilide`, R`nitrate acetanilide with conc. HNO₃ + conc. H₂SO₄ in glacial acetic acid, below 10 °C`, R`–NHCOCH₃ is o/p directing; para product mainly (pale yellow); low temperature avoids dinitration`],
         [R`Aniline yellow (p-aminoazobenzene)`, R`diazotise aniline (NaNO₂/HCl, 0–5 °C) and couple with aniline in mildly acidic solution`, R`C₆H₅N₂⁺Cl⁻ + C₆H₅NH₂ → C₆H₅N=NC₆H₄NH₂ + HCl (yellow dye)`],
         [R`Iodoform`, R`warm ethanol or acetone with I₂ and Na₂CO₃ (or NaOH) solution`, R`CH₃COCH₃ + 3I₂ + 4NaOH → CHI₃↓ + CH₃COONa + 3NaI + 3H₂O (yellow crystals, antiseptic smell)`]] } },
+      R`Why acetylate aniline before nitration? Free aniline is oxidised by nitric acid and, in strong acid, is protonated to anilinium, which directs to the meta position. The acetyl group protects the nitrogen and makes it a milder ortho/para director; its bulk favours the para product, and it can be removed afterwards by hydrolysis to give p-nitroaniline.`,
       { check: { q: R`Why is nitration of acetanilide done below 10 °C?`, ans: R`To prevent dinitration and oxidation, giving mainly the mono p-nitro product.` } }
     ] },
 
@@ -106,6 +146,9 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`Weak acid – weak base`, R`≈ 7, no sharp jump`, R`no suitable indicator`]] } },
       { ex: { q: R`1.26 g of oxalic acid crystals (H₂C₂O₄·2H₂O, M = 126) is dissolved to make 250 mL of solution. Find its molarity.`,
         steps: [R`1.26/126 = 0.01 mol in 0.25 L.`, R`M = 0.01/0.25 = 0.04 M.`], ans: R`0.04 M` } },
+      { fig: figBurette, cap: R`A titration set-up: the standard solution runs from the burette into a measured volume of the solution under test until the indicator (or KMnO₄'s own colour) shows the end point.` },
+      { ex: { q: R`What volume of 0.1 M HCl is needed to titrate 25 mL of 0.05 M Na₂CO₃ to the methyl orange end point?`,
+        steps: [R`With methyl orange, carbonate is neutralised completely: Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂.`, R`n(HCl) = 2 × 0.025 × 0.05 = 2.5 × 10⁻³ mol; V = 2.5 × 10⁻³/0.1 L.`], ans: R`25 mL` } },
       { check: { q: R`Which indicator is used for titrating oxalic acid with NaOH?`, ans: R`Phenolphthalein (the equivalence point is alkaline).` } }
     ] },
 
@@ -116,6 +159,7 @@ JEE.book('chemistry', 'practical-chemistry', {
         steps: [R`n(oxalic) = 0.05 × 0.020 = 1.0 × 10⁻³ mol.`, R`n(MnO₄⁻) = (2/5) × 1.0 × 10⁻³ = 4.0 × 10⁻⁴ mol; M = 4.0 × 10⁻⁴/0.016 = 0.025 M.`], ans: R`0.025 M` } },
       { ex: { q: R`What volume of 0.02 M KMnO₄ is needed to titrate 20 mL of 0.1 M Mohr's salt?`,
         steps: [R`n(Fe²⁺) = 0.1 × 0.020 = 2 × 10⁻³ mol; n(MnO₄⁻) = 2 × 10⁻³/5 = 4 × 10⁻⁴ mol.`, R`V = 4 × 10⁻⁴/0.02 = 0.020 L.`], ans: R`20 mL` } },
+      { mistake: R`Using the burette reading when the first pink appears and disappears. The end point is the first <b>permanent</b> light-pink colour that lasts about 30 seconds; earlier pinks fade as the remaining reductant reacts.` },
       { check: { q: R`Why is oxalic acid solution warmed before titrating with KMnO₄?`, ans: R`The reaction is slow at room temperature; warming (and the Mn²⁺ formed, autocatalysis) speeds it up.` } }
     ] },
 
@@ -123,6 +167,8 @@ JEE.book('chemistry', 'practical-chemistry', {
       R`Cations are separated into groups by adding group reagents in order, each precipitating one group as a sparingly soluble compound. The separation depends on solubility products: for example, in group II, H₂S in <b>acidic</b> solution gives a low [S²⁻] (common-ion effect of H⁺), enough to precipitate only the very insoluble sulphides (CuS, PbS); in group IV, H₂S in <b>ammoniacal</b> solution gives a higher [S²⁻], precipitating ZnS, NiS, MnS, CoS.`,
       { fig: figGroups, cap: R`Group reagents and the form in which each group is precipitated.` },
       R`In group III, NH₄Cl suppresses the ionisation of NH₄OH (common ion), so [OH⁻] is just high enough to precipitate Fe(OH)₃, Al(OH)₃ and Cr(OH)₃ (very low Ksp) but not the hydroxides of groups IV–VI. Pb²⁺ appears in both group I (PbCl₂ is slightly soluble) and group II.`,
+      { ex: { q: R`A solution contains Cu²⁺, Zn²⁺ and Al³⁺. Which ion is precipitated when H₂S is passed after adding dilute HCl, and which when NH₄Cl and NH₄OH are added to the filtrate?`,
+        steps: [R`In acid, [S²⁻] is very low; only the least soluble sulphide (CuS, group II) precipitates.`, R`NH₄Cl + NH₄OH precipitates the group III hydroxide Al(OH)₃; Zn²⁺ stays in solution until H₂S is passed in ammoniacal medium (group IV).`], ans: R`CuS; then Al(OH)₃` } },
       { check: { q: R`Why is NH₄Cl added before NH₄OH in group III?`, ans: R`It suppresses the ionisation of NH₄OH (common-ion effect), keeping [OH⁻] low so only group III hydroxides precipitate.` } }
     ] },
 
@@ -138,6 +184,7 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`Ca²⁺`, R`V`, R`white CaC₂O₄ with ammonium oxalate; brick-red flame`],
         [R`Ba²⁺`, R`V`, R`yellow BaCrO₄ with K₂CrO₄; apple-green flame`],
         [R`Mg²⁺`, R`VI`, R`white crystalline MgNH₄PO₄ with Na₂HPO₄ (+ NH₄OH/NH₄Cl); blue lake with magneson`]] } },
+      R`<b>Flame tests</b> work because heat promotes electrons of the metal ion to higher levels; as they fall back, they emit light of characteristic wavelengths. Calcium gives brick red, strontium crimson, barium apple green, sodium golden yellow and potassium lilac (seen through blue cobalt glass, which hides the sodium yellow).`,
       { check: { q: R`Which reagent gives a rosy-red precipitate with Ni²⁺?`, ans: R`Dimethylglyoxime (in ammoniacal solution).` } }
     ] },
 
@@ -162,6 +209,9 @@ JEE.book('chemistry', 'practical-chemistry', {
         [R`I⁻`, R`conc. H₂SO₄: violet I₂ vapours`, R`yellow AgI, insoluble in NH₄OH; layer test: violet CCl₄ layer`],
         [R`NO₃⁻`, R`conc. H₂SO₄ + Cu turnings: brown NO₂`, R`<b>brown ring test</b>: FeSO₄ + conc. H₂SO₄ down the side → brown ring of [Fe(H₂O)₅NO]²⁺`],
         [R`SO₄²⁻`, R`no gas with acids`, R`white BaSO₄ with BaCl₂, insoluble in conc. HCl; white PbSO₄ with lead acetate`]] } },
+      { fig: figBrownRing, cap: R`Concentrated H₂SO₄ is poured slowly down the side of the tube so that it forms a separate layer underneath. NO formed from the nitrate at the boundary combines with Fe²⁺ to give the brown ring.` },
+      { ex: { q: R`A colourless salt gives brown fumes with concentrated H₂SO₄ and copper turnings, and a brown ring test. A solution of it gives no precipitate with BaCl₂ or AgNO₃. Identify the anion.`,
+        steps: [R`Brown NO₂ with Cu and conc. H₂SO₄, and the brown ring, both show nitrate.`, R`No BaSO₄ (no sulphate) and no AgX (no halide).`], ans: R`Nitrate, NO₃⁻` } },
       { check: { q: R`What is the brown ring in the nitrate test?`, ans: R`The complex [Fe(H₂O)₅(NO)]²⁺ formed at the junction of the two layers.` } }
     ] },
 
@@ -176,6 +226,7 @@ JEE.book('chemistry', 'practical-chemistry', {
       R`A known mass of anhydrous (or hydrated) CuSO₄ is dissolved in a known mass of water in a calorimeter (an insulated vessel), and the temperature change is measured. The heat released (or absorbed) is q = (m_water + water equivalent of calorimeter) × c × ΔT, and ΔsolH = −q/n per mole of solute.`,
       { ex: { q: R`5.0 g of anhydrous CuSO₄ (M = 159.6) is dissolved in 100 g of water; the temperature rises by 4.7 K. Find ΔsolH (c = 4.18 J g⁻¹ K⁻¹; neglect the calorimeter).`,
         steps: [R`q = 100 × 4.18 × 4.7 = 1965 J released.`, R`n = 5.0/159.6 = 0.0313 mol; ΔsolH = −1965/0.0313 = −62.7 kJ/mol.`], ans: R`≈ −63 kJ/mol (exothermic)` } },
+      { fig: figCalor, cap: R`A simple calorimeter: an insulated vessel with a thermometer and a stirrer. The heat released or absorbed by the process changes the temperature of the known mass of solution.` },
       R`Anhydrous CuSO₄ dissolves exothermically (hydration of ions releases a lot of energy), while CuSO₄·5H₂O dissolves endothermically (its ions are already hydrated).`,
       { check: { q: R`Why is the enthalpy of solution of anhydrous CuSO₄ negative while that of CuSO₄·5H₂O is positive?`, ans: R`The anhydrous salt releases hydration energy on dissolving; the pentahydrate is already hydrated, so lattice breaking dominates.` } }
     ] },
@@ -198,6 +249,7 @@ JEE.book('chemistry', 'practical-chemistry', {
       R`The time t for the blue colour corresponds to a fixed amount of reaction, so rate ∝ 1/t. Repeating with different initial [I⁻] (and [H₂O₂]) shows that the rate is proportional to each: rate = k[H₂O₂][I⁻] (first order in each, at constant acidity). The effect of temperature on rate can be studied in the same way.`,
       { ex: { q: R`In an iodine-clock run the blue colour appears after 40 s. When [I⁻] is doubled (all else the same) it appears after 20 s. What is the order with respect to I⁻?`,
         steps: [R`Rate ∝ 1/t: the rate doubled when [I⁻] doubled.`, R`2 = 2ⁿ → n = 1.`], ans: R`First order in I⁻` } },
+      { fig: figClock, cap: R`If the reaction is first order in I⁻, a graph of 1/t (proportional to the rate) against the initial [I⁻] is a straight line through the origin.` },
       { check: { q: R`What is the role of sodium thiosulphate in the iodine clock?`, ans: R`It removes I₂ as it forms, so the blue colour appears only after a fixed amount of reaction, giving a measurable time.` } }
     ] }
   ],
@@ -208,7 +260,8 @@ JEE.book('chemistry', 'practical-chemistry', {
     R`Titrations: M₁V₁/n₁ = M₂V₂/n₂; phenolphthalein for weak acid/strong base, methyl orange for strong acid/weak base. KMnO₄: self-indicator, dil. H₂SO₄; oxalic acid at 60–70 °C (autocatalysis by Mn²⁺); Mohr's salt cold.`,
     R`Cation groups: 0 NH₄⁺; I dil. HCl; II H₂S/H⁺; III NH₄OH + NH₄Cl; IV H₂S/NH₄OH; V (NH₄)₂CO₃; VI Na₂HPO₄. Key tests: DMG (Ni), KSCN/K₄[Fe(CN)₆] (Fe), K₂CrO₄ (Pb, Ba), flame colours, NaBiO₃ (Mn), Nessler (NH₄⁺).`,
     R`Anions: dil. H₂SO₄ (CO₃²⁻, S²⁻, NO₂⁻), conc. H₂SO₄ (Cl⁻, Br⁻, I⁻, NO₃⁻), BaCl₂ (SO₄²⁻); brown ring (NO₃⁻); chromyl chloride (Cl⁻); MgSO₄ (CO₃²⁻ vs HCO₃⁻).`,
-    R`Calorimetry: q = mcΔT, ΔH = −q/n; ΔneutH (strong/strong) ≈ −57 kJ/mol. Sols: lyophilic by mixing; Fe(OH)₃ by hydrolysis; As₂S₃ by double decomposition. Iodine clock: rate ∝ 1/t, rate = k[H₂O₂][I⁻].`
+    R`Calorimetry: q = mcΔT, ΔH = −q/n; ΔneutH (strong/strong) ≈ −57 kJ/mol. Sols: lyophilic by mixing; Fe(OH)₃ by hydrolysis; As₂S₃ by double decomposition. Iodine clock: rate ∝ 1/t, rate = k[H₂O₂][I⁻].`,
+    R`Fused sodium converts covalent N, S, X into ionic NaCN, Na₂S, NaX; KMnO₄ end point = first permanent pink; flame colours from electronic transitions.`
   ],
   refs: [
     { t: R`Wikipedia: Qualitative inorganic analysis`, url: 'https://en.wikipedia.org/wiki/Qualitative_inorganic_analysis' },
