@@ -173,6 +173,8 @@ JEE.book('physics', 'thermodynamics', {
       R`If a gas in an insulated container suddenly rushes into an evacuated space (a membrane is burst), it pushes against nothing, so W = 0; it is insulated, so Q = 0. Then ΔU = 0, and for an ideal gas the temperature does not change. Free expansion is not quasi-static (P is not defined during it), so it cannot be drawn as a curve on a P–V diagram.`,
       { adv: R`<b>Polytropic processes.</b> Many processes follow \(PV^x\) = constant for some number x: x = 0 (isobaric), x = 1 (isothermal), x = γ (adiabatic), x → ∞ (isochoric). The work done is \(W = \dfrac{P_1V_1 - P_2V_2}{x - 1} = \dfrac{nR(T_1 - T_2)}{x - 1}\), and the molar heat capacity along the process is \[C = C_v + \frac{R}{1 - x}\] For example, a monatomic gas taken along \(PV^2\) = constant has \(C = \frac32R - R = \frac12R\).` },
       { tip: R`The slope of an adiabatic curve on a P–V graph is γ times the slope of the isothermal curve at the same point (\(dP/dV = -\gamma P/V\) versus \(-P/V\)). So an adiabatic expansion does less work than an isothermal one between the same volumes, and an adiabatic compression needs more.` },
+      { ex: { q: R`Air (γ = 1.4) at 300 K is compressed adiabatically to one-eighth of its volume, as in a diesel engine. Find its final temperature.`,
+        steps: [R`\(TV^{\gamma-1}\) = constant: \(T_2 = 300\times8^{0.4}\).`], ans: R`≈ 690 K, hot enough to ignite the fuel without a spark` } },
       { check: { q: R`In which process does all the heat supplied go into work?`, ans: R`Isothermal (for an ideal gas, ΔU = 0).` } }
     ] },
 
@@ -206,6 +208,8 @@ JEE.book('physics', 'thermodynamics', {
       R`Its performance is measured by the <b>coefficient of performance</b> \[\alpha = \frac{Q_2}{W} = \frac{Q_2}{Q_1 - Q_2}\] which can be larger than 1. A <b>heat pump</b> uses the same machine to heat a house, pumping heat from the cold outside air to the warm inside.`,
       { ex: { q: R`A refrigerator removes 300 J of heat from its inside for every 100 J of electrical work. Find its coefficient of performance and the heat it releases to the room.`,
         steps: [R`α = 300/100 = 3.`, R`\(Q_1 = Q_2 + W = 300 + 100\).`], ans: R`3; 400 J` } },
+      { ex: { q: R`An ideal (Carnot) refrigerator keeps its inside at 270 K in a 300 K kitchen. Find its coefficient of performance.`,
+        steps: [R`\(\beta = \dfrac{T_2}{T_1 - T_2} = \dfrac{270}{30}\).`], ans: R`9: each joule of work removes 9 J of heat from inside` } },
       { check: { q: R`Can you cool a closed room by leaving the refrigerator door open?`, ans: R`No. The fridge releases more heat (\(Q_2 + W\)) than it removes, so the room actually gets warmer.` } }
     ] },
 
@@ -219,6 +223,7 @@ JEE.book('physics', 'thermodynamics', {
     { h: R`Reversible and irreversible processes`, t: [5], blocks: [
       R`A process is <b>reversible</b> if it can be run backwards so that both the system and its surroundings return exactly to their original states, with no other change anywhere. This needs the process to be quasi-static (always in equilibrium) and free of dissipative effects such as friction, viscosity and electrical resistance.`,
       R`All real processes are <b>irreversible</b>: heat flowing across a finite temperature difference, free expansion of a gas into a vacuum, mixing of two gases, friction. A reversible process is an ideal limit, like a frictionless surface, but it is extremely useful because reversible engines are the most efficient possible.`,
+      R`Real processes are always irreversible to some extent, because of friction, heat flowing across a finite temperature difference, or sudden expansion. A reversible process is an ideal limit: it must happen infinitely slowly, through a series of equilibrium states, so that a tiny change in conditions could send it backwards.`,
       { check: { q: R`Is the free expansion of a gas into a vacuum reversible?`, ans: R`No. The gas never collects itself back into one half on its own.` } }
     ] },
 

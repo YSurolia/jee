@@ -196,6 +196,8 @@ JEE.book('chemistry', 'coordination-compounds', {
         [R`K₃[Fe(C₂O₄)₃]`, R`potassium trioxalatoferrate(III)`],
         [R`[CoCl₂(en)₂]Cl`, R`dichloridobis(ethane-1,2-diamine)cobalt(III) chloride`]] } },
       { tip: R`Alphabetical order uses the ligand's name, not its prefix: in "triamminetriaquachromium", "ammine" (a) comes before "aqua" (a-q) because m comes before q.` },
+      { ex: { q: R`Write formulas for (a) potassium hexacyanidoferrate(III) (b) tetraamminediaquacopper(II) sulphate (c) dichloridobis(ethane-1,2-diamine)cobalt(III) chloride.`,
+        steps: [R`Inside the bracket, write the metal first, then the ligands in alphabetical order; balance the charge with counter ions.`], ans: R`(a) K₃[Fe(CN)₆] (b) [Cu(NH₃)₄(H₂O)₂]SO₄ (c) [CoCl₂(en)₂]Cl` } },
       { check: { q: R`Write the IUPAC name of [Co(NH₃)₅Cl]Cl₂.`, ans: R`Pentaamminechloridocobalt(III) chloride.` } }
     ] },
 
@@ -275,6 +277,8 @@ JEE.book('chemistry', 'coordination-compounds', {
         steps: [R`(a) t<sub>2g</sub>⁶: 6 × (−0.4) = −2.4Δ₀.`, R`(b) t<sub>2g</sub>⁴e<sub>g</sub>²: 4(−0.4) + 2(0.6) = −0.4Δ₀.`], ans: R`−2.4Δ₀; −0.4Δ₀` } },
       { table: { head: [R`d<sup>n</sup>`, R`High spin (weak field)`, R`Unpaired`, R`Low spin (strong field)`, R`Unpaired`], rows: [
         [R`d⁴`, R`t<sub>2g</sub>³e<sub>g</sub>¹`, R`4`, R`t<sub>2g</sub>⁴`, R`2`], [R`d⁵`, R`t<sub>2g</sub>³e<sub>g</sub>²`, R`5`, R`t<sub>2g</sub>⁵`, R`1`], [R`d⁶`, R`t<sub>2g</sub>⁴e<sub>g</sub>²`, R`4`, R`t<sub>2g</sub>⁶`, R`0`], [R`d⁷`, R`t<sub>2g</sub>⁵e<sub>g</sub>²`, R`3`, R`t<sub>2g</sub>⁶e<sub>g</sub>¹`, R`1`]] } },
+      { ex: { q: R`Predict the number of unpaired electrons and the spin-only magnetic moment of [Fe(CN)₆]³⁻ and [FeF₆]³⁻.`,
+        steps: [R`Both contain Fe³⁺ (3d⁵). CN⁻ is a strong-field ligand: low spin t₂g⁵, one unpaired electron. F⁻ is weak-field: high spin t₂g³e_g², five unpaired.`, R`μ = √(n(n + 2)).`], ans: R`[Fe(CN)₆]³⁻: 1, 1.73 BM; [FeF₆]³⁻: 5, 5.92 BM` } },
       { check: { q: R`How many unpaired electrons does [Fe(CN)₆]⁴⁻ have?`, ans: R`None: Fe²⁺ is d⁶ and CN⁻ is strong-field, giving t<sub>2g</sub>⁶.` } }
     ] },
 

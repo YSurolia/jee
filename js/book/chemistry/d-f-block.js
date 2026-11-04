@@ -81,6 +81,8 @@ JEE.book('chemistry', 'd-f-block', {
         [R`3d`, R`1`, R`2`, R`3`, R`5`, R`5`, R`6`, R`7`, R`8`, R`10`, R`10`]] } },
       R`Cr (3d⁵4s¹) and Cu (3d¹⁰4s¹) are exceptions because half-filled and completely filled d subshells are extra stable (exchange energy and symmetry). The 3d and 4s energies are very close, which is why such exceptions occur. When the atoms form ions, the <b>4s electrons are lost first</b>: Fe (3d⁶4s²) → Fe²⁺ (3d⁶) → Fe³⁺ (3d⁵).`,
       { mistake: R`Writing Fe²⁺ as 3d⁴4s². Electrons leave the 4s orbital first, so Fe²⁺ is 3d⁶.` },
+      { ex: { q: R`Write the electronic configurations of Cr, Cu, Fe³⁺ and Mn²⁺ (Z = 24, 29, 26, 25).`,
+        steps: [R`Cr and Cu take one 4s electron into 3d to reach a half-filled or full 3d subshell.`, R`Transition-metal ions lose their 4s electrons first.`], ans: R`Cr [Ar]3d⁵4s¹; Cu [Ar]3d¹⁰4s¹; Fe³⁺ [Ar]3d⁵; Mn²⁺ [Ar]3d⁵` } },
       { check: { q: R`Why is zinc not considered a transition element?`, ans: R`It has a completely filled 3d¹⁰ subshell both in the atom and in its only ion Zn²⁺.` } }
     ] },
 
@@ -119,6 +121,8 @@ JEE.book('chemistry', 'd-f-block', {
       R`The number of oxidation states is greatest in the middle (Mn shows +2 to +7). At the start there are too few electrons to lose; at the end there are too few unpaired d electrons to share. The highest state equals the total number of 4s and 3d electrons up to Mn (Sc +3, Ti +4, V +5, Cr +6, Mn +7).`,
       { points: [R`High states are stabilised by <b>oxygen</b> and <b>fluorine</b> (small, electronegative, and O can form multiple bonds): Mn₂O₇ and CrO₃ exist, but the highest fluoride of Mn is MnF₄. Oxygen's ability to form multiple bonds makes oxides better than fluorides at stabilising very high states.`, R`Low states (0, +1) are stabilised by π-acceptor ligands such as CO: Ni(CO)₄, Fe(CO)₅.`, R`Oxides: lower-state oxides are <b>basic</b> (MnO), intermediate amphoteric (Mn₂O₃, MnO₂), higher states <b>acidic</b> (Mn₂O₇ gives HMnO₄; CrO₃ gives H₂CrO₄).`] },
       { tip: R`In the 4d and 5d series, the higher oxidation states are more stable (MoO₃, WO₃ are stable; CrO₃ is a strong oxidant), the opposite of the p-block trend.` },
+      { ex: { q: R`Find the oxidation state of the metal in (a) K₂Cr₂O₇ (b) KMnO₄ (c) [Fe(CN)₆]³⁻ (d) CrO₅ (which contains two peroxide groups).`,
+        steps: [R`(a) 2(+1) + 2x + 7(−2) = 0 → x = +6. (b) +1 + x − 8 = 0 → +7. (c) x + 6(−1) = −3 → +3.`, R`(d) One O is oxide (−2) and four are peroxide (−1 each): x − 2 − 4 = 0.`], ans: R`(a) +6 (b) +7 (c) +3 (d) +6 (not +10)` } },
       { check: { q: R`Why does Mn show the maximum number of oxidation states in the 3d series?`, ans: R`It has 5 unpaired 3d electrons plus 2 4s electrons, all of which can be involved in bonding (+2 to +7).` } }
     ] },
 
@@ -137,6 +141,8 @@ JEE.book('chemistry', 'd-f-block', {
         [R`Sc³⁺, Ti⁴⁺`, R`3d⁰`, R`0`, R`0 (diamagnetic)`], [R`Ti³⁺`, R`3d¹`, R`1`, R`1.73`], [R`V³⁺`, R`3d²`, R`2`, R`2.83`], [R`Cr³⁺`, R`3d³`, R`3`, R`3.87`], [R`Fe²⁺`, R`3d⁶`, R`4`, R`4.90`], [R`Mn²⁺, Fe³⁺`, R`3d⁵`, R`5`, R`5.92`], [R`Cu²⁺`, R`3d⁹`, R`1`, R`1.73`], [R`Zn²⁺, Cu⁺`, R`3d¹⁰`, R`0`, R`0`]] } },
       { ex: { q: R`A divalent 3d metal ion has a spin-only magnetic moment of 3.87 BM. Identify possible ions.`,
         steps: [R`√(n(n+2)) = 3.87 → n(n+2) = 15 → n = 3.`, R`M²⁺ with 3 unpaired electrons: d³ (V²⁺) or d⁷ high spin (Co²⁺).`], ans: R`V²⁺ or Co²⁺` } },
+      { ex: { q: R`Arrange Ti³⁺, Mn²⁺, Cu²⁺ and Cr³⁺ in order of increasing spin-only magnetic moment.`,
+        steps: [R`Unpaired electrons: Ti³⁺ (3d¹) 1; Cu²⁺ (3d⁹) 1; Cr³⁺ (3d³) 3; Mn²⁺ (3d⁵) 5. μ = √(n(n + 2)).`], ans: R`Ti³⁺ = Cu²⁺ (1.73 BM) < Cr³⁺ (3.87 BM) < Mn²⁺ (5.92 BM)` } },
       { check: { q: R`Calculate the spin-only moment of Fe³⁺.`, ans: R`3d⁵, 5 unpaired: √35 = 5.92 BM.` } }
     ] },
 
@@ -145,6 +151,8 @@ JEE.book('chemistry', 'd-f-block', {
       { fig: figDD, cap: R`In an octahedral field the d orbitals split into t<sub>2g</sub> and e<sub>g</sub>; the energy gap matches visible light.` },
       { fig: figColour, cap: R`Colours of some hydrated 3d ions. Ions with d⁰ or d¹⁰ (Sc³⁺, Ti⁴⁺, Zn²⁺, Cu⁺) are colourless.` },
       R`The colour depends on the metal, its oxidation state and the ligands: [Cu(H₂O)₄]²⁺ is pale blue, but [Cu(NH₃)₄]²⁺ is deep blue. Ions with d⁰ or d¹⁰ configurations have no possible d–d transition and are colourless. (KMnO₄ and K₂Cr₂O₇ are intensely coloured even though Mn(VII) and Cr(VI) are d⁰: their colour comes from charge transfer from O to the metal.)`,
+      { ex: { q: R`Which of these ions are coloured in aqueous solution: Sc³⁺, Ti³⁺, V³⁺, Cu⁺, Ni²⁺, Zn²⁺?`,
+        steps: [R`Colour needs a d–d transition, so the ion must have a partly filled d subshell (d¹ to d⁹).`, R`Sc³⁺ is d⁰; Cu⁺ and Zn²⁺ are d¹⁰.`], ans: R`Coloured: Ti³⁺ (purple), V³⁺ (green), Ni²⁺ (green). Colourless: Sc³⁺, Cu⁺, Zn²⁺` } },
       { check: { q: R`Why is Zn²⁺ colourless while Cu²⁺ is coloured?`, ans: R`Zn²⁺ is d¹⁰: no d–d transition is possible. Cu²⁺ is d⁹ and can absorb visible light by a d–d transition.` } }
     ] },
 
@@ -194,6 +202,8 @@ JEE.book('chemistry', 'd-f-block', {
       R`The common oxidation state is <b>+3</b> for all. Some show +2 or +4 when this gives an empty, half-filled or filled f subshell:`,
       { points: [R`<b>Ce⁴⁺</b> (4f⁰) is a good oxidising agent (E° Ce⁴⁺/Ce³⁺ = +1.74 V), used in analysis.`, R`<b>Eu²⁺</b> (4f⁷) and <b>Yb²⁺</b> (4f¹⁴) are reducing agents (they change to the common +3 state).`, R`Tb⁴⁺ (4f⁷) is an oxidant.`] },
       R`<b>General characteristics:</b> silvery-white soft metals that tarnish in air; hardness increases with atomic number (Sm is steel-hard). They are reactive, similar to calcium: they burn in O₂ to Ln₂O₃, react with water to give H₂, with acids to give H₂, with carbon to give carbides, and with N₂ to give LnN. Many Ln³⁺ ions are coloured (f–f transitions); La³⁺ and Lu³⁺ (f⁰, f¹⁴) are colourless. Ln(OH)₃ are basic, like alkaline earth hydroxides. <b>Mischmetall</b> (about 95% lanthanoid metals, 5% Fe) is used in lighter flints and Mg alloys.`,
+      { ex: { q: R`Why do Eu²⁺ and Yb²⁺ act as reducing agents, while Ce⁴⁺ and Tb⁴⁺ act as oxidising agents?`,
+        steps: [R`The common oxidation state of lanthanoids is +3.`, R`Eu²⁺ (4f⁷) and Yb²⁺ (4f¹⁴) readily lose an electron to return to +3; Ce⁴⁺ (4f⁰) and Tb⁴⁺ (4f⁷) readily gain one. The unusual states owe their existence to the extra stability of empty, half-filled or full f subshells.`], ans: R`Each tends to return to the stable +3 state` } },
       { check: { q: R`Why is Ce⁴⁺ a good oxidising agent?`, ans: R`Ce prefers its common +3 state; Ce⁴⁺ readily gains an electron (E° = +1.74 V).` } }
     ] },
 

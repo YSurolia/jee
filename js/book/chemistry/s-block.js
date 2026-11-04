@@ -180,6 +180,8 @@ JEE.book('chemistry', 's-block', {
       { derive: R`Why lithium is the best reducing agent in water`, steps: [R`Three steps: \[\mathrm{M(s)} \xrightarrow{\Delta_{sub}H} \mathrm{M(g)} \xrightarrow{IE} \mathrm{M^+(g)} \xrightarrow{\Delta_{hyd}H} \mathrm{M^+(aq)}\]`, R`Overall: \(\Delta H = \Delta_{sub}H + IE + \Delta_{hyd}H\); the more negative this is, the more negative E°.`, R`Li has the largest IE, but its \(\Delta_{hyd}H\) (−506 kJ/mol) is far more negative than that of the others, so E°(Li⁺/Li) is the most negative.`] },
       R`In group 2, E° values are also very negative (Mg −2.37, Ca −2.87, Ba −2.91 V), with Be the least reducing (−1.85 V) because of its high sublimation and ionisation energies.`,
       { tip: R`Reducing power in the gas phase follows IE (Cs strongest), but in water it follows E° (Li strongest). Read the question carefully.` },
+      { ex: { q: R`2.3 g of sodium reacts completely with water. Find the mass of NaOH formed and the volume of hydrogen at STP.`,
+        steps: [R`2Na + 2H₂O → 2NaOH + H₂: 2.3/23 = 0.1 mol Na gives 0.1 mol NaOH and 0.05 mol H₂.`], ans: R`4.0 g NaOH; 1.12 L H₂` } },
       { check: { q: R`Why is Li the strongest reducing agent in aqueous solution?`, ans: R`Its very large hydration enthalpy more than compensates for its high ionisation enthalpy, giving the most negative E°.` } }
     ] },
 

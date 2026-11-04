@@ -58,6 +58,19 @@ var figInverse = D.plot({ w: 280, h: 280, x: [-3, 4], y: [-3, 0], eq: true, xtic
   pts: [{ x: 1, y: 3, color: 'b', label: '(1, 3)', pos: 'e' }, { x: 3, y: 1, color: 'o', label: '(3, 1)', pos: 's' }], segs: [{ x1: 1, y1: 3, x2: 3, y2: 1, color: 'g', dash: '3 3', w: 1.2 }],
   label: 'A function and its inverse are mirror images in y = x' });
 
+var figGrid = D.plot({ w: 300, h: 220, x: [0, 4.2], y: [0, 4.2], noOrigin: true, xlabel: 'A', ylabel: 'B', mathLabels: false, xticks: [[1, '1'], [2, '2'], [3, '3']], yticks: [[1, 'a'], [2, 'b'], [3, 'c'], [4, 'd']],
+  pts: (function () { var p = []; for (var i = 1; i <= 3; i++) for (var j = 1; j <= 4; j++) { var inR = (i === 1 && j === 1) || (i === 2 && j === 3) || (i === 3 && j === 3); p.push({ x: i, y: j, color: inR ? 'r' : 'm' }); } return p; })(),
+  label: 'Cartesian product A × B with a relation highlighted' });
+
+var figMachine = D.svg(440, 110, [
+  D.text(30, 55, 'x', { size: 14, math: true }), D.arrow(42, 55, 95, 55, { color: 'm', w: 1.6, head: 7 }),
+  D.rect(100, 30, 80, 50, { color: 'b', fill: 'soft', w: 1.6, r: 6 }), D.text(140, 56, 'g', { size: 15, math: true, color: 'b' }),
+  D.arrow(180, 55, 245, 55, { color: 'm', w: 1.6, head: 7 }), D.text(212, 42, 'g(x)', { size: 12, math: false }),
+  D.rect(250, 30, 80, 50, { color: 'o', fill: 'soft', w: 1.6, r: 6 }), D.text(290, 56, 'f', { size: 15, math: true, color: 'o' }),
+  D.arrow(330, 55, 385, 55, { color: 'm', w: 1.6, head: 7 }), D.text(410, 55, 'f(g(x))', { size: 12, math: false }),
+  D.text(220, 100, '(f∘g)(x): apply g first, then f', { size: 11, math: false, color: 'g' })
+], 'Composition of functions as two machines');
+
 // ---------- chapter text ----------
 JEE.book('maths', 'sets-relations-functions', {
   intro: [
@@ -132,6 +145,7 @@ JEE.book('maths', 'sets-relations-functions', {
       R`The <b>power set</b> P(A) is the set of all subsets of A. If n(A) = m, then \(n(P(A)) = 2^m\). For A = {1, 2}: P(A) = {∅, {1}, {2}, {1, 2}}.`,
       { ex: { q: R`If n(A) = 3, find n(P(P(A))).`,
         steps: [R`n(P(A)) = 2³ = 8.`, R`n(P(P(A))) = 2⁸ = 256.`], ans: R`256` } },
+      R`Why 2ⁿ subsets? Building a subset means making a yes/no choice for each of the n elements, and the choices are independent, so there are 2 × 2 × … × 2 = 2ⁿ possibilities, including the empty set (all "no") and the set itself (all "yes").`,
       { check: { q: R`What is P(∅)?`, ans: R`{∅}: a set with one element.` } }
     ] },
 
@@ -139,6 +153,7 @@ JEE.book('maths', 'sets-relations-functions', {
       R`An <b>ordered pair</b> (a, b) has a first and a second element; (a, b) = (c, d) if and only if a = c and b = d. The <b>Cartesian product</b> of A and B is \[A \times B = \{(a, b) : a \in A,\ b \in B\}, \qquad n(A \times B) = n(A)\,n(B).\] \(\mathbb{R} \times \mathbb{R}\) is the coordinate plane. In general \(A \times B \ne B \times A\). Also \(A \times (B \cup C) = (A \times B) \cup (A \times C)\) and \(A \times (B \cap C) = (A \times B) \cap (A \times C)\).`,
       { ex: { q: R`If A = {1, 2} and B = {x, y, z}, list A × B and find n(A × B).`,
         steps: [R`A × B = {(1, x), (1, y), (1, z), (2, x), (2, y), (2, z)}.`], ans: R`6 ordered pairs` } },
+      { fig: figGrid, cap: R`A × B for A = {1, 2, 3} and B = {a, b, c, d} has 3 × 4 = 12 ordered pairs, shown as a grid of points. Any relation from A to B is a subset of these points; the red ones are R = {(1, a), (2, c), (3, c)}, which happens to be a function.` },
       { check: { q: R`If (x + 1, y − 2) = (3, 1), find x and y.`, ans: R`x = 2, y = 3.` } }
     ] },
 
@@ -170,6 +185,7 @@ JEE.book('maths', 'sets-relations-functions', {
       { ex: { q: R`Show that R = {(a, b) : 2 divides a − b} on ℤ is an equivalence relation, and find its classes.`,
         steps: [R`a − a = 0 is divisible by 2: reflexive.`, R`If 2 | (a − b) then 2 | (b − a): symmetric.`, R`If 2 | (a − b) and 2 | (b − c), then 2 | (a − c): transitive.`, R`Classes: [0] = even integers, [1] = odd integers.`], ans: R`An equivalence relation with two classes: evens and odds` } },
       { tip: R`Congruence modulo n, "is parallel to" (including a line with itself), and "has the same birthday as" are equivalence relations; "is perpendicular to" and "is less than" are not.` },
+      R`An equivalence relation always <b>partitions</b> its set: the classes do not overlap, and together they cover every element. Congruence modulo 5 sorts all integers into five drawers by their remainder; "has the same birthday as" sorts people into 366 groups. Conversely, any partition of a set defines an equivalence relation ("is in the same part as").`,
       { check: { q: R`How many equivalence classes does "congruence modulo 5" have on ℤ?`, ans: R`Five: [0], [1], [2], [3], [4].` } }
     ] },
 
@@ -189,6 +205,8 @@ JEE.book('maths', 'sets-relations-functions', {
       { table: { head: [R`From A (m elements) to B (n elements)`, R`Number`], rows: [[R`all functions`, R`\(n^m\)`], [R`one-one functions (m ≤ n)`, R`\(^nP_m = \dfrac{n!}{(n - m)!}\)`], [R`bijections (m = n)`, R`\(n!\)`], [R`onto functions`, R`\(\sum_{r=0}^{n} (-1)^r \binom{n}{r} (n - r)^m\)`]] } },
       { ex: { q: R`How many onto functions are there from a 4-element set to a 3-element set?`,
         steps: [R`3⁴ − ³C₁·2⁴ + ³C₂·1⁴ = 81 − 48 + 3.`], ans: R`36` } },
+      { ex: { q: R`How many functions are there from A = {1, 2, 3} to B = {a, b}? How many of them are onto?`,
+        steps: [R`Each of the 3 elements has 2 choices: 2³ = 8 functions.`, R`Only the two constant functions miss an element of B, so 8 − 2 are onto.`], ans: R`8 functions; 6 onto (none is one-one, since 3 > 2)` } },
       { check: { q: R`Is f: ℝ → ℝ, f(x) = x² one-one?`, ans: R`No: f(2) = f(−2) = 4. (It is many-one and into.)` } }
     ] },
 
@@ -229,6 +247,7 @@ JEE.book('maths', 'sets-relations-functions', {
       { points: [R`If f and g are one-one, so is g∘f; if both are onto, so is g∘f.`, R`If g∘f is one-one, f is one-one; if g∘f is onto, g is onto.`] },
       { ex: { q: R`If f(x) = x² and g(x) = 2x + 1, find f∘g and g∘f.`,
         steps: [R`(f∘g)(x) = f(2x + 1) = (2x + 1)².`, R`(g∘f)(x) = g(x²) = 2x² + 1.`], ans: R`(2x + 1)² and 2x² + 1 (not equal)` } },
+      { fig: figMachine, cap: R`Think of each function as a machine: (f∘g)(x) feeds x into g, then feeds the output into f. The order matters; g∘f uses the machines the other way round.` },
       { check: { q: R`If f(x) = 3x − 2, find (f∘f)(x).`, ans: R`3(3x − 2) − 2 = 9x − 8.` } }
     ] },
 

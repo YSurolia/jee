@@ -323,6 +323,7 @@ JEE.book('physics', 'kinematics', {
         steps: [R`\(a = v\,\dfrac{dv}{dx} = 3x\times3 = 9x\).`, R`At x = 2 m: a = 18 m/s².`],
         ans: R`18 m/s²` } },
       { mistake: R`Using the constant-acceleration equations when the acceleration changes (for example a = 3t). Then you must use calculus, as above.` },
+      { tip: R`For motion under gravity, fix the sign convention once (say upward positive, a = −g) and use it for every quantity, including the final displacement, which may be negative if the body ends below its starting point.` },
       { check: { q: R`A stone is dropped from a height of 45 m. How long does it take to reach the ground? (g = 10 m/s²)`, ans: R`\(45 = \frac12\times10\times t^2\), so \(t^2 = 9\) and t = 3 s.` } }
     ] },
 

@@ -76,6 +76,7 @@ JEE.book('maths', 'coordinate-geometry', {
   sections: [
     { h: R`The Cartesian coordinate system`, t: [0], blocks: [
       R`Two perpendicular number lines, the x-axis and y-axis, meet at the origin O. Every point P of the plane is given by an ordered pair (x, y): its abscissa and ordinate. The axes divide the plane into four quadrants: I (+, +), II (−, +), III (−, −), IV (+, −).`,
+      { tip: R`Always draw a quick sketch: it catches sign errors and shows which answer of a quadratic makes sense.` },
       { check: { q: R`In which quadrant is (−3, 4)?`, ans: R`The second quadrant.` } }
     ] },
 

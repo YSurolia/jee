@@ -80,6 +80,8 @@ JEE.book('chemistry', 'goc', {
       { ex: { q: R`Count the σ and π bonds in CH₂=CH–C≡N (acrylonitrile).`,
         steps: [R`σ: 3 C–H + C=C (1) + C–C (1) + C≡N (1) = 6.`, R`π: C=C (1) + C≡N (2) = 3.`], ans: R`6 σ, 3 π` } },
       R`<b>Degree of unsaturation</b> (double bond equivalents, DBE) gives the number of rings + π bonds from a molecular formula CₐHᵦNᵧXₓ: DBE = a − (b + x)/2 + y/2 + 1. Benzene C₆H₆: 6 − 3 + 1 = 4 (one ring + three π bonds).`,
+      { ex: { q: R`Find the degree of unsaturation of C₆H₆, C₅H₅N and C₄H₇Cl, and suggest what each contains.`,
+        steps: [R`DBE = C − (H + X)/2 + N/2 + 1.`, R`C₆H₆: 6 − 3 + 1 = 4; C₅H₅N: 5 − 2.5 + 0.5 + 1 = 4; C₄H₇Cl: 4 − 4 + 1 = 1.`], ans: R`Benzene: one ring + three C=C; pyridine: the same, with N in the ring; C₄H₇Cl: one ring or one double bond` } },
       { check: { q: R`Find the DBE of C₄H₆.`, ans: R`4 − 3 + 1 = 2 (e.g. a triple bond, two double bonds, or a ring + double bond).` } }
     ] },
 
@@ -121,6 +123,8 @@ JEE.book('chemistry', 'goc', {
         [R`CH₃COCH₂COOH`, R`3-oxobutanoic acid`], [R`NCCH₂CH₂CN`, R`butanedinitrile`], [R`CH₃CH(NH₂)COOH`, R`2-aminopropanoic acid`], [R`CH₃OCH₂CH₃`, R`methoxyethane`], [R`ClCH₂CH₂OH`, R`2-chloroethan-1-ol`]] } },
       { mol: [['OC(=O)CC(=O)C', '3-oxobutanoic acid'], ['OCC=CC(=O)O', '4-hydroxybut-2-enoic acid'], ['NC1=CC=C(C=C1)C(=O)O', '4-aminobenzoic acid']], w: 180, h: 130, cap: R`The principal group (–COOH here) gives the suffix and gets the lowest locant (C-1).` },
       R`<b>Benzene derivatives:</b> for disubstituted benzenes, positions 1,2- (ortho, o-), 1,3- (meta, m-), 1,4- (para, p-). Common names like toluene (methylbenzene), phenol, aniline, benzaldehyde, benzoic acid are accepted.`,
+      { ex: { q: R`Give IUPAC names: (a) CH₂=CH–CH₂–COOH (b) CH₃COCH₂CH₂CH₃ (c) HOCH₂CH₂NH₂.`,
+        steps: [R`Choose the principal group (–COOH > –CHO > >C=O > –OH > –NH₂), number from the end nearer to it, and name the others as prefixes or as the chain's unsaturation.`], ans: R`(a) but-3-enoic acid (b) pentan-2-one (c) 2-aminoethan-1-ol` } },
       { check: { q: R`Name CH₃–CH(OH)–CH₂–CHO.`, ans: R`3-Hydroxybutanal (–CHO is the principal group).` } }
     ] },
 
@@ -151,6 +155,8 @@ JEE.book('chemistry', 'goc', {
       { mol: [['C[C@H](O)C(=O)O', '(S)-lactic acid'], ['C[C@@H](O)C(=O)O', '(R)-lactic acid']], w: 170, h: 120, cap: R`The two forms of lactic acid are non-superimposable mirror images: enantiomers.` },
       { points: [R`<b>Enantiomers</b> have identical physical properties (except the direction of rotation) and identical chemical properties towards non-chiral reagents.`, R`A 50 : 50 mixture of enantiomers is a <b>racemic mixture</b> (±); it is optically inactive by external compensation. Separating it is <b>resolution</b>.`, R`<b>R/S configuration:</b> rank the four groups by CIP priority (1 highest); view with the lowest (4) pointing away; 1 → 2 → 3 clockwise = R, anticlockwise = S.`] },
       { mistake: R`Assuming any molecule with a chiral carbon is optically active. A molecule with two (or more) chiral centres may have a plane of symmetry (meso) and be inactive.` },
+      { ex: { q: R`How many stereoisomers does 2,3-dibromobutane have, and are they all optically active?`,
+        steps: [R`Two stereocentres (C2 and C3) would allow 2² = 4 stereoisomers.`, R`Because both centres carry the same groups, the (2R,3S) form has a plane of symmetry: it is a single meso compound, identical to (2S,3R).`], ans: R`Three: a pair of enantiomers (active) and one meso form (inactive)` } },
       { check: { q: R`Is butan-2-ol chiral?`, ans: R`Yes: C-2 carries H, OH, CH₃ and C₂H₅, four different groups.` } }
     ] },
 
@@ -190,6 +196,8 @@ JEE.book('chemistry', 'goc', {
       ] },
       { mol: [['C=C[CH2+]', 'allyl cation'], ['[CH2+]C=C', 'its resonance form'], ['[CH2+]C1=CC=CC=C1', 'benzyl cation']], w: 160, h: 110, cap: R`Resonance spreads the positive charge over two (allyl) or four (benzyl) carbons.` },
       { tip: R`Carbocations rearrange (1,2-hydride or 1,2-methyl shift) whenever this gives a more stable cation. Watch for this in SN1, E1 and alkene addition questions.` },
+      { ex: { q: R`Arrange these carbanions in order of stability: CH₃⁻, (CH₃)₃C⁻, (CH₃)₂CH⁻, C₆H₅CH₂⁻.`,
+        steps: [R`A carbanion carries extra negative charge, so electron-releasing alkyl groups destabilise it (the reverse of carbocations).`, R`The benzyl anion is stabilised by resonance, spreading the charge into the ring.`], ans: R`(CH₃)₃C⁻ < (CH₃)₂CH⁻ < CH₃⁻ < C₆H₅CH₂⁻` } },
       { check: { q: R`Arrange in order of stability: CH₃⁺, (CH₃)₃C⁺, (CH₃)₂CH⁺, C₆H₅CH₂⁺.`, ans: R`CH₃⁺ < (CH₃)₂CH⁺ < (CH₃)₃C⁺ ≈ C₆H₅CH₂⁺ (benzyl is resonance-stabilised; with tertiary alkyl it is comparable).` } }
     ] },
 
@@ -210,6 +218,8 @@ JEE.book('chemistry', 'goc', {
       { points: [R`<b>−I groups</b> (electron-withdrawing): –NO₂ > –CN > –SO₃H > –CHO > –CO– > –COOH > –F > –Cl > –Br > –I > –OCH₃ > –OH > –C₆H₅.`, R`<b>+I groups</b> (electron-donating): –O⁻ > –COO⁻ > –C(CH₃)₃ > –CH(CH₃)₂ > –CH₂CH₃ > –CH₃.`] },
       R`<b>Effect on acidity:</b> −I groups stabilise a carboxylate anion and increase acidity; the effect is larger with more −I groups and when they are closer to –COOH.`,
       { table: { head: [R`Acid`, R`pKa`], rows: [[R`CH₃COOH`, R`4.76`], [R`ClCH₂COOH`, R`2.86`], [R`Cl₂CHCOOH`, R`1.29`], [R`Cl₃CCOOH`, R`0.65`], [R`FCH₂COOH`, R`2.59`], [R`HCOOH`, R`3.75`]] } },
+      { ex: { q: R`Arrange in order of increasing acid strength: CH₃COOH, ClCH₂COOH, Cl₂CHCOOH, FCH₂COOH.`,
+        steps: [R`Electron-withdrawing halogens (−I) stabilise the carboxylate ion; more halogens and more electronegative halogens increase acidity.`], ans: R`CH₃COOH < ClCH₂COOH < FCH₂COOH < Cl₂CHCOOH` } },
       { check: { q: R`Why is formic acid stronger than acetic acid?`, ans: R`The +I effect of CH₃ destabilises the acetate ion; formate has no such donating group.` } }
     ] },
 
@@ -281,6 +291,8 @@ JEE.book('chemistry', 'goc', {
         [R`Rearrangement`, R`atoms in a molecule reorganise to give an isomer`, R`carbocation shifts; Beckmann, pinacol rearrangements`],
         [R`Redox`, R`oxidation (gain of O / loss of H) or reduction`, R`CH₃CH₂OH → CH₃CHO → CH₃COOH`]] } },
       R`Reactions are also classified by mechanism (the step-by-step path): SN1, SN2, E1, E2, electrophilic addition, electrophilic aromatic substitution, nucleophilic addition to C=O. These are studied in the later chapters.`,
+      { ex: { q: R`Classify each reaction: (a) CH₃Br + OH⁻ → CH₃OH + Br⁻ (b) CH₂=CH₂ + Br₂ → CH₂BrCH₂Br (c) C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O (d) CH₃CH₂CH₂⁺ → (CH₃)₂CH⁺.`,
+        steps: [R`Ask what is gained, lost or moved: (a) one group replaced by another; (b) two atoms added across a double bond; (c) an H on the ring replaced by an electrophile; (d) a hydride shift giving a more stable cation.`], ans: R`(a) nucleophilic substitution (b) electrophilic addition (c) electrophilic substitution (d) rearrangement` } },
       { check: { q: R`Classify: CH₃CH₂OH → CH₂=CH₂ + H₂O (conc. H₂SO₄, 443 K).`, ans: R`Elimination (dehydration).` } }
     ] }
   ],
