@@ -86,6 +86,8 @@ JEE.book('chemistry', 'environmental-chemistry', {
       R`Reactions: 2SO₂ + O₂ → 2SO₃ (slow, but catalysed by particulate matter and by O₃ and H₂O₂); 2NO + O₂ → 2NO₂ (fast when NO reacts with O₃: NO + O₃ → NO₂ + O₂).`,
       { ex: { q: R`A power station burns 1 tonne of coal containing 2% sulphur. What mass of SO₂ is released?`,
         steps: [R`S in coal = 20 kg; S + O₂ → SO₂, 32 g S gives 64 g SO₂.`, R`20 × 64/32 = 40 kg.`], ans: R`40 kg SO₂` } },
+      { ex: { q: R`A room contains 50 mL of CO in every 1000 L of air. Express this in ppm (by volume). Is it safe? (The safe limit for 8 hours is about 9 ppm.)`,
+        steps: [R`1000 L = 10⁶ mL, so 50 mL per 10⁶ mL is 50 ppm.`], ans: R`50 ppm: unsafe; CO at this level causes headaches and, over time, poisoning` } },
       { check: { q: R`Why is CO more dangerous than CO₂ at the same concentration?`, ans: R`CO binds strongly to haemoglobin and blocks oxygen transport; CO₂ does not.` } }
     ] },
 
@@ -107,6 +109,7 @@ JEE.book('chemistry', 'environmental-chemistry', {
       R`<b>Formation of photochemical smog:</b> fossil fuel burning releases hydrocarbons and NO. NO is oxidised to NO₂, which absorbs sunlight and splits: NO₂ + hν → NO + O. The oxygen atoms form ozone: O + O₂ ⇌ O₃. Ozone reacts with NO (regenerating NO₂) and with the unburnt hydrocarbons to form formaldehyde, acrolein and <b>peroxyacetyl nitrate (PAN)</b>, which are powerful eye irritants.`,
       { fig: figSmog, cap: R`Sunlight drives the chain of reactions that produces ozone and the irritants of photochemical smog.` },
       R`<b>Control:</b> catalytic converters in cars (reduce NOₓ and hydrocarbons), and certain plants (Pinus, Juniperus, Quercus, Pyrus, Vitis) that metabolise NO₂.`,
+      R`The two smogs are chemical opposites. <b>Classical smog</b> (London, cold damp winters) forms from coal smoke and SO₂ in fog; it is <b>reducing</b>. <b>Photochemical smog</b> (Los Angeles, Delhi summers) needs sunlight acting on NOₓ and hydrocarbons from vehicles; it is <b>oxidising</b>, rich in ozone, PAN and aldehydes, which make eyes water. Catalytic converters, fewer cars on the road, and planting trees such as Pinus and Juniperus that absorb NO₂ help control it.`,
       { check: { q: R`Is photochemical smog oxidising or reducing? Name one oxidant in it.`, ans: R`Oxidising; ozone (or NO₂, PAN).` } }
     ] },
 
@@ -123,6 +126,8 @@ JEE.book('chemistry', 'environmental-chemistry', {
       { fig: figOzone, cap: R`The chlorine atom acts as a catalyst in a cycle that converts O₃ and O into O₂.` },
       R`<b>The ozone hole over Antarctica:</b> in winter, special <b>polar stratospheric clouds</b> form. On their surfaces, chlorine reservoir compounds are converted into active forms: ClO• + NO₂ → ClONO₂; ClONO₂ + H₂O → HOCl + HNO₃; ClONO₂ + HCl → Cl₂ + HNO₃. When the sunlight returns in spring (September–October), HOCl and Cl₂ are split into Cl atoms (HOCl + hν → •OH + Cl•; Cl₂ + hν → 2Cl•), which rapidly destroy ozone.`,
       R`<b>Effects of ozone depletion:</b> more UV reaches the Earth, causing skin cancer, cataracts, sunburn, damage to plants and plankton, and reduced crop yields. The <b>Montreal Protocol</b> (1987) phased out CFCs, and the ozone layer is slowly recovering.`,
+      { ex: { q: R`Write the reactions by which CFCs destroy ozone in the stratosphere.`,
+        steps: [R`UV light frees a chlorine atom: CF₂Cl₂ → •CF₂Cl + Cl•.`, R`Cl• + O₃ → ClO• + O₂; then ClO• + O → Cl• + O₂.`, R`Net: O₃ + O → 2O₂, with Cl• regenerated each cycle; one Cl atom can destroy about 100 000 O₃ molecules before it is trapped.`], ans: R`A catalytic chain reaction` } },
       { check: { q: R`Why can one Cl atom destroy many ozone molecules?`, ans: R`It acts as a catalyst: it is regenerated in the ClO• + O step and can start the cycle again.` } }
     ] },
 
@@ -133,6 +138,8 @@ JEE.book('chemistry', 'environmental-chemistry', {
       R`<b>Effects:</b> acid rain dissolves nutrients from the soil (harming plants and forests), releases toxic metals like Al and Hg into lakes (killing fish), corrodes metal structures, and attacks marble and limestone buildings: CaCO₃ + H₂SO₄ → CaSO₄ + H₂O + CO₂. The <b>Taj Mahal</b> is damaged by acid rain from industries around Agra. Control: use low-sulphur fuels, scrubbers in power plants, catalytic converters, and liming of lakes.`,
       { ex: { q: R`Estimate the pH of rainwater that contains 1.0 × 10⁻⁵ M H₂SO₄ (fully dissociated).`,
         steps: [R`[H⁺] = 2 × 1.0 × 10⁻⁵ = 2.0 × 10⁻⁵ M.`, R`pH = −log(2.0 × 10⁻⁵) = 4.7.`], ans: R`pH ≈ 4.7 (acid rain)` } },
+      { ex: { q: R`Write equations showing how acid rain damages marble monuments such as the Taj Mahal.`,
+        steps: [R`SO₂ from refineries is oxidised and dissolves: 2SO₂ + O₂ + 2H₂O → 2H₂SO₄.`, R`The acid attacks calcium carbonate: CaCO₃ + H₂SO₄ → CaSO₄ + H₂O + CO₂. The CaSO₄ crust flakes off ("marble cancer").`], ans: R`Sulphuric acid converts CaCO₃ to CaSO₄` } },
       { check: { q: R`Why is rainwater slightly acidic even in an unpolluted atmosphere?`, ans: R`Dissolved CO₂ forms the weak acid H₂CO₃, giving pH about 5.6.` } }
     ] },
 
@@ -141,6 +148,8 @@ JEE.book('chemistry', 'environmental-chemistry', {
       { fig: figGreen, cap: R`Sunlight passes through the atmosphere; outgoing infrared is partly trapped by greenhouse gases.` },
       R`Human activities have greatly increased the concentration of greenhouse gases: CO₂ has risen from about 280 ppm before industrialisation to over 420 ppm today, mainly from burning fossil fuels and deforestation. Methane comes from rice paddies, cattle, landfills and coal mines. The result is <b>global warming</b>: rising average temperatures, melting polar ice and glaciers, rising sea levels, changing rainfall, and the spread of diseases like malaria and dengue.`,
       { tip: R`CO₂ is the most important greenhouse gas by amount, but molecule for molecule methane (about 30× over 100 years) and CFCs (thousands of times) are far more powerful.` },
+      { ex: { q: R`What mass of CO₂ is released by burning 1 kg of petrol (taken as octane, C₈H₁₈)?`,
+        steps: [R`2C₈H₁₈ + 25O₂ → 16CO₂ + 18H₂O: each mole of octane gives 8 mol CO₂.`, R`1000/114 = 8.77 mol octane → 70.2 mol CO₂ × 44 g/mol.`], ans: R`≈ 3.1 kg of CO₂ (more than the mass of fuel, because of the oxygen added)` } },
       { check: { q: R`Name four greenhouse gases.`, ans: R`CO₂, CH₄, N₂O, CFCs (also O₃ and water vapour).` } }
     ] },
 
@@ -180,6 +189,7 @@ JEE.book('chemistry', 'environmental-chemistry', {
       R`<b>Pesticides</b> protect crops from pests: insecticides, fungicides and rodenticides. Early organochlorine insecticides like <b>DDT</b>, aldrin and dieldrin are non-biodegradable and fat-soluble. They pass up the food chain and accumulate in fatty tissue, reaching high concentrations in top predators: <b>biomagnification</b>. DDT thinned birds' eggshells and is now banned or restricted.`,
       R`Newer organophosphates and carbamates are more biodegradable but are severe nerve poisons and more toxic to humans. Pests also develop resistance to them.`,
       R`<b>Herbicides</b> kill weeds: sodium chlorate (NaClO₃), sodium arsenite (Na₃AsO₃) and many organic compounds. Most are toxic to mammals; some cause birth defects. Arsenic compounds persist in soil.`,
+      R`Safer options are now preferred: biopesticides (such as Bacillus thuringiensis), neem-based products, crop rotation and integrated pest management, which uses natural predators and only small, targeted doses of chemicals. Organic farming avoids synthetic pesticides altogether.`,
       { check: { q: R`What is biomagnification?`, ans: R`The increase in concentration of a non-biodegradable pollutant (like DDT) at each step up a food chain.` } }
     ] },
 
@@ -206,6 +216,9 @@ JEE.book('chemistry', 'environmental-chemistry', {
       { ex: { q: R`Find the atom economy for making ethyl ethanoate: CH₃COOH + C₂H₅OH → CH₃COOC₂H₅ + H₂O.`,
         steps: [R`Reactants: 60 + 46 = 106 g/mol. Product: 88 g/mol.`, R`88/106 × 100 = 83%.`], ans: R`≈ 83%` } },
       R`<b>Examples in daily life:</b> liquid CO₂ with a suitable detergent replaces tetrachloroethene (Cl₂C=CCl₂) in dry cleaning; H₂O₂ with a catalyst bleaches paper instead of chlorine; ethanal is made by oxidising ethene with an ionic catalyst in water (90% yield).`,
+      { ex: { q: R`Find the atom economy for making ethanol by C₂H₅Br + NaOH → C₂H₅OH + NaBr.`,
+        steps: [R`Atom economy = mass of desired product / total mass of reactants × 100 = 46/(109 + 40) × 100.`], ans: R`≈ 31%: most of the atoms end up in the by-product NaBr` } },
+      R`Green chemistry also replaces harmful solvents: dry cleaning once used tetrachloroethene, which is now replaced by liquid CO₂ with a suitable detergent; and H₂O₂ with a catalyst is used to bleach paper instead of chlorine, which formed toxic chlorinated by-products.`,
       { check: { q: R`What is the atom economy of an addition reaction like CH₂=CH₂ + H₂O → C₂H₅OH?`, ans: R`100%: all reactant atoms end up in the product.` } }
     ] }
   ],
@@ -217,7 +230,8 @@ JEE.book('chemistry', 'environmental-chemistry', {
     R`Ozone layer destroyed by Cl• from CFCs in a catalytic chain; Antarctic hole from polar stratospheric clouds in spring.`,
     R`Acid rain: pH < 5.6, from H₂SO₄ and HNO₃; damages marble (Taj Mahal), forests, lakes. Greenhouse gases: CO₂, CH₄, N₂O, CFCs, O₃, H₂O.`,
     R`Water: pathogens, organic waste (BOD: clean < 5 ppm, polluted ≥ 17 ppm), eutrophication, heavy metals. F⁻ ≈ 1 ppm; Pb 50 ppb; NO₃⁻ 50 ppm.`,
-    R`Soil: pesticides (DDT, biomagnification), herbicides. Green chemistry: prevent waste, atom economy = M(product)/ΣM(reactants) × 100%, safer solvents.`
+    R`Soil: pesticides (DDT, biomagnification), herbicides. Green chemistry: prevent waste, atom economy = M(product)/ΣM(reactants) × 100%, safer solvents.`,
+    R`Classical smog is reducing, photochemical smog oxidising; atom economy = mass of desired product/total mass of reactants × 100.`
   ],
   refs: [
     { t: R`Wikipedia: Photochemical smog`, url: 'https://en.wikipedia.org/wiki/Smog' },

@@ -157,6 +157,8 @@ JEE.book('chemistry', 'atomic-structure', {
       { ex: { q: R`Find the wavelength of the Balmer line for n₂ = 4.`,
         steps: [R`\(\bar\nu = 109\,677\left(\frac14 - \frac1{16}\right) = 20\,564\) cm⁻¹.`], ans: R`λ ≈ 486 nm (blue-green)` } },
       { tip: R`For hydrogen-like ions (He⁺, Li²⁺) multiply by Z²: \(\bar\nu = R_HZ^2\left(\frac1{n_1^2} - \frac1{n_2^2}\right)\). The maximum number of lines from level n to the ground state is n(n − 1)/2.` },
+      { ex: { q: R`Find the wavelength of the first line of the Balmer series of hydrogen (R = 1.097 × 10⁷ m⁻¹), and the number of spectral lines possible when electrons fall from n = 5 to the ground state.`,
+        steps: [R`First Balmer line: n = 3 → 2: \(\dfrac1\lambda = R\left(\dfrac14 - \dfrac19\right) = \dfrac{5R}{36}\).`, R`Lines from level n: \(\dfrac{n(n - 1)}{2}\) = 10 for n = 5.`], ans: R`≈ 656 nm (red H-α line); 10 lines` } },
       { check: { q: R`In which region does the Lyman series lie?`, ans: R`Ultraviolet.` } }
     ] },
 
@@ -230,6 +232,7 @@ JEE.book('chemistry', 'atomic-structure', {
       { points: [R`Subshells: n = 1: 1s; n = 2: 2s, 2p; n = 3: 3s, 3p, 3d; n = 4: 4s, 4p, 4d, 4f.`, R`Number of orbitals in a subshell = 2l + 1: s 1, p 3, d 5, f 7.`, R`The spin quantum number came from experiments (Stern–Gerlach, 1922): an electron behaves like a tiny spinning magnet that can point "up" or "down" in a field.`] },
       { ex: { q: R`Which sets of quantum numbers are not allowed? (a) n = 2, l = 2, m = 0 (b) n = 3, l = 1, m = −1 (c) n = 1, l = 0, m = 1`,
         steps: [R`(a) l must be less than n: not allowed. (b) allowed (a 3p orbital). (c) for l = 0, m must be 0: not allowed.`], ans: R`(a) and (c) are not allowed` } },
+      { tip: R`Quick counts: a shell n has n subshells, n² orbitals and 2n² electrons; a subshell l has 2l + 1 orbitals and 2(2l + 1) electrons.` },
       { check: { q: R`How many electrons can have n = 3?`, ans: R`2n² = 18.` } }
     ] },
 
@@ -257,6 +260,7 @@ JEE.book('chemistry', 'atomic-structure', {
       { fig: figAufbau, cap: R`Follow the diagonal arrows from top to bottom to get the filling order.` },
       { ex: { q: R`Which fills first: 4s or 3d? 4p or 5s?`,
         steps: [R`4s: n + l = 4; 3d: 3 + 2 = 5. So 4s first.`, R`4p: 4 + 1 = 5; 5s: 5 + 0 = 5; equal, so the lower n, 4p, first.`], ans: R`4s before 3d; 4p before 5s` } },
+      R`The (n + l) rule: subshells fill in order of increasing n + l, and for equal n + l the one with smaller n fills first. So 4s (4 + 0 = 4) fills before 3d (3 + 2 = 5), and 3d before 4p (4 + 1 = 5, but larger n). Exceptions such as Cr (3d⁵4s¹) and Cu (3d¹⁰4s¹) arise because half-filled and completely filled d subshells are extra stable.`,
       { check: { q: R`Arrange 3d, 4s, 4p and 5s in the order they fill.`, ans: R`4s, 3d, 4p, 5s.` } }
     ] },
 
@@ -266,6 +270,7 @@ JEE.book('chemistry', 'atomic-structure', {
       { fig: figHund, cap: R`In nitrogen, the three 2p electrons occupy the three 2p orbitals singly with parallel spins.` },
       { ex: { q: R`How many unpaired electrons are there in O (Z = 8) and Fe (Z = 26)?`,
         steps: [R`O: 1s² 2s² 2p⁴; four electrons in three p orbitals give one pair and two singles.`, R`Fe: [Ar] 3d⁶ 4s²; six d electrons in five d orbitals give one pair and four singles.`], ans: R`O: 2; Fe: 4` } },
+      R`Hund's rule follows from repulsion: electrons spread out into separate orbitals of a subshell before pairing, and with parallel spins they keep further apart, which lowers the energy.`,
       { check: { q: R`What is the maximum number of electrons in an f subshell?`, ans: R`14.` } }
     ] },
 

@@ -123,6 +123,8 @@ JEE.book('physics', 'experimental-skills', {
       R`<b>Uses:</b> the outer jaws measure external diameters, the inner jaws internal diameters (of a beaker or ring), and the thin strip at the end measures depth.`,
       { ex: { q: R`A vernier (LC 0.01 cm) reads 2.36 cm. With the jaws closed, the vernier zero was 2 divisions to the right of the main zero. Find the correct length.`,
         steps: [R`Zero error = +2 × 0.01 = +0.02 cm.`, R`Correct reading = 2.36 − 0.02.`], ans: R`2.34 cm` } },
+      { ex: { q: R`A vernier calliper (least count 0.01 cm) shows a main-scale reading of 2.3 cm, with the 6th vernier division coinciding. Its zero error is −0.02 cm. Find the corrected length.`,
+        steps: [R`Observed reading = 2.3 + 6 × 0.01 = 2.36 cm.`, R`Corrected = observed − zero error = 2.36 − (−0.02).`], ans: R`2.38 cm` } },
       { check: { q: R`A vernier has 20 divisions equal to 19 mm. What is its least count?`, ans: R`1/20 mm = 0.05 mm.` } }
     ] },
 
@@ -132,6 +134,8 @@ JEE.book('physics', 'experimental-skills', {
       R`<b>Reading</b> = main-scale reading + (circular-scale division on the line × LC). <b>Zero error:</b> with the faces touching, if the circular zero is below the reference line, the error is positive; above it, negative. <b>Backlash error</b> (play in the screw) is avoided by always turning the screw in the same direction.`,
       { ex: { q: R`A screw gauge (pitch 0.5 mm, 50 divisions) shows main scale 3.5 mm and circular division 27. The zero error is −0.03 mm. Find the diameter of the wire.`,
         steps: [R`LC = 0.01 mm. Observed = 3.5 + 27 × 0.01 = 3.77 mm.`, R`Corrected = 3.77 − (−0.03).`], ans: R`3.80 mm` } },
+      { ex: { q: R`A screw gauge has a pitch of 0.5 mm and 50 divisions on its circular scale. The main scale reads 3.5 mm and the 27th circular division is on the line. Find the diameter.`,
+        steps: [R`Least count = 0.5/50 = 0.01 mm.`, R`Reading = 3.5 + 27 × 0.01.`], ans: R`3.77 mm` } },
       { check: { q: R`Why is a ratchet provided on a screw gauge?`, ans: R`To apply the same gentle pressure every time, so the object is not squeezed or the screw damaged.` } }
     ] },
 
@@ -142,6 +146,9 @@ JEE.book('physics', 'experimental-skills', {
         steps: [R`T = 40.2/20 = 2.01 s.`, R`\(g = \dfrac{4\pi^2L}{T^2} = \dfrac{4\pi^2\times1}{2.01^2}\).`], ans: R`≈ 9.77 m/s²` } },
       R`<b>Dissipation of energy:</b> a pendulum's swings slowly die out because of air resistance. Measure the amplitude A at regular time intervals and plot \(A^2\) (proportional to the energy) against time. The graph is an exponential decay, and \(\ln A^2\) against t is a straight line whose slope gives the damping.`,
       { fig: figAmp, cap: R`The square of the amplitude (proportional to the energy) decreases exponentially with time.` },
+      { ex: { q: R`A pendulum of length 1.00 m (measured to ±1 mm) makes 20 oscillations in 40.2 s (timed to ±0.1 s). Find g and its percentage error.`,
+        steps: [R`T = 40.2/20 = 2.01 s; \(g = \dfrac{4\pi^2l}{T^2}\) ≈ 9.77 m/s².`, R`\(\dfrac{\Delta g}{g} = \dfrac{\Delta l}{l} + 2\dfrac{\Delta T}{T} = 0.001 + 2\times\dfrac{0.1}{40.2}\) ≈ 0.6%.`], ans: R`g ≈ 9.77 m/s² ± 0.6%` } },
+      { tip: R`The error in T counts twice because T is squared. Timing many oscillations is the cheapest way to make the result more accurate.` },
       { check: { q: R`Why time 20 oscillations rather than one?`, ans: R`The reaction-time error is spread over many oscillations, so the percentage error in T becomes 20 times smaller.` } }
     ] },
 
@@ -185,6 +192,7 @@ JEE.book('physics', 'experimental-skills', {
       R`\(l_1 + e = \dfrac\lambda4\) and \(l_2 + e = \dfrac{3\lambda}4\). Subtracting removes the end correction: \[v = \nu\lambda = 2\nu(l_2 - l_1),\qquad e = \frac{l_2 - 3l_1}{2}\]`,
       { ex: { q: R`With a 512 Hz fork, resonances occur at 16.0 cm and 49.5 cm. Find the speed of sound and the end correction.`,
         steps: [R`\(v = 2\times512\times(0.495 - 0.160)\).`, R`\(e = (49.5 - 48.0)/2\) cm.`], ans: R`≈ 343 m/s; 0.75 cm` } },
+      R`The air column resonates when its length fits a quarter wavelength (first resonance, l₁ + e = λ/4) and three quarters (second, l₂ + e = 3λ/4), where e is the end correction, about 0.3 times the tube's diameter. Subtracting gives λ = 2(l₂ − l₁), and the speed of sound is v = fλ, without ever needing to know e.`,
       { check: { q: R`Why use the difference of two resonance lengths?`, ans: R`The unknown end correction cancels out.` } }
     ] },
 
@@ -202,6 +210,7 @@ JEE.book('physics', 'experimental-skills', {
       { ex: { q: R`With 4 Ω in the left gap, balance is at 40.0 cm. The wire is 1.00 m long with diameter 0.50 mm. Find its resistivity.`,
         steps: [R`\(S = 4\times\dfrac{60}{40} = 6\) Ω.`, R`\(\rho = \dfrac{6\times\pi\times(0.5\times10^{-3})^2}{4\times1}\).`], ans: R`≈ 1.2 × 10⁻⁶ Ω m` } },
       { adv: R`<b>Post office box:</b> set the ratio arms P and Q (10:10, then 100:10, then 1000:10), and adjust R until the galvanometer deflection reverses between two values R and R + 1. Then S lies between \(R\dfrac QP\) and \((R + 1)\dfrac QP\). With Q/P = 1/100, S is found to 0.01 Ω. Always press the battery key before the galvanometer key.` },
+      R`To reduce errors, the known and unknown resistances are interchanged and the two balancing lengths averaged; this cancels the small end resistances where the wire is joined to the copper strips.`,
       { check: { q: R`Why is the balance point kept near the middle of the metre bridge wire?`, ans: R`The bridge is most sensitive there, and the percentage error from end resistances is smallest.` } }
     ] },
 

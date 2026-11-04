@@ -51,6 +51,11 @@ var figGT = D.plot({
   label: 'Gibbs energy change against temperature for ammonia synthesis'
 });
 
+var figLevels = D.row([
+  [D.svg(200, 170, [D.line(30, 50, 90, 50, { color: 'b', w: 2.4 }), D.line(110, 130, 170, 130, { color: 'g', w: 2.4 }), D.arrow(100, 52, 100, 126, { color: 'r', w: 1.8, head: 7 }), D.text(60, 40, 'reactants', { size: 11, math: false, color: 'b' }), D.text(140, 148, 'products', { size: 11, math: false, color: 'g' }), D.text(108, 92, 'ΔH < 0', { size: 11, math: false, color: 'r', anchor: 'start' }), D.text(14, 90, 'H', { size: 13, math: true, color: 'm' })], 'exothermic'), 'exothermic: heat released'],
+  [D.svg(200, 170, [D.line(30, 130, 90, 130, { color: 'b', w: 2.4 }), D.line(110, 50, 170, 50, { color: 'g', w: 2.4 }), D.arrow(100, 128, 100, 54, { color: 'o', w: 1.8, head: 7 }), D.text(60, 148, 'reactants', { size: 11, math: false, color: 'b' }), D.text(140, 40, 'products', { size: 11, math: false, color: 'g' }), D.text(108, 92, 'ΔH > 0', { size: 11, math: false, color: 'o', anchor: 'start' }), D.text(14, 90, 'H', { size: 13, math: true, color: 'm' })], 'endothermic'), 'endothermic: heat absorbed']
+]);
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'chemical-thermodynamics', {
   intro: [
@@ -61,6 +66,8 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
     { h: R`System, surroundings and types of systems`, t: [0], blocks: [
       R`The part of the universe we study is the <b>system</b> (for example, a reaction mixture in a beaker); everything else is the <b>surroundings</b>. Together they form the universe. The boundary between them may be real or imaginary.`,
       { fig: figSystems, cap: R`An open system exchanges both matter and energy; a closed system only energy; an isolated system neither (an ideal thermos flask).` },
+      { ex: { q: R`Classify as open, closed or isolated: (a) tea in a sealed vacuum flask (b) water boiling in an open pan (c) a sealed, uninsulated bottle of soda.`,
+        steps: [R`Ask two questions: can matter cross the boundary? Can energy?`], ans: R`(a) isolated (approximately) (b) open (c) closed` } },
       { check: { q: R`Is a cup of hot tea with a lid an open, closed or isolated system?`, ans: R`Closed (approximately): heat escapes, but matter (vapour) mostly does not.` } }
     ] },
 
@@ -68,6 +75,8 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
       { points: [R`<b>Extensive properties</b> depend on the amount of matter: mass, volume, internal energy, enthalpy, heat capacity.`, R`<b>Intensive properties</b> do not: temperature, pressure, density, molar heat capacity, boiling point.`, R`The ratio of two extensive properties is intensive (density = mass/volume).`] },
       R`A <b>state function</b> depends only on the present state of the system, not on how it got there: P, V, T, U, H, S, G. Its change is (final − initial) whatever the path. <b>Path functions</b> such as heat q and work w depend on how the change is carried out.`,
       { table: { head: [R`Process`, R`Condition`], rows: [[R`Isothermal`, R`constant temperature (ΔT = 0)`], [R`Adiabatic`, R`no heat exchange (q = 0)`], [R`Isobaric`, R`constant pressure`], [R`Isochoric`, R`constant volume`], [R`Cyclic`, R`returns to the initial state (ΔU = ΔH = 0)`], [R`Reversible`, R`carried out infinitely slowly through equilibrium states`]] } },
+      { ex: { q: R`Classify as intensive or extensive: mass, temperature, density, enthalpy, molar enthalpy, refractive index.`,
+        steps: [R`Extensive properties depend on the amount of matter (double the sample, double the value); intensive ones do not. A ratio of two extensive properties is intensive.`], ans: R`Extensive: mass, enthalpy. Intensive: temperature, density, molar enthalpy, refractive index` } },
       { check: { q: R`Is molar volume an intensive or extensive property?`, ans: R`Intensive (volume per mole).` } }
     ] },
 
@@ -91,6 +100,7 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
       { ex: { q: R`A system absorbs 500 J of heat and does 200 J of work. Find ΔU.`,
         steps: [R`q = +500, w = −200.`], ans: R`ΔU = +300 J` } },
       { mistake: R`Mixing sign conventions. Chemistry uses ΔU = q + w with w = work done <b>on</b> the system; some physics books use ΔU = q − W with W = work done <b>by</b> the system. Both are fine; just be consistent.` },
+      { tip: R`Sign convention (IUPAC): q and w are positive when energy enters the system. So heat absorbed and work done on the system both increase U.` },
       { check: { q: R`What is ΔU for a cyclic process?`, ans: R`Zero (U is a state function).` } }
     ] },
 
@@ -116,12 +126,16 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
       R`For gases, the molar heat capacity at constant pressure is larger than at constant volume (extra heat is needed for expansion work): \(C_p - C_v = R\) for an ideal gas. Then \(\Delta U = nC_v\Delta T\) and \(\Delta H = nC_p\Delta T\).`,
       { ex: { q: R`How much heat is needed to warm 100 g of water from 25 °C to 75 °C?`,
         steps: [R`q = 100 × 4.18 × 50.`], ans: R`20.9 kJ` } },
+      { ex: { q: R`50 g of a metal at 100 °C is dropped into 100 g of water at 25.0 °C; the final temperature is 25.6 °C. Find the specific heat of the metal (c of water = 4.18 J g⁻¹ K⁻¹).`,
+        steps: [R`Heat lost by metal = heat gained by water: 50 × c × (100 − 25.6) = 100 × 4.18 × 0.6.`], ans: R`c ≈ 0.067 J g⁻¹ K⁻¹` } },
       { check: { q: R`Why do coastal areas have milder climates than inland areas?`, ans: R`Water's high specific heat means the sea warms and cools slowly, moderating temperatures.` } }
     ] },
 
     { h: R`Standard enthalpy of reaction`, t: [4], blocks: [
       R`Enthalpy changes depend on conditions, so we use a <b>standard state</b>: the pure substance at 1 bar (and a specified temperature, usually 298 K) in its most stable form. The <b>standard enthalpy of reaction</b> \(\Delta_rH^\circ\) is the enthalpy change when the reaction occurs with all reactants and products in their standard states.`,
       R`A <b>thermochemical equation</b> shows the balanced equation with physical states and ΔH: \(\text{C(graphite)} + \text{O}_2(\text{g})\to\text{CO}_2(\text{g})\), \(\Delta_rH^\circ = -393.5\) kJ/mol. Reversing a reaction changes the sign of ΔH; multiplying the equation multiplies ΔH.`,
+      { fig: figLevels, cap: R`Enthalpy diagrams. In an exothermic reaction the products lie lower than the reactants and the difference is given out as heat; in an endothermic reaction they lie higher and heat must be supplied.` },
+      R`Thermochemical equations must show the physical states, because changing a state changes ΔH: forming H₂O(l) releases 285.8 kJ/mol but forming H₂O(g) only 241.8 kJ/mol, the difference being the enthalpy of vaporisation. ΔH also scales with the amounts written, and changes sign when the equation is reversed.`,
       { check: { q: R`If 2H₂(g) + O₂(g) → 2H₂O(l) has ΔH = −571.6 kJ, what is ΔH for H₂O(l) → H₂(g) + ½O₂(g)?`, ans: R`+285.8 kJ.` } }
     ] },
 
@@ -137,6 +151,8 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
         steps: [R`\(\Delta H = [-393.5 + 2(-285.8)] - [-74.8 + 0]\).`], ans: R`≈ −890.3 kJ/mol` } },
       { ex: { q: R`Estimate ΔH for H₂ + Cl₂ → 2HCl using bond enthalpies H–H 436, Cl–Cl 242, H–Cl 431 kJ/mol.`,
         steps: [R`Bonds broken: 436 + 242 = 678; bonds formed: 2 × 431 = 862.`], ans: R`ΔH ≈ −184 kJ` } },
+      { ex: { q: R`The enthalpy of atomisation of methane, CH₄(g) → C(g) + 4H(g), is 1664 kJ/mol. Find the average C–H bond enthalpy.`,
+        steps: [R`Four C–H bonds are broken: 1664/4.`], ans: R`416 kJ/mol (the four bonds actually break with different energies; 416 is their average)` } },
       { check: { q: R`What is the standard enthalpy of formation of O₂(g)?`, ans: R`Zero (an element in its standard state).` } }
     ] },
 
@@ -171,6 +187,7 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
     { h: R`Spontaneous processes`, t: [5], blocks: [
       R`A <b>spontaneous process</b> occurs on its own without continuous outside help (it may still be slow): water flows downhill, heat flows from hot to cold, iron rusts, ice melts above 0 °C. Its reverse is non-spontaneous.`,
       R`Exothermic reactions are often spontaneous, but not always: ice melting, NH₄Cl dissolving and water evaporating are spontaneous yet endothermic. So ΔH alone cannot decide spontaneity; we also need <b>entropy</b>.`,
+      R`Neither energy alone nor disorder alone decides spontaneity. Ice melts at room temperature although melting absorbs heat, because the disorder gained outweighs the energy cost; and water freezes below 0 °C although its disorder falls, because the heat it releases increases the disorder of the surroundings. The Gibbs energy combines the two effects into one test.`,
       { check: { q: R`Is a spontaneous reaction necessarily fast?`, ans: R`No. Diamond turning into graphite is spontaneous but immeasurably slow; spontaneity is about direction, not rate.` } }
     ] },
 
@@ -181,6 +198,8 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
         steps: [R`\(\Delta S = 40\,700/373\).`], ans: R`≈ 109 J K⁻¹ mol⁻¹` } },
       { tip: R`Predict the sign of ΔS quickly from gases: if a reaction increases the number of moles of gas (CaCO₃(s) → CaO(s) + CO₂(g)), ΔS > 0; if it decreases them (N₂ + 3H₂ → 2NH₃), ΔS < 0.` },
       { adv: R`<b>Third law:</b> the entropy of a perfect crystal at absolute zero is zero. This allows absolute entropies to be measured, and \(\Delta_rS^\circ = \sum S^\circ(\text{products}) - \sum S^\circ(\text{reactants})\).` },
+      { ex: { q: R`Predict the sign of ΔS: (a) 2NO₂(g) → N₂O₄(g) (b) CaCO₃(s) → CaO(s) + CO₂(g) (c) NaCl(s) → Na⁺(aq) + Cl⁻(aq) (d) H₂O(g) → H₂O(l).`,
+        steps: [R`Entropy rises with more moles of gas, with solid → liquid → gas, and with dissolving; it falls on condensation or when gas molecules combine.`], ans: R`(a) − (b) + (c) + (d) −` } },
       { check: { q: R`Does entropy increase or decrease when water freezes?`, ans: R`It decreases (the molecules become more ordered).` } }
     ] },
 
@@ -231,7 +250,8 @@ JEE.book('chemistry', 'chemical-thermodynamics', {
     R`Hess's law; Born–Haber cycle gives lattice enthalpy.`,
     R`Entropy: ΔS = q_rev/T; ΔS_vap = ΔH_vap/T_b. Second law: ΔS_total > 0 for spontaneous change.`,
     R`G = H − TS; ΔG = ΔH − TΔS < 0 for spontaneity; T = ΔH/ΔS at the crossover.`,
-    R`ΔG° = −RT ln K = −2.303RT log K; ΔG = ΔG° + RT ln Q.`
+    R`ΔG° = −RT ln K = −2.303RT log K; ΔG = ΔG° + RT ln Q.`,
+    R`ΔS > 0 when the number of gas moles rises, on melting, vaporising or dissolving; physical states must be shown in thermochemical equations.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §5.1 Energy Basics`, url: 'https://openstax.org/books/chemistry-2e/pages/5-1-energy-basics' },
