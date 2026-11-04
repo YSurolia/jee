@@ -93,6 +93,8 @@ JEE.book('physics', 'gravitation', {
     { h: R`The gravitational field`, t: [0], blocks: [
       R`A mass creates a <b>gravitational field</b> around itself: a region in which any other mass feels a force. The <b>field intensity</b> at a point is the force per unit mass placed there: \[\vec E = \frac{\vec F}{m},\qquad E = \frac{GM}{r^2}\ \text{(for a point mass M)}\] It is directed towards the mass. Its unit is N/kg, the same as m/s²: near the Earth the field intensity is just g.`,
       { fig: figField, cap: R`Gravitational field lines around the Earth point radially inward. They are closer together where the field is stronger.` },
+      { ex: { q: R`Two bodies of masses M and 4M are a distance d apart. Where, on the line joining them, is the gravitational field zero?`,
+        steps: [R`At distance x from M: \(\dfrac{GM}{x^2} = \dfrac{G(4M)}{(d - x)^2}\), so d − x = 2x.`], ans: R`x = d/3 from the smaller mass` } },
       { check: { q: R`What is the gravitational field intensity at the Earth's surface?`, ans: R`About 9.8 N/kg, which equals g.` } }
     ] },
 
@@ -126,6 +128,9 @@ JEE.book('physics', 'gravitation', {
       { ex: { q: R`Find g at a depth of half the Earth's radius. At what depth does g equal its value at a small height h?`,
         steps: [R`\(g_d = g(1 - \tfrac12) = \tfrac g2\).`, R`Set \(g(1 - d/R) = g(1 - 2h/R)\): \(d = 2h\).`], ans: R`g/2; at a depth d = 2h (for small h)` } },
       { note: R`The Earth's rotation also reduces the effective g slightly, most at the equator and not at all at the poles. The Earth's slightly flattened shape adds to this effect, so g is a little larger at the poles.`, title: 'Latitude also matters' },
+      R`<b>Effect of the Earth's rotation.</b> A body at latitude λ moves in a circle of radius R cos λ, and part of gravity supplies the centripetal force. The effective value is \(g' = g - \omega^2R\cos^2\lambda\). At the poles (λ = 90°) there is no change; at the equator g is smaller by ω²R ≈ 0.034 m/s². The Earth's bulge at the equator lowers g there a little more.`,
+      { ex: { q: R`How short would a day have to be for objects at the equator to feel weightless? (g = 9.8 m/s², R = 6.4 × 10⁶ m)`,
+        steps: [R`Weightless when ω²R = g: \(\omega = \sqrt{g/R} = 1.24\times10^{-3}\) rad/s.`, R`T = 2π/ω ≈ 5080 s.`], ans: R`About 1.4 hours instead of 24` } },
       { check: { q: R`Is g larger at the bottom of a mine or at the top of a mountain of the same "height"?`, ans: R`At the bottom of the mine (g falls more slowly with depth than with height).` } }
     ] },
 
@@ -139,6 +144,7 @@ JEE.book('physics', 'gravitation', {
       ] },
       { ex: { q: R`Mars orbits the Sun at about 1.52 times the Earth–Sun distance. Estimate the length of a Martian year.`,
         steps: [R`\(T_{Mars} = T_E\left(\dfrac{a_{Mars}}{a_E}\right)^{3/2} = 1\times(1.52)^{1.5}\).`], ans: R`≈ 1.87 Earth years` } },
+      { derive: R`Kepler's second law from angular momentum`, steps: [R`In a short time dt, the line from the Sun to the planet sweeps a thin triangle of area \(dA = \frac12r\cdot v\,dt\sin\theta = \frac12|\vec r\times\vec v|\,dt\).`, R`So the areal speed is \(\dfrac{dA}{dt} = \dfrac{L}{2m}\), where L = m|r × v| is the planet's angular momentum.`, R`Gravity points along r (a central force), so it exerts no torque about the Sun: L is constant, and so is the areal speed.`] },
       { check: { q: R`If a planet's orbit radius were 4 times larger, how would its period change?`, ans: R`\(T \propto a^{3/2}\): 8 times longer.` } }
     ] },
 
@@ -163,6 +169,8 @@ JEE.book('physics', 'gravitation', {
         [R`Uniform solid sphere`, R`\(-\dfrac{GM}{r}\)`, R`\(-\dfrac{GM}{2R^3}(3R^2 - r^2)\)`]] } },
       { fig: figV, cap: R`Potential of a uniform solid sphere. It is most negative (−3GM/2R) at the centre, equals −GM/R at the surface and rises towards zero far away.` },
       { adv: R`Inside a shell the potential is constant, so the field \(-dV/dr\) is zero, consistent with the shell theorem. At the centre of a solid sphere the potential is 1.5 times its surface value.` },
+      { ex: { q: R`Find the gravitational potential at a height h = R above the Earth's surface, and the work needed to move 1 kg from the surface to that height.`,
+        steps: [R`At r = 2R: V = −GM/2R; at the surface V = −GM/R.`, R`Work per kg = ΔV = GM/R − GM/2R = GM/2R = gR/2.`], ans: R`V = −GM/2R; work = gR/2 ≈ 3.1 × 10⁷ J/kg` } },
       { check: { q: R`Where is the gravitational potential of the Earth lowest?`, ans: R`At its centre (−3GM/2R).` } }
     ] },
 
@@ -175,6 +183,8 @@ JEE.book('physics', 'gravitation', {
       { ex: { q: R`Calculate the escape velocity from the Earth (g = 9.8 m/s², R = 6.4 × 10⁶ m) and from the Moon (g = 1.62 m/s², R = 1.74 × 10⁶ m).`,
         steps: [R`Earth: \(\sqrt{2\times9.8\times6.4\times10^6} \approx 1.12\times10^4\) m/s.`, R`Moon: \(\sqrt{2\times1.62\times1.74\times10^6} \approx 2.4\times10^3\) m/s.`], ans: R`11.2 km/s; 2.4 km/s` } },
       R`The escape velocity does not depend on the direction of launch or on the mass of the body. The Moon has no atmosphere because many gas molecules, warmed by the Sun, move fast enough to escape its weak gravity.`,
+      R`<b>Why the Moon has no atmosphere.</b> At the Moon's surface temperature, the rms speeds of gas molecules (about 0.5–2 km/s) are a sizeable fraction of its escape velocity (2.4 km/s). Over millions of years enough molecules in the fast tail of the speed distribution escape that the atmosphere is lost. On the Earth (v_e = 11.2 km/s) only the lightest gases, hydrogen and helium, leak away.`,
+      { tip: R`Escape velocity is √2 times the orbital speed just above the surface: v_e = √(2gR), v_o = √(gR). So a satellite skimming the surface needs only about 41% more speed to escape.` },
       { check: { q: R`If the radius of a planet is doubled at the same density, what happens to its escape velocity?`, ans: R`\(v_e = \sqrt{2gR}\) with \(g \propto \rho R\), so \(v_e \propto R\): it doubles.` } }
     ] },
 
@@ -211,6 +221,8 @@ JEE.book('physics', 'gravitation', {
         R`Height \(h = r - R \approx 3.6\times10^7\) m, about 36 000 km (nearly 5.6 Earth radii).`
       ] },
       R`<b>Polar satellites</b> fly in low orbits (about 500–800 km) passing over the poles. As the Earth spins beneath them, they scan the whole surface strip by strip, which is ideal for weather monitoring, mapping and remote sensing (for example India's remote-sensing satellites).`,
+      { ex: { q: R`Find the radius and height of a geostationary orbit. (GM = 3.98 × 10¹⁴ N m² kg⁻¹, sidereal day T = 86 164 s, R = 6.37 × 10⁶ m)`,
+        steps: [R`\(\dfrac{GMm}{r^2} = m\omega^2r\) with ω = 2π/T, so \(r = \left(\dfrac{GMT^2}{4\pi^2}\right)^{1/3}\).`, R`r ≈ 4.22 × 10⁷ m; h = r − R.`], ans: R`r ≈ 42 200 km; h ≈ 35 800 km` } },
       { check: { q: R`Can a geostationary satellite stay above New Delhi?`, ans: R`No. A geostationary orbit must lie in the equatorial plane, so the satellite can only stay fixed above a point on the equator.` } }
     ] },
 
@@ -231,7 +243,8 @@ JEE.book('physics', 'gravitation', {
     R`Orbit: \(v_0 = \sqrt{GM/r}\), \(T = 2\pi\sqrt{r^3/GM}\); near the surface \(v_0 \approx 7.9\) km/s, \(T \approx 85\) min, and \(v_e = \sqrt2\,v_0\).`,
     R`Satellite energies: \(K = \frac{GMm}{2r}\), \(U = -\frac{GMm}{r}\), \(E = -\frac{GMm}{2r}\); binding energy \(\frac{GMm}{2r}\).`,
     R`Geostationary: equatorial, T = 24 h, height ≈ 36 000 km. Polar: low orbit over the poles for mapping and weather.`,
-    R`Weightlessness in orbit is free fall: the normal force is zero, not gravity.`
+    R`Weightlessness in orbit is free fall: the normal force is zero, not gravity.`,
+    R`Rotation: g′ = g − ω²R cos²λ (least at the equator). Kepler's second law ⟺ conservation of angular momentum under a central force.`
   ],
   refs: [
     { t: R`OpenStax University Physics Vol. 1, §13.1 Newton's Law of Universal Gravitation`, url: 'https://openstax.org/books/university-physics-volume-1/pages/13-1-newtons-law-of-universal-gravitation' },

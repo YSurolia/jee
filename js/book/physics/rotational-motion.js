@@ -110,6 +110,7 @@ JEE.book('physics', 'rotational-motion', {
     { h: R`Rigid bodies: translation and rotation`, t: [7], blocks: [
       R`A <b>rigid body</b> is one whose shape and size do not change: the distance between any two of its particles stays fixed. Real bodies deform a little, but for most problems they can be treated as rigid.`,
       R`A rigid body can move in two basic ways. In pure <b>translation</b>, every particle moves with the same velocity (a block sliding down an incline). In pure <b>rotation about a fixed axis</b>, every particle moves in a circle centred on the axis (a ceiling fan). General motion, such as a rolling wheel, is a combination of translation of the centre of mass and rotation about it.`,
+      R`A <b>rigid body</b> is one whose shape and size do not change: the distance between any two of its particles stays fixed. Real bodies bend a little, but treating them as rigid is an excellent approximation for wheels, rods, doors and planets. Any motion of a rigid body can be described as a translation of some point (usually the centre of mass) plus a rotation about an axis through that point.`,
       { check: { q: R`Is the motion of a car's wheel on a road pure rotation?`, ans: R`No. It is rolling: translation of its centre plus rotation about the centre.` } }
     ] },
 
@@ -132,6 +133,8 @@ JEE.book('physics', 'rotational-motion', {
         [R`Semicircular ring of radius R`, R`\(\dfrac{2R}{\pi}\) from the centre`], [R`Semicircular disc`, R`\(\dfrac{4R}{3\pi}\) from the centre`],
         [R`Solid hemisphere`, R`\(\dfrac{3R}{8}\) from the flat face`], [R`Hollow hemisphere`, R`\(\dfrac R2\) from the flat face`], [R`Solid cone of height h`, R`\(\dfrac h4\) from the base`]] } },
       { tip: R`For a body with a hole, treat the hole as a negative mass: \(x_{cm} = \dfrac{M_1x_1 - M_2x_2}{M_1 - M_2}\), where \(M_2\) is the mass that was removed.` },
+      { ex: { q: R`Find the centre of mass of a uniform semicircular wire of radius R.`,
+        steps: [R`By symmetry it lies on the axis of symmetry (the y-axis). Take an element at angle θ: mass dm = (M/πR) R dθ, height y = R sin θ.`, R`\(y_{cm} = \dfrac{1}{M}\int_0^\pi R\sin\theta\cdot\dfrac{M}{\pi}\,d\theta = \dfrac{R}{\pi}[-\cos\theta]_0^\pi = \dfrac{2R}{\pi}\).`], ans: R`On the axis of symmetry, 2R/π from the centre (for a semicircular disc, 4R/3π)` } },
       { check: { q: R`Where is the centre of mass of a uniform ring? Is there any mass there?`, ans: R`At its centre, where there is no mass at all.` } }
     ] },
 
@@ -140,6 +143,8 @@ JEE.book('physics', 'rotational-motion', {
       { fig: figExplode, cap: R`A shell explodes at the top of its path into two equal pieces; one falls straight down. Internal forces cannot change the motion of the CM, which still lands at the original range R. So the other piece lands at \(\frac{3R}{2}\).` },
       { ex: { q: R`A shell would have a range of R. At its highest point it explodes into two equal halves; one half falls vertically. Where does the other half land?`,
         steps: [R`The first half lands at R/2 (directly below the top). The CM still lands at R.`, R`\(\dfrac{m\cdot\frac R2 + m\cdot x}{2m} = R\), so \(x = \dfrac{3R}{2}\).`], ans: R`At 3R/2 from the launch point` } },
+      { ex: { q: R`A 60 kg man walks 4 m from one end of a 240 kg boat to the other, on still water. How far does the boat move?`,
+        steps: [R`No horizontal external force, so the CM stays where it is. If the boat moves back by D, the man moves forward 4 − D relative to the water.`, R`60(4 − D) = 240D, so 300D = 240.`], ans: R`0.8 m backwards` } },
       { check: { q: R`A man walks from one end of a boat to the other on still water. What happens to the CM of the man–boat system?`, ans: R`It stays at rest (no horizontal external force); the boat moves backward.` } }
     ] },
 
@@ -149,6 +154,8 @@ JEE.book('physics', 'rotational-motion', {
       R`With constant α, the equations look exactly like those for constant linear acceleration: \[\omega = \omega_0 + \alpha t,\quad \theta = \omega_0t + \tfrac12\alpha t^2,\quad \omega^2 = \omega_0^2 + 2\alpha\theta\]`,
       { ex: { q: R`A wheel starts from rest with α = 2 rad/s². Find its angular velocity and the angle turned after 5 s. How many revolutions is that?`,
         steps: [R`\(\omega = 2\times5 = 10\) rad/s; \(\theta = \frac12\times2\times25 = 25\) rad.`, R`Revolutions = 25/(2π).`], ans: R`10 rad/s; 25 rad ≈ 4 revolutions` } },
+      { ex: { q: R`A fan turning at 1200 rpm is switched off and stops uniformly in 20 s. Find its angular deceleration and the number of turns it makes before stopping.`,
+        steps: [R`ω₀ = 1200 × 2π/60 = 40π rad/s; α = −40π/20 = −2π rad/s².`, R`θ = ½(ω₀ + ω)t = ½ × 40π × 20 = 400π rad.`], ans: R`2π rad/s²; 200 turns` } },
       { check: { q: R`Two points on a rotating disc are at 10 cm and 20 cm from the axis. Compare their angular speeds and their linear speeds.`, ans: R`Same ω; the outer point has twice the linear speed.` } }
     ] },
 
@@ -188,6 +195,8 @@ JEE.book('physics', 'rotational-motion', {
       { ex: { q: R`A skater spinning at 2 rev/s with I = 4 kg m² pulls in her arms, reducing I to 1.6 kg m². Find her new spin rate. What happens to her kinetic energy?`,
         steps: [R`\(\omega_2 = \dfrac{I_1\omega_1}{I_2} = \dfrac{4\times2}{1.6} = 5\) rev/s.`, R`\(K = \dfrac{L^2}{2I}\) with L constant, so K becomes \(4/1.6 = 2.5\) times larger. The extra energy comes from the work her muscles do pulling the arms in.`], ans: R`5 rev/s; KE increases 2.5 times` } },
       { points: [R`Divers and gymnasts tuck in to spin faster.`, R`A planet moves faster when it is closer to the Sun (Kepler's law of areas).`, R`A collapsing star spins up enormously, becoming a fast-spinning pulsar.`] },
+      { ex: { q: R`A disc of moment of inertia 2 kg m² spins at 10 rad/s. A second disc (3 kg m²), at rest, is dropped onto it on the same axis and they stick. Find the common angular velocity and the loss of kinetic energy.`,
+        steps: [R`No external torque: 2 × 10 = (2 + 3)ω, so ω = 4 rad/s.`, R`KE before ½ × 2 × 100 = 100 J; after ½ × 5 × 16 = 40 J.`], ans: R`4 rad/s; 60 J lost as heat (like a perfectly inelastic collision)` } },
       { check: { q: R`If the Earth suddenly shrank to half its radius (same mass), how long would a day be?`, ans: R`I falls to ¼, so ω becomes 4 times larger: a day would last 6 hours.` } }
     ] },
 
@@ -210,6 +219,8 @@ JEE.book('physics', 'rotational-motion', {
       { ex: { q: R`The moment of inertia of a uniform disc about its central axis (perpendicular to its face) is \(\frac12MR^2\). Find it about (a) a diameter (b) a tangent perpendicular to its face (c) a tangent in its plane.`,
         steps: [R`(a) By symmetry \(I_x = I_y\), so \(2I_d = \frac12MR^2\): \(I_d = \frac14MR^2\).`, R`(b) Parallel axes: \(\frac12MR^2 + MR^2 = \frac32MR^2\).`, R`(c) Parallel to a diameter, distance R: \(\frac14MR^2 + MR^2 = \frac54MR^2\).`], ans: R`\(\frac14MR^2\), \(\frac32MR^2\), \(\frac54MR^2\)` } },
       { mistake: R`Using the perpendicular axes theorem for a 3-D body such as a sphere or cylinder. It works only for flat laminas.` },
+      { ex: { q: R`Use the parallel axis theorem to find the moment of inertia of a uniform rod about one end, given \(\frac{1}{12}ML^2\) about its centre.`,
+        steps: [R`The end is L/2 from the centre: \(I = \frac{1}{12}ML^2 + M\left(\frac L2\right)^2\).`], ans: R`\(\frac13ML^2\)` } },
       { check: { q: R`A ring has \(I = MR^2\) about its central axis. What is its I about a diameter?`, ans: R`\(\frac12MR^2\).` } }
     ] },
 
@@ -242,6 +253,8 @@ JEE.book('physics', 'rotational-motion', {
         steps: [R`Block: \(mg - T = ma\). Pulley: \(TR = I\alpha = \frac12MR^2\cdot\dfrac aR\), so \(T = \frac12Ma\).`, R`Adding: \(mg = \left(m + \frac M2\right)a\), so \(a = \dfrac{10}{1 + 1} = 5\) m/s².`, R`\(T = \frac12\times2\times5 = 5\) N.`], ans: R`5 m/s²; 5 N (less than the 10 N weight)` } },
       { ex: { q: R`A motor applies a constant torque of 10 N m to a shaft turning at 300 rpm. Find its power.`,
         steps: [R`\(\omega = 300\times\dfrac{2\pi}{60} = 31.4\) rad/s.`, R`\(P = \tau\omega\).`], ans: R`≈ 314 W` } },
+      { ex: { q: R`A uniform rod of length 1 m is hinged at one end and released from rest in a horizontal position. Find its angular acceleration just after release and its angular velocity when it is vertical. (g = 10 m/s²)`,
+        steps: [R`Torque of weight about the hinge: Mg(L/2) = (ML²/3)α, so α = 3g/2L = 15 rad/s².`, R`Energy: the CM falls L/2, so Mg(L/2) = ½(ML²/3)ω², giving ω = √(3g/L).`], ans: R`15 rad/s²; ≈ 5.5 rad/s` } },
       { check: { q: R`A constant torque acts on a wheel at rest. Is its angular velocity constant?`, ans: R`No: constant torque gives constant angular acceleration, so ω increases steadily.` } }
     ] },
 
@@ -271,6 +284,8 @@ JEE.book('physics', 'rotational-motion', {
       { ex: { q: R`A solid sphere rolls without slipping from rest down a slope from a height of 7 m. Find its speed at the bottom. (g = 10 m/s²)`,
         steps: [R`\(v = \sqrt{\dfrac{2gh}{1 + 2/5}} = \sqrt{\dfrac{10gh}{7}} = \sqrt{100}\).`], ans: R`10 m/s (a sliding block without friction would reach about 11.8 m/s)` } },
       { tip: R`In a race down the same slope, the body with the smallest \(k^2/R^2\) wins: solid sphere first, then disc, then hollow sphere, then ring, regardless of mass or radius. A body that slides without friction beats them all.` },
+      { ex: { q: R`A ring, a disc and a solid sphere roll without slipping down the same incline from rest. Find each acceleration and the order in which they reach the bottom.`,
+        steps: [R`\(a = \dfrac{g\sin\theta}{1 + k^2/R^2}\) with k²/R² = 1, ½ and ⅖.`, R`Ring g sin θ/2, disc 2g sin θ/3, sphere 5g sin θ/7: the sphere has the largest acceleration.`], ans: R`Sphere first, then disc, then ring (independent of their masses and radii)` } },
       { check: { q: R`For a ring rolling without slipping, what fraction of its kinetic energy is rotational?`, ans: R`Half (\(k^2/R^2 = 1\), so the two parts are equal).` } }
     ] },
 
@@ -281,6 +296,8 @@ JEE.book('physics', 'rotational-motion', {
       { adv: [R`<b>Ball sticking to a pivoted rod.</b> Angular momentum about the pivot is conserved: \(mvL = \left(\frac13ML^2 + mL^2\right)\omega\), so \(\omega = \dfrac{mv}{(M/3 + m)L}\). For M = 3 kg, L = 1 m, m = 1 kg and v = 4 m/s, \(\omega = \dfrac{4}{2\times1} = 2\) rad/s.`,
         R`<b>Free rod on a smooth table, struck at one end</b> by an impulse J perpendicular to it: \(v_{cm} = J/M\) and \(\omega = \dfrac{J\cdot L/2}{ML^2/12} = \dfrac{6J}{ML}\). The point that is momentarily at rest lies at L/6 from the centre, on the other side; a bat struck at its "sweet spot" gives no jolt at the hands for the same reason.`] },
       { mistake: R`Conserving linear momentum when the rod is pivoted. The pivot exerts an impulsive force, so linear momentum changes; only angular momentum about the pivot is conserved.` },
+      { ex: { q: R`A bullet of mass 50 g moving at 100 m/s hits and sticks to the lower end of a uniform rod (2 kg, 1 m) hanging from a pivot at its top. Find the angular velocity just after impact.`,
+        steps: [R`Angular momentum about the pivot is conserved: mvL = (ML²/3 + mL²)ω.`, R`0.05 × 100 × 1 = (0.667 + 0.05)ω.`], ans: R`ω ≈ 7.0 rad/s (linear momentum is not conserved: the pivot pushes on the rod)` } },
       { check: { q: R`During the collision with a pivoted rod, about which point is angular momentum conserved?`, ans: R`About the pivot (the pivot force has zero torque about it).` } }
     ] }
   ],
@@ -296,7 +313,8 @@ JEE.book('physics', 'rotational-motion', {
     R`\(\tau = I\alpha\); work \(\int\tau\,d\theta\); power \(\tau\omega\).`,
     R`Equilibrium: \(\sum\vec F = 0\) and \(\sum\vec\tau = 0\); principle of moments; ladder on a smooth wall slips unless \(\tan\theta \ge 1/2\mu\).`,
     R`Rolling: \(v = \omega R\); \(K = \frac12Mv^2(1 + k^2/R^2)\); down an incline \(a = \frac{g\sin\theta}{1 + k^2/R^2}\): sphere > disc > hollow sphere > ring.`,
-    R`Collisions with a pivoted body conserve angular momentum about the pivot; with a free body, both linear and angular momentum.`
+    R`Collisions with a pivoted body conserve angular momentum about the pivot; with a free body, both linear and angular momentum.`,
+    R`Rolling race: smaller k²/R² wins (sphere > disc > ring); angular momentum about a fixed pivot is conserved in an impact even though linear momentum is not.`
   ],
   refs: [
     { t: R`OpenStax University Physics Vol. 1, §9.6 Center of Mass`, url: 'https://openstax.org/books/university-physics-volume-1/pages/9-6-center-of-mass' },

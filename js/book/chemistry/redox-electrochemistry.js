@@ -45,6 +45,15 @@ var figRust = D.svg(420, 170, [
   D.text(210, 165, 'Fe²⁺ is oxidised further by air to rust, Fe₂O₃·xH₂O', { size: 10.5, math: false, color: 'o' })
 ], 'Rusting is an electrochemical process');
 
+var figSeries = D.svg(360, 300, (function () {
+  var data = [['Li⁺/Li', -3.04], ['K⁺/K', -2.93], ['Na⁺/Na', -2.71], ['Mg²⁺/Mg', -2.36], ['Al³⁺/Al', -1.66], ['Zn²⁺/Zn', -0.76], ['Fe²⁺/Fe', -0.44], ['H⁺/H₂', 0], ['Cu²⁺/Cu', 0.34], ['Ag⁺/Ag', 0.80], ['Cl₂/Cl⁻', 1.36], ['F₂/F⁻', 2.87]];
+  var out = [], y = function (e) { return 160 - e * 45; };
+  out.push(D.line(150, y(3.1), 150, y(-3.2), { color: 'm', w: 1.6 }));
+  data.forEach(function (d, i) { var yy = y(d[1]); out.push(D.line(144, yy, 156, yy, { color: d[1] < 0 ? 'b' : d[1] > 0 ? 'r' : 'k', w: 2 }), D.text(i % 2 ? 165 : 135, yy + 1, d[0] + '  ' + (d[1] > 0 ? '+' : d[1] < 0 ? '−' : '') + Math.abs(d[1]).toFixed(2), { size: 10, math: false, anchor: i % 2 ? 'start' : 'end', color: d[1] < 0 ? 'b' : d[1] > 0 ? 'r' : 'k' })); });
+  out.push(D.text(290, 30, 'strong oxidising', { size: 10, math: false, color: 'r' }), D.text(290, 44, 'agents (top)', { size: 10, math: false, color: 'r' }), D.text(290, 280, 'strong reducing', { size: 10, math: false, color: 'b' }), D.text(290, 294, 'agents (bottom)', { size: 10, math: false, color: 'b' }));
+  return out;
+})(), 'Standard electrode potentials');
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'redox-electrochemistry', {
   intro: [
@@ -63,6 +72,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       { points: [R`Free elements: 0 (Na, O₂, P₄, S₈).`, R`Monatomic ions: their charge (Na⁺ +1, Cl⁻ −1).`, R`Oxygen: −2 (except peroxides −1, superoxides −½, OF₂ +2).`, R`Hydrogen: +1 (except metal hydrides like NaH, −1).`, R`Fluorine always −1; alkali metals +1; alkaline earth metals +2.`, R`The sum of oxidation numbers equals the charge of the species (zero for neutral molecules).`] },
       { ex: { q: R`Find the oxidation number of Cr in K₂Cr₂O₇, Mn in KMnO₄, and Fe in Fe₃O₄.`,
         steps: [R`K₂Cr₂O₇: 2(+1) + 2x + 7(−2) = 0, so x = +6.`, R`KMnO₄: +1 + x − 8 = 0, so x = +7.`, R`Fe₃O₄: 3x − 8 = 0, so x = +8/3 (an average: the compound contains Fe²⁺ and Fe³⁺).`], ans: R`+6, +7, +8/3` } },
+      { ex: { q: R`Find the oxidation numbers of (a) S in S₄O₆²⁻ (b) O in OF₂ (c) H in NaH.`,
+        steps: [R`(a) 4x + 6(−2) = −2, so x = +2.5: an average (two S are +5 and two are 0 in the structure).`, R`(b) F is always −1, so O is +2. (c) In metal hydrides H is −1.`], ans: R`(a) +2.5 (b) +2 (c) −1` } },
       { check: { q: R`What is the oxidation number of S in H₂SO₄?`, ans: R`+6.` } }
     ] },
 
@@ -73,6 +84,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
         R`<b>Displacement:</b> a more reactive metal displaces a less reactive one: Zn + CuSO₄ → ZnSO₄ + Cu; Cl₂ + 2KBr → 2KCl + Br₂.`,
         R`<b>Disproportionation:</b> the same element is simultaneously oxidised and reduced: Cl₂ + 2OH⁻ → Cl⁻ + ClO⁻ + H₂O (Cl: 0 → −1 and +1); 2H₂O₂ → 2H₂O + O₂ (O: −1 → −2 and 0).`
       ] },
+      { ex: { q: R`Identify the type of each redox reaction: (a) 2H₂O₂ → 2H₂O + O₂ (b) Cl₂ + 2NaOH → NaCl + NaOCl + H₂O (c) Zn + CuSO₄ → ZnSO₄ + Cu.`,
+        steps: [R`(a) O goes from −1 to −2 and to 0: the same element is both oxidised and reduced. (b) Cl goes from 0 to −1 and +1. (c) Zn replaces Cu.`], ans: R`(a) disproportionation (b) disproportionation (c) displacement` } },
       { check: { q: R`Can F₂ undergo disproportionation?`, ans: R`No: fluorine cannot have a positive oxidation state, so it can only be reduced.` } }
     ] },
 
@@ -88,6 +101,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       { ex: { q: R`Balance in acid: MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺.`,
         steps: [R`Reduction: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O.`, R`Oxidation: Fe²⁺ → Fe³⁺ + e⁻ (× 5).`], ans: R`MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O` } },
       { tip: R`Redox titrations use these ratios directly: 1 mol of permanganate oxidises 5 mol of Fe²⁺ in acid; 1 mol of dichromate oxidises 6 mol of Fe²⁺.` },
+      { ex: { q: R`Balance in acid: Cr₂O₇²⁻ + Fe²⁺ → Cr³⁺ + Fe³⁺.`,
+        steps: [R`Reduction: Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O. Oxidation: Fe²⁺ → Fe³⁺ + e⁻ (× 6).`, R`Add, cancelling electrons.`], ans: R`Cr₂O₇²⁻ + 6Fe²⁺ + 14H⁺ → 2Cr³⁺ + 6Fe³⁺ + 7H₂O` } },
       { check: { q: R`How many electrons does MnO₄⁻ gain in acid? In neutral solution (to MnO₂)?`, ans: R`5; 3.` } }
     ] },
 
@@ -108,6 +123,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       R`On dilution, <b>conductivity decreases</b> (fewer ions per unit volume), but <b>molar conductivity increases</b> (each mole of electrolyte has more freedom: weaker interionic attraction, and for weak electrolytes more ionisation). The value at infinite dilution is the <b>limiting molar conductivity</b> \(\Lambda_m^\circ\).`,
       { fig: figLambda, cap: R`For strong electrolytes Λm rises slightly and linearly as √c falls (Debye–Hückel–Onsager: Λm = Λ°m − A√c). For weak electrolytes it rises steeply at low concentration because ionisation increases.` },
       { adv: R`<b>Equivalent conductivity</b> \(\Lambda_{eq} = \dfrac{1000\,\kappa}{N}\) (N = normality) is the conductivity per gram-equivalent; \(\Lambda_m = \Lambda_{eq}\times\) n-factor (for CaCl₂, Λm = 2Λeq).` },
+      { ex: { q: R`A conductivity cell with cell constant 1.5 cm⁻¹ shows a resistance of 1500 Ω when filled with a 0.01 M solution. Find κ and Λm.`,
+        steps: [R`κ = (cell constant)/R = 1.5/1500 = 1.0 × 10⁻³ S cm⁻¹.`, R`\(\Lambda_m = \dfrac{1000\,\kappa}{c} = \dfrac{1000\times10^{-3}}{0.01}\).`], ans: R`κ = 10⁻³ S cm⁻¹; Λm = 100 S cm² mol⁻¹` } },
       { check: { q: R`On diluting acetic acid, what happens to κ and Λm?`, ans: R`κ decreases; Λm increases (sharply).` } }
     ] },
 
@@ -137,6 +154,7 @@ JEE.book('chemistry', 'redox-electrochemistry', {
         [R`F₂ + 2e⁻ → 2F⁻`, R`+2.87`], [R`MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O`, R`+1.51`], [R`Cl₂ + 2e⁻ → 2Cl⁻`, R`+1.36`], [R`Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O`, R`+1.33`], [R`Ag⁺ + e⁻ → Ag`, R`+0.80`],
         [R`Cu²⁺ + 2e⁻ → Cu`, R`+0.34`], [R`2H⁺ + 2e⁻ → H₂`, R`0.00`], [R`Zn²⁺ + 2e⁻ → Zn`, R`−0.76`], [R`Mg²⁺ + 2e⁻ → Mg`, R`−2.36`], [R`Li⁺ + e⁻ → Li`, R`−3.05`]] } },
       { points: [R`Higher (more positive) E°: stronger oxidising agent (F₂ is the strongest). Lower E°: stronger reducing agent (Li is the strongest).`, R`A metal with lower E° displaces one with higher E° from its salt (Zn displaces Cu).`, R`Metals with negative E° displace hydrogen from dilute acids.`] },
+      { fig: figSeries, cap: R`The electrochemical series. Species with large positive E° (top) are easily reduced, so they are strong oxidising agents (F₂); metals with large negative E° (bottom) are easily oxidised, so they are strong reducing agents (Li). A metal displaces any metal above it from solution of its salts.` },
       { check: { q: R`Can copper displace hydrogen from dilute HCl?`, ans: R`No: E°(Cu²⁺/Cu) = +0.34 V is above hydrogen.` } }
     ] },
 
@@ -157,6 +175,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       { ex: { q: R`Find K for Zn + Cu²⁺ ⇌ Zn²⁺ + Cu at 298 K.`,
         steps: [R`log K = 2 × 1.10/0.0591 = 37.2.`], ans: R`K ≈ 1.6 × 10³⁷: the reaction goes essentially to completion` } },
       { adv: R`<b>Concentration cells</b> have the same electrodes in solutions of different concentration: E° = 0 and \(E = \dfrac{0.0591}{n}\log\dfrac{c_2}{c_1}\) (c₂ at the cathode). The pH of a solution can be measured with a hydrogen electrode: E = −0.0591 pH.` },
+      { ex: { q: R`A hydrogen electrode (p(H₂) = 1 bar) dipped in a solution has a potential of −0.177 V at 298 K. Find the pH of the solution.`,
+        steps: [R`For 2H⁺ + 2e⁻ → H₂: E = 0 − 0.0591 log(1/[H⁺]) = −0.0591 pH.`], ans: R`pH = 0.177/0.0591 ≈ 3` } },
       { check: { q: R`What is E_cell when the cell reaction reaches equilibrium?`, ans: R`Zero.` } }
     ] },
 
@@ -174,6 +194,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       { table: { head: [R`Electrolyte (inert electrodes)`, R`Cathode`, R`Anode`], rows: [
         [R`Molten NaCl`, R`Na`, R`Cl₂`], [R`Aqueous NaCl (concentrated)`, R`H₂ (water reduced; Na⁺ is too hard to reduce)`, R`Cl₂ (overpotential of O₂)`], [R`Aqueous CuSO₄ (Pt electrodes)`, R`Cu`, R`O₂`],
         [R`Aqueous CuSO₄ (Cu electrodes)`, R`Cu deposited`, R`Cu dissolves (used to purify copper)`], [R`Dilute H₂SO₄`, R`H₂`, R`O₂`]] } },
+      { ex: { q: R`What are the products of electrolysing aqueous CuSO₄ with (a) platinum electrodes (b) copper electrodes?`,
+        steps: [R`At the cathode Cu²⁺ (E° = +0.34 V) is reduced more easily than water: copper is deposited in both cases.`, R`(a) Inert anode: water is oxidised to O₂ (SO₄²⁻ is very hard to oxidise). (b) A copper anode is itself oxidised, Cu → Cu²⁺ + 2e⁻, so copper simply moves from anode to cathode (the basis of electrorefining).`], ans: R`(a) Cu at cathode, O₂ at anode, solution becomes acidic (b) Cu deposited at cathode, Cu dissolves from anode` } },
       { check: { q: R`Why is sodium not formed when aqueous NaCl is electrolysed?`, ans: R`Water (E° = −0.83 V) is reduced far more easily than Na⁺ (−2.71 V), so H₂ forms.` } }
     ] },
 
@@ -182,6 +204,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       R`Combined: \[m = \frac{Q}{F}\times\frac{M}{n} = \frac{ItM}{nF}\] 1 F (96 485 C) deposits 1 mol of a monovalent ion (108 g of Ag), ½ mol of a divalent ion (31.75 g of Cu).`,
       { ex: { q: R`A current of 2 A flows through CuSO₄ solution for 965 s. What mass of copper is deposited?`,
         steps: [R`Q = 1930 C = 0.02 F.`, R`Cu²⁺ needs 2 F per mol: 0.01 mol × 63.5 g/mol.`], ans: R`≈ 0.635 g` } },
+      { ex: { q: R`How long must a current of 5 A be passed through molten Al₂O₃ (in cryolite) to deposit 1.8 g of aluminium?`,
+        steps: [R`Al³⁺ + 3e⁻ → Al: 1.8/27 = 0.0667 mol Al needs 0.2 mol electrons = 0.2 × 96 500 = 19 300 C.`, R`t = Q/I = 19 300/5.`], ans: R`3860 s (about 64 minutes)` } },
       { check: { q: R`The same charge deposits 1.08 g of silver. What mass of copper does it deposit?`, ans: R`0.01 F: Cu = 0.005 mol = 0.3175 g.` } }
     ] },
 
@@ -201,6 +225,7 @@ JEE.book('chemistry', 'redox-electrochemistry', {
       { fig: figRust, cap: R`Under a water drop, iron is oxidised at one region (anode) and oxygen is reduced at another (cathode); the iron itself conducts electrons between them.` },
       R`Anode: 2Fe → 2Fe²⁺ + 4e⁻ (E° = −0.44 V). Cathode: O₂ + 4H⁺ + 4e⁻ → 2H₂O (E° = +1.23 V). Overall E°_cell = 1.67 V. Fe²⁺ is further oxidised to hydrated iron(III) oxide, rust (Fe₂O₃·xH₂O). Salt water and acidic air speed it up.`,
       { points: [R`<b>Barrier protection:</b> paint, oil, grease, plastic coatings.`, R`<b>Galvanising:</b> coating with zinc, which is more reactive and corrodes first even if scratched (sacrificial protection).`, R`<b>Cathodic protection:</b> connecting a more reactive metal (Mg, Zn blocks) to ships' hulls and pipelines.`, R`<b>Alloying</b> (stainless steel with Cr) and using anti-rust solutions.`] },
+      R`Corrosion is an electrochemical cell set up on the metal itself: one region acts as the anode, where Fe → Fe²⁺ + 2e⁻, and another, where oxygen is plentiful, acts as the cathode, where O₂ + 4H⁺ + 4e⁻ → 2H₂O. Water containing dissolved ions (sea water, acid rain) completes the circuit, which is why cars rust faster near the sea and in salted winter roads.`,
       { check: { q: R`Why does a scratched galvanised iron sheet still not rust, while scratched tin-plated iron does?`, ans: R`Zinc is more reactive than iron and corrodes instead; tin is less reactive, so iron becomes the anode and corrodes faster.` } }
     ] }
   ],
@@ -215,7 +240,8 @@ JEE.book('chemistry', 'redox-electrochemistry', {
     R`Nernst: E = E° − (0.0591/n) log Q; log K = nE°/0.0591; ΔG = −nFE.`,
     R`Electrolysis products depend on E° and overpotential. Faraday: m = ItM/(nF), F = 96 485 C.`,
     R`Dry cell 1.5 V, mercury cell 1.35 V, lead accumulator 2 V, H₂–O₂ fuel cell 1.23 V.`,
-    R`Rusting is electrochemical; prevented by barriers, galvanising, cathodic (sacrificial) protection, alloying.`
+    R`Rusting is electrochemical; prevented by barriers, galvanising, cathodic (sacrificial) protection, alloying.`,
+    R`Electrochemical series: higher E° → stronger oxidant; a metal displaces those above it. Hydrogen electrode: E = −0.0591 pH at 298 K.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §17.1 Review of Redox Chemistry`, url: 'https://openstax.org/books/chemistry-2e/pages/17-1-review-of-redox-chemistry' },

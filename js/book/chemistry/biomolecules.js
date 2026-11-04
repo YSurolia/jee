@@ -59,12 +59,16 @@ JEE.book('chemistry', 'biomolecules', {
         [R`Oligosaccharides (2–10 units)`, R`give 2–10 monosaccharides`, R`disaccharides: sucrose, maltose, lactose`],
         [R`Polysaccharides`, R`give a large number of monosaccharides`, R`starch, cellulose, glycogen`]] } },
       R`Sweet, crystalline, water-soluble carbohydrates (mono- and disaccharides) are called <b>sugars</b>; polysaccharides are tasteless and are called non-sugars.`,
+      { ex: { q: R`Classify as mono-, di-, oligo- or polysaccharide: (a) glucose (b) sucrose (c) raffinose (gives three monosaccharides on hydrolysis) (d) starch.`,
+        steps: [R`Count the monosaccharide units released on complete hydrolysis: 1, 2, 3 (2–10 is oligo-), very many.`], ans: R`(a) monosaccharide (b) disaccharide (c) oligosaccharide (trisaccharide) (d) polysaccharide` } },
       { check: { q: R`Is sucrose a monosaccharide?`, ans: R`No: it is a disaccharide (glucose + fructose).` } }
     ] },
 
     { h: R`Aldoses and ketoses; reducing and non-reducing sugars`, t: [0], blocks: [
       R`Monosaccharides with an aldehyde group are <b>aldoses</b>; those with a ketone group are <b>ketoses</b>. Combined with the number of carbons: glucose is an <b>aldohexose</b>, fructose a <b>ketohexose</b>, ribose an aldopentose.`,
       R`Carbohydrates that reduce Fehling's solution and Tollens' reagent are <b>reducing sugars</b>. All monosaccharides (aldoses and ketoses) are reducing sugars. In disaccharides, if the reducing groups (C1 of an aldose, C2 of a ketose) of both units are used in the glycosidic bond, the sugar is <b>non-reducing</b> (sucrose); if one is free, it is reducing (maltose, lactose).`,
+      { ex: { q: R`Which of these reduce Tollens' and Fehling's reagents: glucose, fructose, maltose, lactose, sucrose, starch?`,
+        steps: [R`A sugar is reducing if it has a free hemiacetal (or hemiketal) carbon that can open to an aldehyde. Fructose is a ketose but still reduces, because in alkaline solution it rearranges (via an enediol) to aldoses.`], ans: R`Reducing: glucose, fructose, maltose, lactose. Non-reducing: sucrose, starch` } },
       { check: { q: R`Why is sucrose a non-reducing sugar?`, ans: R`Its glycosidic bond joins C1 of glucose to C2 of fructose, so no free hemiacetal (reducing) group remains.` } }
     ] },
 
@@ -75,6 +79,8 @@ JEE.book('chemistry', 'biomolecules', {
       R`<b>Cyclic structure:</b> some facts do not fit the open chain: glucose does not give Schiff's test or form a bisulphite product, its pentaacetate does not react with NH₂OH, and it exists in two crystalline forms. The –OH on C5 adds to the –CHO group to form a six-membered ring (<b>pyranose</b>) with a hemiacetal at C1. C1 becomes a new chiral centre, giving two <b>anomers</b>:`,
       { fig: figHaworth, cap: R`Haworth projections: in α-D-glucose the C1–OH is below the ring (trans to CH₂OH); in β-D-glucose it is above.` },
       R`α-D-glucose (mp 419 K, [α] = +111°) and β-D-glucose (mp 423 K, +19.2°) interconvert in water through the open chain until an equilibrium mixture with [α] = +52.5° is reached: <b>mutarotation</b>. Anomers differ only in configuration at C1.`,
+      { ex: { q: R`Give two reactions that support the open-chain structure of glucose and two that it cannot explain.`,
+        steps: [R`Supporting: HI reduces glucose to n-hexane (six carbons in a straight chain); bromine water oxidises it to gluconic acid (an aldehyde group); acetylation gives a pentaacetate (five –OH groups).`, R`Not explained: glucose gives no Schiff's test and no NaHSO₃ adduct, and its pentaacetate does not react with hydroxylamine. These show that the aldehyde is mostly tied up in the ring.`], ans: R`Evidence for the chain and for the cyclic hemiacetal` } },
       { check: { q: R`What are anomers?`, ans: R`Cyclic sugars that differ only in the configuration at the hemiacetal carbon (C1 of glucose), e.g. α- and β-D-glucose.` } }
     ] },
 
@@ -128,6 +134,8 @@ JEE.book('chemistry', 'biomolecules', {
       R`<b>Essential amino acids</b> must come from the diet: valine, leucine, isoleucine, threonine, methionine, phenylalanine, tryptophan, lysine, arginine and histidine. The others (non-essential) are made in the body.`,
       { mol: [['NCC(=O)O', 'glycine (neutral form)'], ['[NH3+]CC(=O)[O-]', 'zwitterion'], ['C[C@H](N)C(=O)O', 'L-alanine']], w: 140, h: 110, cap: R`In water, amino acids exist mainly as zwitterions (dipolar ions).` },
       R`In aqueous solution, the –COOH donates a proton to the –NH₂, forming a <b>zwitterion</b>, H₃N⁺–CHR–COO⁻. Amino acids are therefore crystalline solids with high melting points, soluble in water, and <b>amphoteric</b>. The pH at which the zwitterion has no net charge (and does not move in an electric field) is the <b>isoelectric point</b>.`,
+      { ex: { q: R`In which direction does glycine move in an electric field at (a) pH 1 (b) its isoelectric point (pH 6.0) (c) pH 12?`,
+        steps: [R`At low pH the –COO⁻ is protonated, giving a cation H₃N⁺CH₂COOH; at high pH the –NH₃⁺ loses a proton, giving an anion H₂NCH₂COO⁻.`, R`At the isoelectric point the zwitterion has no net charge.`], ans: R`(a) towards the cathode (b) no migration (c) towards the anode` } },
       { check: { q: R`Why do amino acids have high melting points?`, ans: R`They exist as zwitterions, held together by strong ionic attractions in the crystal.` } }
     ] },
 
@@ -137,6 +145,7 @@ JEE.book('chemistry', 'biomolecules', {
       R`The peptide bond is planar (partial double-bond character from resonance of the N lone pair with C=O), which restricts the shapes a protein chain can take.`,
       { ex: { q: R`How many peptide bonds are in a pentapeptide? How many different tripeptides can be made from Gly, Ala and Val using each once?`,
         steps: [R`n amino acids → n − 1 peptide bonds: 5 − 1 = 4.`, R`Arrangements of 3 different amino acids: 3! = 6.`], ans: R`4; 6` } },
+      { mistake: R`Treating Gly-Ala and Ala-Gly as the same dipeptide. Peptides are written from the free –NH₂ end (N-terminus) to the free –COOH end (C-terminus); in Gly-Ala, glycine has the free amino group; in Ala-Gly, alanine does. They are different compounds.` },
       { check: { q: R`What is lost when a peptide bond forms?`, ans: R`A molecule of water.` } }
     ] },
 
@@ -183,6 +192,9 @@ JEE.book('chemistry', 'biomolecules', {
         [R`D (calciferol)`, R`exposure to sunlight, fish, egg yolk`, R`rickets (children), osteomalacia (adults)`],
         [R`E (tocopherols)`, R`vegetable oils (wheat germ, sunflower)`, R`increased fragility of red blood cells, muscle weakness`],
         [R`K (phylloquinone)`, R`green leafy vegetables`, R`increased blood-clotting time`]] } },
+      { ex: { q: R`Match each vitamin with the disease caused by its deficiency: A, B₁, C, D, K. Diseases: scurvy, rickets, night blindness, beriberi, delayed blood clotting.`,
+        steps: [R`Vitamin A is needed for the visual pigment; B₁ (thiamine) for nerves and metabolism; C for collagen; D for calcium absorption into bones; K for clotting factors.`], ans: R`A: night blindness; B₁: beriberi; C: scurvy; D: rickets; K: delayed clotting` } },
+      R`Water-soluble vitamins (B group and C) are not stored in the body and must be taken regularly; excess is excreted in urine. Fat-soluble vitamins (A, D, E and K) are stored in the liver and fatty tissue, so large doses can build up and become harmful.`,
       { check: { q: R`Which vitamins are fat-soluble?`, ans: R`A, D, E and K.` } }
     ] },
 
@@ -199,6 +211,8 @@ JEE.book('chemistry', 'biomolecules', {
       R`<b>RNA</b> is usually <b>single-stranded</b> (it may fold back on itself), contains ribose and uracil instead of deoxyribose and thymine. There are three main kinds: <b>messenger RNA (m-RNA)</b>, <b>ribosomal RNA (r-RNA)</b> and <b>transfer RNA (t-RNA)</b>.`,
       { ex: { q: R`A DNA sample contains 30% adenine. What are the percentages of T, G and C?`,
         steps: [R`A = T = 30%; so G + C = 40%, and G = C.`], ans: R`T 30%, G 20%, C 20%` } },
+      { ex: { q: R`Write the complementary strand of the DNA sequence 5′-ATGCCA-3′.`,
+        steps: [R`Pair A with T and G with C, and run the new strand in the opposite direction.`], ans: R`3′-TACGGT-5′ (written 5′-TGGCAT-3′)` } },
       { check: { q: R`Which base pair is held by three hydrogen bonds?`, ans: R`Guanine–cytosine.` } }
     ] },
 
@@ -211,6 +225,7 @@ JEE.book('chemistry', 'biomolecules', {
     { h: R`Hormones`, t: [5], blocks: [
       R`<b>Hormones</b> are molecules made in the endocrine glands and carried by the blood to target cells, where they act as chemical messengers to keep the body's activities balanced (homeostasis). Chemically, they are:`,
       { points: [R`<b>Steroids:</b> oestrogens and androgens (sex hormones), cortisone/glucocorticoids (control carbohydrate metabolism, inflammation), mineralocorticoids (salt and water balance).`, R`<b>Polypeptides:</b> <b>insulin</b> (lowers blood glucose) and <b>glucagon</b> (raises it), endorphins.`, R`<b>Amino acid derivatives:</b> <b>adrenaline</b> (epinephrine) and noradrenaline (stress response), <b>thyroxine</b> (from the thyroid; contains iodine; controls metabolic rate; deficiency causes hypothyroidism and goitre).`] },
+      R`Hormones are chemical messengers made by endocrine glands and carried by the blood to target cells, where they bind to specific receptors. They are of three chemical types: steroids (sex hormones, cortisol), polypeptides (insulin, glucagon) and amino-acid derivatives (adrenaline, thyroxine). Insulin and glucagon together keep the blood glucose level steady: insulin lowers it, glucagon raises it.`,
       { check: { q: R`Which hormone contains iodine?`, ans: R`Thyroxine.` } }
     ] }
   ],
@@ -221,7 +236,8 @@ JEE.book('chemistry', 'biomolecules', {
     R`Starch (α-glucose: amylose + amylopectin), cellulose (β-glucose, linear), glycogen (highly branched).`,
     R`Amino acids: zwitterions, isoelectric point, 10 essential. Peptide bond –CO–NH–; n residues → n − 1 bonds. Fibrous vs globular; 1°, 2° (α-helix, β-sheet), 3°, 4° structure; denaturation keeps 1°.`,
     R`Enzymes: specific protein catalysts. Vitamins: fat-soluble A, D, E, K; water-soluble B, C; deficiency diseases.`,
-    R`Nucleic acids: nucleoside = base + sugar; nucleotide + phosphate. DNA: deoxyribose, A=T, G≡C, double helix; RNA: ribose, U, single strand; m-, r-, t-RNA. Hormones: steroids, peptides, amino-acid derivatives.`
+    R`Nucleic acids: nucleoside = base + sugar; nucleotide + phosphate. DNA: deoxyribose, A=T, G≡C, double helix; RNA: ribose, U, single strand; m-, r-, t-RNA. Hormones: steroids, peptides, amino-acid derivatives.`,
+    R`Reducing sugars have a free hemiacetal/hemiketal carbon (glucose, fructose, maltose, lactose); amino acids move to the cathode below their isoelectric point and to the anode above it.`
   ],
   refs: [
     { t: R`OpenStax Biology 2e, §3.2 Carbohydrates`, url: 'https://openstax.org/books/biology-2e/pages/3-2-carbohydrates' },
