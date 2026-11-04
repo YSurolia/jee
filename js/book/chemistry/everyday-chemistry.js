@@ -25,7 +25,7 @@ var figMicelle = D.svg(440, 180, tails.concat(heads).concat([
 // ---------- chapter text ----------
 JEE.book('chemistry', 'everyday-chemistry', {
   intro: [
-    R`Chemistry touches daily life in medicines, food and cleaning. This chapter looks at how drugs act on their targets in the body, the main classes of drugs (antacids, antihistamines, tranquilizers, analgesics, antimicrobials, antifertility drugs), chemicals added to food (sweeteners, preservatives), and soaps and detergents, including how they remove dirt.`
+    R`Chemistry touches daily life in medicines, food and cleaning. This chapter looks at how drugs act on their targets in the body, the main classes of drugs (antacids, antihistamines, tranquilizers, analgesics, antimicrobials, antifertility drugs), chemicals added to food (sweeteners, preservatives), and soaps and detergents, including how they remove dirt. Each section ends with worked questions of the kind JEE asks: classify, explain why, and simple calculations.`
   ],
   sections: [
     { h: R`Drugs and their classification`, t: [0], blocks: [
@@ -35,6 +35,9 @@ JEE.book('chemistry', 'everyday-chemistry', {
         [R`Drug action`, R`action on a particular biochemical process`, R`antihistamines inhibit histamine`],
         [R`Chemical structure`, R`common structural features, often similar action`, R`sulphonamides`],
         [R`Molecular targets`, R`the biomolecule the drug interacts with; most useful to medicinal chemists`, R`enzyme inhibitors, receptor blockers`]] } },
+      R`One drug can be described in all four ways. Aspirin is an <b>analgesic</b> and antipyretic (pharmacological effect); it works by blocking prostaglandin synthesis (drug action); it is an acetylated salicylic acid (chemical structure); and its molecular target is the enzyme cyclo-oxygenase. Doctors care most about the first, chemists designing new drugs about the last.`,
+      { ex: { q: R`Why should medicines not be taken without a doctor's advice?`,
+        steps: [R`Most drugs bind to more than one target, so they have side effects, and the safe dose depends on the patient's weight, age and other medicines being taken.`, R`Above the recommended dose almost every drug becomes harmful, and some (narcotics, tranquilizers) are habit-forming.`], ans: R`Wrong drug, wrong dose or a harmful combination can damage health; a doctor matches the drug and dose to the patient` } },
       { check: { q: R`Which classification of drugs is most useful to medicinal chemists?`, ans: R`Classification by molecular targets.` } }
     ] },
 
@@ -42,30 +45,41 @@ JEE.book('chemistry', 'everyday-chemistry', {
       R`Enzymes catalyse reactions in two steps: they <b>hold the substrate</b> in the active site (by ionic bonds, H-bonds, van der Waals and dipole–dipole forces) and provide <b>functional groups</b> that attack the substrate. Drugs that block either step are <b>enzyme inhibitors</b>:`,
       { fig: figLock, cap: R`A competitive inhibitor resembles the substrate and occupies the active site.` },
       { points: [R`<b>Competitive inhibitors</b> compete with the natural substrate for the active site.`, R`<b>Allosteric (non-competitive) inhibitors</b> bind to a different site (allosteric site) and change the shape of the active site so the substrate cannot fit.`, R`If the inhibitor binds by a strong covalent bond, the enzyme is blocked permanently, and the body must make new enzyme molecules.`] },
+      { analogy: R`An enzyme's active site is like a lock and the substrate is the key. A competitive inhibitor is a "wrong key" that fits the lock but does not turn it, so the real key cannot get in. An allosteric inhibitor is like someone bending the lock from the side, so the real key no longer fits at all.` },
+      { ex: { q: R`Adding more substrate can overcome competitive inhibition but not allosteric inhibition. Explain.`,
+        steps: [R`In competitive inhibition, substrate and inhibitor compete for the same site; flooding the enzyme with substrate makes the substrate win most of the time.`, R`An allosteric inhibitor binds elsewhere and changes the shape of the active site, so extra substrate still cannot bind.`], ans: R`Only competitive inhibitors compete for the active site` } },
       { check: { q: R`How does an allosteric inhibitor work?`, ans: R`It binds at a site other than the active site and changes the active site's shape, so the substrate cannot bind.` } }
     ] },
 
     { h: R`Receptors as drug targets: agonists and antagonists`, t: [0], blocks: [
       R`<b>Receptors</b> are proteins embedded in cell membranes, important for communication in the body. A chemical messenger (neurotransmitter or hormone) binds to the receptor's site outside the cell; this changes the receptor's shape and transfers the message into the cell without the messenger entering. The messenger then leaves and the receptor returns to its original shape.`,
       { points: [R`<b>Antagonists</b> bind to the receptor site and block it, preventing the natural messenger from acting. Useful when the message must be blocked.`, R`<b>Agonists</b> mimic the natural messenger and switch on the receptor. Useful when there is a lack of the natural chemical messenger.`] },
+      R`Receptors are very selective: each has a binding site with a particular shape and arrangement of charges and hydrogen-bonding groups, so only messengers (or drugs) with a matching shape bind strongly. This selectivity lets medicinal chemists design drugs that act on one type of receptor while leaving others alone, which reduces side effects.`,
+      { ex: { q: R`Classify as agonist or antagonist: (a) an antihistamine that blocks histamine receptors (b) a drug that mimics a missing natural messenger to switch on its receptor.`,
+        steps: [R`Blocking a receptor so the natural messenger cannot act is antagonism; imitating the messenger is agonism.`], ans: R`(a) antagonist (b) agonist` } },
       { check: { q: R`What is an agonist?`, ans: R`A drug that mimics the natural messenger and activates the receptor.` } }
     ] },
 
     { h: R`Antacids`, t: [1], blocks: [
       R`Excess acid in the stomach causes irritation, pain and, in severe cases, ulcers. <b>Antacids</b> neutralise the excess acid: sodium hydrogencarbonate, or a mixture of aluminium and magnesium hydroxides (insoluble, so they do not make the stomach too alkaline). However, metal hydroxides treat only the symptoms, not the cause.`,
       R`A major advance came when it was found that <b>histamine</b> stimulates secretion of HCl and pepsin. <b>Cimetidine</b> (Tagamet) and later <b>ranitidine</b> (Zantac) prevent histamine from binding to the receptors in the stomach wall, so less acid is released. Modern drugs like <b>omeprazole and lansoprazole</b> block the proton pump directly.`,
+      { ex: { q: R`What mass of magnesium hydroxide neutralises 0.10 mol of excess HCl in the stomach?`,
+        steps: [R`Mg(OH)₂ + 2HCl → MgCl₂ + 2H₂O, so 0.05 mol Mg(OH)₂ is needed.`, R`Molar mass 58.3 g/mol: 0.05 × 58.3.`], ans: R`≈ 2.9 g` } },
       { check: { q: R`Why are Mg(OH)₂ and Al(OH)₃ preferred to NaHCO₃ as antacids?`, ans: R`They are insoluble, so they do not raise the pH of the stomach above 7; excess NaHCO₃ makes the stomach alkaline and triggers more acid.` } }
     ] },
 
     { h: R`Antihistamines`, t: [1], blocks: [
       R`Histamine is a potent vasodilator; it contracts the smooth muscles of the bronchi and gut and relaxes other muscles such as those in blood vessel walls. It is responsible for nasal congestion during colds and for allergic responses to pollen. <b>Antihistamines</b> (synthetic drugs such as <b>brompheniramine</b> (Dimetapp) and <b>terfenadine</b> (Seldane)) compete with histamine for its receptor sites.`,
       R`Antihistamines do not affect acid secretion, because they and the antacids interact with <b>different receptors</b>.`,
+      { ex: { q: R`Match each drug to its use: (a) ranitidine (b) brompheniramine (c) omeprazole. Uses: hay-fever allergy; blocking the stomach's proton pump; blocking histamine receptors in the stomach wall.`,
+        steps: [R`Ranitidine is an H₂-receptor blocker in the stomach; brompheniramine is an antihistamine for allergies; omeprazole is a proton-pump inhibitor.`], ans: R`(a) stomach histamine receptors (b) allergy (c) proton pump` } },
       { check: { q: R`Why don't antihistamines like terfenadine reduce stomach acid?`, ans: R`They bind to different histamine receptors from those in the stomach wall.` } }
     ] },
 
     { h: R`Tranquilizers`, t: [2], blocks: [
       R`<b>Tranquilizers</b> are neurologically active drugs that treat stress and mild or severe mental diseases. They relieve anxiety, stress, irritability or excitement and are an essential part of sleeping pills.`,
       { points: [R`<b>Noradrenaline</b> is a neurotransmitter that affects mood; low levels cause depression. <b>Antidepressants</b> such as iproniazid and phenelzine inhibit the enzymes that degrade noradrenaline, so its level stays up.`, R`Chlordiazepoxide and meprobamate are mild tranquilizers for relieving tension; <b>equanil</b> is used for depression and hypertension.`, R`<b>Barbiturates</b> (derivatives of barbituric acid) are hypnotics (sleep-producing): veronal, amytal, nembutal, luminal, seconal. Valium and serotonin are also tranquilizers.`] },
+      R`Tranquilizers and sleeping pills act on the brain, so they must be used under medical supervision. Taken regularly, many produce tolerance (larger doses are needed for the same effect) and dependence; mixing them with alcohol is especially dangerous because both depress the nervous system.`,
       { check: { q: R`How do iproniazid and phenelzine act as antidepressants?`, ans: R`They inhibit the enzymes that break down noradrenaline, keeping its level high.` } }
     ] },
 
@@ -73,6 +87,9 @@ JEE.book('chemistry', 'everyday-chemistry', {
       R`<b>Analgesics</b> reduce or abolish pain without causing impairment of consciousness, mental confusion, paralysis or other disturbances of the nervous system.`,
       { points: [R`<b>Non-narcotic (non-addictive)</b>: <b>aspirin</b> and <b>paracetamol</b>. Aspirin inhibits the synthesis of <b>prostaglandins</b>, which cause inflammation and pain; it is also antipyretic (reduces fever) and prevents blood clotting (used against heart attacks), but it can cause stomach bleeding.`, R`<b>Narcotic</b> analgesics: <b>morphine</b> and its derivatives (codeine, heroin), the opiates. In medicinal doses they relieve severe pain and produce sleep; in higher doses they cause stupor, coma, convulsions and death. They are used for post-operative pain, cardiac pain, terminal cancer pain and in childbirth. They are addictive.`] },
       { mol: [['CC(=O)OC1=CC=CC=C1C(O)=O', 'aspirin'], ['CC(=O)NC1=CC=C(O)C=C1', 'paracetamol']], w: 160, h: 120, cap: R`Two common non-narcotic analgesics.` },
+      { ex: { q: R`Aspirin is made by acetylating salicylic acid (M = 138) with ethanoic anhydride. What mass of aspirin (M = 180) can be made from 1.38 g of salicylic acid?`,
+        steps: [R`1 mol salicylic acid gives 1 mol aspirin: 1.38/138 = 0.010 mol.`, R`0.010 × 180.`], ans: R`1.80 g (at 100% yield)` } },
+      { mistake: R`Taking aspirin on an empty stomach for routine pain. In the acidic stomach it is un-ionised and can damage the lining and cause bleeding; paracetamol is gentler on the stomach.` },
       { check: { q: R`Why is aspirin used to prevent heart attacks?`, ans: R`It has an anti-blood-clotting action.` } }
     ] },
 
@@ -82,6 +99,9 @@ JEE.book('chemistry', 'everyday-chemistry', {
         [R`Bactericidal`, R`kill bacteria`, R`penicillin, aminoglycosides, ofloxacin`],
         [R`Bacteriostatic`, R`inhibit growth of bacteria`, R`erythromycin, tetracycline, chloramphenicol`]] } },
       R`The <b>spectrum</b> is the range of microorganisms affected. <b>Broad-spectrum</b> antibiotics kill or inhibit a wide range of Gram-positive and Gram-negative bacteria: ampicillin, amoxycillin, chloramphenicol (also used for typhoid, meningitis, pneumonia), vancomycin, ofloxacin. <b>Narrow-spectrum</b> antibiotics act mainly on one group: penicillin G. A limited-spectrum antibiotic acts on a single organism or disease.`,
+      { ex: { q: R`Classify penicillin G and tetracycline by their action and spectrum.`,
+        steps: [R`Penicillin G kills bacteria (bactericidal) and acts mainly on Gram-positive bacteria (narrow spectrum).`, R`Tetracycline stops bacteria multiplying (bacteriostatic) and acts on many types (broad spectrum).`], ans: R`Penicillin G: bactericidal, narrow; tetracycline: bacteriostatic, broad` } },
+      { mistake: R`Taking antibiotics for a cold or flu. These illnesses are caused by viruses, which antibiotics do not affect; needless use only helps bacteria become resistant.` },
       { check: { q: R`Classify chloramphenicol by action and spectrum.`, ans: R`Bacteriostatic; broad-spectrum.` } }
     ] },
 
@@ -89,11 +109,15 @@ JEE.book('chemistry', 'everyday-chemistry', {
       R`Both kill or prevent the growth of microorganisms, but <b>antiseptics</b> are applied to living tissues (wounds, cuts, skin), while <b>disinfectants</b> are applied to inanimate objects (floors, drains, instruments), being harmful to living tissue.`,
       { points: [R`<b>Antiseptics:</b> Dettol (a mixture of chloroxylenol and terpineol), bithionol (added to soaps), tincture of iodine (2–3% I₂ in alcohol–water), iodoform, boric acid (weak antiseptic for eyes), soframicin, furacin.`, R`<b>Disinfectants:</b> chlorine (0.2–0.4 ppm in drinking water), SO₂ in very low concentration.`, R`The same substance can be both, depending on concentration: <b>0.2% phenol</b> is an antiseptic, <b>1% phenol</b> is a disinfectant.`] },
       { mol: [['CC1=CC(O)=CC(C)=C1Cl', 'chloroxylenol (in Dettol)']], w: 180, h: 120, cap: R`Chloroxylenol is the main antiseptic in Dettol.` },
+      { ex: { q: R`Chlorine is added to drinking water at 0.3 ppm. What mass of chlorine is needed for 1000 L of water?`,
+        steps: [R`1000 L of water has a mass of about 10⁶ g; 0.3 ppm means 0.3 g per 10⁶ g.`], ans: R`About 0.3 g` } },
       { check: { q: R`What is the difference between an antiseptic and a disinfectant?`, ans: R`Antiseptics are safe for living tissue; disinfectants are used on non-living objects.` } }
     ] },
 
     { h: R`Antifertility drugs`, t: [4], blocks: [
       R`Birth control pills contain a mixture of synthetic <b>oestrogen</b> and <b>progesterone</b> derivatives, which are more potent than the natural hormones. Progesterone suppresses ovulation. <b>Norethindrone</b> is a synthetic progesterone derivative widely used in antifertility drugs, and <b>ethynylestradiol (novestrol)</b> is the oestrogen derivative used in combination with it.`,
+      R`The synthetic hormones are designed to survive digestion and act longer than the natural ones, so a small daily dose is enough. By keeping hormone levels like those of pregnancy, they signal the body not to release an egg. Like all drugs, they have side effects and are taken under medical advice.`,
+      { tip: R`For JEE, remember the pairs: norethindrone (progesterone type) and ethynylestradiol, or novestrol (oestrogen type).` },
       { check: { q: R`Name a synthetic progesterone derivative used in birth control pills.`, ans: R`Norethindrone.` } }
     ] },
 
@@ -108,6 +132,8 @@ JEE.book('chemistry', 'everyday-chemistry', {
       R`<b>Preservatives</b> prevent spoilage by microbial growth: table salt, sugar, vegetable oils, <b>sodium benzoate</b> (C₆H₅COONa), salts of sorbic and propanoic acids. <b>Antioxidants</b> like BHT (butylated hydroxytoluene) and BHA (butylated hydroxyanisole) slow down oxidation of food.`,
       { ex: { q: R`Saccharin is 550 times as sweet as sucrose. What mass of saccharin gives the sweetness of 1.1 kg of sugar?`,
         steps: [R`1100 g ÷ 550 = 2 g.`], ans: R`2 g` } },
+      { ex: { q: R`Which sweetener would you choose for (a) a cake to be baked (b) a cold soft drink for a diabetic? Give a reason.`,
+        steps: [R`Baking needs a sweetener that is stable to heat; sucralose is stable at cooking temperatures. Aspartame breaks down on heating but is fine in cold drinks; saccharin also works.`], ans: R`(a) sucralose (b) aspartame (or saccharin)` } },
       { check: { q: R`Why is aspartame used only in cold foods?`, ans: R`It is unstable at cooking temperature.` } }
     ] },
 
@@ -117,6 +143,8 @@ JEE.book('chemistry', 'everyday-chemistry', {
       { points: [R`Toilet soaps use better-grade fats and oils, with colour and perfume. Floating soaps have air bubbles beaten in. Transparent soaps are made by dissolving soap in ethanol and evaporating. Medicated soaps contain antiseptics; shaving soaps contain glycerol (to prevent rapid drying) and a gum (rosin) for lather; laundry soaps contain fillers such as sodium rosinate, sodium silicate, borax and sodium carbonate.`, R`<b>Soaps do not work in hard water</b>: Ca²⁺ and Mg²⁺ form insoluble scum (2C₁₇H₃₅COONa + CaCl₂ → (C₁₇H₃₅COO)₂Ca↓ + 2NaCl), wasting soap and sticking to fabrics.`] },
       { ex: { q: R`What mass of NaOH is needed to saponify 89.1 g of glyceryl tristearate (M = 891.5), and what mass of sodium stearate (M = 306.5) forms?`,
         steps: [R`(C₁₇H₃₅COO)₃C₃H₅ + 3NaOH → 3C₁₇H₃₅COONa + C₃H₅(OH)₃; 89.1/891.5 = 0.1 mol fat.`, R`NaOH: 0.3 × 40 = 12.0 g. Sodium stearate: 0.3 × 306.5 = 91.9 g.`], ans: R`12.0 g NaOH; ≈ 91.9 g soap (and 9.2 g glycerol)` } },
+      { ex: { q: R`1 L of hard water contains 0.002 mol of Ca²⁺. What mass of sodium stearate (M = 306.5) is wasted as scum before the soap starts to lather?`,
+        steps: [R`Each Ca²⁺ removes 2 stearate ions: 0.004 mol of soap.`, R`0.004 × 306.5.`], ans: R`≈ 1.2 g per litre` } },
       { check: { q: R`Why is common salt added during soap making?`, ans: R`To precipitate the soap from solution (salting out).` } }
     ] },
 
@@ -128,6 +156,8 @@ JEE.book('chemistry', 'everyday-chemistry', {
         [R`Non-ionic`, R`polyether chain (no charge)`, R`ester of stearic acid with polyethylene glycol`, R`liquid dishwashing detergents`]] } },
       { mol: [['CCCCCCCCCCCCC1=CC=C(C=C1)S(=O)(=O)[O-]', 'dodecylbenzenesulphonate (anionic)']], w: 320, h: 110, cap: R`An anionic detergent ion.` },
       R`<b>Biodegradability:</b> detergents with highly <b>branched</b> hydrocarbon chains are not easily degraded by bacteria and cause foaming in rivers and sewage. Modern detergents use <b>unbranched</b> chains, which are biodegradable.`,
+      { ex: { q: R`Why are cationic detergents used in hair conditioners, and why are they also germicidal?`,
+        steps: [R`Hair (and the surface of bacteria) carries a negative charge; the positively charged heads of cationic detergents stick to it, leaving a smooth, soft coating.`, R`The same attraction lets them disrupt the cell membranes of bacteria.`], ans: R`Their positive heads bind to negatively charged hair and microbes` } },
       { check: { q: R`Why do detergents work in hard water but soaps do not?`, ans: R`The Ca and Mg salts of detergent anions (sulphonates) are soluble, while those of fatty acids form insoluble scum.` } }
     ] },
 
@@ -135,6 +165,9 @@ JEE.book('chemistry', 'everyday-chemistry', {
       R`Soap and detergent molecules have a long non-polar hydrocarbon <b>tail</b> (hydrophobic, dissolves in grease) and a polar <b>head</b> (hydrophilic, dissolves in water). In water, above the critical micelle concentration, they cluster into <b>micelles</b>: tails point inward and heads outward.`,
       { fig: figMicelle, cap: R`Oily dirt dissolves in the hydrocarbon core of the micelle and is carried away with the water.` },
       R`When fabric with greasy dirt is washed, the tails dissolve in the grease and the heads stay in the water. Each grease drop becomes surrounded by negative heads, forming an emulsion. Rubbing helps break up the dirt; the negatively charged droplets repel each other, do not recombine, and are washed away.`,
+      R`Micelles form only above a certain concentration, the <b>critical micelle concentration</b> (CMC), and above a certain temperature (the Krafft temperature). Below the CMC, soap molecules sit at the surface of the water with their tails sticking out; this lowers the surface tension, which helps the water wet the fabric.`,
+      { ex: { q: R`Why does soap not wash well in acidic water?`,
+        steps: [R`In acid, the carboxylate head picks up a proton: RCOO⁻ + H⁺ → RCOOH.`, R`The free fatty acid is insoluble and has no charged head, so it cannot form micelles.`], ans: R`The soap is converted into an insoluble fatty acid` } },
       { check: { q: R`Which part of a soap molecule dissolves the grease?`, ans: R`The long hydrocarbon (hydrophobic) tail.` } }
     ] }
   ],
@@ -144,7 +177,8 @@ JEE.book('chemistry', 'everyday-chemistry', {
     R`Tranquilizers: iproniazid, phenelzine (noradrenaline), equanil, barbiturates (veronal, luminal…), valium. Analgesics: non-narcotic (aspirin, paracetamol), narcotic (morphine, codeine, heroin).`,
     R`Antibiotics: bactericidal (penicillin, ofloxacin, aminoglycosides) vs bacteriostatic (erythromycin, tetracycline, chloramphenicol); broad vs narrow spectrum. Antiseptics (Dettol, bithionol, tincture of iodine; 0.2% phenol) vs disinfectants (Cl₂, SO₂; 1% phenol).`,
     R`Antifertility: norethindrone, ethynylestradiol. Sweeteners: aspartame 100, saccharin 550, sucralose 600, alitame 2000 × sucrose. Preservative: sodium benzoate; antioxidants BHT, BHA.`,
-    R`Soap: saponification of fats with NaOH; scum in hard water. Detergents: anionic, cationic, non-ionic; work in hard water; unbranched = biodegradable. Micelles: tails inward around grease, heads outward.`
+    R`Soap: saponification of fats with NaOH; scum in hard water. Detergents: anionic, cationic, non-ionic; work in hard water; unbranched = biodegradable. Micelles: tails inward around grease, heads outward.`,
+    R`Competitive inhibition can be overcome by more substrate; allosteric cannot. Antibiotics do not act on viruses.`
   ],
   refs: [
     { t: R`Wikipedia: Enzyme inhibitor`, url: 'https://en.wikipedia.org/wiki/Enzyme_inhibitor' },

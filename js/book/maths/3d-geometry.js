@@ -39,24 +39,57 @@ var figPlane = D.svg(320, 210, (function () {
   return out;
 })(), 'Plane through a point perpendicular to a normal');
 
+var figBox = D.svg(320, 220, (function () {
+  var o = [70, 170], ax = [150, 0], ay = [60, -40], az = [0, -90], out = [];
+  function pt(i, j, k) { return [o[0] + i * ax[0] + j * ay[0] + k * az[0], o[1] + i * ax[1] + j * ay[1] + k * az[1]]; }
+  var E = [[[0,0,0],[1,0,0]],[[0,0,0],[0,1,0]],[[0,0,0],[0,0,1]],[[1,0,0],[1,1,0]],[[1,0,0],[1,0,1]],[[0,1,0],[1,1,0]],[[0,1,0],[0,1,1]],[[0,0,1],[1,0,1]],[[0,0,1],[0,1,1]],[[1,1,0],[1,1,1]],[[1,0,1],[1,1,1]],[[0,1,1],[1,1,1]]];
+  E.forEach(function (e) { var a = pt.apply(null, e[0]), b = pt.apply(null, e[1]); out.push(D.line(a[0], a[1], b[0], b[1], { color: 'm', w: 1, dash: '4 3' })); });
+  var Pp = pt(0, 0, 0), Q = pt(1, 1, 1), M = pt(1, 1, 0);
+  out.push(D.line(Pp[0], Pp[1], M[0], M[1], { color: 'o', w: 2 }), D.line(M[0], M[1], Q[0], Q[1], { color: 'g', w: 2 }), D.line(Pp[0], Pp[1], Q[0], Q[1], { color: 'b', w: 2.4 }));
+  out.push(D.dot(Pp[0], Pp[1], { color: 'b' }), D.dot(Q[0], Q[1], { color: 'b' }), lab(Pp[0] - 10, Pp[1] + 12, 'P', 'b', 13, { bold: true }), lab(Q[0] + 10, Q[1] - 4, 'Q', 'b', 13, { bold: true }));
+  var A = pt(0.5, 0, 0), B = pt(1, 0.5, 0), C = pt(1, 1, 0.5);
+  out.push(lab(A[0], A[1] + 14, 'x₂ − x₁', 'm', 10), lab(B[0] + 26, B[1] + 6, 'y₂ − y₁', 'm', 10), lab(C[0] + 30, C[1], 'z₂ − z₁', 'g', 10));
+  return out;
+})(), 'Distance in space as the diagonal of a cuboid');
+
+var figFoot = D.svg(320, 220, [
+  D.poly([[20, 170], [230, 170], [300, 110], [90, 110]], { closed: true, color: 'b', fill: 'soft', w: 1.2 }),
+  D.dot(180, 40, { color: 'r' }), D.line(180, 40, 180, 140, { color: 'r', w: 1.8 }), D.dot(180, 140, { color: 'k' }), D.line(180, 140, 180, 200, { color: 'r', w: 1.4, dash: '4 3' }), D.dot(180, 200, { color: 'o' }),
+  lab(192, 40, 'P(x₁, y₁, z₁)', 'r', 11, { anchor: 'start' }), lab(192, 140, 'N (foot)', 'k', 11, { anchor: 'start' }), lab(192, 205, "P′ (image)", 'o', 11, { anchor: 'start' }), lab(40, 160, 'ax + by + cz + d = 0', 'b', 10, { anchor: 'start' })
+], 'Foot of the perpendicular and image of a point in a plane');
+
+var figLinePlane = D.svg(320, 210, [
+  D.poly([[20, 170], [220, 170], [300, 120], [100, 120]], { closed: true, color: 'b', fill: 'soft', w: 1.2 }),
+  D.arrow(150, 145, 150, 30, { color: 'g', w: 2, head: 8 }), lab(160, 34, 'normal n', 'g', 11, { anchor: 'start' }),
+  D.arrow(150, 145, 260, 60, { color: 'o', w: 2.2, head: 8 }), lab(264, 56, 'line b', 'o', 11, { anchor: 'start' }),
+  D.line(150, 145, 280, 145, { color: 'm', w: 1.2, dash: '4 3' }), lab(282, 150, 'projection', 'm', 10, { anchor: 'start' }),
+  D.path('M190,145 A40,40 0 0 0 182,121', { color: 'o', w: 1.4 }), lab(200, 134, 'φ', 'o', 12),
+  D.path('M150,105 A40,40 0 0 1 172,111', { color: 'g', w: 1.4 }), lab(166, 98, '90° − φ', 'g', 10, { anchor: 'start' })
+], 'Angle between a line and a plane');
+
 // ---------- chapter text ----------
 JEE.book('maths', '3d-geometry', {
   intro: [
     R`Three-dimensional geometry extends coordinate geometry into space: a point needs three coordinates, a line is described by a point and a direction, and a plane by a point and a normal. Vectors make these descriptions short and natural.`,
-    R`This chapter covers coordinates in space, distance and section formulae, direction cosines and ratios, equations of lines, angles between lines, skew lines and shortest distance, and the equation of a plane with distances and angles.`
+    R`This chapter covers coordinates in space, distance and section formulae, direction cosines and ratios, equations of lines, angles between lines, skew lines and shortest distance, and the equation of a plane with distances and angles, including the foot of a perpendicular and the image of a point.`
   ],
   sections: [
     { h: R`Coordinate axes, coordinate planes and octants`, t: [0], blocks: [
       R`Three mutually perpendicular lines through the origin O are the x-, y- and z-axes. They determine three <b>coordinate planes</b>: the XY-plane (z = 0), YZ-plane (x = 0) and ZX-plane (y = 0), which divide space into eight <b>octants</b>. A point P has coordinates (x, y, z): its signed distances from the YZ, ZX and XY planes.`,
       { fig: figOctants, cap: R`The coordinate axes and two of the coordinate planes.` },
       { points: [R`A point on the x-axis is (x, 0, 0); on the XY-plane, (x, y, 0).`, R`The octant with all coordinates positive is the first octant (X O Y Z).`] },
+      R`Think of a room. The corner where two walls meet the floor is the origin; the edges along the floor are the x- and y-axes, and the vertical edge is the z-axis. The floor is the XY-plane and the two walls are the other coordinate planes. A light bulb hanging in the room has three coordinates: how far it is from each wall, and how high it is above the floor.`,
       { check: { q: R`In which octant is (−2, 3, −4)?`, ans: R`The octant X′OYZ′ (x < 0, y > 0, z < 0).` } }
     ] },
 
     { h: R`Distance formula in three dimensions`, t: [1], blocks: [
       R`\[PQ = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}.\] The distance of P from the origin is \(\sqrt{x^2 + y^2 + z^2}\), and from the x-axis \(\sqrt{y^2 + z^2}\).`,
+      { fig: figBox, cap: R`Draw the box with P and Q at opposite corners and edges parallel to the axes. Pythagoras on the floor gives the orange diagonal, and Pythagoras again in the vertical triangle gives PQ.` },
+      { derive: R`Distance formula from Pythagoras`, steps: [R`On the base of the box, the diagonal from P to the point below Q has length² \((x_2 - x_1)^2 + (y_2 - y_1)^2\).`, R`This diagonal and the vertical edge \(z_2 - z_1\) form a right angle, so \(PQ^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2\).`] },
       { ex: { q: R`Find the distance between (1, 2, 3) and (4, 6, 15).`,
         steps: [R`\(\sqrt{9 + 16 + 144} = \sqrt{169}\).`], ans: R`13` } },
+      { ex: { q: R`Find the point on the y-axis that is equidistant from (3, 1, 2) and (5, 5, 2).`,
+        steps: [R`Let it be (0, y, 0): \(9 + (1 - y)^2 + 4 = 25 + (5 - y)^2 + 4\).`, R`\(14 - 2y = 54 - 10y\), so y = 5.`], ans: R`(0, 5, 0)` } },
       { check: { q: R`Find the distance of (3, 4, 12) from the origin.`, ans: R`13.` } }
     ] },
 
@@ -65,6 +98,8 @@ JEE.book('maths', '3d-geometry', {
       { ex: { q: R`Find the point dividing (1, 2, 3) and (4, 5, 6) internally in the ratio 1 : 2, and the centroid of (1, 2, 3), (3, 0, 1), (−1, 1, −4).`,
         steps: [R`((4 + 2)/3, (5 + 4)/3, (6 + 6)/3) = (2, 3, 4).`, R`Centroid ((1 + 3 − 1)/3, (2 + 0 + 1)/3, (3 + 1 − 4)/3) = (1, 1, 0).`], ans: R`(2, 3, 4); (1, 1, 0)` } },
       { tip: R`The ratio in which the XY-plane divides the join of two points is −z₁ : z₂ (similarly for the other planes).` },
+      { ex: { q: R`In what ratio does the XY-plane divide the join of (1, 2, 3) and (4, 2, −1)? Find the point of division.`,
+        steps: [R`On the XY-plane z = 0: \(\dfrac{k(-1) + 3}{k + 1} = 0\), so k = 3 (ratio 3 : 1, internal since positive).`, R`x = (3 × 4 + 1)/4, y = 2.`], ans: R`3 : 1; (13/4, 2, 0)` } },
       { check: { q: R`Find the midpoint of (2, −1, 4) and (0, 3, −2).`, ans: R`(1, 1, 1).` } }
     ] },
 
@@ -72,6 +107,8 @@ JEE.book('maths', '3d-geometry', {
       R`If a directed line makes angles α, β, γ with the positive x-, y-, z-axes, its <b>direction cosines</b> (DCs) are l = cos α, m = cos β, n = cos γ, with \(l^2 + m^2 + n^2 = 1\). Any three numbers a, b, c proportional to l, m, n are <b>direction ratios</b> (DRs), and \[l = \pm\frac{a}{\sqrt{a^2 + b^2 + c^2}},\ m = \pm\frac{b}{\sqrt{a^2 + b^2 + c^2}},\ n = \pm\frac{c}{\sqrt{a^2 + b^2 + c^2}}.\]`,
       { ex: { q: R`Find the DCs of a line with DRs 2, −1, 2.`,
         steps: [R`√(4 + 1 + 4) = 3.`], ans: R`±(2/3, −1/3, 2/3)` } },
+      { ex: { q: R`A line makes angles 90°, 135° and 45° with the x-, y- and z-axes. Find its direction cosines and check them.`,
+        steps: [R`cos 90° = 0, cos 135° = −1/√2, cos 45° = 1/√2.`, R`0 + ½ + ½ = 1 ✓.`], ans: R`0, −1/√2, 1/√2` } },
       { check: { q: R`What are the DCs of the z-axis?`, ans: R`0, 0, 1.` } }
     ] },
 
@@ -86,6 +123,9 @@ JEE.book('maths', '3d-geometry', {
       R`<b>Vector form:</b> the line through the point with position vector \(\vec a\) parallel to \(\vec b\) is \(\vec r = \vec a + \lambda\vec b\) (λ a real parameter). <b>Cartesian form</b> (through \((x_1, y_1, z_1)\) with DRs a, b, c): \[\frac{x - x_1}{a} = \frac{y - y_1}{b} = \frac{z - z_1}{c}\ (= \lambda).\] Any point of the line is \((x_1 + a\lambda, y_1 + b\lambda, z_1 + c\lambda)\).`,
       { ex: { q: R`Find the line through (1, 2, 3) parallel to 3î + 2ĵ − 2k̂.`,
         steps: [R`Vector: r = (î + 2ĵ + 3k̂) + λ(3î + 2ĵ − 2k̂).`], ans: R`\(\dfrac{x - 1}{3} = \dfrac{y - 2}{2} = \dfrac{z - 3}{-2}\)` } },
+      { ex: { q: R`Write the line \(\dfrac{x - 5}{3} = \dfrac{y + 4}{7} = \dfrac{z - 6}{2}\) in vector form.`,
+        steps: [R`It passes through (5, −4, 6) with direction ratios 3, 7, 2.`], ans: R`\(\vec r = 5\hat i - 4\hat j + 6\hat k + \lambda(3\hat i + 7\hat j + 2\hat k)\)` } },
+      { mistake: R`Reading direction ratios from an equation that is not in standard form. In \(\dfrac{3 - x}{2} = \dfrac{y}{1} = \dfrac{z + 1}{4}\), the x-term is \(\dfrac{x - 3}{-2}\), so the direction ratios are −2, 1, 4, not 2, 1, 4.` },
       { check: { q: R`Write the general point of (x − 2)/1 = (y + 1)/3 = z/2.`, ans: R`(2 + λ, −1 + 3λ, 2λ).` } }
     ] },
 
@@ -93,6 +133,8 @@ JEE.book('maths', '3d-geometry', {
       R`Through points with position vectors \(\vec a\) and \(\vec b\): \(\vec r = \vec a + \lambda(\vec b - \vec a)\). Cartesian: \[\frac{x - x_1}{x_2 - x_1} = \frac{y - y_1}{y_2 - y_1} = \frac{z - z_1}{z_2 - z_1}.\]`,
       { ex: { q: R`Find the line through (−1, 0, 2) and (3, 4, 6).`,
         steps: [R`DRs 4, 4, 4 ∝ 1, 1, 1.`], ans: R`\(\dfrac{x + 1}{1} = \dfrac{y}{1} = \dfrac{z - 2}{1}\)` } },
+      { ex: { q: R`Find where the line through (2, −3, 1) and (3, −4, −5) crosses the ZX-plane.`,
+        steps: [R`General point (2 + λ, −3 − λ, 1 − 6λ). On the ZX-plane y = 0, so λ = −3.`], ans: R`(−1, 0, 19)` } },
       { check: { q: R`Does (1, 2, 4) lie on the line above?`, ans: R`x + 1 = 2, y = 2, z − 2 = 2: yes (λ = 2).` } }
     ] },
 
@@ -100,20 +142,26 @@ JEE.book('maths', '3d-geometry', {
       R`If lines have DRs \(a_1, b_1, c_1\) and \(a_2, b_2, c_2\) (or direction vectors \(\vec b_1, \vec b_2\)), the angle θ between them is given by \[\cos\theta = \left|\frac{a_1a_2 + b_1b_2 + c_1c_2}{\sqrt{a_1^2 + b_1^2 + c_1^2}\sqrt{a_2^2 + b_2^2 + c_2^2}}\right| = \frac{|\vec b_1\cdot\vec b_2|}{|\vec b_1||\vec b_2|}.\] They are <b>perpendicular</b> if \(a_1a_2 + b_1b_2 + c_1c_2 = 0\) and <b>parallel</b> if \(\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}\). With DCs: \(\cos\theta = |l_1l_2 + m_1m_2 + n_1n_2|\).`,
       { ex: { q: R`Find the angle between lines with DRs (1, 1, 2) and (√3 − 1, −√3 − 1, 4).`,
         steps: [R`Dot = (√3 − 1) − (√3 + 1) + 8 = 6.`, R`Magnitudes √6 and √((√3 − 1)² + (√3 + 1)² + 16) = √24. cos θ = 6/√144 = 1/2.`], ans: R`60°` } },
+      { ex: { q: R`Find k so that the lines \(\dfrac{x - 1}{-3} = \dfrac{y - 2}{2k} = \dfrac{z - 3}{2}\) and \(\dfrac{x - 1}{3k} = \dfrac{y - 1}{1} = \dfrac{z - 6}{-5}\) are perpendicular.`,
+        steps: [R`\((-3)(3k) + (2k)(1) + (2)(-5) = 0\), so \(-7k = 10\).`], ans: R`k = −10/7` } },
       { check: { q: R`Are lines with DRs (1, 2, 3) and (3, 0, −1) perpendicular?`, ans: R`Yes: 3 + 0 − 3 = 0.` } }
     ] },
 
     { h: R`Skew lines`, t: [5], blocks: [
       R`In space, two lines may intersect, be parallel, or be <b>skew</b>: neither parallel nor intersecting (they lie in different planes). The angle between skew lines is the angle between their directions.`,
       { fig: figSkew, cap: R`Skew lines never meet; the shortest distance between them is along their common perpendicular.` },
+      R`Skew lines are common in the real world: a road on a flyover and a road passing underneath it at an angle are skew. They never meet and are not parallel, yet there is one shortest bridge between them, perpendicular to both, which is exactly what the shortest-distance formula measures.`,
       { check: { q: R`Can two lines in a plane be skew?`, ans: R`No: coplanar lines either meet or are parallel.` } }
     ] },
 
     { h: R`Shortest distance between two lines`, t: [5], blocks: [
       R`For \(\vec r = \vec a_1 + \lambda\vec b_1\) and \(\vec r = \vec a_2 + \mu\vec b_2\), the shortest distance (along the common perpendicular, which has direction \(\vec b_1 \times \vec b_2\)) is \[d = \left|\frac{(\vec a_2 - \vec a_1)\cdot(\vec b_1 \times \vec b_2)}{|\vec b_1 \times \vec b_2|}\right|.\] The lines intersect ⟺ d = 0.`,
+      { derive: R`Why the formula works`, steps: [R`The common perpendicular has direction \(\vec b_1 \times \vec b_2\), perpendicular to both lines; its unit vector is \(\hat n = \dfrac{\vec b_1 \times \vec b_2}{|\vec b_1 \times \vec b_2|}\).`, R`Join any point \(\vec a_1\) of the first line to any point \(\vec a_2\) of the second. The shortest distance is the length of the projection of \(\vec a_2 - \vec a_1\) on \(\hat n\).`, R`So \(d = |(\vec a_2 - \vec a_1)\cdot\hat n|\), which is the formula.`] },
       { ex: { q: R`Find the shortest distance between \(\vec r = (\hat i + 2\hat j + 3\hat k) + \lambda(\hat i - 3\hat j + 2\hat k)\) and \(\vec r = (4\hat i + 5\hat j + 6\hat k) + \mu(2\hat i + 3\hat j + \hat k)\).`,
         steps: [R`\(\vec b_1 \times \vec b_2 = -9\hat i + 3\hat j + 9\hat k\), magnitude √171 = 3√19.`, R`\(\vec a_2 - \vec a_1 = 3\hat i + 3\hat j + 3\hat k\); dot = −27 + 9 + 27 = 9.`], ans: R`\(d = \dfrac{9}{3\sqrt{19}} = \dfrac{3}{\sqrt{19}}\)` } },
       { adv: R`The equation of the line of shortest distance is found by taking general points P(λ) and Q(μ) on the two lines and requiring \(\overrightarrow{PQ}\) to be perpendicular to both directions; solve the two equations for λ and μ.` },
+      { ex: { q: R`Find the shortest distance between \(\dfrac{x + 1}{7} = \dfrac{y + 1}{-6} = \dfrac{z + 1}{1}\) and \(\dfrac{x - 3}{1} = \dfrac{y - 5}{-2} = \dfrac{z - 7}{1}\).`,
+        steps: [R`\(\vec b_1 \times \vec b_2 = (7, -6, 1)\times(1, -2, 1) = (-4, -6, -8)\), magnitude \(\sqrt{116} = 2\sqrt{29}\).`, R`\(\vec a_2 - \vec a_1 = (4, 6, 8)\); dot = −16 − 36 − 64 = −116.`], ans: R`\(d = \dfrac{116}{2\sqrt{29}} = 2\sqrt{29}\)` } },
       { check: { q: R`What is the shortest distance between two intersecting lines?`, ans: R`Zero.` } }
     ] },
 
@@ -126,6 +174,8 @@ JEE.book('maths', '3d-geometry', {
 
     { h: R`Coplanar lines`, t: [5], blocks: [
       R`Two lines \(\vec r = \vec a_1 + \lambda\vec b_1\) and \(\vec r = \vec a_2 + \mu\vec b_2\) are <b>coplanar</b> ⟺ \((\vec a_2 - \vec a_1)\cdot(\vec b_1 \times \vec b_2) = 0\). In Cartesian form: \[\begin{vmatrix} x_2 - x_1 & y_2 - y_1 & z_2 - z_1 \\ a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \end{vmatrix} = 0.\] The plane containing them is then \(\begin{vmatrix} x - x_1 & y - y_1 & z - z_1 \\ a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \end{vmatrix} = 0\).`,
+      { ex: { q: R`Show that the lines \(\dfrac{x + 3}{-3} = \dfrac{y - 1}{1} = \dfrac{z - 5}{5}\) and \(\dfrac{x + 1}{-1} = \dfrac{y - 2}{2} = \dfrac{z - 5}{5}\) are coplanar, and find the plane containing them.`,
+        steps: [R`\(\begin{vmatrix} 2 & 1 & 0 \\ -3 & 1 & 5 \\ -1 & 2 & 5 \end{vmatrix} = 2(5 - 10) - 1(-15 + 5) + 0 = 0\): coplanar.`, R`Plane: \(\begin{vmatrix} x + 3 & y - 1 & z - 5 \\ -3 & 1 & 5 \\ -1 & 2 & 5 \end{vmatrix} = -5(x + 3) + 10(y - 1) - 5(z - 5) = 0\).`], ans: R`x − 2y + z = 0` } },
       { check: { q: R`What does coplanarity mean for the shortest distance?`, ans: R`For non-parallel lines it is zero: they intersect.` } }
     ] },
 
@@ -140,6 +190,10 @@ JEE.book('maths', '3d-geometry', {
         [R`Through three points`, R`\(\begin{vmatrix} x - x_1 & y - y_1 & z - z_1 \\ x_2 - x_1 & y_2 - y_1 & z_2 - z_1 \\ x_3 - x_1 & y_3 - y_1 & z_3 - z_1 \end{vmatrix} = 0\)`]] } },
       { ex: { q: R`Find the plane through (1, 0, 0), (0, 1, 0) and (0, 0, 1).`,
         steps: [R`Intercepts 1, 1, 1.`], ans: R`x + y + z = 1` } },
+      { ex: { q: R`Find the plane through A(2, 5, −3), B(−2, −3, 5) and C(5, 3, −3).`,
+        steps: [R`Normal \(= \overrightarrow{AB}\times\overrightarrow{AC} = (-4, -8, 8)\times(3, -2, 0) = (16, 24, 32) \propto (2, 3, 4)\).`, R`2(x − 2) + 3(y − 5) + 4(z + 3) = 0. Check with B: −4 − 9 + 20 = 7 ✓.`], ans: R`2x + 3y + 4z = 7` } },
+      { ex: { q: R`Write 2x − 3y + 6z = 14 in normal form and find its distance from the origin.`,
+        steps: [R`Divide by \(\sqrt{4 + 9 + 36} = 7\): \(\frac27x - \frac37y + \frac67z = 2\).`], ans: R`Direction cosines of the normal 2/7, −3/7, 6/7; distance 2` } },
       { check: { q: R`Find the plane through (2, 1, −1) with normal 3î − ĵ + 2k̂.`, ans: R`3(x − 2) − (y − 1) + 2(z + 1) = 0, i.e. 3x − y + 2z − 3 = 0.` } }
     ] },
 
@@ -147,6 +201,7 @@ JEE.book('maths', '3d-geometry', {
       R`Every plane through the line of intersection of \(P_1 \equiv a_1x + b_1y + c_1z + d_1 = 0\) and \(P_2 = 0\) has the form \(P_1 + \lambda P_2 = 0\); λ is fixed by one more condition.`,
       { ex: { q: R`Find the plane through the intersection of x + y + z = 1 and 2x + 3y + 4z = 5 passing through (1, 1, 1).`,
         steps: [R`(x + y + z − 1) + λ(2x + 3y + 4z − 5) = 0; at (1, 1, 1): 2 + 4λ = 0 ⟹ λ = −½.`, R`2(x + y + z − 1) − (2x + 3y + 4z − 5) = 0 ⟹ −y − 2z + 3 = 0.`], ans: R`y + 2z = 3` } },
+      R`Why does this work? Any point on both planes makes P₁ = 0 and P₂ = 0, so it also makes P₁ + λP₂ = 0. The equation is still linear, so it is a plane, and it contains the whole line of intersection. Changing λ rotates the plane about that line like the pages of a book about its spine.`,
       { check: { q: R`Which plane of the family P₁ + λP₂ = 0 is P₂ itself?`, ans: R`None for finite λ (it corresponds to λ → ∞); P₁ is λ = 0.` } }
     ] },
 
@@ -154,6 +209,13 @@ JEE.book('maths', '3d-geometry', {
       R`The distance of \((x_1, y_1, z_1)\) from ax + by + cz + d = 0 is \[\frac{|ax_1 + by_1 + cz_1 + d|}{\sqrt{a^2 + b^2 + c^2}};\] in vector form, the distance of \(\vec a\) from \(\vec r\cdot\vec n = d\) is \(\dfrac{|\vec a\cdot\vec n - d|}{|\vec n|}\). The distance between parallel planes ax + by + cz + d₁ = 0 and ax + by + cz + d₂ = 0 is \(\dfrac{|d_1 - d_2|}{\sqrt{a^2 + b^2 + c^2}}\).`,
       { ex: { q: R`Find the distance of (2, 5, −3) from the plane \(\vec r\cdot(6\hat i - 3\hat j + 2\hat k) = 4\).`,
         steps: [R`|12 − 15 − 6 − 4| / √(36 + 9 + 4) = 13/7.`], ans: R`13/7` } },
+      R`<b>Foot of the perpendicular and image.</b> From P(x₁, y₁, z₁) go along the normal (a, b, c) to the plane. The foot N and the image P′ satisfy \[\frac{x - x_1}{a} = \frac{y - y_1}{b} = \frac{z - z_1}{c} = -\frac{ax_1 + by_1 + cz_1 + d}{a^2 + b^2 + c^2}\quad(\text{foot}),\] and twice that value for the image (since N is the midpoint of PP′).`,
+      { fig: figFoot, cap: R`The perpendicular from P meets the plane at its foot N; continuing the same distance on the other side gives the mirror image P′.` },
+      { ex: { q: R`Find the foot of the perpendicular and the image of (1, 2, 3) in the plane x + 2y + 2z = 1.`,
+        steps: [R`\(ax_1 + by_1 + cz_1 + d = 1 + 4 + 6 - 1 = 10\) and \(a^2 + b^2 + c^2 = 9\), so the ratio is −10/9.`, R`Foot: (1 − 10/9, 2 − 20/9, 3 − 20/9). Image: use −20/9 instead.`], ans: R`Foot (−1/9, −2/9, 7/9); image (−11/9, −22/9, −13/9)` } },
+      { ex: { q: R`Find the distance between the planes 2x − y + 2z + 3 = 0 and 4x − 2y + 4z + 5 = 0.`,
+        steps: [R`Make the coefficients equal: the second is 2x − y + 2z + 2.5 = 0.`, R`\(d = \dfrac{|3 - 2.5|}{\sqrt{4 + 1 + 4}}\).`], ans: R`1/6` } },
+      { mistake: R`Using the parallel-planes formula without first making the x, y, z coefficients identical. Divide or multiply one equation until they match.` },
       { check: { q: R`Find the distance of the origin from 2x − y + 2z = 9.`, ans: R`9/3 = 3.` } }
     ] },
 
@@ -161,10 +223,12 @@ JEE.book('maths', '3d-geometry', {
       R`The angle between two planes is the angle between their normals: \[\cos\theta = \frac{|a_1a_2 + b_1b_2 + c_1c_2|}{\sqrt{a_1^2 + b_1^2 + c_1^2}\sqrt{a_2^2 + b_2^2 + c_2^2}}.\] Perpendicular planes: \(a_1a_2 + b_1b_2 + c_1c_2 = 0\); parallel planes: \(a_1/a_2 = b_1/b_2 = c_1/c_2\).`,
       { ex: { q: R`Find the angle between 2x − y + z = 6 and x + y + 2z = 7.`,
         steps: [R`cos θ = |2 − 1 + 2|/(√6 · √6) = 1/2.`], ans: R`60°` } },
+      R`Taking the absolute value gives the acute angle between the planes. Two planes meeting along a line actually form two pairs of angles, θ and 180° − θ; by convention we quote the acute one, just as for two lines.`,
       { check: { q: R`Are x + 2y − z = 1 and 3x − y + z = 4 perpendicular?`, ans: R`3 − 2 − 1 = 0: yes.` } }
     ] },
 
     { h: R`Angle between a line and a plane`, t: [6], blocks: [
+      { fig: figLinePlane, cap: R`The angle φ between a line and a plane is measured between the line and its projection on the plane. The line makes the angle 90° − φ with the normal, which is why the formula uses sin φ.` },
       R`If a line has direction \(\vec b\) and a plane has normal \(\vec n\), the angle φ between the line and the plane is the complement of the angle between \(\vec b\) and \(\vec n\): \[\sin\varphi = \frac{|\vec b\cdot\vec n|}{|\vec b||\vec n|}.\] The line is parallel to the plane if \(\vec b\cdot\vec n = 0\), and perpendicular to it if \(\vec b \parallel \vec n\).`,
       { ex: { q: R`Find the angle between the line with direction 2î + 3ĵ + 6k̂ and the plane 10x + 2y − 11z = 3.`,
         steps: [R`b·n = 20 + 6 − 66 = −40; |b| = 7, |n| = 15.`], ans: R`sin φ = 40/105 = 8/21, φ = sin⁻¹(8/21)` } },
@@ -177,7 +241,8 @@ JEE.book('maths', '3d-geometry', {
     R`Line: r = a + λb; (x − x₁)/a = (y − y₁)/b = (z − z₁)/c. Angle cos θ = |b₁·b₂|/(|b₁||b₂|).`,
     R`Skew lines: SD = |(a₂ − a₁)·(b₁ × b₂)|/|b₁ × b₂|; parallel lines |b × (a₂ − a₁)|/|b|; coplanar ⟺ (a₂ − a₁)·(b₁ × b₂) = 0.`,
     R`Plane: (r − a)·n = 0; ax + by + cz + d = 0; intercept form; through three points (determinant); family P₁ + λP₂ = 0.`,
-    R`Point–plane distance |ax₁ + by₁ + cz₁ + d|/√(a² + b² + c²); angle between planes via normals; line–plane sin φ = |b·n|/(|b||n|).`
+    R`Point–plane distance |ax₁ + by₁ + cz₁ + d|/√(a² + b² + c²); angle between planes via normals; line–plane sin φ = |b·n|/(|b||n|).`,
+    R`Foot of the perpendicular from (x₁, y₁, z₁) to ax + by + cz + d = 0: ratio −(ax₁ + by₁ + cz₁ + d)/(a² + b² + c²) along (a, b, c); image: twice that ratio.`
   ],
   refs: [
     { t: R`OpenStax Calculus Vol. 3, §2.2 Vectors in Three Dimensions`, url: 'https://openstax.org/books/calculus-volume-3/pages/2-2-vectors-in-three-dimensions' },

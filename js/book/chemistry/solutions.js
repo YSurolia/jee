@@ -33,17 +33,26 @@ var figOsmosis = D.svg(420, 200, [
   D.arrow(285, 20, 285, 76, { color: 'r', w: 2, head: 8, label: 'π stops it', lx: 40, ly: -10, math: false, size: 11 })
 ], 'Osmosis and osmotic pressure');
 
+var figHenry = D.plot({ w: 320, h: 210, x: [0, 5.4], y: [0, 5.4], xlabel: 'partial pressure p', ylabel: 'solubility (mole fraction)', mathLabels: false, xticks: [], yticks: [],
+  fns: [{ f: function (p) { return 0.9 * p; }, from: 0, to: 5.2, color: 'b', w: 2, label: 'gas A (smaller Kₕ)', lx: 2.4, ly: 4.6, math: false }, { f: function (p) { return 0.35 * p; }, from: 0, to: 5.2, color: 'o', w: 2, label: 'gas B (larger Kₕ)', lx: 3.0, ly: 0.7, math: false }],
+  label: 'Henry law: solubility proportional to partial pressure' });
+
+var figVant = D.plot({ w: 380, h: 220, x: [0, 0.3], y: [0, 1.3], xlabel: 'molality m', ylabel: 'ΔT_f (K)', mathLabels: false, xticks: [[0.1, '0.1'], [0.2, '0.2']], yticks: [[0.372, '0.37'], [0.744, '0.74'], [1.116, '1.12']],
+  fns: [{ f: function (m) { return 1.86 * m; }, to: 0.22, color: 'g', w: 2, label: 'glucose, i = 1', lx: 0.225, ly: 0.41, math: false }, { f: function (m) { return 3.72 * m; }, to: 0.22, color: 'b', w: 2, label: 'NaCl, i = 2', lx: 0.225, ly: 0.82, math: false }, { f: function (m) { return 5.58 * m; }, to: 0.22, color: 'r', w: 2, label: 'CaCl₂, i = 3', lx: 0.225, ly: 1.23, math: false }],
+  label: 'Freezing-point depression against molality for different van t Hoff factors' });
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'solutions', {
   intro: [
     R`Sea water, blood, air, brass and soft drinks are all solutions. Many properties of solutions depend only on <b>how many</b> solute particles are present, not on what they are: this is why salt melts ice on roads, why antifreeze protects car radiators, and why a cucumber shrivels in brine.`,
-    R`This chapter covers types of solutions and concentration units, solubility and Henry's law, vapour pressure and Raoult's law, ideal and non-ideal solutions and azeotropes, the four colligative properties, finding molar masses from them, and abnormal molar masses explained by the van 't Hoff factor.`
+    R`This chapter covers types of solutions and concentration units, solubility and Henry's law, vapour pressure and Raoult's law, ideal and non-ideal solutions and azeotropes, the four colligative properties, finding molar masses from them, and abnormal molar masses explained by the van 't Hoff factor. Every formula is followed by worked numerical illustrations of the JEE type.`
   ],
   sections: [
     { h: R`Types of solutions`, t: [0], blocks: [
       R`A <b>solution</b> is a homogeneous mixture of two or more substances. The component in the largest amount is usually the <b>solvent</b>; the others are <b>solutes</b>. A binary solution has two components.`,
       { table: { head: [R`Solvent`, R`Solute`, R`Example`], rows: [
         [R`Gas`, R`gas / liquid / solid`, R`air (O₂ in N₂) / water vapour in air / camphor in N₂`], [R`Liquid`, R`gas / liquid / solid`, R`O₂ in water, soda / ethanol in water / glucose or salt in water`], [R`Solid`, R`gas / liquid / solid`, R`H₂ in palladium / amalgam of mercury with sodium / brass, gold alloys`]] } },
+      R`Whatever the states, a true solution is uniform throughout: you cannot see separate particles even under a microscope, the solute does not settle, and it passes through filter paper. That is what distinguishes it from a suspension (muddy water) or a colloid (milk).`,
       { check: { q: R`What kind of solution is brass?`, ans: R`A solid solution (zinc in copper).` } }
     ] },
 
@@ -53,12 +62,18 @@ JEE.book('chemistry', 'solutions', {
         [R`ppm`, R`parts of component per 10⁶ parts of solution (pollutants: 5.8 ppm O₂ in sea water)`], [R`Mole fraction x`, R`moles of component / total moles (Σx = 1)`], [R`Molarity M`, R`moles of solute per litre of solution (changes with temperature)`], [R`Molality m`, R`moles of solute per kg of solvent (independent of temperature)`]] } },
       { ex: { q: R`A solution contains 18 g of glucose (M = 180) in 180 g of water. Find the molality and the mole fraction of glucose.`,
         steps: [R`n(glucose) = 0.1 mol; mass of water 0.18 kg: m = 0.1/0.18.`, R`n(water) = 10 mol: x = 0.1/10.1.`], ans: R`m ≈ 0.556 mol/kg; x ≈ 0.0099` } },
+      { ex: { q: R`Concentrated sulphuric acid is 98% H₂SO₄ by mass and has density 1.84 g/mL. Find its molarity.`,
+        steps: [R`1 L of acid has mass 1840 g, of which 98% = 1803 g is H₂SO₄.`, R`1803/98 mol in 1 L.`], ans: R`≈ 18.4 M` } },
+      { ex: { q: R`Find the mole fraction of solute in a 1 molal aqueous solution.`,
+        steps: [R`1 mol solute per 1000 g water = 55.5 mol water.`, R`x = 1/(1 + 55.5).`], ans: R`≈ 0.0177` } },
+      { mistake: R`Using the volume of solvent instead of the volume of solution for molarity, or the mass of solution instead of the mass of solvent for molality. Molarity: per litre of <b>solution</b>; molality: per kg of <b>solvent</b>.` },
       { check: { q: R`Why is molality preferred to molarity for colligative properties?`, ans: R`It is based on mass, so it does not change with temperature.` } }
     ] },
 
     { h: R`Solubility of solids in liquids`, t: [0], blocks: [
       R`<b>Solubility</b> is the maximum amount of a substance that dissolves in a given amount of solvent at a given temperature: the solution is then <b>saturated</b>, in dynamic equilibrium between dissolving and crystallising.`,
       { points: [R`<b>"Like dissolves like":</b> polar and ionic solutes dissolve in polar solvents (salt, sugar in water); non-polar solutes in non-polar solvents (naphthalene in benzene).`, R`<b>Temperature:</b> by Le Chatelier's principle, if dissolving is endothermic (most salts, ΔH_sol > 0), solubility rises with temperature; if exothermic, it falls (Ce₂(SO₄)₃, CaO).`, R`<b>Pressure</b> has almost no effect, since solids and liquids are incompressible.`] },
+      R`Dissolving involves three steps: separating solute particles (needs energy), making room among the solvent molecules (needs energy), and attraction between solute and solvent (releases energy). If the third step releases more energy than the first two absorb, dissolving is exothermic; otherwise it is endothermic, as when ammonium nitrate dissolves and the solution turns cold (the basis of instant cold packs).`,
       { check: { q: R`Why does sugar dissolve better in hot tea than in cold?`, ans: R`Dissolving sugar is endothermic, so higher temperature increases its solubility.` } }
     ] },
 
@@ -67,11 +82,15 @@ JEE.book('chemistry', 'solutions', {
       { points: [R`Soft drinks are bottled under high CO₂ pressure; opening the bottle lowers the pressure and the gas bubbles out.`, R`Deep-sea divers breathe compressed air: extra N₂ dissolves in their blood; rising too fast releases bubbles ("the bends"). Air tanks are diluted with helium, which is less soluble.`, R`At high altitude, the low partial pressure of O₂ means less dissolved O₂ in blood (anoxia).`, R`Gases dissolve less in hot water (dissolving is exothermic): aquatic animals prefer cold water.`] },
       { ex: { q: R`If the Henry's law constant gives a solubility of 1.3 × 10⁻³ mol/L per atm for O₂ in water, how much O₂ (in mg/L) dissolves from air (p(O₂) = 0.21 atm)?`,
         steps: [R`c = 1.3 × 10⁻³ × 0.21 mol/L = 2.73 × 10⁻⁴ mol/L.`, R`× 32 g/mol × 1000.`], ans: R`≈ 8.7 mg/L` } },
+      { fig: figHenry, cap: R`Henry's law: solubility rises in proportion to the partial pressure of the gas. A gas with a larger Henry's constant \(K_H\) is less soluble, so its line is flatter.` },
+      { ex: { q: R`N₂ is bubbled through water at 293 K with a partial pressure of 0.987 bar. If K_H for N₂ is 76.48 kbar, how many millimoles of N₂ dissolve in 1 L of water?`,
+        steps: [R`\(x = \dfrac{p}{K_H} = \dfrac{0.987}{76\,480} = 1.29\times10^{-5}\).`, R`1 L of water is 55.5 mol, so n(N₂) ≈ x × 55.5 = 7.16 × 10⁻⁴ mol.`], ans: R`≈ 0.72 mmol` } },
       { check: { q: R`Does Henry's law hold for gases that react with water, like NH₃ or HCl?`, ans: R`No: they react with water, so their solubility is far higher than Henry's law predicts.` } }
     ] },
 
     { h: R`Vapour pressure of liquid solutions`, t: [1], blocks: [
       R`In a closed vessel, a liquid evaporates until its vapour reaches equilibrium with it; the pressure then is its <b>vapour pressure</b>. In a solution of two volatile liquids, both contribute to the vapour. If a <b>non-volatile</b> solute is dissolved, it takes up some of the surface, so fewer solvent molecules escape: the vapour pressure is lowered.`,
+      R`Think of the surface as a doorway. In pure water, every molecule at the surface is water and can escape. When a non-volatile solute is added, some surface places are taken by solute particles that do not escape, so fewer water molecules leave per second. Condensation then catches up at a lower vapour pressure.`,
       { check: { q: R`Which has the higher vapour pressure: pure water or salt water at the same temperature?`, ans: R`Pure water.` } }
     ] },
 
@@ -81,12 +100,15 @@ JEE.book('chemistry', 'solutions', {
       R`The vapour is richer in the more volatile component: its mole fraction in the vapour is \(y_1 = p_1/P_{total}\). This is the basis of fractional distillation.`,
       { ex: { q: R`Benzene (p° = 75 mm Hg) and toluene (p° = 22 mm Hg) are mixed in equal moles. Find the total vapour pressure and the mole fraction of benzene in the vapour.`,
         steps: [R`P = 0.5 × 75 + 0.5 × 22 = 48.5 mm Hg.`, R`y(benzene) = 37.5/48.5.`], ans: R`48.5 mm Hg; ≈ 0.77` } },
+      { ex: { q: R`Two liquids A (p° = 450 mm Hg) and B (p° = 700 mm Hg) form an ideal solution whose total vapour pressure is 600 mm Hg. Find the mole fraction of A in the liquid and in the vapour.`,
+        steps: [R`\(600 = 700 + (450 - 700)x_A\), so \(x_A = 0.4\).`, R`\(p_A = 0.4\times450 = 180\) mm Hg, so \(y_A = 180/600\).`], ans: R`x_A = 0.4; y_A = 0.3 (the vapour is richer in the more volatile B)` } },
       { tip: R`Raoult's law is a special case of Henry's law with \(K_H = p^\circ\).` },
       { check: { q: R`In the vapour above an ideal solution, which component is enriched?`, ans: R`The more volatile one (higher p°).` } }
     ] },
 
     { h: R`Ideal solutions`, t: [2], blocks: [
       R`An <b>ideal solution</b> obeys Raoult's law over the whole range of compositions. This happens when the A–B attractions are about the same as A–A and B–B attractions. Then: \[\Delta_{mix}H = 0,\qquad\Delta_{mix}V = 0\] Examples: n-hexane + n-heptane, benzene + toluene, bromoethane + chloroethane.`,
+      { mistake: R`Thinking an ideal solution has no change at all on mixing. ΔH and ΔV are zero, but the entropy increases, and that increase drives mixing; ΔG_mix is negative.` },
       { check: { q: R`Is ΔS_mix zero for an ideal solution?`, ans: R`No: mixing increases disorder, ΔS_mix > 0 (which is why ideal solutions form spontaneously).` } }
     ] },
 
@@ -97,6 +119,8 @@ JEE.book('chemistry', 'solutions', {
         [R`A–B attractions`, R`weaker than A–A, B–B`, R`stronger than A–A, B–B`], [R`Vapour pressure`, R`higher than predicted`, R`lower than predicted`], [R`ΔH_mix, ΔV_mix`, R`> 0 (absorbs heat), > 0`, R`< 0 (releases heat), < 0`],
         [R`Examples`, R`ethanol + water, ethanol + acetone, CS₂ + acetone`, R`acetone + chloroform, HNO₃ + water, phenol + aniline`]] } },
       R`In ethanol + acetone, acetone breaks up ethanol's hydrogen bonds, so molecules escape more easily (positive). In acetone + chloroform, a new hydrogen bond forms between them (Cl₃C–H···O=C), holding them more tightly (negative).`,
+      { ex: { q: R`Predict the type of deviation from Raoult's law and the sign of ΔH_mix for (a) acetone + chloroform (b) ethanol + cyclohexane.`,
+        steps: [R`(a) A hydrogen bond forms between the C–H of chloroform and the O of acetone, so A–B attractions are stronger: negative deviation, heat released.`, R`(b) Cyclohexane gets between ethanol molecules and breaks their hydrogen bonds, so A–B attractions are weaker: positive deviation, heat absorbed.`], ans: R`(a) negative, ΔH < 0 (b) positive, ΔH > 0` } },
       { h3: R`Azeotropes` },
       R`Large deviations give <b>azeotropes</b>: mixtures that boil at a constant temperature with the same composition in liquid and vapour, so they cannot be separated by fractional distillation. Positive deviation gives a <b>minimum-boiling</b> azeotrope (95% ethanol + water, b.p. 351 K); negative deviation gives a <b>maximum-boiling</b> azeotrope (68% HNO₃ + water, b.p. 393.5 K).`,
       { check: { q: R`Why can't pure ethanol be made from dilute ethanol by fractional distillation alone?`, ans: R`It forms a minimum-boiling azeotrope at about 95% ethanol, which distils unchanged.` } }
@@ -111,6 +135,8 @@ JEE.book('chemistry', 'solutions', {
       ] },
       { ex: { q: R`The vapour pressure of water is 23.8 mm Hg at 25 °C. Find the vapour pressure of a solution of 18 g glucose in 180 g water.`,
         steps: [R`x(glucose) = 0.1/10.1 ≈ 0.0099.`, R`p = 23.8(1 − 0.0099).`], ans: R`≈ 23.56 mm Hg` } },
+      { ex: { q: R`10 g of a non-volatile solute in 90 g of water lowers the vapour pressure from 17.50 to 17.31 mm Hg. Find the molar mass of the solute.`,
+        steps: [R`\(M_2 = \dfrac{w_2M_1p^\circ}{w_1\Delta p} = \dfrac{10\times18\times17.50}{90\times0.19}\).`], ans: R`≈ 184 g/mol (close to glucose, 180)` } },
       { check: { q: R`Does relative lowering of vapour pressure depend on the temperature?`, ans: R`No: it equals the mole fraction of the solute.` } }
     ] },
 
@@ -118,9 +144,14 @@ JEE.book('chemistry', 'solutions', {
       R`A liquid boils when its vapour pressure equals the external pressure. A solution has a lower vapour pressure, so it must be heated more: its boiling point is <b>raised</b>. It freezes at a <b>lower</b> temperature, since its vapour pressure meets that of the pure solid at a lower temperature.`,
       { fig: figBPFP, cap: R`The solution's vapour-pressure curve lies below the pure solvent's: it reaches 1 atm at a higher temperature (\(T_b' > T_b\)) and meets the solid's curve at a lower temperature (\(T_f' < T_f\)).` },
       R`For dilute solutions: \[\Delta T_b = K_b\,m,\qquad\Delta T_f = K_f\,m\] where m is the molality, and \(K_b\), \(K_f\) are the <b>ebullioscopic</b> and <b>cryoscopic</b> constants (molal elevation and depression constants), properties of the solvent: water \(K_b\) = 0.52, \(K_f\) = 1.86 K kg mol⁻¹; benzene 2.53 and 5.12.`,
+      { derive: R`Why ΔT_b is proportional to molality`, steps: [R`Near the boiling point, the vapour-pressure curves of the solvent and the solution are almost parallel straight lines, so the extra temperature needed, ΔT_b, is proportional to the vapour-pressure gap Δp.`, R`By Raoult's law \(\Delta p = x_2p^\circ\), and for a dilute solution \(x_2 \approx \dfrac{n_2}{n_1} = \dfrac{M_1}{1000}\,m\).`, R`So \(\Delta T_b \propto m\); the constant of proportionality is K_b. The same reasoning gives \(\Delta T_f = K_fm\).`] },
       { ex: { q: R`Find the boiling point of a 0.1 m urea solution and the freezing point of a 0.1 m NaCl solution (complete dissociation).`,
         steps: [R`Urea: ΔT_b = 0.52 × 0.1 = 0.052 K.`, R`NaCl gives 2 ions: ΔT_f = 2 × 1.86 × 0.1 = 0.372 K.`], ans: R`373.202 K (100.052 °C); −0.372 °C` } },
       { adv: R`\(K_b = \dfrac{RT_b^2M_1}{1000\,\Delta_{vap}H}\) (with M₁ in g/mol and ΔH in J/mol): for water, 8.314 × 373² × 18/(1000 × 40 700) ≈ 0.51 K kg mol⁻¹.` },
+      { ex: { q: R`What mass of ethylene glycol (M = 62) must be added to 1 kg of water so that it does not freeze above −5 °C?`,
+        steps: [R`ΔT_f = 5 = 1.86 × m, so m = 2.69 mol/kg.`, R`2.69 × 62 g.`], ans: R`≈ 167 g` } },
+      R`Why use molality and not mole fraction here? For dilute solutions both are proportional to the number of solute particles, but molality is easy to make up by weighing and does not change with temperature, which matters when the solution is heated or cooled through its boiling or freezing point.`,
+      R`Spreading salt on icy roads works the same way: the salt dissolves in the thin film of water on the ice, and the resulting brine freezes well below 0 °C, so the ice melts. Each NaCl unit gives two ions, which doubles the effect.`,
       { check: { q: R`Why is ethylene glycol added to car radiators in cold countries?`, ans: R`It depresses the freezing point of water (antifreeze).` } }
     ] },
 
@@ -131,6 +162,10 @@ JEE.book('chemistry', 'solutions', {
       { points: [R`<b>Isotonic</b> solutions have equal osmotic pressures (0.9% saline is isotonic with blood).`, R`A cell in a <b>hypertonic</b> solution (more concentrated) shrinks; in a <b>hypotonic</b> solution it swells and may burst.`, R`<b>Reverse osmosis:</b> applying a pressure greater than π drives solvent out of the solution, used to desalinate sea water.`] },
       { ex: { q: R`Find the osmotic pressure of a 0.1 M glucose solution at 300 K.`,
         steps: [R`π = 0.1 × 0.0821 × 300.`], ans: R`≈ 2.46 atm` } },
+      { ex: { q: R`A 5% (w/v) glucose solution is isotonic with a urea solution. Find the concentration of urea (M = 60) in g/L.`,
+        steps: [R`Glucose: 50 g/L ÷ 180 = 0.278 M. Isotonic means equal π, so equal molarity (both non-electrolytes).`, R`Urea: 0.278 × 60 g/L.`], ans: R`≈ 16.7 g/L (1.67%)` } },
+      R`Osmosis keeps living things working: water moves into plant roots from the soil, plant cells stay firm (turgid), and kidneys use it to concentrate urine. Salting meat and pickling vegetables in brine preserve them because water is drawn out of the microbes, which then cannot grow.`,
+      { tip: R`In π = iCRT use R = 0.0821 L atm K⁻¹ mol⁻¹ with C in mol/L to get atm, or R = 8.314 with C in mol/m³ to get pascals.` },
       { check: { q: R`Why do raisins swell when placed in water?`, ans: R`Water moves by osmosis into the more concentrated solution inside the raisin.` } }
     ] },
 
@@ -140,6 +175,8 @@ JEE.book('chemistry', 'solutions', {
         [R`Relative lowering of VP`, R`\(M_2 = \dfrac{w_2M_1p^\circ}{w_1\Delta p}\)`], [R`Elevation of b.p.`, R`\(M_2 = \dfrac{1000\,K_bw_2}{\Delta T_bw_1}\) (w in g)`], [R`Depression of f.p.`, R`\(M_2 = \dfrac{1000\,K_fw_2}{\Delta T_fw_1}\)`], [R`Osmotic pressure`, R`\(M_2 = \dfrac{w_2RT}{\pi V}\)`]] } },
       { ex: { q: R`1 g of a protein in 100 mL of solution has an osmotic pressure of 0.0025 atm at 300 K. Find its molar mass.`,
         steps: [R`\(M = \dfrac{wRT}{\pi V} = \dfrac{1\times0.0821\times300}{0.0025\times0.1}\).`], ans: R`≈ 98 500 g/mol` } },
+      { ex: { q: R`1.00 g of a non-electrolyte dissolved in 50 g of benzene lowers its freezing point by 0.40 K (K_f = 5.12 K kg mol⁻¹). Find its molar mass.`,
+        steps: [R`\(M_2 = \dfrac{1000\,K_fw_2}{\Delta T_fw_1} = \dfrac{1000\times5.12\times1.00}{0.40\times50}\).`], ans: R`256 g/mol` } },
       { check: { q: R`Why is osmotic pressure preferred for finding the molar mass of polymers?`, ans: R`It gives measurable values even at the tiny molar concentrations of large molecules, at room temperature (no heating that could damage them).` } }
     ] },
 
@@ -151,6 +188,9 @@ JEE.book('chemistry', 'solutions', {
         steps: [R`\(i = \dfrac{0.2046}{1.86\times0.1} = 1.1\).`, R`HA → H⁺ + A⁻ (n = 2): 1.1 = 1 + α.`], ans: R`α = 0.1 (10%)` } },
       { ex: { q: R`K₂SO₄ is 80% dissociated. Find i.`,
         steps: [R`n = 3: i = 1 + 2(0.8).`], ans: R`2.6` } },
+      { fig: figVant, cap: R`At the same molality, the depression of freezing point is multiplied by i: 0.1 m glucose lowers the freezing point by 0.186 K, NaCl (i = 2) by 0.372 K and CaCl₂ (i = 3) by about 0.56 K.` },
+      { ex: { q: R`Benzoic acid is 80% dimerised in benzene. Find i and say whether its observed molar mass is higher or lower than 122.`,
+        steps: [R`Association with n = 2: \(i = 1 - \alpha\left(1 - \frac12\right) = 1 - 0.4\).`, R`i < 1 means fewer particles, so the colligative effect is smaller and the calculated molar mass larger: 122/0.6.`], ans: R`i = 0.6; observed M ≈ 203 (higher)` } },
       { check: { q: R`Which 0.1 m solution has the lowest freezing point: glucose, NaCl, CaCl₂ or AlCl₃?`, ans: R`AlCl₃ (i = 4, the most particles).` } }
     ] }
   ],
@@ -161,7 +201,8 @@ JEE.book('chemistry', 'solutions', {
     R`Positive deviation (weaker A–B; ΔH > 0; min-boiling azeotrope) vs negative (stronger A–B; ΔH < 0; max-boiling azeotrope).`,
     R`Colligative: Δp/p° = x₂; ΔT_b = K_bm; ΔT_f = K_fm; π = CRT (water K_b 0.52, K_f 1.86).`,
     R`Molar mass from each property; osmotic pressure best for polymers. Isotonic, hypertonic, hypotonic; reverse osmosis.`,
-    R`van 't Hoff factor i: dissociation i = 1 + (n − 1)α; association i = 1 − α(1 − 1/n); multiply all colligative formulas by i.`
+    R`van 't Hoff factor i: dissociation i = 1 + (n − 1)α; association i = 1 − α(1 − 1/n); multiply all colligative formulas by i.`,
+    R`Molarity of a stock acid = (10 × % × density)/M; Henry: x = p/K_H; isotonic non-electrolytes have equal molarity.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §11.3 Solubility`, url: 'https://openstax.org/books/chemistry-2e/pages/11-3-solubility' },
