@@ -41,6 +41,11 @@ var figTitr = D.plot({
   label: 'Titration curves of 25 mL of 0.1 M acid with 0.1 M NaOH'
 });
 
+var figSpecies = D.plot({ w: 340, h: 210, x: [1.5, 8], y: [0, 1.1], noOrigin: true, xlabel: 'pH', mathLabels: false, xticks: [[2, '2'], [4.74, '4.74'], [7, '7']], yticks: [[0.5, '0.5'], [1, '1']],
+  fns: [{ f: function (p) { return 1 / (1 + Math.pow(10, p - 4.74)); }, color: 'b', w: 2, label: 'CH₃COOH', lx: 2.0, ly: 0.9, math: false }, { f: function (p) { return 1 / (1 + Math.pow(10, 4.74 - p)); }, color: 'o', w: 2, label: 'CH₃COO⁻', lx: 6.2, ly: 0.9, math: false }],
+  segs: [{ x1: 4.74, y1: 0, x2: 4.74, y2: 0.5, color: 'm', w: 1, dash: '3 3' }, { x1: 3.74, y1: 0, x2: 3.74, y2: 1.05, color: 'g', w: 1, dash: '2 4' }, { x1: 5.74, y1: 0, x2: 5.74, y2: 1.05, color: 'g', w: 1, dash: '2 4' }],
+  texts: [{ x: 4.74, y: 1.04, s: 'buffer range pKₐ ± 1', color: 'g', size: 10 }], label: 'Fractions of acetic acid and acetate against pH' });
+
 // ---------- chapter text ----------
 JEE.book('chemistry', 'equilibrium', {
   intro: [
@@ -52,6 +57,7 @@ JEE.book('chemistry', 'equilibrium', {
       R`Equilibrium is <b>dynamic</b>: the forward and backward processes keep going at equal rates, so no net change is seen. Examples of physical equilibria:`,
       { points: [R`<b>Solid ⇌ liquid:</b> ice and water at 0 °C and 1 atm (the normal melting point); the amounts stay constant.`, R`<b>Liquid ⇌ vapour:</b> water in a closed vessel reaches a constant vapour pressure.`, R`<b>Solid ⇌ vapour:</b> iodine or camphor in a closed vessel (sublimation).`, R`<b>Solid ⇌ solution:</b> a saturated sugar solution with excess sugar; radioactive sugar added to it spreads into both phases, proving the exchange continues.`, R`<b>Gas ⇌ solution:</b> CO₂ dissolved in soda under pressure (Henry's law).`] },
       R`<b>General features:</b> equilibrium is possible only in a closed system at a given temperature; both opposing processes occur at the same rate; all measurable properties are constant; and at equilibrium some quantity has a fixed value at a given temperature (vapour pressure, solubility, the ratio [gas in solution]/[gas above]).`,
+      R`Other physical equilibria work the same way. At 0 °C and 1 atm, ice and water coexist: melting and freezing happen at equal rates. In a saturated sugar solution, sugar dissolves and crystallises at equal rates. A soda bottle holds CO₂ in equilibrium between the gas above and the solution below; opening it upsets the balance and the gas escapes.`,
       { check: { q: R`Why does the level of water in a sealed bottle stay constant though evaporation never stops?`, ans: R`Condensation occurs at the same rate as evaporation: a dynamic equilibrium.` } }
     ] },
 
@@ -62,6 +68,7 @@ JEE.book('chemistry', 'equilibrium', {
       { points: [R`For the reverse reaction, K′ = 1/K.`, R`If the equation is multiplied by n, K′ = Kⁿ; for adding equations, multiply their K values.`, R`K is written with products on top; pure solids and liquids are left out (their "concentrations" are constant).`] },
       { ex: { q: R`1 mol each of H₂ and I₂ are heated in a 1 L flask; K_c = 50 for H₂ + I₂ ⇌ 2HI. Find the equilibrium amount of HI.`,
         steps: [R`At equilibrium: H₂ = I₂ = 1 − x, HI = 2x: \(\dfrac{(2x)^2}{(1 - x)^2} = 50\).`, R`Square root: \(\dfrac{2x}{1 - x} = 7.07\), so x = 0.78.`], ans: R`≈ 1.56 mol of HI` } },
+      { points: [R`Reversing a reaction inverts K: K′ = 1/K.`, R`Multiplying the equation by n raises K to the power n: halving it gives √K.`, R`Adding two reactions multiplies their constants: K = K₁K₂.`, R`K depends only on temperature, not on starting amounts, pressure or catalysts.`] },
       { check: { q: R`For N₂ + 3H₂ ⇌ 2NH₃, K = 0.5. What is K for 2NH₃ ⇌ N₂ + 3H₂?`, ans: R`1/0.5 = 2.` } }
     ] },
 
@@ -69,18 +76,23 @@ JEE.book('chemistry', 'equilibrium', {
       R`For gaseous reactions it is convenient to use partial pressures: \(K_p = \dfrac{p_C^c\,p_D^d}{p_A^a\,p_B^b}\). Since p = (n/V)RT = [X]RT, \[K_p = K_c(RT)^{\Delta n_g}\] where \(\Delta n_g\) = moles of gaseous products − moles of gaseous reactants. Use R = 0.0821 L atm K⁻¹ mol⁻¹ (pressures in atm) or 0.0831 L bar K⁻¹ mol⁻¹ (bar).`,
       { ex: { q: R`For N₂O₄(g) ⇌ 2NO₂(g), K_c = 4.6 × 10⁻³ at 298 K. Find K_p.`,
         steps: [R`Δn_g = 2 − 1 = 1: K_p = 4.6 × 10⁻³ × 0.0821 × 298.`], ans: R`K_p ≈ 0.113` } },
+      { derive: R`Relation between Kp and Kc`, steps: [R`For an ideal gas, p = (n/V)RT = [X]RT.`, R`Substitute each partial pressure into Kp: every concentration term brings a factor RT, raised to its coefficient.`, R`The factors collect to \((RT)^{\Delta n_g}\), where Δn_g = moles of gaseous products − moles of gaseous reactants: \(K_p = K_c(RT)^{\Delta n_g}\).`] },
       { check: { q: R`For which of these is K_p = K_c: H₂ + I₂ ⇌ 2HI, or PCl₅ ⇌ PCl₃ + Cl₂?`, ans: R`H₂ + I₂ ⇌ 2HI (Δn_g = 0).` } }
     ] },
 
     { h: R`Homogeneous and heterogeneous equilibria`, t: [1], blocks: [
       R`In a <b>homogeneous</b> equilibrium all species are in the same phase (all gases: N₂ + 3H₂ ⇌ 2NH₃; all in solution: esterification). In a <b>heterogeneous</b> equilibrium more than one phase is present; pure solids and liquids are omitted from K:`,
       { points: [R`CaCO₃(s) ⇌ CaO(s) + CO₂(g): \(K_p = p_{CO_2}\).`, R`H₂O(l) ⇌ H₂O(g): \(K_p = p_{H_2O}\) (the vapour pressure).`, R`Ni(s) + 4CO(g) ⇌ Ni(CO)₄(g): \(K_c = \dfrac{[Ni(CO)_4]}{[CO]^4}\).`] },
+      { ex: { q: R`Write K_p for CaCO₃(s) ⇌ CaO(s) + CO₂(g). What does it tell you?`,
+        steps: [R`Pure solids are left out of the expression.`], ans: R`K_p = p(CO₂): at a given temperature the CO₂ pressure over the mixture has one fixed value, whatever the amounts of the solids` } },
       { check: { q: R`Write K_c for Ag₂O(s) + 2HNO₃(aq) ⇌ 2AgNO₃(aq) + H₂O(l).`, ans: R`\(K_c = [AgNO_3]^2/[HNO_3]^2\).` } }
     ] },
 
     { h: R`Applications of equilibrium constants`, t: [1], blocks: [
       { points: [R`<b>Extent of reaction:</b> K > 10³: products predominate (nearly complete); K < 10⁻³: reactants predominate (hardly proceeds); in between: appreciable amounts of both.`, R`<b>Direction of reaction</b> (using Q, next section).`, R`<b>Equilibrium concentrations</b> from initial amounts, using an ICE (initial–change–equilibrium) table.`] },
       { tip: R`ICE tables: write the initial amounts, the changes in the ratio of the coefficients (−x, −x, +2x…), and the equilibrium amounts; then substitute into K. If K is very small, x ≪ initial amounts and the algebra simplifies.` },
+      { ex: { q: R`PCl₅ ⇌ PCl₃ + Cl₂ is 50% dissociated at a total pressure of 1 atm. Find K_p.`,
+        steps: [R`Start with 1 mol PCl₅: at equilibrium 1 − α, α, α; total 1 + α.`, R`\(K_p = \dfrac{\left(\frac{\alpha}{1+\alpha}P\right)^2}{\frac{1-\alpha}{1+\alpha}P} = \dfrac{\alpha^2P}{1 - \alpha^2} = \dfrac{0.25}{0.75}\).`], ans: R`K_p = 1/3 atm` } },
       { check: { q: R`K for a reaction is 10⁻³⁰. Will you get much product?`, ans: R`No: the reaction hardly proceeds.` } }
     ] },
 
@@ -89,6 +101,7 @@ JEE.book('chemistry', 'equilibrium', {
       { fig: figQK, cap: R`If Q < K, the reaction proceeds forward to make more products; if Q > K, it proceeds backward; if Q = K, it is at equilibrium.` },
       { ex: { q: R`For N₂ + 3H₂ ⇌ 2NH₃, K_c = 0.061 at 500 K. A mixture has [N₂] = 2, [H₂] = 1 and [NH₃] = 1 mol/L. Which way will it react?`,
         steps: [R`\(Q = \dfrac{1^2}{2\times1^3} = 0.5\).`, R`Q > K.`], ans: R`Backward: some NH₃ decomposes` } },
+      R`Think of Q as a snapshot and K as the destination. Comparing them tells you which way the system must travel: if Q is smaller than K, there are too few products, so the forward reaction runs until Q grows to K; if Q is larger, the reverse reaction runs.`,
       { check: { q: R`If Q < K, which way does the reaction go?`, ans: R`Forward (towards products).` } }
     ] },
 
@@ -97,6 +110,8 @@ JEE.book('chemistry', 'equilibrium', {
       { points: [R`ΔG° < 0 ⇒ K > 1 (products favoured).`, R`ΔG° > 0 ⇒ K < 1 (reactants favoured).`, R`At any moment, ΔG < 0 (Q < K) means the forward reaction is spontaneous.`] },
       { ex: { q: R`For a reaction at 300 K, ΔG° = −5.74 kJ/mol. Find K.`,
         steps: [R`\(\log K = \dfrac{5740}{2.303\times8.314\times300} = 1.0\).`], ans: R`K = 10` } },
+      { ex: { q: R`A reaction has K = 10 at 298 K. Find ΔG°.`,
+        steps: [R`ΔG° = −2.303RT log K = −2.303 × 8.314 × 298 × 1 J/mol.`], ans: R`≈ −5.7 kJ/mol (K > 1 means ΔG° < 0)` } },
       { check: { q: R`At equilibrium, what is ΔG?`, ans: R`Zero.` } }
     ] },
 
@@ -107,6 +122,8 @@ JEE.book('chemistry', 'equilibrium', {
         [R`Add a reactant (or remove a product)`, R`forward`, R`no`], [R`Increase pressure (decrease volume)`, R`towards fewer gas moles`, R`no`], [R`Add an inert gas at constant volume`, R`no shift`, R`no`], [R`Add an inert gas at constant pressure`, R`towards more gas moles (like lowering pressure)`, R`no`],
         [R`Raise temperature`, R`in the endothermic direction`, R`yes: K rises for endothermic, falls for exothermic reactions`], [R`Add a catalyst`, R`no shift; equilibrium reached faster`, R`no`]] } },
       R`<b>Haber process</b> (N₂ + 3H₂ ⇌ 2NH₃, ΔH = −92 kJ): high pressure (about 200 atm) favours ammonia (fewer moles); low temperature would too, but the rate would be too slow, so a compromise of about 700 K with an iron catalyst is used, and NH₃ is removed as it forms.`,
+      { ex: { q: R`For N₂ + 3H₂ ⇌ 2NH₃ (ΔH = −92 kJ/mol), predict the effect on the amount of NH₃ of (a) raising the temperature (b) raising the pressure (c) adding argon at constant volume (d) adding argon at constant pressure (e) adding a catalyst.`,
+        steps: [R`(a) The forward reaction is exothermic: heating favours the backward reaction. (b) 4 mol of gas become 2: pressure favours the forward reaction.`, R`(c) At constant volume the partial pressures do not change, so nothing shifts. (d) At constant pressure the volume grows, lowering the partial pressures: the side with more moles (reactants) is favoured. (e) A catalyst only speeds up reaching equilibrium.`], ans: R`(a) less (b) more (c) no change (d) less (e) no change` } },
       { check: { q: R`How does increasing pressure affect H₂ + I₂ ⇌ 2HI?`, ans: R`No shift: both sides have 2 mol of gas.` } }
     ] },
 
@@ -127,6 +144,8 @@ JEE.book('chemistry', 'equilibrium', {
         steps: [R`\([H^+] = \sqrt{1.8\times10^{-5}\times0.1} = 1.34\times10^{-3}\) M.`, R`pH = −log[H⁺]; α = [H⁺]/c.`], ans: R`pH ≈ 2.87; α ≈ 0.013 (1.3%)` } },
       { h3: R`Multistage ionisation` },
       R`Polyprotic acids ionise in steps, each with its own constant: H₂S ⇌ H⁺ + HS⁻ (K_{a1} = 9.1 × 10⁻⁸), HS⁻ ⇌ H⁺ + S²⁻ (K_{a2} = 1.2 × 10⁻¹³). Always \(K_{a1} > K_{a2} > K_{a3}\) (it is harder to remove H⁺ from a negative ion), so [H⁺] comes almost entirely from the first step.`,
+      { ex: { q: R`Find the pH of 0.01 M NH₄OH (K_b = 1.8 × 10⁻⁵).`,
+        steps: [R`\([OH^-] = \sqrt{K_bc} = \sqrt{1.8\times10^{-7}} = 4.24\times10^{-4}\) M; pOH = 3.37.`], ans: R`pH ≈ 10.63` } },
       { check: { q: R`Diluting a weak acid: does α increase or decrease?`, ans: R`Increases (α = √(K_a/c)), though [H⁺] decreases.` } }
     ] },
 
@@ -136,6 +155,8 @@ JEE.book('chemistry', 'equilibrium', {
       { fig: figPH, cap: R`pH below 7 is acidic, above 7 basic, at 298 K. Each unit is a tenfold change in [H⁺].` },
       { ex: { q: R`Find the pH of (a) 0.01 M HCl (b) 0.001 M NaOH (c) 10⁻⁸ M HCl.`,
         steps: [R`(a) [H⁺] = 10⁻²: pH 2. (b) [OH⁻] = 10⁻³: pOH 3, pH 11.`, R`(c) Not pH 8! Water's own 10⁻⁷ M H⁺ dominates: [H⁺] ≈ 1.05 × 10⁻⁷.`], ans: R`(a) 2 (b) 11 (c) ≈ 6.98 (slightly acidic)` } },
+      { ex: { q: R`50 mL of 0.1 M HCl is mixed with 50 mL of 0.2 M NaOH. Find the pH.`,
+        steps: [R`H⁺: 0.005 mol; OH⁻: 0.010 mol; excess OH⁻ = 0.005 mol in 0.100 L = 0.05 M.`, R`pOH = 1.30.`], ans: R`pH ≈ 12.7` } },
       { check: { q: R`Is pure water at 80 °C acidic, since its pH is about 6.3?`, ans: R`No: [H⁺] = [OH⁻], so it is neutral; K_w is larger at higher temperature.` } }
     ] },
 
@@ -156,6 +177,8 @@ JEE.book('chemistry', 'equilibrium', {
         [R`weak acid + weak base`, R`CH₃COONH₄`, R`depends on K_a vs K_b`, R`\(7 + \frac12(pK_a - pK_b)\)`]] } },
       { ex: { q: R`Find the pH of 0.1 M sodium acetate (pK_a = 4.74) and 0.1 M NH₄Cl (pK_b = 4.74).`,
         steps: [R`Acetate: pH = 7 + 2.37 + ½(−1) = 8.87.`, R`NH₄Cl: pH = 7 − 2.37 − ½(−1) = 5.13.`], ans: R`≈ 8.87 (basic); ≈ 5.13 (acidic)` } },
+      { ex: { q: R`Find the pH of 0.1 M ammonium acetate (pK_a of acetic acid = pK_b of ammonia = 4.74).`,
+        steps: [R`For a salt of a weak acid and a weak base: \(pH = 7 + \frac12(pK_a - pK_b)\), independent of concentration.`], ans: R`pH = 7 (both ions hydrolyse equally)` } },
       { check: { q: R`Is a solution of sodium carbonate acidic or basic?`, ans: R`Basic: CO₃²⁻ (from the weak acid H₂CO₃) hydrolyses to give OH⁻.` } }
     ] },
 
@@ -166,6 +189,9 @@ JEE.book('chemistry', 'equilibrium', {
       { fig: figTitr, cap: R`Titrating a weak acid gives a flat buffer region (\(\text{pH}\approx pK_a\) at half-neutralisation, 12.5 mL) and a basic equivalence point at 25 mL; a strong acid stays low and jumps sharply through pH 7.` },
       { ex: { q: R`Find the pH of a buffer with 0.2 M sodium acetate and 0.1 M acetic acid (pK_a = 4.74).`,
         steps: [R`pH = 4.74 + log(0.2/0.1) = 4.74 + 0.30.`], ans: R`≈ 5.04` } },
+      { fig: figSpecies, cap: R`At pH = pKₐ (4.74), acetic acid and acetate are present in equal amounts. Within about one pH unit either side, both forms are present in large amounts: this is where the mixture works as a buffer.` },
+      { ex: { q: R`What mass of NH₄Cl must be added to 1 L of 0.1 M NH₃ to make a buffer of pH 9.0 (pK_b = 4.74)?`,
+        steps: [R`pOH = 5.0 = 4.74 + log([NH₄⁺]/[NH₃]), so [NH₄⁺]/[NH₃] = 10^{0.26} = 1.82.`, R`[NH₄⁺] = 0.182 M; mass = 0.182 × 53.5 g.`], ans: R`≈ 9.7 g` } },
       { check: { q: R`Does diluting a buffer change its pH?`, ans: R`Practically no: the ratio [salt]/[acid] stays the same.` } }
     ] },
 
@@ -178,6 +204,8 @@ JEE.book('chemistry', 'equilibrium', {
       { points: [R`<b>Predicting precipitation:</b> if the ionic product Q_sp > K_sp, a precipitate forms; if Q_sp < K_sp, the solution is unsaturated.`, R`<b>Common-ion effect</b> lowers solubility (salting out of soap with NaCl; purifying NaCl by passing HCl gas into its saturated solution).`, R`<b>Qualitative analysis:</b> separating cations by selective precipitation of sulphides and hydroxides.`] },
       { ex: { q: R`Find the solubility of CaF₂ (K_sp = 3.9 × 10⁻¹¹).`,
         steps: [R`K_sp = 4s³: s = (3.9 × 10⁻¹¹/4)^{1/3}.`], ans: R`≈ 2.1 × 10⁻⁴ M` } },
+      { ex: { q: R`Find the solubility of Mg(OH)₂ (K_sp = 1.2 × 10⁻¹¹), and the pH at which it starts to precipitate from 0.1 M Mg²⁺ solution.`,
+        steps: [R`K_sp = s(2s)² = 4s³, so s = (3 × 10⁻¹²)^{1/3} ≈ 1.44 × 10⁻⁴ M.`, R`Precipitation begins when [Mg²⁺][OH⁻]² = K_sp: [OH⁻] = √(1.2 × 10⁻¹⁰) ≈ 1.1 × 10⁻⁵ M, pOH ≈ 4.96.`], ans: R`s ≈ 1.4 × 10⁻⁴ mol/L; pH ≈ 9.0` } },
       { check: { q: R`Equal volumes of 10⁻⁴ M AgNO₃ and 10⁻⁴ M NaCl are mixed. Does AgCl precipitate (K_sp = 1.8 × 10⁻¹⁰)?`, ans: R`After mixing each is 5 × 10⁻⁵ M; Q = 2.5 × 10⁻⁹ > K_sp, so yes.` } }
     ] }
   ],
@@ -192,7 +220,8 @@ JEE.book('chemistry', 'equilibrium', {
     R`Common-ion effect suppresses ionisation and solubility.`,
     R`Salt hydrolysis: WA+SB basic, SA+WB acidic, WA+WB pH = 7 + ½(pK_a − pK_b).`,
     R`Buffers: pH = pK_a + log([salt]/[acid]).`,
-    R`K_sp: AB s², AB₂ 4s³, AB₃ 27s⁴; precipitation when Q_sp > K_sp.`
+    R`K_sp: AB s², AB₂ 4s³, AB₃ 27s⁴; precipitation when Q_sp > K_sp.`,
+    R`K for a reversed reaction is 1/K; for n × the equation Kⁿ; for added reactions K₁K₂. Inert gas at constant V: no shift; at constant P: shifts to more moles of gas.`
   ],
   refs: [
     { t: R`OpenStax Chemistry 2e, §13.2 Equilibrium Constants`, url: 'https://openstax.org/books/chemistry-2e/pages/13-2-equilibrium-constants' },

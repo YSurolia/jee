@@ -26,6 +26,18 @@ function para(a, b, c, title) {
 }
 var figNature = D.row([para(1, -4, 3, R`D > 0: two real roots`), para(1, -4, 4, R`D = 0: equal roots`), para(1, -4, 5.5, R`D < 0: no real roots`)]);
 
+var figLocus = D.plot({ w: 300, h: 300, x: [-3, 7], y: [-1.6, 0], eq: true, xlabel: 'Re', ylabel: 'Im', mathLabels: false, xticks: [[2, '2'], [6, '6']], yticks: [[3, '3'], [7, '7']],
+  param: [{ fx: function (t) { return 2 + 4 * Math.cos(t); }, fy: function (t) { return 3 + 4 * Math.sin(t); }, t: [0, 2 * Math.PI], color: 'b', w: 2 }],
+  segs: [{ x1: 2, y1: 3, x2: 2 + 4 * Math.cos(0.6), y2: 3 + 4 * Math.sin(0.6), color: 'o', w: 1.6 }],
+  pts: [{ x: 2, y: 3, label: '2 + 3i', pos: 'sw', math: false }, { x: 2 + 4 * Math.cos(0.6), y: 3 + 4 * Math.sin(0.6), color: 'o', label: 'z', pos: 'ne', math: false }],
+  texts: [{ x: 4.3, y: 4.0, s: '4', color: 'o', size: 12 }], label: 'The circle with centre 2 + 3i and radius 4' });
+
+var figLocate = D.plot({ w: 320, h: 220, x: [-0.5, 6.5], y: [-1.6, 3.4], noOrigin: true, xticks: [[1.5, 'k'], [2.3, 'α'], [4.7, 'β']], yticks: [],
+  fns: [{ f: function (x) { return 0.6 * (x - 2.3) * (x - 4.7); }, from: 0.6, to: 6.4, color: 'b', w: 2 }],
+  segs: [{ x1: 1.5, y1: 0, x2: 1.5, y2: 0.6 * (1.5 - 2.3) * (1.5 - 4.7), color: 'g', w: 1.6 }, { x1: 3.5, y1: 0, x2: 3.5, y2: -0.864, color: 'm', w: 1, dash: '3 3' }],
+  texts: [{ x: 0.55, y: 0.6, s: 'f(k) > 0', color: 'g', size: 11, anchor: 'start' }, { x: 3.6, y: -1.3, s: 'vertex −b/2a > k', color: 'm', size: 10, anchor: 'start' }],
+  label: 'Both roots greater than k' });
+
 // ---------- chapter text ----------
 JEE.book('maths', 'complex-quadratic', {
   intro: [
@@ -56,6 +68,7 @@ JEE.book('maths', 'complex-quadratic', {
       R`These operations satisfy the usual laws (commutative, associative, distributive). Every non-zero z has a multiplicative inverse: \(z^{-1} = \dfrac{\bar z}{|z|^2}\).`,
       { ex: { q: R`Express \(\dfrac{3 + 4i}{1 - 2i}\) in the form a + ib.`,
         steps: [R`Multiply by (1 + 2i): numerator (3 + 4i)(1 + 2i) = 3 + 6i + 4i + 8i² = −5 + 10i.`, R`Denominator 1² + 2² = 5.`], ans: R`−1 + 2i` } },
+      { tip: R`To divide, always multiply the numerator and the denominator by the conjugate of the denominator; this makes the denominator real.` },
       { check: { q: R`Find (2 + 3i)(2 − 3i).`, ans: R`4 + 9 = 13.` } }
     ] },
 
@@ -91,6 +104,7 @@ JEE.book('maths', 'complex-quadratic', {
       R`<b>Loci:</b> |z − z₀| = r is a circle with centre z₀ and radius r; |z − a| = |z − b| is the perpendicular bisector of the segment joining a and b; |z − a| + |z − b| = 2k (2k > |a − b|) is an ellipse; arg(z − z₀) = θ is a ray from z₀.`,
       { ex: { q: R`Describe the locus of z with |z − 2 − 3i| = 4.`,
         steps: [R`|z − (2 + 3i)| = 4 means distance from (2, 3) is 4.`], ans: R`Circle with centre (2, 3) and radius 4` } },
+      { fig: figLocus, cap: R`|z − z₀| = r says "the distance from z to z₀ is r": a circle with centre z₀ = 2 + 3i and radius 4. Similarly |z − z₀| < r is the inside of the circle.` },
       { check: { q: R`What is the locus of |z − 1| = |z + 1|?`, ans: R`The perpendicular bisector of the segment from −1 to 1: the imaginary axis (Re z = 0).` } }
     ] },
 
@@ -123,6 +137,12 @@ JEE.book('maths', 'complex-quadratic', {
       { derive: R`De Moivre's theorem`, steps: [R`\((\cos\theta + i\sin\theta)^n = (e^{i\theta})^n = e^{in\theta} = \cos n\theta + i\sin n\theta\) for every integer n.`, R`So \(z^n = r^n(\cos n\theta + i\sin n\theta)\).`] },
       { ex: { q: R`Write 1 + i in polar form and find (1 + i)⁸.`,
         steps: [R`r = √2, θ = π/4: \(1 + i = \sqrt2\,e^{i\pi/4}\).`, R`\((1 + i)^8 = (\sqrt2)^8 e^{i2\pi} = 16\).`], ans: R`\(\sqrt2(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4})\); 16` } },
+      { ex: { q: R`Find the modulus and argument of (1 + i)(√3 + i).`,
+        steps: [R`In polar form, moduli multiply and arguments add: |1 + i| = √2, arg π/4; |√3 + i| = 2, arg π/6.`], ans: R`Modulus 2√2, argument π/4 + π/6 = 5π/12` } },
+      { ex: { q: R`Find the smallest positive integer n for which \(\left(\dfrac{1 + i}{1 - i}\right)^n = 1\).`,
+        steps: [R`\(\dfrac{1 + i}{1 - i} = \dfrac{(1 + i)^2}{2} = \dfrac{2i}{2} = i\).`, R`\(i^n = 1\) first when n = 4.`], ans: R`n = 4` } },
+      R`<b>De Moivre's theorem</b> follows: \((\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta\), because raising to the power n multiplies the argument by n. It turns powers of complex numbers into simple rotations, as in the calculation of (1 + i)⁸ above.`,
+      R`Euler's formula \(e^{i\theta} = \cos\theta + i\sin\theta\) gives the compact <b>exponential form</b> \(z = re^{i\theta}\). Multiplying by i (that is, by \(e^{i\pi/2}\)) rotates any point through 90° anticlockwise about the origin without changing its distance from O.`,
       { check: { q: R`Write −4 in polar form.`, ans: R`4(cos π + i sin π) = 4e^{iπ}.` } }
     ] },
 
@@ -147,6 +167,9 @@ JEE.book('maths', 'complex-quadratic', {
     { h: R`The fundamental theorem of algebra`, t: [6], blocks: [
       R`<b>Every polynomial equation of degree n ≥ 1 with complex coefficients has at least one complex root.</b> It follows that it has exactly n roots, counting multiplicity: a polynomial of degree n factors as \(a(x - \alpha_1)(x - \alpha_2)\cdots(x - \alpha_n)\). A quadratic equation therefore has exactly two roots (equal, real or complex), and a quadratic cannot have three distinct roots unless it is identically zero.`,
       { tip: R`If \(ax^2 + bx + c = 0\) is satisfied by three distinct values of x, then a = b = c = 0 (it is an identity).` },
+      R`If the coefficients are <b>real</b>, non-real roots always come in conjugate pairs a ± ib, because taking the conjugate of the whole equation leaves it unchanged. So a real cubic always has at least one real root, and a real quadratic with one root 2 + i must have 2 − i as the other.`,
+      { ex: { q: R`If 2 + i is a root of x² + px + q = 0 with p, q real, find p and q.`,
+        steps: [R`The other root is 2 − i. Sum = 4 = −p; product = (2 + i)(2 − i) = 5 = q.`], ans: R`p = −4, q = 5` } },
       { check: { q: R`How many roots does a polynomial equation of degree 5 have?`, ans: R`Exactly five (counting multiplicity) in the complex numbers.` } }
     ] },
 
@@ -155,6 +178,7 @@ JEE.book('maths', 'complex-quadratic', {
       R`For a cubic \(ax^3 + bx^2 + cx + d = 0\) with roots α, β, γ: \(\sum\alpha = -b/a\), \(\sum\alpha\beta = c/a\), \(\alpha\beta\gamma = -d/a\).`,
       { ex: { q: R`If one root of x² − 7x + k = 0 is twice the other, find k.`,
         steps: [R`Roots α and 2α: 3α = 7 ⟹ α = 7/3.`, R`k = 2α² = 2 × 49/9 = 98/9.`], ans: R`k = 98/9` } },
+      R`These relations let you answer questions about the roots without ever finding them, which is especially useful when the roots are messy surds or complex numbers.`,
       { check: { q: R`Find the sum and product of the roots of 3x² − 5x + 2 = 0.`, ans: R`Sum 5/3, product 2/3.` } }
     ] },
 
@@ -176,6 +200,10 @@ JEE.book('maths', 'complex-quadratic', {
         steps: [R`D = 16 − 4k = 0.`], ans: R`k = 4` } },
       { ex: { q: R`Find the minimum value of x² − 4x + 7.`,
         steps: [R`D = 16 − 28 = −12; minimum = −D/4a = 12/4 = 3 at x = 2.`], ans: R`3` } },
+      R`<b>Sign of a quadratic expression.</b> For a > 0, ax² + bx + c is positive for all x when D < 0 (the parabola stays above the axis), and when D > 0 it is negative only between the roots. For a < 0 everything is reversed. Many inequality questions reduce to this picture.`,
+      { fig: figLocate, cap: R`For both roots of f(x) = ax² + bx + c (a > 0) to exceed k, three things are needed: real roots (D ≥ 0), f(k) > 0 (k lies outside the roots), and the vertex −b/2a lying to the right of k.` },
+      { ex: { q: R`Find the values of k for which both roots of x² − 2kx + k² − 1 = 0 lie between −2 and 4.`,
+        steps: [R`The roots are k ± 1 (since x² − 2kx + k² = 1).`, R`Need −2 < k − 1 and k + 1 < 4.`], ans: R`−1 < k < 3` } },
       { check: { q: R`For which values of m is x² + mx + 9 > 0 for all real x?`, ans: R`D = m² − 36 < 0 ⟹ −6 < m < 6.` } }
     ] },
 
@@ -186,6 +214,9 @@ JEE.book('maths', 'complex-quadratic', {
       { ex: { q: R`If α, β are the roots of x² − 3x + 1 = 0, form the equation with roots α², β².`,
         steps: [R`α + β = 3, αβ = 1. Sum α² + β² = 9 − 2 = 7; product (αβ)² = 1.`], ans: R`\(x^2 - 7x + 1 = 0\)` } },
       { adv: R`<b>Common roots:</b> \(a_1x^2 + b_1x + c_1 = 0\) and \(a_2x^2 + b_2x + c_2 = 0\) have a common root if \((c_1a_2 - c_2a_1)^2 = (b_1c_2 - b_2c_1)(a_1b_2 - a_2b_1)\); both roots are common if \(a_1/a_2 = b_1/b_2 = c_1/c_2\).` },
+      { ex: { q: R`Find a if x² + ax + 1 = 0 and x² + x + a = 0 have a common root (a ≠ 1).`,
+        steps: [R`Subtract the equations: (a − 1)x + (1 − a) = 0, so the common root is x = 1.`, R`Substitute in the first: 1 + a + 1 = 0.`], ans: R`a = −2` } },
+      { tip: R`For two quadratics with a common root, subtract (or eliminate x²) to find the root first, then substitute. If both roots are common, the coefficients are proportional: \(\frac{a_1}{a_2} = \frac{b_1}{b_2} = \frac{c_1}{c_2}\).` },
       { check: { q: R`Form the equation whose roots are 3 and −5.`, ans: R`x² + 2x − 15 = 0.` } }
     ] }
   ],
@@ -195,7 +226,8 @@ JEE.book('maths', 'complex-quadratic', {
     R`Argand plane: |z| distance from O, |z₁ − z₂| distance; ×i rotates 90°; |z − z₀| = r circle; |z − a| = |z − b| perpendicular bisector.`,
     R`|z₁z₂| = |z₁||z₂|; triangle inequality |z₁ + z₂| ≤ |z₁| + |z₂|. Principal argument in (−π, π]; arg(z₁z₂) = arg z₁ + arg z₂.`,
     R`Polar form z = re^{iθ}; De Moivre: (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ. Cube roots of unity 1, ω, ω²: ω³ = 1, 1 + ω + ω² = 0.`,
-    R`ax² + bx + c = 0: x = (−b ± √D)/2a; α + β = −b/a, αβ = c/a; D > 0, = 0, < 0. Min of ax² + bx + c (a > 0) is −D/4a. Equation with roots α, β: x² − (α + β)x + αβ = 0.`
+    R`ax² + bx + c = 0: x = (−b ± √D)/2a; α + β = −b/a, αβ = c/a; D > 0, = 0, < 0. Min of ax² + bx + c (a > 0) is −D/4a. Equation with roots α, β: x² − (α + β)x + αβ = 0.`,
+    R`De Moivre: (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ; both roots > k ⟺ D ≥ 0, af(k) > 0, −b/2a > k.`
   ],
   refs: [
     { t: R`OpenStax Precalculus 2e, §3.1 Complex Numbers`, url: 'https://openstax.org/books/precalculus-2e/pages/3-1-complex-numbers' },

@@ -58,6 +58,8 @@ JEE.book('chemistry', 'haloalkanes', {
       R`Common names: alkyl group + halide (methyl chloride, isopropyl bromide, tert-butyl chloride). IUPAC names treat the halogen as a prefix (fluoro, chloro, bromo, iodo) on the parent hydrocarbon: CH₃CH(Cl)CH₃ is 2-chloropropane; (CH₃)₃CBr is 2-bromo-2-methylpropane; CH₂=CHCH₂Br is 3-bromoprop-1-ene. For dihalobenzenes, 1,2- (o-), 1,3- (m-) and 1,4- (p-).`,
       { table: { head: [R`Structure`, R`Common name`, R`IUPAC name`], rows: [
         [R`CH₃CH₂CH(Cl)CH₃`, R`sec-butyl chloride`, R`2-chlorobutane`], [R`(CH₃)₂CHCH₂Cl`, R`isobutyl chloride`, R`1-chloro-2-methylpropane`], [R`CH₂Cl₂`, R`methylene chloride`, R`dichloromethane`], [R`CHCl₃`, R`chloroform`, R`trichloromethane`], [R`CH₃CHCl₂`, R`ethylidene chloride`, R`1,1-dichloroethane`], [R`C₆H₅CH₂Cl`, R`benzyl chloride`, R`(chloromethyl)benzene`]] } },
+      { ex: { q: R`Give IUPAC names: (a) CH₃CH(Cl)CH₂CH₃ (b) CH₂=CHCH₂Br (c) C₆H₅CH₂Cl (d) CHCl₃.`,
+        steps: [R`Number the chain so the halogen (or the double bond, which takes priority in (b)) gets the lowest number; aromatic side chains are named as substituted benzenes.`], ans: R`(a) 2-chlorobutane (b) 3-bromoprop-1-ene (allyl bromide) (c) (chloromethyl)benzene (benzyl chloride) (d) trichloromethane` } },
       { check: { q: R`Give the IUPAC name of (CH₃)₃CCH₂Br.`, ans: R`1-Bromo-2,2-dimethylpropane (neopentyl bromide).` } }
     ] },
 
@@ -66,6 +68,7 @@ JEE.book('chemistry', 'haloalkanes', {
       { table: { head: [R`Bond`, R`Bond length / pm`, R`Bond enthalpy / kJ mol⁻¹`, R`Dipole moment of CH₃X / D`], rows: [
         [R`C–F`, R`139`, R`452`, R`1.847`], [R`C–Cl`, R`178`, R`351`, R`1.860`], [R`C–Br`, R`193`, R`293`, R`1.830`], [R`C–I`, R`214`, R`234`, R`1.636`]] } },
       R`So the reactivity of R–X in substitution is <b>R–I > R–Br > R–Cl > R–F</b> (the weakest bond breaks most easily). CH₃Cl has a slightly higher dipole moment than CH₃F: the C–F bond is more polar, but much shorter, and dipole moment = charge × distance.`,
+      R`Polarity and reactivity point in opposite directions. The C–F bond is the most polar, but it is also the strongest (about 485 kJ/mol), so fluoroalkanes hardly react; the C–I bond is the least polar but the weakest (about 240 kJ/mol), so iodoalkanes react fastest. In substitution, bond strength (how easily X⁻ leaves) matters more than polarity.`,
       { check: { q: R`Why is CH₃I more reactive than CH₃Cl towards nucleophiles?`, ans: R`The C–I bond is longer and weaker, and I⁻ is a better leaving group.` } }
     ] },
 
@@ -74,12 +77,16 @@ JEE.book('chemistry', 'haloalkanes', {
       { points: [R`<b>HX:</b> R–OH + HCl (with anhydrous ZnCl₂, Groove's process) → R–Cl + H₂O. Reactivity of alcohols 3° > 2° > 1°; 3° alcohols react with conc. HCl even without ZnCl₂. HBr and HI react directly (NaBr + H₂SO₄).`, R`<b>Phosphorus halides:</b> 3R–OH + PCl₃ → 3R–Cl + H₃PO₃; R–OH + PCl₅ → R–Cl + POCl₃ + HCl; red P + Br₂ or I₂ (PBr₃, PI₃ formed in situ).`, R`<b>Thionyl chloride</b> (best method): R–OH + SOCl₂ → R–Cl + SO₂↑ + HCl↑. Both by-products are gases, so the product is easily pure.`] },
       { h3: R`From hydrocarbons` },
       { points: [R`Free-radical halogenation of alkanes (gives mixtures): CH₃CH₂CH₂CH₃ + Cl₂ (hν) → 1-chlorobutane + 2-chlorobutane.`, R`Addition of HX to alkenes (Markovnikov; peroxide effect with HBr) and of X₂ (vicinal dihalides).`] },
+      { ex: { q: R`Give the main product of propene with HBr (a) in the dark, without peroxide (b) in the presence of benzoyl peroxide.`,
+        steps: [R`(a) Ionic addition: H⁺ adds to give the more stable secondary carbocation (Markovnikov).`, R`(b) Peroxide: Br• adds first to the terminal carbon to give the more stable secondary radical (anti-Markovnikov, Kharasch effect). This works only with HBr.`], ans: R`(a) 2-bromopropane (b) 1-bromopropane` } },
       { check: { q: R`Why is thionyl chloride preferred for converting alcohols into alkyl chlorides?`, ans: R`The by-products SO₂ and HCl are gases and escape, leaving a pure product.` } }
     ] },
 
     { h: R`Halogen exchange: Finkelstein and Swarts reactions`, t: [0], blocks: [
       R`<b>Finkelstein reaction:</b> alkyl iodides are made by heating chlorides or bromides with NaI in dry acetone: R–Cl + NaI → R–I + NaCl↓. NaCl and NaBr are insoluble in acetone and precipitate, driving the equilibrium forward (Le Chatelier).`,
       R`<b>Swarts reaction:</b> alkyl fluorides are made by heating alkyl chlorides or bromides with a metallic fluoride such as AgF, Hg₂F₂, CoF₂ or SbF₃: CH₃Br + AgF → CH₃F + AgBr.`,
+      { ex: { q: R`Complete: (a) CH₃CH₂Br + NaI (dry acetone) → ? (b) CH₃Br + AgF → ?`,
+        steps: [R`(a) Finkelstein: halogen exchange driven by precipitation of NaBr.`, R`(b) Swarts: metallic fluorides (AgF, Hg₂F₂, CoF₂, SbF₃) replace Cl or Br by F.`], ans: R`(a) CH₃CH₂I + NaBr↓ (b) CH₃F + AgBr` } },
       { check: { q: R`Why is dry acetone used in the Finkelstein reaction?`, ans: R`NaI dissolves in it but NaCl/NaBr do not, so they precipitate and drive the reaction forward.` } }
     ] },
 
@@ -101,6 +108,8 @@ JEE.book('chemistry', 'haloalkanes', {
         R`<b>Density</b> increases with the number and mass of halogen atoms: bromo, iodo and polychloro compounds are denser than water (n-C₃H₇Cl 0.89, n-C₃H₇Br 1.335, n-C₃H₇I 1.747 g/mL; CCl₄ 1.595).`,
         R`<b>Solubility:</b> only slightly soluble in water (they cannot form hydrogen bonds strong enough to replace those of water), but soluble in organic solvents.`
       ] },
+      { ex: { q: R`Arrange in order of increasing boiling point: (a) CH₃Cl, CH₃I, CH₃Br (b) 1-bromobutane, 2-bromo-2-methylpropane, 2-bromobutane.`,
+        steps: [R`(a) Larger halogens make bigger, more polarisable molecules with stronger London forces.`, R`(b) For isomers, branching makes the molecule more compact (smaller surface), weakening London forces.`], ans: R`(a) CH₃Cl < CH₃Br < CH₃I (b) 2-bromo-2-methylpropane < 2-bromobutane < 1-bromobutane` } },
       { check: { q: R`Why does p-dichlorobenzene have a higher melting point than its ortho and meta isomers?`, ans: R`Its symmetrical structure fits better in the crystal lattice.` } }
     ] },
 
@@ -111,6 +120,8 @@ JEE.book('chemistry', 'haloalkanes', {
       { mol: [['CC[C@@H](C)Br', '(R)-2-bromobutane'], ['CC[C@H](C)O', '(S)-butan-2-ol']], w: 150, h: 110, cap: R`SN2 with OH⁻ inverts the configuration at the stereocentre.` },
       { ex: { q: R`For an SN2 reaction, what happens to the rate if [R–X] is doubled and [OH⁻] is tripled?`,
         steps: [R`Rate = k[R–X][OH⁻] → 2 × 3 = 6 times.`], ans: R`The rate becomes 6 times` } },
+      { ex: { q: R`(R)-2-Bromobutane reacts with aqueous NaOH by the SN2 mechanism. What is the product?`,
+        steps: [R`OH⁻ attacks from the side opposite to Br; the other three groups flip over like an umbrella in the wind (Walden inversion).`, R`Here the priority order of the groups is the same before and after (OH and Br are both highest priority), so inversion changes R to S.`], ans: R`(S)-butan-2-ol` } },
       { check: { q: R`Arrange CH₃Br, (CH₃)₃CBr, CH₃CH₂Br and (CH₃)₂CHBr in order of SN2 reactivity.`, ans: R`CH₃Br > CH₃CH₂Br > (CH₃)₂CHBr > (CH₃)₃CBr.` } }
     ] },
 
@@ -139,6 +150,8 @@ JEE.book('chemistry', 'haloalkanes', {
       R`<b>Saytzeff (Zaitsev) rule:</b> "in dehydrohalogenation, the preferred product is the alkene with the greater number of alkyl groups on the doubly bonded carbons", i.e. the more substituted, more stable alkene.`,
       { mol: [['CCC(C)(C)Br', '2-bromo-2-methylbutane'], ['CC=C(C)C', '2-methylbut-2-ene (major)'], ['CCC(C)=C', '2-methylbut-1-ene (minor)']], w: 150, h: 110, cap: R`Elimination gives the more substituted alkene as the main product.` },
       R`Ease of dehydrohalogenation: 3° > 2° > 1° haloalkane, and R–I > R–Br > R–Cl. Elimination may go by <b>E2</b> (one step, strong base, anti-periplanar H and X) or <b>E1</b> (via the carbocation, for 3° halides in weakly basic conditions).`,
+      { ex: { q: R`Give the main product of 2-bromo-3-methylbutane with alcoholic KOH.`,
+        steps: [R`β-hydrogens can be removed from C1 or C3. Removing H from C3 gives the more substituted alkene.`], ans: R`2-Methylbut-2-ene, (CH₃)₂C=CHCH₃ (Saytzeff product)` } },
       { check: { q: R`What is the main product of 2-bromobutane with alcoholic KOH?`, ans: R`But-2-ene (Saytzeff product).` } }
     ] },
 
@@ -159,6 +172,8 @@ JEE.book('chemistry', 'haloalkanes', {
       { mol: [['CC=O', 'ethanal'], ['CC(O)C', 'propan-2-ol (2°)']], w: 140, h: 110, cap: R`CH₃MgBr adds to ethanal; hydrolysis gives a secondary alcohol.` },
       { ex: { q: R`What volume of methane (STP) is formed when 1.42 g of CH₃MgI (M = 166) reacts with excess water? Which alcohol would CH₃MgI give with propanone?`,
         steps: [R`CH₃MgI + H₂O → CH₄ + Mg(OH)I; 1.42/166 = 0.00855 mol CH₄ × 22.4 L = 0.19 L.`, R`(CH₃)₂C=O + CH₃MgI → (CH₃)₃C–OMgI → (H₃O⁺) (CH₃)₃C–OH.`], ans: R`≈ 0.19 L CH₄; 2-methylpropan-2-ol (a 3° alcohol)` } },
+      { ex: { q: R`What does CH₃MgBr give (after hydrolysis) with (a) methanal (b) CO₂ (c) ethanal?`,
+        steps: [R`The CH₃⁻ part attacks the carbonyl carbon; hydrolysis converts the –OMgBr to –OH (or –COOMgBr to –COOH).`], ans: R`(a) ethanol (1°) (b) ethanoic acid (c) propan-2-ol (2°)` } },
       { check: { q: R`Why are Grignard reagents prepared in dry ether?`, ans: R`They react with water (even moisture) to form alkanes; ether also stabilises the reagent by coordinating to Mg.` } }
     ] },
 
@@ -169,6 +184,8 @@ JEE.book('chemistry', 'haloalkanes', {
         R`<b>Wurtz–Fittig:</b> Ar–X + R–X + 2Na → Ar–R + 2NaX. An aryl and an alkyl halide join: bromobenzene + bromomethane → toluene.`
       ] },
       { mol: [['C1=CC=C(C=C1)C1=CC=CC=C1', 'biphenyl (Fittig)'], ['CC1=CC=CC=C1', 'toluene (Wurtz–Fittig)']], w: 170, h: 110, cap: R`Sodium joins two halide molecules by removing the halogens.` },
+      { ex: { q: R`What products form when a mixture of CH₃Br and C₂H₅Br is treated with sodium in dry ether?`,
+        steps: [R`The Wurtz reaction joins any two alkyl groups: CH₃ + CH₃, CH₃ + C₂H₅ and C₂H₅ + C₂H₅.`], ans: R`Ethane, propane and butane: a mixture, so the Wurtz reaction is used only for symmetrical alkanes (even number of carbons)` } },
       { check: { q: R`Which reaction converts bromobenzene and bromoethane into ethylbenzene?`, ans: R`The Wurtz–Fittig reaction (Na, dry ether).` } }
     ] },
 
@@ -178,6 +195,8 @@ JEE.book('chemistry', 'haloalkanes', {
       { mol: [['ClC1=CC=CC=C1', 'chlorobenzene'], ['[Cl+]=C1C=CC=C[CH-]1', 'C=Cl⁺ form (ortho)'], ['[Cl+]=C1C=C[CH-]C=C1', 'C=Cl⁺ form (para)']], w: 140, h: 110, cap: R`Resonance gives the C–Cl bond partial double-bond character.` },
       R`<b>Forcing conditions:</b> chlorobenzene gives phenol only with NaOH at 623 K and 300 atm (Dow process). <b>Electron-withdrawing groups</b> (–NO₂) at ortho and para positions greatly increase the reactivity, because they stabilise the negatively charged intermediate (Meisenheimer complex) by resonance. A meta –NO₂ has little effect.`,
       { fig: figSNAr, cap: R`Each extra ortho/para nitro group makes the substitution easier.` },
+      { ex: { q: R`Explain why chlorobenzene is much less reactive than chloromethane towards nucleophiles.`,
+        steps: [R`A lone pair on Cl is delocalised into the ring, giving the C–Cl bond partial double-bond character; it is shorter and stronger.`, R`The carbon is sp² (more electronegative, holding the bond electrons tighter); the electron-rich ring repels the nucleophile; and backside attack is blocked by the ring. The phenyl cation is very unstable, so SN1 fails too.`], ans: R`Resonance, sp² carbon and the ring block both SN1 and SN2` } },
       { check: { q: R`Why does p-nitrochlorobenzene react with NaOH more easily than chlorobenzene?`, ans: R`The para –NO₂ group withdraws electrons and stabilises the negatively charged intermediate by resonance.` } }
     ] },
 
@@ -196,6 +215,8 @@ JEE.book('chemistry', 'haloalkanes', {
         [R`Freons (CFCs, e.g. CCl₂F₂, freon-12)`, R`refrigeration, air conditioning, aerosol propellants`, R`very stable; reach the stratosphere and release Cl• that destroys ozone`],
         [R`DDT (p,p'-dichlorodiphenyltrichloroethane)`, R`first chlorinated insecticide; controls malaria and typhus mosquitoes`, R`non-biodegradable, stored in fatty tissue, biomagnified in food chains; banned in many countries`]] } },
       { mol: [['ClC1=CC=C(C=C1)C(C1=CC=C(Cl)C=C1)C(Cl)(Cl)Cl', 'DDT']], w: 240, h: 150, cap: R`DDT: two p-chlorophenyl groups and a CCl₃ group on one carbon.` },
+      { ex: { q: R`How is chloroform tested for purity before use as an anaesthetic, and what does it give with concentrated HNO₃?`,
+        steps: [R`Impure (oxidised) chloroform contains phosgene and HCl; adding AgNO₃ solution gives a white AgCl precipitate if HCl is present.`, R`CHCl₃ + HNO₃ → CCl₃NO₂ (chloropicrin) + H₂O.`], ans: R`AgNO₃ test for HCl; chloropicrin (a tear gas and insecticide)` } },
       { check: { q: R`Why is chloroform stored in closed, dark bottles filled to the brim?`, ans: R`To prevent its oxidation by air in light to poisonous phosgene (COCl₂).` } }
     ] }
   ],
@@ -207,7 +228,8 @@ JEE.book('chemistry', 'haloalkanes', {
     R`SN2: one step, rate = k[RX][Nu], inversion, CH₃ > 1° > 2° > 3°. SN1: carbocation, rate = k[RX], racemisation, 3° > 2° > 1°, rearrangements.`,
     R`Elimination with alc. KOH; Saytzeff product. Aqueous KOH → substitution; alcoholic KOH → elimination.`,
     R`Grignard RMgX (dry ether): carbanion-like; + H₂O → RH; + HCHO/RCHO/R₂CO → 1°/2°/3° alcohols; + CO₂ → RCOOH. Wurtz (R–R), Fittig (Ar–Ar), Wurtz–Fittig (Ar–R).`,
-    R`Haloarenes: unreactive to nucleophiles (resonance, sp² C); o/p NO₂ activates; electrophilic substitution o/p (deactivated). CHCl₃ → phosgene; CFCs deplete ozone; DDT biomagnifies.`
+    R`Haloarenes: unreactive to nucleophiles (resonance, sp² C); o/p NO₂ activates; electrophilic substitution o/p (deactivated). CHCl₃ → phosgene; CFCs deplete ozone; DDT biomagnifies.`,
+    R`HBr + alkene: Markovnikov in the dark, anti-Markovnikov with peroxide (only HBr); Grignard + HCHO → 1°, + RCHO → 2°, + CO₂ → acid.`
   ],
   refs: [
     { t: R`OpenStax Organic Chemistry, §11.2 The SN2 Reaction`, url: 'https://openstax.org/books/organic-chemistry/pages/11-2-the-sn2-reaction' },
