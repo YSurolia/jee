@@ -7,6 +7,7 @@
   <meta name="description" content="Free chapter-wise notes, formulas and solved examples for JEE Main and JEE Advanced: Physics, Chemistry and Mathematics.">
   <link rel="stylesheet" href="vendor/katex/katex.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
   <script>
     try { var t = localStorage.getItem('jee-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
@@ -28,8 +29,10 @@
       <a href="#/s/chemistry">Chemistry</a>
       <a href="#/s/maths">Maths</a>
       <a href="#/syllabus">Syllabus</a>
+      <a href="#/lab" class="nav-lab">Lab</a>
+      <a href="#/me" class="xp-badge" id="xp-badge" aria-label="Your progress: level, XP and streak"></a>
       <a href="#/search" class="nav-search" aria-label="Search" title="Search (press /)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg></a>
-      <button id="theme-btn" class="icon-btn" aria-label="Toggle dark mode">◐</button>
+      <button id="theme-btn" class="icon-btn theme-btn" aria-label="Toggle dark mode"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg></button>
     </nav>
   </header>
 
@@ -51,6 +54,7 @@
   <script src="js/data/outline-chemistry.js"></script>
   <script src="js/data/outline-maths.js"></script>
   <script src="js/icons.js"></script>
+  <script src="js/fx.js"></script>
   <script src="js/diagrams.js"></script>
   <script src="js/book/index.js"></script>
   <script src="js/app.js"></script>

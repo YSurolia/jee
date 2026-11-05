@@ -24,6 +24,26 @@ Each chapter works like a coaching-centre app, with five tabs:
   Shuffle, "Not known yet" (only the cards you haven't marked as known) and Reset are on the bar above the card. Keyboard: Space
   shows the answer, K / R mark it, ← / → move between cards.
 
+**Interactive Lab** (`#/lab`, "Lab" in the top bar): 15 live simulations you can drag and play with, each also embedded in the
+matching section of its book chapter ("Try it yourself"): a projectile launcher, a pendulum with live energy bars and
+displacement–time graph, superposition and standing waves, a draggable lens ray diagram, Young's double slit, the photoelectric
+effect, the hydrogen spectrum, molecules in a box with a piston, an acid–base titration with indicator colours, reaction order and
+half-life, the unit circle, secant to tangent, Riemann sums, conics from eccentricity, and dice and probability. Every number they
+show comes from the standard formulas (the titration solves the exact charge balance; the pendulum is integrated without the
+small-angle shortcut).
+
+**Study progress and rewards** (the level badge in the top bar opens `#/me`): XP for correct answers (+10 / +15 / +25 by level,
+once per question), flashcards you know (+3), finished chapters (+50), a perfect chapter (+100), the daily problem (+15), each new
+simulation (+5) and +20 for each day you study. Levels from Beginner to IIT Material, a day streak, a run-of-correct-answers
+streak, 16 achievements and an 18-week study calendar. The home page shows a greeting, your level, "Continue" to the last chapter
+you opened, and a **problem of the day** (the same for everyone on a given date) solved step by step.
+
+**Animations**: pages glide in, blocks rise into view as you scroll, the tab highlight slides between tabs, buttons ripple,
+correct answers burst into confetti with floating "+XP", wrong ones shake, flashcards flip (tap) and can be swiped right (knew it)
+or left (review again), solutions in the Examples tab can be revealed one step at a time, a reading-progress bar runs along the top
+of each book chapter, and the theme switch spreads out in a circle. With "reduce motion" switched on in the operating system all
+of this movement is turned off.
+
 **Search** (the magnifier in the top bar, or press `/` anywhere) looks through every chapter title, topic and subtopic, key
 concept, formula, solved example and short-answer question. Every word you type must match; results are grouped by kind and each
 one opens the exact section, formula or example. The search is kept in the address (`#/search/<words>`), so it can be shared
@@ -163,7 +183,10 @@ single backslashes. Don't use a backtick or `${` inside these strings. A supersc
 
 ## Files
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
-- `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, the Revise tab (flashcards and formula drill), site-wide search, dark mode, and progress, practice scores and flashcard progress (saved in the browser's localStorage under `jee-done`, `jee-practice` and `jee-cards`)
+- `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, the Revise tab (flashcards and formula drill), site-wide search, the home page, the Lab and progress pages, dark mode, and progress, practice scores and flashcard progress (saved in the browser's localStorage under `jee-done`, `jee-practice`, `jee-cards` and `jee-last`)
+- `js/fx.js`: animations and rewards: XP, levels, streaks and achievements (saved under `jee-stats`), confetti, toasts, count-up numbers and reveal on scroll
+- `js/sims.js`: the 15 simulations (loaded only when one is on screen); `SIMS` in `js/app.js` lists them and the book sections they appear in
+- `css/fx.css`: the animation, Lab, progress-page and simulation styles
 - `js/lessons/`: one lesson file per chapter (63 in total)
 - `js/data/outline-*.js`: the complete topic and subtopic outline of every chapter
 - `js/data/chemistry-advanced.js`: the 9 chemistry chapters that are only in JEE Advanced

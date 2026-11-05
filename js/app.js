@@ -183,7 +183,7 @@
       '</section>';
     }).join('');
 
-    return '<h1 class="sr-only">JEE Main and Advanced: Physics, Chemistry and Mathematics</h1>' +
+    return '<h1 class="sr-only">JEE Main and Advanced: Physics, Chemistry and Mathematics</h1>' + heroCard() + dailyCard() +
       '<a class="home-search" href="#/search">' + icon('search') + '<span>Search chapters, topics, formulas and examples</span><kbd>/</kbd></a>' +
       '<div class="subject-columns">' + columns + '</div>' +
       '<h2 class="section-title">Exam at a glance</h2>' +
@@ -403,11 +403,15 @@
     var intro = '<div class="card book-intro"><span class="ch-label">Chapter ' + chNo + '</span><h2>' + esc(ch.title) + '</h2>' +
       [].concat(book.intro).map(function (p) { return '<p>' + p + '</p>'; }).join('') +
       '<div class="book-actions"><button type="button" class="btn print-btn">' + icon('book-open') + ' Print / Save as PDF</button></div></div>';
-    var learn = syllabusCard(s, ch, book);
+    var learn = syllabusCard(s, ch, book), placed = {};
     var secs = book.sections.map(function (sec, k) {
+      var sims = SIMS.filter(function (m) {
+        if (placed[m.id] || !m.at.some(function (a) { return a[0] === s + '/' + ch.id && a[1].test(strip(sec.h)); })) return false;
+        return (placed[m.id] = true);
+      });
       return '<article class="card theory book-sec" id="sec-' + (k + 1) + '">' +
         '<h2><span class="theory-num">' + chNo + '.' + (k + 1) + '</span>' + sec.h + '</h2>' +
-        sec.blocks.map(function (b) { return bookBlock(b, figNo); }).join('') + '</article>';
+        sec.blocks.map(function (b) { return bookBlock(b, figNo); }).join('') + sims.map(function (m) { return simBlock(m); }).join('') + '</article>';
     }).join('');
     var summary = '<article class="card summary-card book-sec" id="sec-summary"><h2 class="tab-title" style="margin-top:0">Chapter at a glance</h2><ul>' +
       book.summary.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>' +
@@ -457,8 +461,8 @@
       return '<div class="card example" data-level="' + ex.level + '" data-topic="' + t + '" id="' + (isFocus ? 'focus' : 'ex-' + (ex.i + 1)) + '">' +
         '<div class="ex-meta"><b>Example ' + (n + 1) + '</b>' + levelBadge(ex.level) + '<span class="ex-topic">' + ex.topic + '</span></div>' +
         '<div class="q">' + ex.q + '</div>' +
-        '<details><summary>Show solution</summary><ol class="steps">' +
-        ex.steps.map(function (st) { return '<li>' + st + '</li>'; }).join('') +
+        '<details class="stepper"><summary>Show solution</summary><ol class="steps">' +
+        ex.steps.map(function (st, k) { return '<li style="--i:' + k + '">' + st + '</li>'; }).join('') +
         '</ol><div class="ans"><b>Answer:</b> ' + ex.ans + '</div></details></div>';
     }).join('') + '</div>';
   }
@@ -496,6 +500,7 @@
     var pct = sc.total ? Math.round(100 * sc.right / sc.total) : 0;
     return '<div class="score-bar card glass"><div class="score-ico">' + icon('trophy') + '</div>' +
       '<div class="score-text"><b>' + sc.right + ' correct</b> out of ' + sc.tried + ' attempted · ' + sc.total + ' questions' +
+      (JEE.fx && JEE.fx.stats.run >= 2 ? ' <span class="streak-chip" title="Correct answers in a row">' + icon('flame') + JEE.fx.stats.run + ' in a row</span>' : '') +
       '<div class="progress"><div style="width:' + pct + '%"></div></div></div>' +
       '<button class="btn reset-btn"' + (sc.tried ? '' : ' disabled') + '>' + icon('rotate-ccw') + ' Reset</button></div>';
   }
@@ -570,6 +575,7 @@
         '<button class="chip active" data-deck="cards" aria-pressed="true">Flashcards <span>' + d.cards.length + '</span></button>' +
         '<button class="chip" data-deck="formulas" aria-pressed="false">Formula drill <span>' + d.formulas.length + '</span></button></div>' +
       '<div class="rv-score"></div><div class="rv-stage"></div>' +
+      '<p class="rv-swipe">' + icon('mouse-pointer') + ' Tap a card to flip it. Then swipe right if you knew it, left to review it again.</p>' +
       '<p class="rv-keys">Keys: <kbd>Space</kbd> show answer · <kbd>K</kbd> I knew it · <kbd>R</kbd> review again · <kbd>←</kbd> <kbd>→</kbd> previous / next</p></div>';
   }
   var reviseKey = null;   // keyboard handler of the Revise tab on screen, if any
@@ -591,7 +597,7 @@
       st.pos = 0; st.open = false;
       draw();
     }
-    function draw(scroll) {
+    function draw(scroll, anim) {
       var cards = decks[st.deck], m = marks(), known = 0, review = 0, isF = st.deck === 'formulas';
       cards.forEach(function (c) { if (m[c.h] === 'k') known++; else if (m[c.h] === 'r') review++; });
       var pct = cards.length ? Math.round(100 * known / cards.length) : 0;
@@ -616,7 +622,8 @@
           (known < cards.length ? '<button class="btn primary" data-rv="focus">' + icon('target') + ' Only cards not known yet</button>' : '') + '</div></div>';
       } else {
         var c = cards[st.order[st.pos]], mk = m[c.h];
-        html = '<div class="card rv-card' + (isF ? ' rv-formula' : '') + (mk ? ' is-' + mk : '') + '">' +
+        html = '<div class="card rv-card' + (isF ? ' rv-formula' : '') + (mk ? ' is-' + mk : '') + (st.open ? ' is-open' : '') + '">' +
+          '<span class="rv-stamp k">' + icon('check') + ' Knew it</span><span class="rv-stamp r">' + icon('rotate-ccw') + ' Review</span>' +
           '<div class="ex-meta"><b>Card ' + (st.pos + 1) + ' of ' + st.order.length + '</b>' +
             (mk ? '<span class="rv-state ' + mk + '">' + (mk === 'k' ? 'Known' : 'Review again') + '</span>' : '') +
             (isF ? '' : '<span class="ex-topic">' + c.src + '</span>') + '</div>' +
@@ -632,20 +639,45 @@
       stage.innerHTML = html;
       renderMath(root);
       var card = stage.firstChild, top = card.getBoundingClientRect().top;
+      if (anim && !still()) card.classList.add(anim);
       if (scroll && top < (document.querySelector('.topbar').offsetHeight + 60)) card.scrollIntoView({ block: 'start' });
     }
-    function act(a) {
+    // Card animations: flip to the answer, fly off right (knew it) or left (review again), slide the next one in.
+    var busy = false;
+    function still() { return !JEE.fx || JEE.fx.calm() || JEE.fx.robot; }
+    function out(cls, ms, then, card) {
+      card = card || stage.querySelector('.rv-card');
+      if (!card || still()) return then();
+      busy = true;
+      card.classList.add(cls);
+      setTimeout(function () { busy = false; then(); }, ms);
+    }
+    function where(ev, sel) {
+      if (ev && ev.clientX) return { x: ev.clientX, y: ev.clientY };
+      var el = stage.querySelector(sel || '.rv-card'), r = el ? el.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2, width: 0 };
+      return { x: r.left + r.width / 2, y: r.top + 30 };
+    }
+    function act(a, ev, swiped) {
+      if (busy) return;
       var cards = decks[st.deck];
-      if (a === 'show') { st.open = true; draw(); }
-      else if ((a === 'k' || a === 'r') && st.pos < st.order.length) {
-        if (!st.open) { st.open = true; draw(); return; }
-        cardState[key] = cardState[key] || {};
-        cardState[key][cards[st.order[st.pos]].h] = a;
-        save('jee-cards', cardState);
-        st.pos++; st.open = false; draw(true);
+      if (a === 'show') {
+        if (st.open || st.pos >= st.order.length) return;
+        out('flip-out', 160, function () { st.open = true; draw(false, 'flip-in'); });
       }
-      else if (a === 'next' && st.pos < st.order.length) { st.pos++; st.open = false; draw(true); }
-      else if (a === 'prev' && st.pos > 0) { st.pos--; st.open = false; draw(true); }
+      else if ((a === 'k' || a === 'r') && st.pos < st.order.length) {
+        if (!st.open) { act('show'); return; }
+        var c = cards[st.order[st.pos]], pt = where(ev, '[data-rv="' + a + '"]');
+        cardState[key] = cardState[key] || {};
+        cardState[key][c.h] = a;
+        save('jee-cards', cardState);
+        if (JEE.fx) {
+          JEE.fx.reward('card', { key: key + ':' + c.h, mark: a, x: pt.x, y: pt.y });
+          if (a === 'k') JEE.fx.confetti(pt.x, pt.y, { n: 14, power: 5 });
+        }
+        out(swiped ? 'swiped' : a === 'k' ? 'fly-right' : 'fly-left', 260, function () { st.pos++; st.open = false; draw(true, 'enter-next'); }, swiped);
+      }
+      else if (a === 'next' && st.pos < st.order.length) out('fly-up', 180, function () { st.pos++; st.open = false; draw(true, 'enter-next'); });
+      else if (a === 'prev' && st.pos > 0) out('fly-down', 180, function () { st.pos--; st.open = false; draw(true, 'enter-prev'); });
       else if (a === 'shuffle') { st.shuffle = !st.shuffle; start(); }
       else if (a === 'only' || a === 'focus' || a === 'all') { st.only = a === 'only' ? !st.only : a === 'focus'; start(); }
       else if (a === 'again') start();
@@ -662,8 +694,50 @@
         st.deck = d.getAttribute('data-deck');
         root.querySelectorAll('[data-deck]').forEach(function (x) { x.classList.toggle('active', x === d); x.setAttribute('aria-pressed', x === d); });
         start();
-      } else if (b && !b.disabled) act(b.getAttribute('data-rv'));
+      } else if (b && !b.disabled) act(b.getAttribute('data-rv'), e);
     });
+    // Touch and mouse: tap the card to flip it; once the answer shows, swipe right = I knew it, left = review again.
+    var drag = null;
+    stage.addEventListener('pointerdown', function (e) {
+      var card = e.target.closest('.rv-card');
+      if (!card || busy || e.target.closest('button, a, .katex-display')) return;
+      drag = { x: e.clientX, y: e.clientY, dx: 0, card: card, moved: false, id: e.pointerId };
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.moved) {
+        if (Math.abs(dx) < 12 || Math.abs(dx) < Math.abs(dy) || !st.open || still()) return;
+        drag.moved = true;
+        drag.card.classList.remove('flip-in', 'enter-next', 'enter-prev');   // their fill would override the drag transform
+        drag.card.classList.add('dragging');
+        try { drag.card.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      drag.dx = dx;
+      drag.card.style.transform = 'translateX(' + dx + 'px) rotate(' + (dx / 22).toFixed(2) + 'deg)';
+      drag.card.classList.toggle('sw-k', dx > 50);
+      drag.card.classList.toggle('sw-r', dx < -50);
+    });
+    function endDrag(e) {
+      if (!drag) return;
+      var d = drag;
+      drag = null;
+      if (!d.moved) {
+        if (e.type === 'pointerup' && !st.open && !getSelection().toString()) act('show', e);
+        return;
+      }
+      d.card.classList.remove('dragging');
+      if (Math.abs(d.dx) > 90) {
+        var dir = d.dx > 0 ? 1 : -1;
+        d.card.style.transform = 'translateX(' + dir * (innerWidth + 200) + 'px) rotate(' + dir * 28 + 'deg)';
+        act(dir > 0 ? 'k' : 'r', e, d.card);
+      } else {
+        d.card.style.transform = '';
+        d.card.classList.remove('sw-k', 'sw-r');
+      }
+    }
+    stage.addEventListener('pointerup', endDrag);
+    stage.addEventListener('pointercancel', endDrag);
     reviseKey = function (e) {
       var k = e.key;
       if (k === ' ' || k === 'Enter') { if (!st.open && st.pos < st.order.length) { e.preventDefault(); act('show'); } }
@@ -729,7 +803,7 @@
             '<span>' + nPr + ' practice questions</span>' +
             (sc.total ? '<span class="ch-score">' + icon('trophy') + sc.right + '/' + sc.total + ' correct</span>' : '') + '</div></div>' +
       '</header>' +
-      '<nav class="tabs" style="--c:' + COLORS[s] + '">' + TABS.map(function (t) {
+      '<nav class="tabs" style="--c:' + COLORS[s] + ';--i:' + TABS.map(function (t) { return t.id; }).indexOf(tab) + '" data-i="' + TABS.map(function (t) { return t.id; }).indexOf(tab) + '">' + TABS.map(function (t) {
         return '<a class="tab' + (t.id === tab ? ' active' : '') + '" href="#/s/' + s + '/' + id + '/' + t.id + '">' +
           icon(t.icon) + '<span>' + t.label + '</span></a>';
       }).join('') + '</nav>' +
@@ -776,19 +850,36 @@
     var list = app.querySelector('.pq-list');
     if (!list || !lesson) return;
     var key = s + '/' + id;
-    function record(qi, v, ok) {
+    function record(qi, v, ok, e) {
       answers[key] = answers[key] || {};
       answers[key][qi] = { v: v, ok: ok };
       save('jee-practice', answers);
       var card = list.querySelector('[data-qi="' + qi + '"]');
+      var at = e && e.clientX ? { x: e.clientX, y: e.clientY } : null;
+      if (!at) { var r = card.getBoundingClientRect(); at = { x: r.left + r.width / 2, y: r.top + 40 }; }
       var fresh = document.createElement('div');
       fresh.innerHTML = practiceQuestion(lesson.practice[qi], qi, answers[key][qi]);
       fresh = fresh.firstChild;
       fresh.hidden = card.hidden;
+      fresh.classList.add(ok ? 'just-right' : 'just-wrong');
       card.replaceWith(fresh);
       renderMath(fresh);
-      var scoreEl = document.getElementById('score');
-      scoreEl.innerHTML = scoreBar(practiceScore(s, id, lesson));
+      var fx = JEE.fx;
+      if (fx) {
+        fx.reward('answer', { key: key + '#' + qi, ok: ok, level: lesson.practice[qi].level, s: s, x: at.x, y: at.y });
+        if (ok) fx.confetti(at.x, at.y, { n: 26, power: 7 });
+      }
+      var scoreEl = document.getElementById('score'), sc = practiceScore(s, id, lesson);
+      var bar = scoreEl.querySelector('.progress > div'), from = bar ? bar.style.width : '0%';
+      scoreEl.innerHTML = scoreBar(sc);
+      bar = scoreEl.querySelector('.progress > div');
+      var to = bar.style.width;
+      bar.style.width = from; void bar.offsetWidth; bar.style.width = to;
+      if (fx && sc.total && sc.right === sc.total) {
+        fx.reward('perfect', { key: key });
+        fx.confetti(0, 0, { rain: true, n: 180 });
+        fx.toast(icon('trophy') + '<b>Perfect score!</b> Every question in this chapter answered correctly.', 'level', 5000);
+      }
       bindReset();
     }
     list.addEventListener('click', function (e) {
@@ -796,12 +887,12 @@
       if (!card) return;
       var qi = +card.getAttribute('data-qi'), q = lesson.practice[qi];
       var opt = e.target.closest('.opt');
-      if (opt && !opt.disabled) record(qi, +opt.getAttribute('data-opt'), +opt.getAttribute('data-opt') === q.correct);
+      if (opt && !opt.disabled) record(qi, +opt.getAttribute('data-opt'), +opt.getAttribute('data-opt') === q.correct, e);
       if (e.target.closest('.num-check')) {
         var input = card.querySelector('.num-input'), raw = input.value.trim().replace(/,/g, '');
         var v = parseFloat(raw);
         if (raw === '' || isNaN(v)) { input.focus(); input.classList.add('shake'); return; }
-        record(qi, raw, Math.abs(v - q.answer) <= q.tol);
+        record(qi, raw, Math.abs(v - q.answer) <= q.tol, e);
       }
     });
     list.addEventListener('keydown', function (e) {
@@ -961,6 +1052,258 @@
     input.setSelectionRange(input.value.length, input.value.length);
   }
 
+  // ---------- interactive simulations (js/sims.js, loaded the first time one is needed) ----------
+  // at: where each one appears in the book chapters ([chapter, section-heading pattern]); it is also on the Lab page.
+  var SIMS = [
+    { id: 'projectile', s: 'physics', at: [['physics/kinematics', /^Projectile motion/]], icon: 'target', t: 'Projectile launcher',
+      d: 'Choose the launch speed, angle and planet, then fire. The path, the velocity components and the range, height and flight time update live.',
+      tries: ['Launch at 30° and then at 60° with the same speed: the ranges match. Why?', 'Find the angle that gives the longest range. Does it change on the Moon?', 'Watch the green horizontal arrow: it never changes length.'] },
+    { id: 'pendulum', s: 'physics', at: [['physics/oscillations-waves', /simple pendulum/i]], icon: 'activity', t: 'Pendulum and SHM',
+      d: 'A real pendulum, solved step by step without the small-angle shortcut, with its energy bars and a live displacement–time graph.',
+      tries: ['Double the length: the period grows by √2, not 2.', 'Raise the amplitude to 60°: the measured period becomes longer than 2π√(L/g).', 'Watch KE and PE trade places twice every period.'] },
+    { id: 'waves', s: 'physics', at: [['physics/oscillations-waves', /superposition/i]], icon: 'audio-waveform', t: 'Superposition of waves',
+      d: 'Two sine waves and their sum. Send them the same way or towards each other to make a standing wave with fixed nodes.',
+      tries: ['Set the phase difference to 180° with equal amplitudes: the waves cancel.', 'Choose "opposite directions": find the nodes that never move.', 'Make the second wavelength slightly different to see a beat-like pattern.'] },
+    { id: 'lens', s: 'physics', at: [['physics/optics', /^Thin lens formula/]], icon: 'eye', t: 'Lens ray diagram',
+      d: 'Drag the object along the axis. The three principal rays, the image and its position, size and nature follow instantly.',
+      tries: ['Move the object inside F of a convex lens: the image turns virtual, upright and magnified.', 'Put the object at 2F: the image is real, inverted and the same size.', 'Switch to a concave lens: the image is always virtual and smaller.'] },
+    { id: 'ydse', s: 'physics', at: [['physics/optics', /double-slit/i]], icon: 'layers', t: "Young's double slit",
+      d: 'Change the slit separation, wavelength and screen distance and watch the fringes spread, shrink and change colour.',
+      tries: ['Halve the slit separation: the fringe width doubles.', 'Change red light to violet: the fringes get closer together.', 'Check β = λD/d against the measured spacing.'] },
+    { id: 'photo', s: 'physics', at: [['physics/dual-nature', /photoelectric equation/i]], icon: 'sun', t: 'Photoelectric effect',
+      d: 'Shine light of any colour and intensity on a metal. Electrons fly out only above the threshold frequency.',
+      tries: ['Use red light on sodium at full intensity: nothing comes out.', 'Above the threshold, raise the intensity: more electrons, same top speed.', 'Raise the frequency: the stopping potential grows in a straight line.'] },
+    { id: 'bohr', s: 'physics', at: [['physics/atoms-nuclei', /hydrogen spectrum/i]], icon: 'atom', t: 'Hydrogen spectrum',
+      d: 'Make the electron jump between Bohr levels. Each jump emits a photon whose wavelength and series appear on the spectrum.',
+      tries: ['Every jump down to n = 2 is a Balmer line; only these are visible.', 'Find the shortest-wavelength Lyman line (n = ∞ → 1).', 'Compare 3 → 2 with 4 → 2: which is red and which is blue-green?'] },
+    { id: 'gas', s: 'chemistry', at: [['chemistry/states-of-matter', /^Kinetic theory/], ['physics/kinetic-theory', /^Pressure of an ideal gas/]], icon: 'wind', t: 'Gas in a box',
+      d: 'Molecules bouncing in a box with a piston. Heat the gas, squeeze it or add molecules and read the pressure from PV = nRT.',
+      tries: ['Halve the volume at fixed temperature: the pressure doubles (Boyle).', 'Double the absolute temperature: the molecules move √2 times faster.', 'Watch the speed histogram spread out as the gas gets hotter.'] },
+    { id: 'titration', s: 'chemistry', at: [['chemistry/equilibrium', /^Buffer solutions/]], icon: 'beaker', t: 'Acid–base titration',
+      d: 'Add NaOH to an acid drop by drop. The pH curve, the indicator colour and the equivalence point follow the exact equilibrium maths.',
+      tries: ['For acetic acid, find the half-equivalence point: there pH = pKa.', 'Compare the jump at equivalence for HCl and for acetic acid.', 'Which indicator suits the weak-acid titration, and why?'] },
+    { id: 'kinetics', s: 'chemistry', at: [['chemistry/chemical-kinetics', /^First-order/]], icon: 'timer', t: 'Reaction order and half-life',
+      d: 'Watch a reactant get used up for zero-, first- and second-order reactions, with the straight-line plot for each.',
+      tries: ['First order: every half-life is the same length, whatever the start.', 'Zero order: the concentration falls in a straight line, then stops.', 'Second order: each half-life is twice as long as the one before.'] },
+    { id: 'unitcircle', s: 'maths', at: [['maths/trigonometry', /^Trigonometric functions of any angle/]], icon: 'triangle-right', t: 'Unit circle',
+      d: 'Drag the point round the unit circle. sin, cos and tan appear as lengths and trace out their graphs.',
+      tries: ['In which quadrants is tan negative? (All–Sin–Tan–Cos)', 'Watch tan blow up as the angle reaches 90°.', 'Check sin²θ + cos²θ = 1 at any angle.'] },
+    { id: 'tangent', s: 'maths', at: [['maths/limits-continuity-differentiability', /^The derivative/]], icon: 'infinity', t: 'From secant to tangent',
+      d: 'Shrink h and watch the secant through two points turn into the tangent. Its slope tends to the derivative.',
+      tries: ['For x², at x = 1 the secant slopes are 2 + h. Watch them approach 2.', 'Find where the tangent of x³ − 3x is horizontal.', 'Try ln x: the slope at x is exactly 1/x.'] },
+    { id: 'riemann', s: 'maths', at: [['maths/integral-calculus', /limit of a sum/i]], icon: 'chart-area', t: 'Area as a limit of sums',
+      d: 'Fill the area under a curve with rectangles. Increase their number and the sum closes in on the definite integral.',
+      tries: ['With 4 rectangles compare left and right sums for x².', 'The midpoint rule is far more accurate. How many rectangles does it need?', 'Make the error smaller than 0.01.'] },
+    { id: 'conics', s: 'maths', at: [['maths/coordinate-geometry', /^Sections of a cone/]], icon: 'orbit', t: 'Conics and eccentricity',
+      d: 'One focus, one directrix and a ratio e. Slide e from 0 past 1 to see circles, ellipses, parabolas and hyperbolas.',
+      tries: ['At e = 1 the distance to the focus equals the distance to the directrix.', 'Push e above 1: the curve breaks into a hyperbola.', 'Watch PS = e·PM stay true as P moves.'] },
+    { id: 'dice', s: 'maths', at: [['maths/statistics-probability', /^Probability of an event/]], icon: 'dices', t: 'Dice and probability',
+      d: 'Roll one or two dice hundreds of times. The bars settle onto the theoretical probabilities.',
+      tries: ['Roll two dice 1000 times: 7 is the most common sum, with probability 6/36.', 'With one die, how many rolls before every bar is near 1/6?', 'Compare the experimental mean with the expected value 7.'] }
+  ];
+  function simById(id) { for (var i = 0; i < SIMS.length; i++) if (SIMS[i].id === id) return SIMS[i]; return null; }
+  function simBlock(m, full) {
+    return '<div class="sim-embed' + (full ? ' full' : '') + '" id="sim-' + m.id + '" style="--c:' + COLORS[m.s] + '">' +
+      (full ? '' : '<div class="sim-head"><span class="sim-badge">' + icon('sparkles') + '</span><span class="sim-name"><small>Try it yourself</small><b>' + m.t + '</b></span>' +
+        '<a href="#/lab/' + m.id + '">Open in Lab ' + icon('arrow-right') + '</a></div>') +
+      '<div class="sim-mount" data-sim="' + m.id + '"><p class="sim-loading">' + icon('sparkles') + ' Loading simulation…</p></div></div>';
+  }
+  var simLib = { state: '', queue: [] }, simIO = null;
+  function loadSims(done) {
+    if (simLib.state === 'ready') return done();
+    simLib.queue.push(done);
+    if (simLib.state === 'loading') return;
+    simLib.state = 'loading';
+    var sc = document.createElement('script');
+    sc.src = 'js/sims.js';
+    sc.onload = function () { simLib.state = 'ready'; var q = simLib.queue; simLib.queue = []; q.forEach(function (f) { f(); }); };
+    sc.onerror = function () { simLib.state = ''; simLib.queue = []; };
+    document.head.appendChild(sc);
+  }
+  function mountSims(root) {
+    var els = root.querySelectorAll('.sim-mount:not([data-on])');
+    if (!els.length) return;
+    function start(el) {
+      el.setAttribute('data-on', '1');
+      loadSims(function () {
+        var id = el.getAttribute('data-sim'), f = JEE.sims && JEE.sims[id];
+        el.innerHTML = '';
+        if (!f) { el.innerHTML = '<p class="sim-loading">This simulation could not be loaded.</p>'; return; }
+        f(el, { icon: icon, renderMath: renderMath, touched: function () { if (JEE.fx) JEE.fx.reward('sim', { id: id }); } });
+      });
+    }
+    if (!('IntersectionObserver' in window)) { els.forEach(start); return; }
+    if (!simIO) simIO = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { simIO.unobserve(e.target); start(e.target); } });
+    }, { rootMargin: '300px 0px' });
+    els.forEach(function (el) { simIO.observe(el); });
+  }
+  function simChapter(m) { var a = m.at[0][0].split('/'), f = findChapter(a[0], a[1]); return { s: a[0], id: a[1], ch: f && f.ch }; }
+  function labView(id) {
+    if (id) {
+      var m = simById(id);
+      if (!m) return notFound();
+      var c = simChapter(m), k = SIMS.indexOf(m), prev = SIMS[(k + SIMS.length - 1) % SIMS.length], next = SIMS[(k + 1) % SIMS.length];
+      return '<div class="crumbs"><a href="#/">Home</a> › <a href="#/lab">Lab</a> › ' + m.t + '</div>' +
+        '<div class="lab-title" style="--c:' + COLORS[m.s] + '"><span class="topic-icon big">' + icon(m.icon) + '</span><div><span class="ch-kicker">' + JEE[m.s].name + ' · Interactive</span><h1>' + m.t + '</h1></div></div>' +
+        '<p class="lab-lead">' + m.d + '</p>' + simBlock(m, true) +
+        '<div class="card lab-try" style="--c:' + COLORS[m.s] + '"><h3>' + icon('lightbulb') + ' Things to try</h3><ol>' +
+          m.tries.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ol>' +
+          (c.ch ? '<a class="btn" href="#/s/' + c.s + '/' + c.id + '/theory" data-goto="sim-' + m.id + '">' + icon('book-open') + ' Read the theory: ' + esc(c.ch.title) + '</a>' : '') + '</div>' +
+        '<div class="pager"><a class="btn" href="#/lab/' + prev.id + '">← ' + prev.t + '</a><a class="btn" href="#/lab/' + next.id + '">' + next.t + ' →</a></div>';
+    }
+    return '<div class="crumbs"><a href="#/">Home</a> › Lab</div><h1>Interactive Lab</h1>' +
+      '<p class="lab-lead">' + SIMS.length + ' live simulations. Drag, slide and play: every number on screen comes from the same formulas you use in the exam. Each one also sits inside its chapter.</p>' +
+      SUBJECTS.map(function (s) {
+        var list = SIMS.filter(function (m) { return m.s === s; });
+        return '<section class="lab-group" style="--c:' + COLORS[s] + '"><h2>' + icon(SUBJECT_ICONS[s][0]) + JEE[s].name + '</h2><div class="lab-grid">' +
+          list.map(function (m) {
+            var c = simChapter(m), seen = JEE.fx && JEE.fx.stats.simSeen[m.id];
+            return '<a class="sim-card" href="#/lab/' + m.id + '"><span class="topic-icon">' + icon(m.icon) + '</span><b>' + m.t + (seen ? icon('check', 'ico seen') : '') + '</b>' +
+              '<small>' + m.d + '</small><span class="sim-ch">' + (c.ch ? esc(c.ch.title) : '') + '</span></a>';
+          }).join('') + '</div></section>';
+      }).join('');
+  }
+
+  // ---------- home: hero, problem of the day ----------
+  function greeting() {
+    var h = new Date().getHours();
+    return h < 5 ? 'Burning the midnight oil' : h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  }
+  var GLYPHS = ['F = ma', '∫ f(x) dx', 'Σ', 'π', 'E = mc²', 'H₂O', 'λ', 'ΔG = ΔH − TΔS', 'sin²θ + cos²θ = 1', 'PV = nRT', '∞', 'dy/dx', 'CH₄', 'ħ', '√2', 'ω', 'e^{iπ} + 1 = 0', 'NaCl', 'v = u + at', 'pH', '∇', 'ⁿCᵣ'];
+  function heroCard() {
+    var fx = JEE.fx, L = fx ? fx.levelInfo() : null, st = fx ? fx.dayStreak() : 0;
+    var last = load('jee-last', null), lastF = last && JEE[last.s] && findChapter(last.s, last.id);
+    var n = { topics: 0, f: 0, ch: 0 };
+    SUBJECTS.forEach(function (s) { JEE[s].chapters.forEach(function (c) { n.ch++; n.topics += outlineCount(s, c.id).topics + outlineCount(s, c.id).subs; n.f += c.formulas.length; }); });
+    var glyphs = GLYPHS.map(function (g, i) {
+      var x = (i * 37 + 11) % 100, y = (i * 53 + 7) % 92, size = .8 + (i * 7 % 5) * .18;
+      return '<span style="left:' + x + '%;top:' + y + '%;font-size:' + size.toFixed(2) + 'rem;--dur:' + (14 + (i * 5) % 11) + 's;--delay:-' + (i * 1.7).toFixed(1) + 's">' + g + '</span>';
+    }).join('');
+    return '<section class="hero">' +
+      '<div class="hero-glyphs" aria-hidden="true">' + glyphs + '</div>' +
+      '<div class="hero-main"><span class="hero-kicker">' + greeting() + (st ? ' · ' + icon('flame') + st + '-day streak' : '') + '</span>' +
+        '<h2 class="hero-title">Crack JEE, <span class="grad">one concept at a time.</span></h2>' +
+        '<p class="hero-sub"><b data-count="' + n.ch + '">' + n.ch + '</b> chapters · <b data-count="' + n.topics + '">' + n.topics + '</b> topics and subtopics · ' +
+          '<b data-count="' + n.f + '">' + n.f + '</b> formulas · <b data-count="' + SIMS.length + '">' + SIMS.length + '</b> live simulations</p>' +
+        '<div class="hero-cta">' + (lastF
+          ? '<a class="btn primary" href="#/s/' + last.s + '/' + last.id + '/' + (last.tab || 'theory') + '">' + icon('play') + ' Continue: ' + esc(lastF.ch.title) + '</a>'
+          : '<a class="btn primary" href="#/s/physics/units-measurement">' + icon('play') + ' Start with Chapter 1</a>') +
+          '<a class="btn" href="#/lab">' + icon('sparkles') + ' Interactive Lab</a></div></div>' +
+      (L ? '<a class="hero-me" href="#/me" title="Your progress">' + '<span class="hm-ring">' + fx.ring(L.pct, 44, 9) + '<span><small>Level</small><b>' + L.level + '</b></span></span>' +
+        '<span class="hm-text"><b>' + L.title + '</b><small>' + L.xp.toLocaleString('en-IN') + ' XP · ' + (L.to - L.xp) + ' XP to level ' + (L.level + 1) + '</small>' +
+        '<small>' + icon('target') + fx.stats.correct + ' solved · ' + icon('flame') + st + ' day streak</small></span></a>' : '') +
+      '</section>';
+  }
+  function dailyPick() {
+    var all = [];
+    SUBJECTS.forEach(function (s) { JEE[s].chapters.forEach(function (c) { c.examples.forEach(function (e) { all.push({ s: s, c: c, e: e }); }); }); });
+    var day = JEE.fx ? JEE.fx.dayKey() : new Date().toDateString();
+    return { p: all[parseInt(hashText('daily ' + day), 36) % all.length], day: day };
+  }
+  function dailyCard() {
+    var d = dailyPick(), p = d.p, solved = JEE.fx && JEE.fx.stats.got['daily:' + d.day];
+    return '<section class="daily card glass" style="--c:' + COLORS[p.s] + '">' +
+      '<div class="daily-head"><span class="daily-badge">' + icon('lightbulb') + ' Problem of the day</span>' + levelBadge(p.e.level === 'Advanced' ? 3 : 2) +
+        '<span class="ex-topic">' + JEE[p.s].name + ' · ' + esc(p.c.title) + '</span></div>' +
+      '<div class="q">' + p.e.q + '</div>' +
+      '<details class="stepper" data-daily="1"><summary>Think it through, then reveal the solution step by step</summary><ol class="steps">' +
+        p.e.steps.map(function (st, k) { return '<li style="--i:' + k + '">' + st + '</li>'; }).join('') + '</ol>' +
+        '<div class="ans"><b>Answer:</b> ' + p.e.ans + '</div></details>' +
+      '<p class="daily-foot">' + (solved ? icon('circle-check') + ' Done for today. A new problem appears tomorrow.' : icon('sparkles') + ' +15 XP when you reach the answer.') +
+        ' <a href="#/s/' + p.s + '/' + p.c.id + '/examples/' + Math.max(0, p.c.syllabus.indexOf(p.e.topic)) + '">More like this →</a></p></section>';
+  }
+
+  // Step-by-step solutions: opening one shows the first step; "Next step" reveals the rest one at a time.
+  function bindSteppers(root) {
+    root.querySelectorAll('details.stepper:not([data-bound])').forEach(function (d) {
+      d.setAttribute('data-bound', '1');
+      d.addEventListener('toggle', function () {
+        if (!d.open || d.getAttribute('data-ready')) return;
+        d.setAttribute('data-ready', '1');
+        var lis = d.querySelectorAll('.steps > li'), ans = d.querySelector('.ans'), shown = 1;
+        function finish(ev) {
+          if (!d.getAttribute('data-daily') || !JEE.fx) return;
+          var r = (ev && ev.clientX) ? { x: ev.clientX, y: ev.clientY } : { x: innerWidth / 2, y: innerHeight / 2 };
+          if (JEE.fx.reward('daily', r)) JEE.fx.confetti(r.x, r.y, { n: 40 });
+        }
+        if (lis.length < 2) { finish(); return; }
+        lis.forEach(function (li, k) { if (k) li.hidden = true; li.style.setProperty('--d', 0); });
+        if (ans) ans.hidden = true;
+        var ctl = document.createElement('div');
+        ctl.className = 'step-ctl';
+        function label() { ctl.innerHTML = '<button type="button" class="btn primary step-next">' + icon('play') + ' Next step <small>' + (shown + 1) + ' of ' + lis.length + '</small></button>' +
+          '<button type="button" class="btn step-all">Show the full solution</button>'; }
+        label();
+        d.appendChild(ctl);
+        ctl.addEventListener('click', function (e) {
+          var b = e.target.closest('button');
+          if (!b) return;
+          var upto = b.classList.contains('step-all') ? lis.length : shown + 1, k0 = shown;
+          for (var k = shown; k < upto; k++) { lis[k].style.setProperty('--d', k - k0); lis[k].hidden = false; }
+          shown = upto;
+          if (shown >= lis.length) {
+            if (ans) { ans.style.setProperty('--d', upto - k0); ans.hidden = false; }
+            ctl.remove();
+            finish(e);
+          } else label();
+        });
+      });
+    });
+  }
+
+  // ---------- progress page (#/me) ----------
+  function meView() {
+    var fx = JEE.fx;
+    if (!fx) return notFound();
+    var S = fx.stats, L = fx.levelInfo(), st = fx.dayStreak(), acc = S.answered ? Math.round(100 * S.correct / S.answered) : 0;
+    var nDone = Object.keys(done).length, unlocked = fx.achievements.filter(function (a) { return S.ach[a.id]; }).length;
+    var tiles = [['target', S.correct, 'questions answered correctly'], ['activity', acc, '% accuracy', '%'], ['flame', st, 'day streak'],
+      ['zap', S.bestRun, 'best run of correct answers'], ['layers', S.cards, 'flashcards known'], ['circle-check', nDone, 'chapters completed']];
+    // Activity over the last 18 weeks, one square per day (Monday at the top).
+    var today = new Date(), start = new Date(today), cells = '', weeks = 18;
+    start.setDate(start.getDate() - ((today.getDay() + 6) % 7) - 7 * (weeks - 1));
+    for (var i = 0; i < weeks * 7; i++) {
+      var d = new Date(start); d.setDate(start.getDate() + i);
+      var k = fx.dayKey(d), v = S.days[k] || 0, lv = v === 0 ? 0 : v < 5 ? 1 : v < 15 ? 2 : v < 30 ? 3 : 4;
+      cells += d > today ? '<i class="hm-x"></i>' : '<i class="hm-' + lv + '" title="' + k + ': ' + v + ' action' + (v === 1 ? '' : 's') + '"></i>';
+    }
+    return '<div class="crumbs"><a href="#/">Home</a> › Your progress</div><h1>Your progress</h1>' +
+      '<section class="me-hero card glass"><span class="hm-ring big">' + fx.ring(L.pct, 58, 12) + '<span><small>Level</small><b>' + L.level + '</b></span></span>' +
+        '<div class="me-lvl"><span class="ch-kicker">' + L.title + '</span><h2><b data-count="' + L.xp + '">' + L.xp + '</b> XP</h2>' +
+        '<div class="progress"><div style="width:' + L.pct + '%"></div></div><small>' + (L.to - L.xp) + ' XP to level ' + (L.level + 1) + ' (' + (fx.titles[Math.min(L.level + 1, fx.titles.length) - 1]) + ')</small>' +
+        '<p class="me-how">Earn XP: correct answers (+10 / +15 / +25 by level), flashcards you know (+3), chapters done (+50), a perfect chapter (+100), the daily problem (+15), each new simulation (+5) and +20 for every day you study.</p></div></section>' +
+      '<div class="tiles">' + tiles.map(function (t) {
+        return '<div class="tile"><span class="tile-ico">' + icon(t[0]) + '</span><b data-count="' + t[1] + '"' + (t[3] ? ' data-suffix="' + t[3] + '"' : '') + '>' + t[1] + (t[3] || '') + '</b><small>' + t[2].replace(/^% /, '') + '</small></div>';
+      }).join('') + '</div>' +
+      '<h2>' + icon('calendar') + ' Study calendar</h2><div class="card heat-card"><div class="heat">' + cells + '</div>' +
+        '<p class="heat-key">Less <i class="hm-0"></i><i class="hm-1"></i><i class="hm-2"></i><i class="hm-3"></i><i class="hm-4"></i> More · best run ' + S.bestRun + ' · ' + Object.keys(S.days).length + ' study days</p></div>' +
+      '<h2>' + icon('trophy') + ' Achievements <small class="me-count">' + unlocked + ' / ' + fx.achievements.length + '</small></h2><div class="ach-grid">' +
+        fx.achievements.map(function (a) {
+          var got = S.ach[a.id];
+          return '<div class="ach' + (got ? ' got' : '') + '"><span class="ach-ico">' + icon(got ? a.icon : 'lock') + '</span><b>' + a.t + '</b><small>' + a.d + '</small>' +
+            (got ? '<span class="ach-date">' + got + '</span>' : '') + '</div>';
+        }).join('') + '</div>' +
+      '<h2>' + icon('book-open') + ' Subjects</h2><div class="me-subjects">' + SUBJECTS.map(function (s) {
+        var p = subjectProgress(s);
+        return '<div class="card me-subj" style="--c:' + COLORS[s] + '"><b>' + icon(SUBJECT_ICONS[s][0]) + JEE[s].name + '</b>' +
+          '<div class="progress"><div style="width:' + p.pct + '%"></div></div><small>' + p.n + ' / ' + p.total + ' chapters done · ' + (S.subj[s] || 0) + ' questions attempted</small></div>';
+      }).join('') + '</div>' +
+      '<p class="me-note">Your progress is saved in this browser only. <button type="button" class="btn me-reset" data-reset-all>' + icon('rotate-ccw') + ' Reset everything</button></p>';
+  }
+
+  function bindViews() {
+    bindSteppers(app);
+    mountSims(app);
+    var r = app.querySelector('[data-reset-all]');
+    if (r) r.addEventListener('click', function () {
+      if (!confirm('Reset all your progress: XP, streaks, achievements, practice answers, flashcards and completed chapters?')) return;
+      ['jee-stats', 'jee-practice', 'jee-cards', 'jee-done', 'jee-last'].forEach(function (k) { try { localStorage.removeItem(k); } catch (e) {} });
+      location.hash = '#/';
+      location.reload();
+    });
+  }
+
   // ---------- router ----------
   function route() {
     var parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
@@ -976,6 +1319,8 @@
     var html;
     if (parts.length === 0) html = homeView();
     else if (parts[0] === 'syllabus') html = syllabusView();
+    else if (parts[0] === 'lab') html = labView(parts[1]);
+    else if (parts[0] === 'me') html = meView();
     else if (parts[0] === 'search') {
       var q = '';
       try { q = decodeURIComponent(parts.slice(1).join('/')); } catch (e) { q = parts.slice(1).join('/'); }
@@ -986,6 +1331,7 @@
     else html = notFound();
 
     app.innerHTML = html;
+    app.classList.remove('page-in'); void app.offsetWidth; app.classList.add('page-in');
     app.classList.toggle('wide', parts.length === 0);
     app.classList.toggle('with-side', !!app.querySelector('.ch-side'));
     document.body.classList.remove('side-open');
@@ -1016,8 +1362,36 @@
     });
 
     bindSearch();
+    bindViews(parts);
+    // Sliding highlight under the chapter tabs: start at the previous tab and glide to the new one.
+    var tabs = app.querySelector('.tabs');
+    if (tabs) {
+      var ti = +tabs.getAttribute('data-i'), here = parts[1] + '/' + parts[2];
+      if (lastTab && lastTab.k === here && lastTab.i !== ti && !(JEE.fx && JEE.fx.calm())) {
+        tabs.style.setProperty('--i', lastTab.i);
+        void tabs.offsetWidth;
+        tabs.classList.add('slide');
+        tabs.style.setProperty('--i', ti);
+      }
+      lastTab = { k: here, i: ti };
+      save('jee-last', { s: parts[1], id: parts[2], tab: TABS[ti] ? TABS[ti].id : 'theory', t: Date.now() });
+    } else lastTab = null;
+    readBar.hidden = !app.querySelector('.book-sec');
+    onScroll();
+    if (JEE.fx) { JEE.fx.resetReveal(); JEE.fx.reveal(app); JEE.fx.countUp(app); JEE.fx.updateBadge(); }
     var btn = document.getElementById('done-btn');
-    if (btn) btn.addEventListener('click', function () { toggleDone(parts[1], parts[2]); route(); });
+    if (btn) btn.addEventListener('click', function () {
+      toggleDone(parts[1], parts[2]);
+      var nowDone = isDone(parts[1], parts[2]);
+      if (JEE.fx) {
+        JEE.fx.reward('chapter', { key: parts[1] + '/' + parts[2], done: nowDone });
+        if (nowDone) {
+          JEE.fx.confetti(0, 0, { rain: true, n: 160 });
+          JEE.fx.toast(icon('circle-check') + '<b>Chapter complete!</b> +50 XP. On to the next one.', 'level', 4000);
+        }
+      }
+      route();
+    });
     if (isChapter && app.querySelector('.ch-side')) {
       bindChapter(parts[1], parts[2]);
       // Scroll the chapter list (not the page) so the open chapter is in view.
@@ -1026,6 +1400,25 @@
     }
   }
 
+  var lastTab = null;
+  // Reading progress of a book chapter: a thin bar under the top bar.
+  var readBar = document.createElement('div');
+  readBar.className = 'read-progress';
+  readBar.hidden = true;
+  readBar.innerHTML = '<div></div>';
+  document.body.appendChild(readBar);
+  var scrollRaf = 0;
+  function onScroll() {
+    if (readBar.hidden || scrollRaf) return;
+    scrollRaf = requestAnimationFrame(function () {
+      scrollRaf = 0;
+      var main = app.querySelector('.ch-main') || app, r = main.getBoundingClientRect();
+      var k = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - innerHeight)));
+      readBar.firstChild.style.transform = 'scaleX(' + k.toFixed(4) + ')';
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
   // The chapter tab bar sticks just below the top bar, whose height changes when the menu wraps on phones.
   function measureTopbar() {
     document.documentElement.style.setProperty('--topbar-h', document.querySelector('.topbar').offsetHeight + 'px');
@@ -1033,18 +1426,28 @@
   window.addEventListener('resize', measureTopbar);
   measureTopbar();
 
-  document.getElementById('theme-btn').addEventListener('click', function () {
+  document.getElementById('theme-btn').addEventListener('click', function (e) {
     var root = document.documentElement;
     var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
-    try { localStorage.setItem('jee-theme', root.dataset.theme); } catch (e) {}
-    drawMolecules(app);
+    function flip() {
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('jee-theme', root.dataset.theme); } catch (err) {}
+      drawMolecules(app);
+      window.dispatchEvent(new Event('jee-theme'));
+    }
+    if (document.startViewTransition && !(JEE.fx && JEE.fx.calm())) {
+      var r = e.currentTarget.getBoundingClientRect();
+      root.style.setProperty('--vt-x', (r.left + r.width / 2) + 'px');
+      root.style.setProperty('--vt-y', (r.top + r.height / 2) + 'px');
+      document.startViewTransition(flip);
+    } else flip();
   });
   try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { drawMolecules(app); }); } catch (e) {}
 
   // Printing a book chapter: open every collapsed derivation and answer so they appear on paper.
   window.addEventListener('beforeprint', function () {
     app.querySelectorAll('details:not([open])').forEach(function (d) { d.open = true; d.setAttribute('data-print-opened', ''); });
+    app.querySelectorAll('.stepper [hidden]').forEach(function (h) { h.hidden = false; });
   });
   window.addEventListener('afterprint', function () {
     app.querySelectorAll('details[data-print-opened]').forEach(function (d) { d.open = false; d.removeAttribute('data-print-opened'); });
