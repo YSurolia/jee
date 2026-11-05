@@ -10,7 +10,7 @@ JEE Advanced marked. The list appears in the chapter index on the left of each c
 Syllabus page.
 Every chapter page has an **"All chapters" index** on the left (a slide-in drawer on phones) listing every chapter of all three
 subjects, with your completed chapters ticked; open any chapter in it to see all its topics and subtopics, so you can jump anywhere.
-Each chapter works like a coaching-centre app, with four tabs:
+Each chapter works like a coaching-centre app, with five tabs:
 
 - **Theory**: a full textbook-style **book chapter** (all 63 chapters have one). It has numbered sections covering every topic and
   subtopic of the chapter's outline, simple explanations with analogies, diagrams and graphs (drawn organic structures in the organic
@@ -18,7 +18,16 @@ Each chapter works like a coaching-centre app, with four tabs:
   "Chapter at a glance" summary and a **Further reading** list of free OpenStax and Wikipedia pages, with a Print / Save as PDF button
 - **Examples**: solved examples ordered from Basic → JEE Main → JEE Advanced, with a level filter
 - **Practice**: multiple-choice and numerical questions with instant right/wrong feedback, full solutions and a saved score
-- **Formulas**: the chapter's formula sheet
+- **Formulas**: the chapter's formula sheet, each formula under a short label
+- **Revise**: **flashcards** made from the chapter's quick checks and short-answer questions, and a **formula drill** (the label
+  is shown; recall the formula, then check). Mark each card "I knew it" or "Review again"; your progress is saved in the browser.
+  Shuffle, "Not known yet" (only the cards you haven't marked as known) and Reset are on the bar above the card. Keyboard: Space
+  shows the answer, K / R mark it, ← / → move between cards.
+
+**Search** (the magnifier in the top bar, or press `/` anywhere) looks through every chapter title, topic and subtopic, key
+concept, formula, solved example and short-answer question. Every word you type must match; results are grouped by kind and each
+one opens the exact section, formula or example. The search is kept in the address (`#/search/<words>`), so it can be shared
+and the Back button returns to it.
 
 ## Run it locally
 Open `index.html` in a browser, or run:
@@ -71,10 +80,13 @@ Each chapter is one object:
 { id, title, cls: 11 | 12,
   syllabus: [...],                       // topic chips
   concepts: [{ h, body }],               // short notes
-  formulas: [...],                       // formula sheet
+  formulas: [...],                       // formula sheet: every entry starts with a short label, "Lens formula: \(...\)"
   examples: [{ topic, level, q, steps: [...], ans }],
   practice: [{ q, ans }] }
 ```
+
+Every formula needs its label (the text before the first `: ` outside the math); the Formulas tab prints it as a heading
+and the formula drill on the Revise tab uses it as the front of the card.
 
 Every syllabus topic has at least one solved example. An example's `topic` must be **exactly** one of the strings in that chapter's
 `syllabus` array; tapping a topic chip on the Theory tab jumps to that topic's first example. `level` is `'Main'` or `'Advanced'`.
@@ -151,7 +163,7 @@ single backslashes. Don't use a backtick or `${` inside these strings. A supersc
 
 ## Files
 - `index.html`: page shell (single-page app with hash routes such as `#/s/physics/kinematics`)
-- `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, dark mode, and progress and practice scores (saved in the browser's localStorage)
+- `js/app.js`: routing, rendering (including the chapter index sidebar), lesson loading, the practice engine, the Revise tab (flashcards and formula drill), site-wide search, dark mode, and progress, practice scores and flashcard progress (saved in the browser's localStorage under `jee-done`, `jee-practice` and `jee-cards`)
 - `js/lessons/`: one lesson file per chapter (63 in total)
 - `js/data/outline-*.js`: the complete topic and subtopic outline of every chapter
 - `js/data/chemistry-advanced.js`: the 9 chemistry chapters that are only in JEE Advanced

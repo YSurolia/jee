@@ -16,10 +16,10 @@ JEE.chemistry = {
         { h: R`Limiting reagent`, body: R`The reactant that runs out first decides how much product forms. Divide each reactant's moles by its stoichiometric coefficient. The smallest result identifies the limiting reagent.` }
       ],
       formulas: [
-        R`\(n = \dfrac{m}{M} = \dfrac{N}{N_A} = \dfrac{V_{STP}}{22.4\,\text{L}}\)`,
-        R`Molarity \(M = \dfrac{n_{solute}}{V_{solution}(\text{L})}\), molality \(m = \dfrac{n_{solute}}{W_{solvent}(\text{kg})}\)`,
+        R`Number of moles: \(n = \dfrac{m}{M} = \dfrac{N}{N_A} = \dfrac{V_{STP}}{22.4\,\text{L}}\)`,
+        R`Molarity and molality: Molarity \(M = \dfrac{n_{solute}}{V_{solution}(\text{L})}\), molality \(m = \dfrac{n_{solute}}{W_{solvent}(\text{kg})}\)`,
         R`Mole fraction: \(x_A = \dfrac{n_A}{n_A + n_B}\)`,
-        R`\(M_1V_1 = M_2V_2\) (dilution)`
+        R`Dilution: \(M_1V_1 = M_2V_2\) (dilution)`
       ],
       examples: [
         { topic: R`Matter & its nature`, level: 'Main', q: R`Classify each as an element, a compound or a mixture: air, sugar, brass, water, oxygen.`,
@@ -64,9 +64,9 @@ JEE.chemistry = {
         { h: R`Filling order`, body: R`Use the \((n + l)\) rule: lower \(n + l\) fills first, and if two are equal, the lower \(n\) goes first. Exceptions: Cr is \([\text{Ar}]3d^54s^1\) and Cu is \([\text{Ar}]3d^{10}4s^1\), because half-filled and filled subshells are extra stable.` }
       ],
       formulas: [
-        R`\(E_n = -13.6\dfrac{Z^2}{n^2}\) eV, \(r_n = 0.529\dfrac{n^2}{Z}\) Å, \(v_n = 2.18\times10^6\dfrac{Z}{n}\) m/s`,
+        R`Bohr model: energy, radius and speed: \(E_n = -13.6\dfrac{Z^2}{n^2}\) eV, \(r_n = 0.529\dfrac{n^2}{Z}\) Å, \(v_n = 2.18\times10^6\dfrac{Z}{n}\) m/s`,
         R`Number of spectral lines from level \(n\): \(\dfrac{n(n-1)}{2}\)`,
-        R`\(\lambda = \dfrac{h}{mv}\), \(\Delta x\,\Delta p \ge \dfrac{h}{4\pi}\)`,
+        R`de Broglie and Heisenberg: \(\lambda = \dfrac{h}{mv}\), \(\Delta x\,\Delta p \ge \dfrac{h}{4\pi}\)`,
         R`Maximum electrons: \(2n^2\) in a shell, \(2(2l + 1)\) in a subshell`,
         R`Spin-only magnetic moment: \(\mu = \sqrt{n(n+2)}\) BM`
       ],
@@ -119,10 +119,10 @@ JEE.chemistry = {
         { h: R`MOT`, body: R`Bond order = ½(bonding − antibonding electrons). Unpaired electrons make a molecule paramagnetic, so O₂ is paramagnetic. Up to N₂, s–p mixing changes the order of the energy levels.` }
       ],
       formulas: [
-        R`Bond order \(= \tfrac12(N_b - N_a)\)`,
-        R`\(\mu = q\times d\) (in debye, D)`,
-        R`Steric number \(= \tfrac12[V + M - c + a]\) (valence electrons, monovalent atoms, cationic charge, anionic charge)`,
-        R`Higher bond order means a shorter, stronger bond`
+        R`Bond order (MO theory): Bond order \(= \tfrac12(N_b - N_a)\)`,
+        R`Dipole moment: \(\mu = q\times d\) (in debye, D)`,
+        R`Steric number (hybridisation): Steric number \(= \tfrac12[V + M - c + a]\) (valence electrons, monovalent atoms, cationic charge, anionic charge)`,
+        R`Bond order and bond strength: Higher bond order means a shorter, stronger bond`
       ],
       examples: [
         { topic: R`Kossel–Lewis approach`, level: 'Main', q: R`Find the formal charges on the atoms of ozone, O₃ (O=O–O).`,
@@ -167,11 +167,11 @@ JEE.chemistry = {
         { h: R`ΔH vs ΔU`, body: R`They differ only because of the gaseous moles: \(\Delta H = \Delta U + \Delta n_g RT\).` }
       ],
       formulas: [
-        R`\(\Delta U = q + w\) (with \(w\) = work done <i>on</i> the system, IUPAC convention)`,
-        R`\(\Delta H = \Delta U + \Delta n_g RT\)`,
-        R`\(\Delta G = \Delta H - T\Delta S,\quad \Delta G^\circ = -RT\ln K = -2.303RT\log K\)`,
+        R`First law of thermodynamics: \(\Delta U = q + w\) (with \(w\) = work done <i>on</i> the system, IUPAC convention)`,
+        R`ΔH and ΔU: \(\Delta H = \Delta U + \Delta n_g RT\)`,
+        R`Gibbs energy and K: \(\Delta G = \Delta H - T\Delta S,\quad \Delta G^\circ = -RT\ln K = -2.303RT\log K\)`,
         R`Reversible isothermal: \(w = -2.303\,nRT\log\dfrac{V_2}{V_1}\)`,
-        R`\(\Delta S = \dfrac{q_{rev}}{T}\), \(\Delta H_r = \sum\Delta H_f(\text{products}) - \sum\Delta H_f(\text{reactants})\)`
+        R`Entropy and Hess's law: \(\Delta S = \dfrac{q_{rev}}{T}\), \(\Delta H_r = \sum\Delta H_f(\text{products}) - \sum\Delta H_f(\text{reactants})\)`
       ],
       examples: [
         { topic: R`System, surroundings, state functions`, level: 'Main', q: R`Which of these are state functions: q, w, U, H, S, G, T, P? What kind of system is a sealed thermos flask?`,
@@ -214,9 +214,9 @@ JEE.chemistry = {
       ],
       formulas: [
         R`Raoult: \(p_A = x_A p_A^\circ\); \(\dfrac{p^\circ - p}{p^\circ} = x_{solute}\)`,
-        R`\(\Delta T_b = iK_b m,\quad \Delta T_f = iK_f m\)`,
+        R`Boiling-point elevation and freezing-point depression: \(\Delta T_b = iK_b m,\quad \Delta T_f = iK_f m\)`,
         R`Osmotic pressure: \(\pi = iCRT\)`,
-        R`\(M_2 = \dfrac{K_f\,w_2\times1000}{\Delta T_f\,w_1}\)`
+        R`Molar mass from ΔT_f: \(M_2 = \dfrac{K_f\,w_2\times1000}{\Delta T_f\,w_1}\)`
       ],
       examples: [
         { topic: R`Ways of expressing concentration (molarity, molality, mole fraction, % composition)`, level: 'Main', q: R`20 g of NaOH is dissolved in 500 g of water. Find the molality and the mole fraction of NaOH.`,
@@ -252,8 +252,8 @@ JEE.chemistry = {
         { h: R`Buffers`, body: R`A weak acid with its salt (or a weak base with its salt) resists changes in pH. A buffer works best when \(\text{pH} \approx \text{p}K_a\).` }
       ],
       formulas: [
-        R`\(K_p = K_c(RT)^{\Delta n_g}\)`,
-        R`\(\text{pH} = -\log[\text{H}^+],\quad \text{pH} + \text{pOH} = 14\) (at 25 °C)`,
+        R`Kp and Kc: \(K_p = K_c(RT)^{\Delta n_g}\)`,
+        R`pH and pOH: \(\text{pH} = -\log[\text{H}^+],\quad \text{pH} + \text{pOH} = 14\) (at 25 °C)`,
         R`Weak acid: \([\text{H}^+] = \sqrt{K_aC}\), \(\alpha = \sqrt{K_a/C}\)`,
         R`Henderson: \(\text{pH} = \text{p}K_a + \log\dfrac{[\text{salt}]}{[\text{acid}]}\)`,
         R`AB type: \(K_{sp} = s^2\); AB₂ type: \(K_{sp} = 4s^3\)`
@@ -305,9 +305,9 @@ JEE.chemistry = {
       ],
       formulas: [
         R`Nernst: \(E = E^\circ - \dfrac{0.0591}{n}\log Q\) (at 298 K)`,
-        R`\(\Delta G^\circ = -nFE^\circ\), \(E^\circ = \dfrac{0.0591}{n}\log K\)`,
+        R`E° with ΔG° and K: \(\Delta G^\circ = -nFE^\circ\), \(E^\circ = \dfrac{0.0591}{n}\log K\)`,
         R`Faraday: \(m = \dfrac{MIt}{nF}\), \(F = 96500\) C/mol`,
-        R`\(\Lambda_m = \dfrac{\kappa\times1000}{C}\), \(\alpha = \dfrac{\Lambda_m}{\Lambda_m^\circ}\)`
+        R`Molar conductivity and degree of dissociation: \(\Lambda_m = \dfrac{\kappa\times1000}{C}\), \(\alpha = \dfrac{\Lambda_m}{\Lambda_m^\circ}\)`
       ],
       examples: [
         { topic: R`Oxidation & reduction, oxidation number`, level: 'Main', q: R`In \(\text{Zn} + \text{CuSO}_4 \to \text{ZnSO}_4 + \text{Cu}\), which species is oxidised and which is the oxidising agent? Also find the average oxidation number of S in \(\text{S}_4\text{O}_6^{2-}\).`,
@@ -401,7 +401,7 @@ JEE.chemistry = {
       ],
       formulas: [
         R`Isoelectronic species: a larger nuclear charge gives a smaller radius`,
-        R`\(\text{IE}_1 < \text{IE}_2 < \text{IE}_3 \dots\)`,
+        R`Successive ionisation enthalpies: \(\text{IE}_1 < \text{IE}_2 < \text{IE}_3 \dots\)`,
         R`Radius order: cation < neutral atom < anion`
       ],
       examples: [
@@ -479,9 +479,9 @@ JEE.chemistry = {
         { h: R`KMnO₄ and K₂Cr₂O₇`, body: R`Both are strong oxidising agents. In acid: MnO₄⁻ → Mn²⁺ (gains 5e⁻) and Cr₂O₇²⁻ → 2Cr³⁺ (gains 6e⁻).` }
       ],
       formulas: [
-        R`\(\mu_{spin} = \sqrt{n(n+2)}\) BM`,
-        R`\(\text{MnO}_4^- + 8\text{H}^+ + 5e^- \to \text{Mn}^{2+} + 4\text{H}_2\text{O}\)`,
-        R`\(\text{Cr}_2\text{O}_7^{2-} + 14\text{H}^+ + 6e^- \to 2\text{Cr}^{3+} + 7\text{H}_2\text{O}\)`
+        R`Spin-only magnetic moment: \(\mu_{spin} = \sqrt{n(n+2)}\) BM`,
+        R`Permanganate in acid: \(\text{MnO}_4^- + 8\text{H}^+ + 5e^- \to \text{Mn}^{2+} + 4\text{H}_2\text{O}\)`,
+        R`Dichromate in acid: \(\text{Cr}_2\text{O}_7^{2-} + 14\text{H}^+ + 6e^- \to 2\text{Cr}^{3+} + 7\text{H}_2\text{O}\)`
       ],
       examples: [
         { topic: R`Transition elements: general introduction & electronic configuration`, level: 'Main', q: R`Write the configurations of Cr³⁺, Mn²⁺ and Cu⁺. Why is Zn not usually counted as a transition element?`,
@@ -521,7 +521,7 @@ JEE.chemistry = {
       ],
       formulas: [
         R`Octahedral: \(\Delta_t = \tfrac49\Delta_o\) (tetrahedral splitting is smaller)`,
-        R`CFSE (octahedral) \(= (-0.4\,n_{t_{2g}} + 0.6\,n_{e_g})\Delta_o + \) pairing energy terms`,
+        R`Crystal field stabilisation energy: CFSE (octahedral) \(= (-0.4\,n_{t_{2g}} + 0.6\,n_{e_g})\Delta_o + \) pairing energy terms`,
         R`Isomers: [MA₂B₂] square planar → 2 geometrical; [MA₄B₂] octahedral → 2 (cis, trans); [MA₃B₃] → 2 (fac, mer)`
       ],
       examples: [
@@ -563,7 +563,7 @@ JEE.chemistry = {
       formulas: [
         R`Carius (halogen): \(\%X = \dfrac{\text{at. mass of }X}{\text{mol. mass of }AgX}\times\dfrac{w_{AgX}}{w}\times100\)`,
         R`Kjeldahl: \(\%N = \dfrac{1.4\times N_{acid}\times V_{acid}}{w}\)`,
-        R`\(\%C = \dfrac{12}{44}\times\dfrac{w_{CO_2}}{w}\times100\), \(\%H = \dfrac{2}{18}\times\dfrac{w_{H_2O}}{w}\times100\)`
+        R`Percentages of C and H: \(\%C = \dfrac{12}{44}\times\dfrac{w_{CO_2}}{w}\times100\), \(\%H = \dfrac{2}{18}\times\dfrac{w_{H_2O}}{w}\times100\)`
       ],
       examples: [
         { topic: R`Crystallisation, sublimation, distillation, differential extraction, chromatography`, level: 'Main', q: R`Choose a purification method for: (a) naphthalene mixed with salt (b) glycerol from spent lye (c) a mixture of dyes (d) impure benzoic acid.`,
@@ -598,7 +598,7 @@ JEE.chemistry = {
       formulas: [
         R`Electron-withdrawing (−I) strength: \(-\text{NO}_2 > -\text{CN} > -\text{COOH} > -\text{F} > -\text{Cl} > -\text{Br} > -\text{I}\)`,
         R`+I strength: \(-\text{C(CH}_3)_3 > -\text{CH(CH}_3)_2 > -\text{CH}_2\text{CH}_3 > -\text{CH}_3\)`,
-        R`Degree of unsaturation \(= C - \dfrac{H + X}{2} + \dfrac{N}{2} + 1\)`
+        R`Degree of unsaturation: Degree of unsaturation \(= C - \dfrac{H + X}{2} + \dfrac{N}{2} + 1\)`
       ],
       examples: [
         { topic: R`Tetravalency of carbon, hybridisation`, level: 'Main', q: R`Give the hybridisation of each carbon in CH₂=CH–C≡N, and count its σ and π bonds.`,
@@ -679,7 +679,7 @@ JEE.chemistry = {
         { h: R`Haloarenes`, body: R`They are much less reactive towards nucleophiles, because the C–X bond gains partial double-bond character from resonance and the carbon is sp². Electron-withdrawing groups at the o/p positions make them more reactive.` }
       ],
       formulas: [
-        R`Alcoholic KOH → elimination (alkene); aqueous KOH → substitution (alcohol)`,
+        R`Alcoholic vs aqueous KOH: Alcoholic KOH → elimination (alkene); aqueous KOH → substitution (alcohol)`,
         R`Saytzeff rule: the more substituted alkene is the major product`,
         R`Reactivity of R–X: R–I > R–Br > R–Cl > R–F`
       ],
@@ -757,7 +757,7 @@ JEE.chemistry = {
       formulas: [
         R`Hoffmann bromamide: \(\text{RCONH}_2 + \text{Br}_2 + 4\text{NaOH} \to \text{RNH}_2\) (one carbon shorter)`,
         R`Diazotisation: \(\text{ArNH}_2 \xrightarrow{\text{NaNO}_2/\text{HCl},\ 273–278\,\text{K}} \text{ArN}_2^+\text{Cl}^-\)`,
-        R`Gabriel phthalimide synthesis gives pure 1° aliphatic amines`
+        R`Gabriel synthesis: Gabriel phthalimide synthesis gives pure 1° aliphatic amines`
       ],
       examples: [
         { topic: R`Amines: nomenclature, classification, structure`, level: 'Main', q: R`What does acetamide give with Br₂ and NaOH?`,
@@ -831,8 +831,8 @@ JEE.chemistry = {
         { h: R`Salt analysis`, body: R`Group reagents for cations: Group I dil. HCl (Pb²⁺), Group II H₂S in acid (Cu²⁺), Group III NH₄OH/NH₄Cl (Al³⁺, Fe³⁺), Group IV H₂S in alkali (Zn²⁺, Ni²⁺), Group V (NH₄)₂CO₃ (Ca²⁺, Ba²⁺).` }
       ],
       formulas: [
-        R`\(2\text{MnO}_4^- + 5\text{C}_2\text{O}_4^{2-} + 16\text{H}^+ \to 2\text{Mn}^{2+} + 10\text{CO}_2 + 8\text{H}_2\text{O}\)`,
-        R`\(\text{MnO}_4^- + 5\text{Fe}^{2+} + 8\text{H}^+ \to \text{Mn}^{2+} + 5\text{Fe}^{3+} + 4\text{H}_2\text{O}\)`,
+        R`KMnO₄ vs oxalate: \(2\text{MnO}_4^- + 5\text{C}_2\text{O}_4^{2-} + 16\text{H}^+ \to 2\text{Mn}^{2+} + 10\text{CO}_2 + 8\text{H}_2\text{O}\)`,
+        R`KMnO₄ vs Fe²⁺ (Mohr's salt): \(\text{MnO}_4^- + 5\text{Fe}^{2+} + 8\text{H}^+ \to \text{Mn}^{2+} + 5\text{Fe}^{3+} + 4\text{H}_2\text{O}\)`,
         R`Equivalents: \(N_1V_1 = N_2V_2\)`
       ],
       examples: [

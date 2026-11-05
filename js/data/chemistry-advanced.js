@@ -22,10 +22,10 @@
       { h: R`Real gases`, body: R`The compressibility factor \(Z = PV/nRT\) is 1 for an ideal gas. \(Z < 1\): attractions dominate (gas is easier to compress). \(Z > 1\): molecular size dominates. The van der Waals constant \(a\) measures attraction and \(b\) the excluded volume.` }
     ],
     formulas: [
-      R`\(\dfrac{P_1V_1}{T_1} = \dfrac{P_2V_2}{T_2}\); \(PV = nRT\) (\(R = 0.0821\) L atm K⁻¹ mol⁻¹ = 8.314 J K⁻¹ mol⁻¹)`,
+      R`Gas laws and the ideal gas equation: \(\dfrac{P_1V_1}{T_1} = \dfrac{P_2V_2}{T_2}\); \(PV = nRT\) (\(R = 0.0821\) L atm K⁻¹ mol⁻¹ = 8.314 J K⁻¹ mol⁻¹)`,
       R`Dalton: \(P = p_1 + p_2 + \dots\), \(p_i = x_iP\)`,
       R`Graham: \(\dfrac{r_1}{r_2} = \sqrt{\dfrac{M_2}{M_1}}\)`,
-      R`\(u_{rms} = \sqrt{\dfrac{3RT}{M}}\), \(u_{av} = \sqrt{\dfrac{8RT}{\pi M}}\), \(u_{mp} = \sqrt{\dfrac{2RT}{M}}\)`,
+      R`Molecular speeds: \(u_{rms} = \sqrt{\dfrac{3RT}{M}}\), \(u_{av} = \sqrt{\dfrac{8RT}{\pi M}}\), \(u_{mp} = \sqrt{\dfrac{2RT}{M}}\)`,
       R`van der Waals: \(\left(P + \dfrac{an^2}{V^2}\right)(V - nb) = nRT\); \(Z = \dfrac{PV}{nRT}\)`
     ],
     examples: [
@@ -62,10 +62,10 @@
       { h: R`Hydrogen peroxide`, body: R`H₂O₂ has a non-planar "open book" structure. It can act as an <b>oxidising</b> and a <b>reducing</b> agent. Its strength is often given as "volume strength": "x volume" H₂O₂ gives x litres of O₂ at STP per litre of solution.` }
     ],
     formulas: [
-      R`Zn + H₂SO₄ → ZnSO₄ + H₂ (laboratory)`,
+      R`Laboratory preparation of H₂: Zn + H₂SO₄ → ZnSO₄ + H₂ (laboratory)`,
       R`Water-gas shift: CO + H₂O → CO₂ + H₂`,
-      R`2H₂O₂ → 2H₂O + O₂`,
-      R`Volume strength = 11.2 × molarity of H₂O₂`
+      R`Decomposition of H₂O₂: 2H₂O₂ → 2H₂O + O₂`,
+      R`Volume strength of H₂O₂: Volume strength = 11.2 × molarity of H₂O₂`
     ],
     examples: [
       { t: 0, level: 'Main', q: R`Give two ways in which hydrogen resembles the alkali metals and two ways in which it resembles the halogens.`,
@@ -97,10 +97,10 @@
       { h: R`Lithium and beryllium are different`, body: R`Their ions are very small with a high charge density, so their compounds are more covalent. Li resembles Mg and Be resembles Al: the <b>diagonal relationship</b>.` }
     ],
     formulas: [
-      R`Na + (x + y)NH₃ → [Na(NH₃)ₓ]⁺ + [e(NH₃)ᵧ]⁻ (blue solution)`,
+      R`Sodium in liquid ammonia: Na + (x + y)NH₃ → [Na(NH₃)ₓ]⁺ + [e(NH₃)ᵧ]⁻ (blue solution)`,
       R`Solvay: NaCl + NH₃ + CO₂ + H₂O → NaHCO₃ + NH₄Cl; 2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O`,
-      R`2CaSO₄·2H₂O → 2CaSO₄·½H₂O (plaster of Paris) + 3H₂O at 393 K`,
-      R`CaCO₃ → CaO + CO₂; CaO + H₂O → Ca(OH)₂`
+      R`Plaster of Paris: 2CaSO₄·2H₂O → 2CaSO₄·½H₂O (plaster of Paris) + 3H₂O at 393 K`,
+      R`Quicklime and slaked lime: CaCO₃ → CaO + CO₂; CaO + H₂O → Ca(OH)₂`
     ],
     examples: [
       { t: 0, level: 'Advanced', q: R`Lithium has the highest ionisation enthalpy in group 1, yet it is the strongest reducing agent in water. Why?`,
@@ -134,10 +134,10 @@
       { h: R`Green chemistry`, body: R`Design reactions to prevent waste: high atom economy, safer solvents (water, supercritical CO₂), renewable feedstocks, catalysts instead of excess reagents, and energy-efficient conditions.` }
     ],
     formulas: [
-      R`CF₂Cl₂ → (UV) Cl· + ·CF₂Cl;  Cl· + O₃ → ClO· + O₂;  ClO· + O → Cl· + O₂`,
+      R`Ozone destruction by CFCs: CF₂Cl₂ → (UV) Cl· + ·CF₂Cl;  Cl· + O₃ → ClO· + O₂;  ClO· + O → Cl· + O₂`,
       R`Acid rain: 2SO₂ + O₂ + 2H₂O → 2H₂SO₄; 4NO₂ + O₂ + 2H₂O → 4HNO₃`,
-      R`Normal rain has pH ≈ 5.6 (dissolved CO₂); acid rain has pH < 5.6`,
-      R`Atom economy = \(\dfrac{\text{mass of desired product}}{\text{total mass of reactants}}\times100\%\)`
+      R`pH of normal and acid rain: Normal rain has pH ≈ 5.6 (dissolved CO₂); acid rain has pH < 5.6`,
+      R`Atom economy: Atom economy = \(\dfrac{\text{mass of desired product}}{\text{total mass of reactants}}\times100\%\)`
     ],
     examples: [
       { t: 0, level: 'Main', q: R`Compare classical smog and photochemical smog.`,
@@ -169,9 +169,9 @@
       { h: R`Point defects`, body: R`<b>Schottky</b>: equal numbers of cations and anions missing (NaCl); density falls. <b>Frenkel</b>: an ion (usually the smaller cation) moves into an interstitial site (AgCl, ZnS); density unchanged. AgBr shows both.` }
     ],
     formulas: [
-      R`Density \(\rho = \dfrac{Z\,M}{a^3N_A}\)`,
+      R`Density of a unit cell: Density \(\rho = \dfrac{Z\,M}{a^3N_A}\)`,
       R`bcc: \(r = \dfrac{\sqrt3}{4}a\); fcc: \(r = \dfrac{a}{2\sqrt2}\)`,
-      R`Packing efficiency = \(\dfrac{Z\cdot\frac43\pi r^3}{a^3}\times100\%\)`,
+      R`Packing efficiency: Packing efficiency = \(\dfrac{Z\cdot\frac43\pi r^3}{a^3}\times100\%\)`,
       R`Seven crystal systems, 14 Bravais lattices; cubic: \(a = b = c\), \(\alpha = \beta = \gamma = 90^\circ\)`
     ],
     examples: [
@@ -205,7 +205,7 @@
     ],
     formulas: [
       R`Freundlich: \(\dfrac xm = kP^{1/n}\) \((n \ge 1)\); \(\log\dfrac xm = \log k + \dfrac1n\log P\)`,
-      R`Adsorption is spontaneous with \(\Delta S < 0\), so \(\Delta H < 0\) (exothermic)`,
+      R`Thermodynamics of adsorption: Adsorption is spontaneous with \(\Delta S < 0\), so \(\Delta H < 0\) (exothermic)`,
       R`Hardy–Schulze (positive sol): [Fe(CN)₆]⁴⁻ > PO₄³⁻ > SO₄²⁻ > Cl⁻`
     ],
     examples: [
@@ -238,10 +238,10 @@
       { h: R`Electrolytic extraction`, body: R`Very reactive metals such as Al are extracted by electrolysis. In the Hall–Héroult process, alumina is dissolved in molten cryolite, which lowers the melting point and increases conductivity.` }
     ],
     formulas: [
-      R`\(\Delta G^\circ = \Delta H^\circ - T\Delta S^\circ\); \(\Delta G^\circ = -nFE^\circ\)`,
+      R`Ellingham and electrolytic relations: \(\Delta G^\circ = \Delta H^\circ - T\Delta S^\circ\); \(\Delta G^\circ = -nFE^\circ\)`,
       R`Blast furnace: Fe₂O₃ + 3CO → 2Fe + 3CO₂`,
       R`Copper: 2Cu₂O + Cu₂S → 6Cu + SO₂ (self-reduction)`,
-      R`4Au + 8CN⁻ + 2H₂O + O₂ → 4[Au(CN)₂]⁻ + 4OH⁻; 2[Au(CN)₂]⁻ + Zn → [Zn(CN)₄]²⁻ + 2Au`,
+      R`Cyanide process for gold: 4Au + 8CN⁻ + 2H₂O + O₂ → 4[Au(CN)₂]⁻ + 4OH⁻; 2[Au(CN)₂]⁻ + Zn → [Zn(CN)₄]²⁻ + 2Au`,
       R`Mond process: Ni + 4CO → Ni(CO)₄ (330–350 K), decomposed at 450–470 K`
     ],
     examples: [
@@ -276,10 +276,10 @@
       { h: R`Rubber`, body: R`Natural rubber is cis-1,4-polyisoprene. Heating it with sulphur (vulcanisation) forms cross-links, making it harder, more elastic and less sticky.` }
     ],
     formulas: [
-      R`n CH₂=CH₂ → –(CH₂–CH₂)ₙ– (polythene); n CF₂=CF₂ → Teflon; n CH₂=CHCl → PVC`,
+      R`Addition polymers: n CH₂=CH₂ → –(CH₂–CH₂)ₙ– (polythene); n CF₂=CF₂ → Teflon; n CH₂=CHCl → PVC`,
       R`Nylon-6,6: hexamethylenediamine + adipic acid, losing H₂O`,
-      R`Nylon-6 from caprolactam; Bakelite from phenol + formaldehyde`,
-      R`Degree of polymerisation = \(\dfrac{M_{polymer}}{M_{repeating\ unit}}\)`
+      R`Nylon-6 and Bakelite: Nylon-6 from caprolactam; Bakelite from phenol + formaldehyde`,
+      R`Degree of polymerisation: Degree of polymerisation = \(\dfrac{M_{polymer}}{M_{repeating\ unit}}\)`
     ],
     examples: [
       { t: 0, level: 'Main', q: R`Classify by intermolecular forces: Bakelite, PVC, nylon-6,6, natural rubber.`,

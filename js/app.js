@@ -184,6 +184,7 @@
     }).join('');
 
     return '<h1 class="sr-only">JEE Main and Advanced: Physics, Chemistry and Mathematics</h1>' +
+      '<a class="home-search" href="#/search">' + icon('search') + '<span>Search chapters, topics, formulas and examples</span><kbd>/</kbd></a>' +
       '<div class="subject-columns">' + columns + '</div>' +
       '<h2 class="section-title">Exam at a glance</h2>' +
       '<div class="card glass table-wrap"><table class="pattern">' +
@@ -259,7 +260,8 @@
     { id: 'theory', label: 'Theory', icon: 'book-open' },
     { id: 'examples', label: 'Examples', icon: 'pencil-line' },
     { id: 'practice', label: 'Practice', icon: 'target' },
-    { id: 'formulas', label: 'Formulas', icon: 'sigma' }
+    { id: 'formulas', label: 'Formulas', icon: 'sigma' },
+    { id: 'revise', label: 'Revise', icon: 'layers' }
   ];
 
   function levelBadge(level) {
@@ -418,8 +420,7 @@
 
   function theoryTab(s, ch, lesson, book, chNo) {
     if (book) {
-      return bookView(s, ch, book, chNo) + '<h2 class="tab-title">Quick revision</h2>' +
-        ch.concepts.map(function (c) { return '<div class="card concept"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>'; }).join('');
+      return bookView(s, ch, book, chNo) + '<h2 class="tab-title">Quick revision</h2>' + conceptCards(ch);
     }
     var learn = syllabusCard(s, ch, null);
 
@@ -439,18 +440,21 @@
       }).join('');
     }
 
-    var revision = '<h2 class="tab-title">' + (sections ? 'Quick revision' : 'Key concepts') + '</h2>' +
-      ch.concepts.map(function (c) { return '<div class="card concept"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>'; }).join('');
+    var revision = '<h2 class="tab-title">' + (sections ? 'Quick revision' : 'Key concepts') + '</h2>' + conceptCards(ch);
 
     return learn + sections + revision;
+  }
+  // Key-concept cards; the ids let search results jump straight to one.
+  function conceptCards(ch) {
+    return ch.concepts.map(function (c, k) { return '<div class="card concept" id="concept-' + (k + 1) + '"><h3>' + c.h + '</h3><p>' + c.body + '</p></div>'; }).join('');
   }
 
   function examplesTab(ch, lesson, focusTopic) {
     var list = chapterExamples(ch, lesson);
     return levelFilter(countLevels(list)) + '<div class="ex-list">' + list.map(function (ex, n) {
       var t = ch.syllabus.indexOf(ex.topic);
-      return '<div class="card example" data-level="' + ex.level + '" data-topic="' + t + '"' +
-        (focusTopic >= 0 && t === focusTopic && list.findIndex(function (e) { return e.topic === ex.topic; }) === n ? ' id="focus"' : '') + '>' +
+      var isFocus = focusTopic >= 0 && t === focusTopic && list.findIndex(function (e) { return e.topic === ex.topic; }) === n;
+      return '<div class="card example" data-level="' + ex.level + '" data-topic="' + t + '" id="' + (isFocus ? 'focus' : 'ex-' + (ex.i + 1)) + '">' +
         '<div class="ex-meta"><b>Example ' + (n + 1) + '</b>' + levelBadge(ex.level) + '<span class="ex-topic">' + ex.topic + '</span></div>' +
         '<div class="q">' + ex.q + '</div>' +
         '<details><summary>Show solution</summary><ol class="steps">' +
@@ -507,13 +511,168 @@
         '<div class="pq-list">' + order.map(function (qi) { return practiceQuestion(lesson.practice[qi], qi, a[qi]); }).join('') + '</div>';
     }
     return html + '<h2 class="tab-title">Short-answer questions</h2>' + ch.practice.map(function (pr, n) {
-      return '<div class="card example"><div class="q"><b>Q' + (n + 1) + '.</b> ' + pr.q + '</div>' +
+      return '<div class="card example" id="sa-' + (n + 1) + '"><div class="q"><b>Q' + (n + 1) + '.</b> ' + pr.q + '</div>' +
         '<details><summary>Show answer</summary><div class="ans">' + pr.ans + '</div></details></div>';
     }).join('');
   }
 
+  // Every formula starts with a short label: "Lens formula: \(...\)". The label is the text before the first
+  // ': ' outside \( \) and \[ \]; it heads the formula on the Formulas tab and is the front of its drill card.
+  function formulaParts(f) {
+    var depth = 0;
+    for (var i = 0; i < f.length - 1; i++) {
+      if (f[i] === '\\' && (f[i + 1] === '(' || f[i + 1] === '[')) { depth++; i++; continue; }
+      if (f[i] === '\\' && (f[i + 1] === ')' || f[i + 1] === ']')) { depth--; i++; continue; }
+      if (depth === 0 && i > 1 && f[i] === ':' && f[i + 1] === ' ') return { label: f.slice(0, i), body: f.slice(i + 2) };
+    }
+    return { label: '', body: f };
+  }
   function formulasTab(ch) {
-    return '<div class="formulas">' + ch.formulas.map(function (f) { return '<div class="formula">' + f + '</div>'; }).join('') + '</div>';
+    return '<div class="formulas">' + ch.formulas.map(function (f, k) {
+      var p = formulaParts(f);
+      return '<div class="formula" id="formula-' + (k + 1) + '">' + (p.label ? '<span class="f-label">' + p.label + '</span>' : '') +
+        '<span class="f-body">' + p.body + '</span></div>';
+    }).join('') + '</div>';
+  }
+
+  // ---------- Revise tab: flashcards and a formula drill ----------
+  // The flashcards are the chapter's quick checks (book and lesson) and its short-answer questions; the drill
+  // shows a formula's label and asks for the formula. Progress: { 'physics/kinematics': { <card key>: 'k' | 'r' } },
+  // 'k' = I knew it, 'r' = review again. The key is a hash of the question, so it survives edits elsewhere.
+  var cardState = load('jee-cards', {});
+  function hashText(t) {
+    t = strip(t).replace(/\s+/g, ' ').trim();
+    var h = 5381;
+    for (var i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0;
+    return (h >>> 0).toString(36);
+  }
+  function reviseDecks(s, ch, lesson, book) {
+    var cards = [], seen = {};
+    function add(q, a, src) {
+      var h = hashText(q);
+      if (seen[h]) return;
+      seen[h] = 1;
+      cards.push({ h: h, q: q, a: a, src: src });
+    }
+    if (book) book.sections.forEach(function (sec) { sec.blocks.forEach(function (b) { if (b && b.check) add(b.check.q, b.check.ans, sec.h); }); });
+    if (lesson && lesson.theory) lesson.theory.forEach(function (sec) { if (sec.check) add(sec.check.q, sec.check.ans, sec.h); });
+    ch.practice.forEach(function (p) { add(p.q, p.ans, 'Short-answer question'); });
+    var formulas = ch.formulas.map(function (f) {
+      var p = formulaParts(f);
+      return { h: 'f' + hashText(f), q: p.label || 'Formula', a: p.body, src: 'Formula' };
+    });
+    return { cards: cards, formulas: formulas };
+  }
+  function reviseTab(s, ch, lesson, book) {
+    var d = reviseDecks(s, ch, lesson, book);
+    return '<div class="revise" id="revise">' +
+      '<div class="rv-modes" role="group" aria-label="Choose a deck">' +
+        '<button class="chip active" data-deck="cards" aria-pressed="true">Flashcards <span>' + d.cards.length + '</span></button>' +
+        '<button class="chip" data-deck="formulas" aria-pressed="false">Formula drill <span>' + d.formulas.length + '</span></button></div>' +
+      '<div class="rv-score"></div><div class="rv-stage"></div>' +
+      '<p class="rv-keys">Keys: <kbd>Space</kbd> show answer · <kbd>K</kbd> I knew it · <kbd>R</kbd> review again · <kbd>←</kbd> <kbd>→</kbd> previous / next</p></div>';
+  }
+  var reviseKey = null;   // keyboard handler of the Revise tab on screen, if any
+  function bindRevise(s, id) {
+    var root = document.getElementById('revise');
+    reviseKey = null;
+    if (!root) return;
+    var key = s + '/' + id, f = findChapter(s, id);
+    var decks = reviseDecks(s, f.ch, LESSONS[key], BOOKS[key]);
+    var scoreEl = root.querySelector('.rv-score'), stage = root.querySelector('.rv-stage');
+    var st = { deck: 'cards', order: [], pos: 0, open: false, only: false, shuffle: false };
+    function marks() { return cardState[key] || {}; }
+    function start() {
+      var m = marks(), cards = decks[st.deck];
+      st.order = cards.map(function (c, i) { return i; }).filter(function (i) { return !st.only || m[cards[i].h] !== 'k'; });
+      if (st.shuffle) {
+        for (var i = st.order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = st.order[i]; st.order[i] = st.order[j]; st.order[j] = t; }
+      }
+      st.pos = 0; st.open = false;
+      draw();
+    }
+    function draw(scroll) {
+      var cards = decks[st.deck], m = marks(), known = 0, review = 0, isF = st.deck === 'formulas';
+      cards.forEach(function (c) { if (m[c.h] === 'k') known++; else if (m[c.h] === 'r') review++; });
+      var pct = cards.length ? Math.round(100 * known / cards.length) : 0;
+      scoreEl.innerHTML = '<div class="score-bar card glass rv-bar"><div class="score-ico">' + icon('layers') + '</div>' +
+        '<div class="score-text"><b>' + known + ' known</b> · ' + review + ' to review · ' + cards.length + ' cards' +
+        '<div class="progress"><div style="width:' + pct + '%"></div></div></div>' +
+        '<div class="rv-tools">' +
+          '<button class="btn rv-btn' + (st.shuffle ? ' on' : '') + '" data-rv="shuffle" aria-pressed="' + st.shuffle + '">' + icon('shuffle') + ' Shuffle</button>' +
+          '<button class="btn rv-btn' + (st.only ? ' on' : '') + '" data-rv="only" aria-pressed="' + st.only + '">' + icon('target') + ' Not known yet</button>' +
+          '<button class="btn rv-btn" data-rv="reset"' + (known + review ? '' : ' disabled') + '>' + icon('rotate-ccw') + ' Reset</button></div></div>';
+      var html;
+      if (!cards.length) {
+        html = '<div class="card rv-done"><p>This chapter has no ' + (isF ? 'formulas' : 'flashcards') + ' yet.</p></div>';
+      } else if (!st.order.length) {
+        html = '<div class="card rv-done"><h3>' + icon('trophy') + ' You know every card in this deck</h3>' +
+          '<p>Switch off <b>Not known yet</b> to go through all ' + cards.length + ' cards again.</p>' +
+          '<button class="btn primary" data-rv="all">Show all cards</button></div>';
+      } else if (st.pos >= st.order.length) {
+        html = '<div class="card rv-done"><h3>' + icon('trophy') + ' Round complete</h3>' +
+          '<p>' + known + ' of ' + cards.length + ' cards known' + (review ? ', ' + review + ' marked to review again' : '') + '.</p>' +
+          '<div class="rv-actions"><button class="btn" data-rv="again">' + icon('rotate-ccw') + ' Go through again</button>' +
+          (known < cards.length ? '<button class="btn primary" data-rv="focus">' + icon('target') + ' Only cards not known yet</button>' : '') + '</div></div>';
+      } else {
+        var c = cards[st.order[st.pos]], mk = m[c.h];
+        html = '<div class="card rv-card' + (isF ? ' rv-formula' : '') + (mk ? ' is-' + mk : '') + '">' +
+          '<div class="ex-meta"><b>Card ' + (st.pos + 1) + ' of ' + st.order.length + '</b>' +
+            (mk ? '<span class="rv-state ' + mk + '">' + (mk === 'k' ? 'Known' : 'Review again') + '</span>' : '') +
+            (isF ? '' : '<span class="ex-topic">' + c.src + '</span>') + '</div>' +
+          (isF ? '<div class="rv-prompt">Write down this formula, then check.</div>' : '') +
+          '<div class="rv-q">' + c.q + '</div>' +
+          (st.open ? '<div class="rv-a">' + c.a + '</div>' : '') +
+          '<div class="rv-actions">' + (st.open
+            ? '<button class="btn rv-again" data-rv="r">' + icon('rotate-ccw') + ' Review again</button><button class="btn rv-knew" data-rv="k">' + icon('check') + ' I knew it</button>'
+            : '<button class="btn primary" data-rv="show">Show answer</button>') + '</div>' +
+          '<div class="rv-nav"><button class="btn" data-rv="prev"' + (st.pos ? '' : ' disabled') + '>' + icon('arrow-left') + ' Previous</button>' +
+            '<button class="btn" data-rv="next">Skip ' + icon('arrow-right') + '</button></div></div>';
+      }
+      stage.innerHTML = html;
+      renderMath(root);
+      var card = stage.firstChild, top = card.getBoundingClientRect().top;
+      if (scroll && top < (document.querySelector('.topbar').offsetHeight + 60)) card.scrollIntoView({ block: 'start' });
+    }
+    function act(a) {
+      var cards = decks[st.deck];
+      if (a === 'show') { st.open = true; draw(); }
+      else if ((a === 'k' || a === 'r') && st.pos < st.order.length) {
+        if (!st.open) { st.open = true; draw(); return; }
+        cardState[key] = cardState[key] || {};
+        cardState[key][cards[st.order[st.pos]].h] = a;
+        save('jee-cards', cardState);
+        st.pos++; st.open = false; draw(true);
+      }
+      else if (a === 'next' && st.pos < st.order.length) { st.pos++; st.open = false; draw(true); }
+      else if (a === 'prev' && st.pos > 0) { st.pos--; st.open = false; draw(true); }
+      else if (a === 'shuffle') { st.shuffle = !st.shuffle; start(); }
+      else if (a === 'only' || a === 'focus' || a === 'all') { st.only = a === 'only' ? !st.only : a === 'focus'; start(); }
+      else if (a === 'again') start();
+      else if (a === 'reset') {
+        if (!confirm('Clear your progress on this deck?')) return;
+        cards.forEach(function (c) { if (cardState[key]) delete cardState[key][c.h]; });
+        save('jee-cards', cardState);
+        start();
+      }
+    }
+    root.addEventListener('click', function (e) {
+      var d = e.target.closest('[data-deck]'), b = e.target.closest('[data-rv]');
+      if (d) {
+        st.deck = d.getAttribute('data-deck');
+        root.querySelectorAll('[data-deck]').forEach(function (x) { x.classList.toggle('active', x === d); x.setAttribute('aria-pressed', x === d); });
+        start();
+      } else if (b && !b.disabled) act(b.getAttribute('data-rv'));
+    });
+    reviseKey = function (e) {
+      var k = e.key;
+      if (k === ' ' || k === 'Enter') { if (!st.open && st.pos < st.order.length) { e.preventDefault(); act('show'); } }
+      else if (k === 'k' || k === 'K') act('k');
+      else if (k === 'r' || k === 'R') act('r');
+      else if (k === 'ArrowRight') act('next');
+      else if (k === 'ArrowLeft') act('prev');
+    };
+    start();
   }
 
   // Left-hand index of every chapter: the current subject open, the other two folded, and the open chapter's
@@ -556,6 +715,7 @@
     var content = tab === 'examples' ? examplesTab(ch, lesson, focus)
       : tab === 'practice' ? practiceTab(s, ch, lesson)
       : tab === 'formulas' ? formulasTab(ch)
+      : tab === 'revise' ? reviseTab(s, ch, lesson, BOOKS[s + '/' + id])
       : theoryTab(s, ch, lesson, BOOKS[s + '/' + id], i + 1);
 
     return '<div class="ch-layout">' + sideIndex(s, id) + '<div class="ch-main">' +
@@ -600,6 +760,7 @@
     app.querySelectorAll('.ch-side a').forEach(function (a) { a.addEventListener('click', function () { setSide(false); }); });
     var pb = app.querySelector('.print-btn');
     if (pb) pb.addEventListener('click', function () { window.print(); });
+    bindRevise(s, id);
     app.querySelectorAll('.lvl-filter').forEach(function (bar) {
       bar.addEventListener('click', function (e) {
         var btn = e.target.closest('.chip');
@@ -686,34 +847,118 @@
     return '<h1>Page not found</h1><p><a href="#/">Go to the home page</a></p>';
   }
 
-  // ---------- search ----------
-  var index = null;
-  function buildIndex() {
-    index = [];
+  // ---------- site-wide search (#/search/<words>) ----------
+  // The index is built once, from data that is always loaded: chapter titles, outline topics and subtopics,
+  // syllabus topics, key concepts, formulas, solved examples and short-answer questions. Every word typed must
+  // match; hits are grouped by kind, and within a kind whole-word and title matches come first.
+  var KINDS = [
+    { id: 'chapter', label: 'Chapters' }, { id: 'topic', label: 'Topics' }, { id: 'concept', label: 'Key concepts' },
+    { id: 'formula', label: 'Formulas' }, { id: 'example', label: 'Solved examples' }, { id: 'short', label: 'Short-answer questions' }
+  ];
+  var SEARCH_SHOW = 12, SEARCH_MAX = 60;
+  function norm(t) {
+    t = strip(t).toLowerCase().replace(/&[a-z]+;/g, ' ')
+      .replace(/\\(?:text|mathrm|mathbf|operatorname|dfrac|tfrac|frac|left|right|quad|qquad|displaystyle)(?![a-z])/g, ' ');
+    try { t = t.normalize('NFD').replace(/[̀-ͯ]/g, ''); } catch (e) {}
+    try { t = t.replace(/[^\p{L}\p{N}]+/gu, ' '); } catch (e) { t = t.replace(/[\s.,;:!?()[\]{}'"‘’“”\-‐-―/\\^_=+*<>|~`]+/g, ' '); }
+    return ' ' + t.trim() + ' ';
+  }
+  var searchIndex = null;
+  function buildSearchIndex() {
+    var idx = [];
+    function add(kind, s, c, n, title, href, go, extra) {
+      idx.push({ kind: kind, s: s, c: c, n: n, title: title, href: href, go: go || '', head: norm(title), text: norm(title + ' ' + (extra || '')) });
+    }
     SUBJECTS.forEach(function (s) {
-      JEE[s].chapters.forEach(function (c) {
-        var text = [c.title].concat(c.syllabus, c.concepts.map(function (k) { return k.h; })).map(strip).join(' ').toLowerCase();
-        index.push({ s: s, c: c, text: text });
+      JEE[s].chapters.forEach(function (c, n) {
+        var base = '#/s/' + s + '/' + c.id, seen = {};
+        add('chapter', s, c, n, esc(c.title), base, '', JEE[s].name);
+        function topic(t, parent) {
+          var k = norm(t.name);
+          if (seen[k]) return;
+          seen[k] = 1;
+          var L = (t.s >= 0 || t.sec ? topicLink(s, c, t) : null) || (parent && topicLink(s, c, parent)) || { href: base + '/theory' };
+          add('topic', s, c, n, esc(t.name), L.href, L.go, parent ? parent.name : '');
+        }
+        outlineOf(s, c.id).forEach(function (t) { topic(t); t.sub.forEach(function (x) { topic(x, t); }); });
+        c.syllabus.forEach(function (t, k) {
+          if (!seen[norm(t)]) { seen[norm(t)] = 1; add('topic', s, c, n, t, base + '/examples/' + k); }
+        });
+        c.concepts.forEach(function (x, k) { add('concept', s, c, n, x.h, base + '/theory', 'concept-' + (k + 1), x.body); });
+        c.formulas.forEach(function (f, k) {
+          var p = formulaParts(f);
+          add('formula', s, c, n, (p.label ? '<b>' + p.label + '</b> ' : '') + p.body, base + '/formulas', 'formula-' + (k + 1));
+        });
+        c.examples.forEach(function (e, k) { add('example', s, c, n, e.q, base + '/examples', 'ex-' + (k + 1), e.topic + ' ' + e.ans); });
+        c.practice.forEach(function (p, k) { add('short', s, c, n, p.q, base + '/practice', 'sa-' + (k + 1), p.ans); });
       });
     });
+    return idx;
+  }
+  function searchHits(q) {
+    var words = norm(q).trim().split(' ').filter(Boolean), groups = {};
+    KINDS.forEach(function (k) { groups[k.id] = []; });
+    if (!words.length) return { words: words, groups: groups, total: 0 };
+    if (!searchIndex) searchIndex = buildSearchIndex();
+    var total = 0;
+    searchIndex.forEach(function (e, i) {
+      for (var w = 0; w < words.length; w++) if (e.text.indexOf(words[w]) === -1) return;
+      var score = 0;
+      words.forEach(function (w) {
+        if (e.text.indexOf(' ' + w) === -1) score += 2;         // only inside a longer word
+        if (e.head.indexOf(w) === -1) score += 1;               // not in the title itself
+      });
+      groups[e.kind].push({ e: e, score: score, i: i });
+      total++;
+    });
+    KINDS.forEach(function (k) { groups[k.id].sort(function (a, b) { return a.score - b.score || a.i - b.i; }); });
+    return { words: words, groups: groups, total: total };
+  }
+  function searchItem(e) {
+    return '<a class="sr-item" href="' + e.href + '"' + (e.go ? ' data-goto="' + e.go + '"' : '') + ' style="--c:' + COLORS[e.s] + '">' +
+      '<span class="sr-title">' + e.title + '</span>' +
+      '<span class="sr-ctx"><b>' + JEE[e.s].name + '</b> · Chapter ' + (e.n + 1) + (e.kind === 'chapter' ? '' : ' · ' + esc(e.c.title)) + '</span></a>';
+  }
+  function searchResults(q) {
+    var r = searchHits(q);
+    if (!r.words.length) return '';
+    if (!r.total) return '<p class="sr-none">Nothing matches every word of “' + esc(q.trim()) + '”. Try fewer or shorter words.</p>';
+    return '<p class="sr-count">' + r.total + ' result' + (r.total === 1 ? '' : 's') + '</p>' + KINDS.map(function (k) {
+      var list = r.groups[k.id];
+      if (!list.length) return '';
+      return '<section class="sr-group" data-kind="' + k.id + '"><h2>' + k.label + ' <small>' + list.length + '</small></h2><div class="sr-list">' +
+        list.slice(0, SEARCH_MAX).map(function (h, n) { return n < SEARCH_SHOW ? searchItem(h.e) : searchItem(h.e).replace('<a ', '<a hidden '); }).join('') + '</div>' +
+        (list.length > SEARCH_SHOW ? '<button type="button" class="btn sr-more" data-more="' + k.id + '">Show ' + (Math.min(list.length, SEARCH_MAX) - SEARCH_SHOW) + ' more</button>' : '') +
+        (list.length > SEARCH_MAX ? '<p class="sr-cap">Showing the first ' + SEARCH_MAX + '. Add another word to narrow it down.</p>' : '') +
+        '</section>';
+    }).join('');
+  }
+  function searchView(q) {
+    return '<div class="crumbs"><a href="#/">Home</a> › Search</div><h1>Search</h1>' +
+      '<div class="search-box">' + icon('search') +
+        '<input id="search" class="search" type="search" placeholder="Chapters, topics, formulas, examples…" aria-label="Search the site" autocomplete="off" spellcheck="false" value="' + esc(q) + '"></div>' +
+      '<p class="search-hint">Every word must match. Try <a href="#/search/Bernoulli">Bernoulli</a>, <a href="#/search/Hardy%20Schulze">Hardy Schulze</a> or <a href="#/search/Rolle">Rolle</a>.</p>' +
+      '<div id="results" class="results" aria-live="polite"></div>';
   }
   function bindSearch() {
-    var input = document.getElementById('search'), out = document.getElementById('results');
+    var input = document.getElementById('search'), out = document.getElementById('results'), timer;
     if (!input) return;
-    input.addEventListener('input', function () {
-      var q = input.value.trim().toLowerCase();
-      if (q.length < 2) { out.innerHTML = ''; return; }
-      if (!index) buildIndex();
-      var words = q.split(/\s+/);
-      var hits = index.filter(function (e) {
-        return words.every(function (w) { return e.text.indexOf(w) !== -1; });
-      }).slice(0, 10);
-      out.innerHTML = hits.length ? hits.map(function (h) {
-        var topic = h.c.syllabus.map(strip).filter(function (t) { return t.toLowerCase().indexOf(words[0]) !== -1; })[0];
-        return '<a href="#/s/' + h.s + '/' + h.c.id + '">' + esc(h.c.title) + ' <small>· ' + JEE[h.s].name +
-          (topic ? ' · ' + esc(topic) : '') + '</small></a>';
-      }).join('') : '<p style="color:var(--muted)">No chapters found.</p>';
+    function run() {
+      var v = input.value.trim(), url = '#/search' + (v ? '/' + encodeURIComponent(v) : '');
+      if (location.hash !== url) history.replaceState(null, '', url);
+      out.innerHTML = searchResults(v);
+      renderMath(out);
+    }
+    input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(run, 160); });
+    out.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-more]');
+      if (!b) return;
+      b.parentNode.querySelectorAll('.sr-item[hidden]').forEach(function (a) { a.hidden = false; });
+      b.remove();
     });
+    run();
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
   }
 
   // ---------- router ----------
@@ -731,6 +976,11 @@
     var html;
     if (parts.length === 0) html = homeView();
     else if (parts[0] === 'syllabus') html = syllabusView();
+    else if (parts[0] === 'search') {
+      var q = '';
+      try { q = decodeURIComponent(parts.slice(1).join('/')); } catch (e) { q = parts.slice(1).join('/'); }
+      html = searchView(q);
+    }
     else if (parts[0] === 's' && JEE[parts[1]] && !parts[2]) html = subjectView(parts[1]);
     else if (isChapter) html = chapterView(parts[1], parts[2], parts[3], parts[4] === undefined ? -1 : +parts[4]);
     else html = notFound();
@@ -743,7 +993,9 @@
 
     var focus = document.getElementById('focus'), pend = pendingGoto && document.getElementById(pendingGoto);
     pendingGoto = null;
+    reviseKey = null;
     if (pend) {
+      if (!pend.classList.contains('book-sec')) pend.classList.add('flash');
       pend.scrollIntoView({ block: 'start' });
     } else if (focus) {
       focus.classList.add('flash');
@@ -798,7 +1050,20 @@
     app.querySelectorAll('details[data-print-opened]').forEach(function (d) { d.open = false; d.removeAttribute('data-print-opened'); });
   });
 
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setSide(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setSide(false);
+    var t = e.target, typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+    if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
+    // "/" opens search from anywhere; the Revise tab has its own keys.
+    if (e.key === '/') {
+      e.preventDefault();
+      var box = document.getElementById('search');
+      if (box) box.focus(); else location.hash = '#/search';
+    } else if (reviseKey && document.getElementById('revise') && !(t && t.closest && t.closest('summary, a, .ch-side'))) {
+      if (e.key === ' ' || e.key === 'Enter') { if (t && t.tagName === 'BUTTON') return; }
+      reviseKey(e);
+    }
+  });
 
   // Links to a book section (contents card, syllabus topics, chapter index): scroll if the section is on this
   // page, otherwise let the link open the Theory tab and scroll there once it has rendered.

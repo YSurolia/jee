@@ -16,8 +16,8 @@ JEE.maths = {
         { h: R`Inverse`, body: R`\(f^{-1}\) exists only if \(f\) is a bijection (one-one and onto). To find it, swap \(x\) and \(y\) in \(y = f(x)\) and solve for \(y\).` }
       ],
       formulas: [
-        R`\(n(A\cup B) = n(A) + n(B) - n(A\cap B)\)`,
-        R`\(n(A\cup B\cup C) = \sum n(A) - \sum n(A\cap B) + n(A\cap B\cap C)\)`,
+        R`Union of two sets: \(n(A\cup B) = n(A) + n(B) - n(A\cap B)\)`,
+        R`Union of three sets: \(n(A\cup B\cup C) = \sum n(A) - \sum n(A\cap B) + n(A\cap B\cap C)\)`,
         R`De Morgan: \((A\cup B)' = A'\cap B'\), \((A\cap B)' = A'\cup B'\)`,
         R`Onto functions from an \(m\)-set to a 2-set: \(2^m - 2\)`
       ],
@@ -61,11 +61,11 @@ JEE.maths = {
         { h: R`Nature of roots`, body: R`For \(ax^2 + bx + c = 0\): if \(D = b^2 - 4ac > 0\), the roots are real and distinct; if \(D = 0\), they are equal; if \(D < 0\), they are complex conjugates.` }
       ],
       formulas: [
-        R`\(|z| = \sqrt{a^2 + b^2}\), \(z\bar z = |z|^2\), \(|z_1z_2| = |z_1||z_2|\)`,
-        R`\(\alpha + \beta = -\dfrac ba,\quad \alpha\beta = \dfrac ca\)`,
-        R`\(\alpha^2 + \beta^2 = (\alpha + \beta)^2 - 2\alpha\beta\)`,
+        R`Modulus and conjugate: \(|z| = \sqrt{a^2 + b^2}\), \(z\bar z = |z|^2\), \(|z_1z_2| = |z_1||z_2|\)`,
+        R`Sum and product of roots: \(\alpha + \beta = -\dfrac ba,\quad \alpha\beta = \dfrac ca\)`,
+        R`Sum of squares of roots: \(\alpha^2 + \beta^2 = (\alpha + \beta)^2 - 2\alpha\beta\)`,
         R`De Moivre: \((\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta\)`,
-        R`\(i^{4k} = 1,\ i^{4k+1} = i,\ i^{4k+2} = -1,\ i^{4k+3} = -i\)`
+        R`Powers of i: \(i^{4k} = 1,\ i^{4k+1} = i,\ i^{4k+2} = -1,\ i^{4k+3} = -i\)`
       ],
       examples: [
         { topic: R`Complex numbers as ordered pairs`, level: 'Main', q: R`Treating complex numbers as ordered pairs, find \((1, 2)\cdot(3, 4)\). Check it with \(a + ib\) form.`,
@@ -114,8 +114,8 @@ JEE.maths = {
       ],
       formulas: [
         R`For \(n\times n\) matrices: \(|kA| = k^n|A|\), \(|\text{adj}A| = |A|^{n-1}\), \(|A^{-1}| = \dfrac{1}{|A|}\)`,
-        R`\((AB)^{-1} = B^{-1}A^{-1}\), \((AB)^T = B^TA^T\)`,
-        R`Area of a triangle \(= \tfrac12\left|\begin{smallmatrix}x_1 & y_1 & 1\\ x_2 & y_2 & 1\\ x_3 & y_3 & 1\end{smallmatrix}\right|\)`,
+        R`Inverse and transpose of a product: \((AB)^{-1} = B^{-1}A^{-1}\), \((AB)^T = B^TA^T\)`,
+        R`Area of a triangle (determinant): Area of a triangle \(= \tfrac12\left|\begin{smallmatrix}x_1 & y_1 & 1\\ x_2 & y_2 & 1\\ x_3 & y_3 & 1\end{smallmatrix}\right|\)`,
         R`Cramer: \(x = \dfrac{\Delta_1}{\Delta}, y = \dfrac{\Delta_2}{\Delta}, z = \dfrac{\Delta_3}{\Delta}\)`
       ],
       examples: [
@@ -152,8 +152,8 @@ JEE.maths = {
         { h: R`Circular arrangements`, body: R`\(n\) different objects can be arranged in a circle in \((n - 1)!\) ways, or \(\dfrac{(n-1)!}{2}\) if clockwise and anticlockwise count as the same (as with a necklace).` }
       ],
       formulas: [
-        R`\({}^nP_r = \dfrac{n!}{(n - r)!},\quad {}^nC_r = \dfrac{n!}{r!(n - r)!}\)`,
-        R`\({}^nC_r = {^nC_{n-r}},\quad {}^nC_r + {^nC_{r-1}} = {^{n+1}C_r}\)`,
+        R`Permutations and combinations: \({}^nP_r = \dfrac{n!}{(n - r)!},\quad {}^nC_r = \dfrac{n!}{r!(n - r)!}\)`,
+        R`Properties of ⁿCᵣ: \({}^nC_r = {^nC_{n-r}},\quad {}^nC_r + {^nC_{r-1}} = {^{n+1}C_r}\)`,
         R`Diagonals of an \(n\)-gon: \(\dfrac{n(n - 3)}{2}\)`,
         R`Distributing \(n\) identical items among \(r\) people: \({}^{n+r-1}C_{r-1}\)`
       ],
@@ -188,8 +188,8 @@ JEE.maths = {
         { h: R`Sums of coefficients`, body: R`Put \(x = 1\) to get the sum of all coefficients. Put \(x = -1\) to get (sum of even-position coefficients) − (sum of odd-position coefficients).` }
       ],
       formulas: [
-        R`\((a + b)^n = \sum_{r=0}^{n}{^nC_r}\,a^{n-r}b^r\)`,
-        R`\(\sum {^nC_r} = 2^n,\quad {^nC_0} + {^nC_2} + \dots = 2^{n-1}\)`,
+        R`Binomial theorem: \((a + b)^n = \sum_{r=0}^{n}{^nC_r}\,a^{n-r}b^r\)`,
+        R`Sums of binomial coefficients: \(\sum {^nC_r} = 2^n,\quad {^nC_0} + {^nC_2} + \dots = 2^{n-1}\)`,
         R`Greatest coefficient: \({}^nC_{n/2}\) (\(n\) even)`
       ],
       examples: [
@@ -222,8 +222,8 @@ JEE.maths = {
       formulas: [
         R`AP: \(a_n = a + (n - 1)d\), \(S_n = \dfrac n2[2a + (n - 1)d]\)`,
         R`GP: \(a_n = ar^{n-1}\), \(S_n = \dfrac{a(r^n - 1)}{r - 1}\), \(S_\infty = \dfrac{a}{1 - r}\)`,
-        R`\(\sum n = \dfrac{n(n+1)}2,\ \sum n^2 = \dfrac{n(n+1)(2n+1)}{6},\ \sum n^3 = \left[\dfrac{n(n+1)}2\right]^2\)`,
-        R`AM ≥ GM ≥ HM; for two numbers, \(G^2 = AH\)`
+        R`Sums of powers of natural numbers: \(\sum n = \dfrac{n(n+1)}2,\ \sum n^2 = \dfrac{n(n+1)(2n+1)}{6},\ \sum n^3 = \left[\dfrac{n(n+1)}2\right]^2\)`,
+        R`AM, GM and HM: AM ≥ GM ≥ HM; for two numbers, \(G^2 = AH\)`
       ],
       examples: [
         { topic: R`Arithmetic progression & geometric progression`, level: 'Main', q: R`Find the sum \(1 + \dfrac12 + \dfrac14 + \dots\) to infinity.`,
@@ -253,10 +253,10 @@ JEE.maths = {
         { h: R`Principal values`, body: R`\(\sin^{-1}\) gives values in \([-\pi/2, \pi/2]\), \(\cos^{-1}\) in \([0, \pi]\) and \(\tan^{-1}\) in \((-\pi/2, \pi/2)\).` }
       ],
       formulas: [
-        R`\(\sin(A \pm B) = \sin A\cos B \pm \cos A\sin B\)`,
-        R`\(\cos2A = \cos^2A - \sin^2A = 1 - 2\sin^2A = 2\cos^2A - 1\)`,
-        R`\(\tan(A + B) = \dfrac{\tan A + \tan B}{1 - \tan A\tan B}\)`,
-        R`\(\sin^{-1}x + \cos^{-1}x = \dfrac\pi2\); \(\tan^{-1}x + \tan^{-1}y = \tan^{-1}\dfrac{x + y}{1 - xy}\) (\(xy < 1\))`,
+        R`sin(A ± B): \(\sin(A \pm B) = \sin A\cos B \pm \cos A\sin B\)`,
+        R`cos 2A: \(\cos2A = \cos^2A - \sin^2A = 1 - 2\sin^2A = 2\cos^2A - 1\)`,
+        R`tan(A + B): \(\tan(A + B) = \dfrac{\tan A + \tan B}{1 - \tan A\tan B}\)`,
+        R`Inverse trigonometric identities: \(\sin^{-1}x + \cos^{-1}x = \dfrac\pi2\); \(\tan^{-1}x + \tan^{-1}y = \tan^{-1}\dfrac{x + y}{1 - xy}\) (\(xy < 1\))`,
         R`Sine rule: \(\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}\); cosine rule: \(c^2 = a^2 + b^2 - 2ab\cos C\)`
       ],
       examples: [
@@ -287,9 +287,9 @@ JEE.maths = {
         { h: R`Maxima and minima`, body: R`Solve \(f'(x) = 0\) to find the critical points. If \(f'' < 0\) there, the point is a local maximum. If \(f'' > 0\), it is a local minimum.` }
       ],
       formulas: [
-        R`\(\displaystyle\lim_{x\to0}\frac{\sin x}{x} = 1,\ \lim_{x\to0}\frac{e^x - 1}{x} = 1,\ \lim_{x\to0}\frac{\ln(1 + x)}{x} = 1,\ \lim_{x\to a}\frac{x^n - a^n}{x - a} = na^{n-1}\)`,
+        R`Standard limits: \(\displaystyle\lim_{x\to0}\frac{\sin x}{x} = 1,\ \lim_{x\to0}\frac{e^x - 1}{x} = 1,\ \lim_{x\to0}\frac{\ln(1 + x)}{x} = 1,\ \lim_{x\to a}\frac{x^n - a^n}{x - a} = na^{n-1}\)`,
         R`\((uv)' = u'v + uv'\), \(\left(\dfrac uv\right)' = \dfrac{u'v - uv'}{v^2}\), chain rule: \(\dfrac{dy}{dx} = \dfrac{dy}{du}\dfrac{du}{dx}\)`,
-        R`\(\dfrac{d}{dx}\tan^{-1}x = \dfrac{1}{1 + x^2},\ \dfrac{d}{dx}\sin^{-1}x = \dfrac{1}{\sqrt{1 - x^2}}\)`,
+        R`Derivatives of inverse trig functions: \(\dfrac{d}{dx}\tan^{-1}x = \dfrac{1}{1 + x^2},\ \dfrac{d}{dx}\sin^{-1}x = \dfrac{1}{\sqrt{1 - x^2}}\)`,
         R`Tangent at \((x_1, y_1)\): \(y - y_1 = f'(x_1)(x - x_1)\)`
       ],
       examples: [
@@ -332,11 +332,11 @@ JEE.maths = {
         { h: R`Area between curves`, body: R`Area \(= \int_a^b [f(x) - g(x)]\,dx\), where \(f\) is the upper curve. The limits are where the curves meet.` }
       ],
       formulas: [
-        R`\(\int x^n dx = \dfrac{x^{n+1}}{n+1} + C\), \(\int\dfrac{dx}{x} = \ln|x| + C\)`,
-        R`\(\int\dfrac{dx}{x^2 + a^2} = \dfrac1a\tan^{-1}\dfrac xa + C\), \(\int\dfrac{dx}{\sqrt{a^2 - x^2}} = \sin^{-1}\dfrac xa + C\)`,
-        R`\(\int\dfrac{dx}{x^2 - a^2} = \dfrac{1}{2a}\ln\left|\dfrac{x - a}{x + a}\right| + C\)`,
-        R`\(\int e^x[f(x) + f'(x)]dx = e^xf(x) + C\)`,
-        R`\(\int_0^{\pi/2}\sin^n x\,dx = \int_0^{\pi/2}\cos^n x\,dx\)`
+        R`Power rule and 1/x: \(\int x^n dx = \dfrac{x^{n+1}}{n+1} + C\), \(\int\dfrac{dx}{x} = \ln|x| + C\)`,
+        R`Standard integrals (tan⁻¹ and sin⁻¹): \(\int\dfrac{dx}{x^2 + a^2} = \dfrac1a\tan^{-1}\dfrac xa + C\), \(\int\dfrac{dx}{\sqrt{a^2 - x^2}} = \sin^{-1}\dfrac xa + C\)`,
+        R`Standard integral 1/(x² − a²): \(\int\dfrac{dx}{x^2 - a^2} = \dfrac{1}{2a}\ln\left|\dfrac{x - a}{x + a}\right| + C\)`,
+        R`eˣ[f + f′] integral: \(\int e^x[f(x) + f'(x)]dx = e^xf(x) + C\)`,
+        R`Wallis-type property: \(\int_0^{\pi/2}\sin^n x\,dx = \int_0^{\pi/2}\cos^n x\,dx\)`
       ],
       examples: [
         { topic: R`Integral as an anti-derivative`, level: 'Main', q: R`Find \(f(x)\) if \(f'(x) = 3x^2 + 2\) and \(f(0) = 1\).`,
@@ -383,7 +383,7 @@ JEE.maths = {
       formulas: [
         R`Separable: \(\int g(y)\,dy = \int f(x)\,dx\)`,
         R`Linear: \(y\cdot\text{IF} = \int Q\cdot\text{IF}\,dx + C\), \(\text{IF} = e^{\int P\,dx}\)`,
-        R`The number of arbitrary constants in the general solution equals the order`
+        R`Order and arbitrary constants: The number of arbitrary constants in the general solution equals the order`
       ],
       examples: [
         { topic: R`Ordinary differential equations: order & degree`, level: 'Main', q: R`Find the order and degree of \(\left(\dfrac{d^2y}{dx^2}\right)^3 + \left(\dfrac{dy}{dx}\right)^2 + y = 0\).`,
@@ -496,10 +496,10 @@ JEE.maths = {
         { h: R`Scalar triple product`, body: R`\([\vec a\ \vec b\ \vec c] = \vec a\cdot(\vec b\times\vec c)\) is the volume of the parallelepiped. It is zero exactly when the three vectors are coplanar.` }
       ],
       formulas: [
-        R`\(\vec a\cdot\vec b = a_1b_1 + a_2b_2 + a_3b_3\)`,
-        R`\(\vec a\times\vec b = \begin{vmatrix}\hat i & \hat j & \hat k\\ a_1 & a_2 & a_3\\ b_1 & b_2 & b_3\end{vmatrix}\)`,
+        R`Dot product in components: \(\vec a\cdot\vec b = a_1b_1 + a_2b_2 + a_3b_3\)`,
+        R`Cross product as a determinant: \(\vec a\times\vec b = \begin{vmatrix}\hat i & \hat j & \hat k\\ a_1 & a_2 & a_3\\ b_1 & b_2 & b_3\end{vmatrix}\)`,
         R`Projection of \(\vec a\) on \(\vec b\): \(\dfrac{\vec a\cdot\vec b}{|\vec b|}\)`,
-        R`Area of a triangle \(= \tfrac12|\vec a\times\vec b|\)`
+        R`Area of a triangle (vectors): Area of a triangle \(= \tfrac12|\vec a\times\vec b|\)`
       ],
       examples: [
         { topic: R`Vectors & scalars`, level: 'Main', q: R`Sort into scalars and vectors: displacement, speed, work, force, time, momentum.`,
@@ -535,7 +535,7 @@ JEE.maths = {
         { h: R`Bayes' theorem`, body: R`Use it to work backwards: given that an outcome happened, find the probability that it came from a particular cause.` }
       ],
       formulas: [
-        R`\(P(A\cup B) = P(A) + P(B) - P(A\cap B)\)`,
+        R`Addition theorem: \(P(A\cup B) = P(A) + P(B) - P(A\cap B)\)`,
         R`Bayes: \(P(E_i|A) = \dfrac{P(E_i)P(A|E_i)}{\sum_j P(E_j)P(A|E_j)}\)`,
         R`Binomial: \(P(X = r) = {^nC_r}p^rq^{n-r}\), mean \(np\), variance \(npq\)`,
         R`Random variable: \(E(X) = \sum x_ip_i\), \(\text{Var}(X) = E(X^2) - [E(X)]^2\)`

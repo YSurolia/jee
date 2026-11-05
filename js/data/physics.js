@@ -20,7 +20,7 @@ JEE.physics = {
         R`If \(Z = A \pm B\): \(\Delta Z = \Delta A + \Delta B\)`,
         R`If \(Z = \dfrac{A^p B^q}{C^r}\): \(\dfrac{\Delta Z}{Z} = p\dfrac{\Delta A}{A} + q\dfrac{\Delta B}{B} + r\dfrac{\Delta C}{C}\)`,
         R`Unit conversion: \(n_2 = n_1\left[\dfrac{M_1}{M_2}\right]^a\left[\dfrac{L_1}{L_2}\right]^b\left[\dfrac{T_1}{T_2}\right]^c\)`,
-        R`\([G] = M^{-1}L^3T^{-2}\), \([h] = ML^2T^{-1}\), \([\text{Force}] = MLT^{-2}\), \([\text{Energy}] = ML^2T^{-2}\)`
+        R`Common dimensional formulas: \([G] = M^{-1}L^3T^{-2}\), \([h] = ML^2T^{-1}\), \([\text{Force}] = MLT^{-2}\), \([\text{Energy}] = ML^2T^{-2}\)`
       ],
       examples: [
         { topic: R`SI units`, level: 'Main', q: R`Express 1 kilowatt-hour (the "unit" on an electricity bill) in SI units of energy.`,
@@ -60,7 +60,7 @@ JEE.physics = {
         { h: R`Circular motion`, body: R`In uniform circular motion the speed is constant, but there is a centripetal acceleration \(v^2/r\) pointing toward the centre.` }
       ],
       formulas: [
-        R`\(v = u + at,\quad s = ut + \tfrac12 at^2,\quad v^2 = u^2 + 2as\)`,
+        R`Equations of motion (constant a): \(v = u + at,\quad s = ut + \tfrac12 at^2,\quad v^2 = u^2 + 2as\)`,
         R`Distance covered in the \(n^\text{th}\) second: \(s_n = u + \dfrac{a}{2}(2n-1)\)`,
         R`Projectile: \(T = \dfrac{2u\sin\theta}{g},\quad H = \dfrac{u^2\sin^2\theta}{2g},\quad R = \dfrac{u^2\sin2\theta}{g}\)`,
         R`Trajectory: \(y = x\tan\theta - \dfrac{gx^2}{2u^2\cos^2\theta}\)`,
@@ -113,7 +113,7 @@ JEE.physics = {
         { h: R`Circular motion`, body: R`Some real force must supply the centripetal force \(mv^2/r\): tension, friction, gravity or a component of the normal force (banking).` }
       ],
       formulas: [
-        R`\(\vec F = \dfrac{d\vec p}{dt} = m\vec a\), impulse \(J = F\Delta t = \Delta p\)`,
+        R`Newton's second law and impulse: \(\vec F = \dfrac{d\vec p}{dt} = m\vec a\), impulse \(J = F\Delta t = \Delta p\)`,
         R`Atwood machine: \(a = \dfrac{(m_1 - m_2)g}{m_1 + m_2},\quad T = \dfrac{2m_1m_2 g}{m_1 + m_2}\)`,
         R`Incline with friction (sliding down): \(a = g(\sin\theta - \mu\cos\theta)\)`,
         R`Maximum speed on a flat curve: \(v = \sqrt{\mu r g}\)`,
@@ -163,9 +163,9 @@ JEE.physics = {
         { h: R`Vertical circle`, body: R`To complete a vertical circle on a string, the speed at the lowest point must be at least \(\sqrt{5gR}\), and at the top at least \(\sqrt{gR}\).` }
       ],
       formulas: [
-        R`\(W = \vec F\cdot\vec s = Fs\cos\theta,\quad W = \int \vec F\cdot d\vec s\)`,
-        R`\(K = \tfrac12 mv^2 = \dfrac{p^2}{2m},\quad U_{spring} = \tfrac12 kx^2\)`,
-        R`\(P = \dfrac{dW}{dt} = \vec F\cdot\vec v\)`,
+        R`Work done by a force: \(W = \vec F\cdot\vec s = Fs\cos\theta,\quad W = \int \vec F\cdot d\vec s\)`,
+        R`Kinetic energy and spring PE: \(K = \tfrac12 mv^2 = \dfrac{p^2}{2m},\quad U_{spring} = \tfrac12 kx^2\)`,
+        R`Power: \(P = \dfrac{dW}{dt} = \vec F\cdot\vec v\)`,
         R`1D elastic collision: \(v_1 = \dfrac{(m_1 - m_2)u_1 + 2m_2u_2}{m_1 + m_2}\)`,
         R`KE lost in a perfectly inelastic collision: \(\Delta K = \dfrac{m_1m_2}{2(m_1 + m_2)}(u_1 - u_2)^2\)`
       ],
@@ -213,10 +213,10 @@ JEE.physics = {
         { h: R`Conservation of angular momentum`, body: R`If the net external torque is zero, \(I\omega\) is constant. A skater who pulls in their arms lowers \(I\) and spins faster.` }
       ],
       formulas: [
-        R`\(\tau = rF\sin\theta = I\alpha,\quad L = I\omega,\quad \tau = \dfrac{dL}{dt}\)`,
-        R`Ring \(MR^2\), disc \(\tfrac12MR^2\), solid sphere \(\tfrac25MR^2\), hollow sphere \(\tfrac23MR^2\), rod about its centre \(\tfrac1{12}ML^2\)`,
+        R`Torque and angular momentum: \(\tau = rF\sin\theta = I\alpha,\quad L = I\omega,\quad \tau = \dfrac{dL}{dt}\)`,
+        R`Moments of inertia of standard bodies: Ring \(MR^2\), disc \(\tfrac12MR^2\), solid sphere \(\tfrac25MR^2\), hollow sphere \(\tfrac23MR^2\), rod about its centre \(\tfrac1{12}ML^2\)`,
         R`Rolling down an incline: \(a = \dfrac{g\sin\theta}{1 + k^2/R^2},\quad v = \sqrt{\dfrac{2gh}{1 + k^2/R^2}}\)`,
-        R`\(K_{rot} = \tfrac12 I\omega^2\), \(P = \tau\omega\)`
+        R`Rotational KE and power: \(K_{rot} = \tfrac12 I\omega^2\), \(P = \tau\omega\)`
       ],
       examples: [
         { topic: R`Centre of mass of two-particle & rigid bodies`, level: 'Main', q: R`Masses of 2 kg at \(x = 0\) and 3 kg at \(x = 5\) m lie on the x-axis. Find their centre of mass.`,
@@ -261,10 +261,10 @@ JEE.physics = {
         { h: R`Satellite energies`, body: R`For a circular orbit: \(KE = \dfrac{GMm}{2r}\), \(PE = -\dfrac{GMm}{r}\), total \(E = -\dfrac{GMm}{2r}\). A negative total energy means the satellite is bound.` }
       ],
       formulas: [
-        R`\(F = \dfrac{Gm_1m_2}{r^2},\quad g = \dfrac{GM}{R^2}\)`,
-        R`\(g_h = \dfrac{g}{(1 + h/R)^2},\quad g_d = g\left(1 - \dfrac{d}{R}\right)\)`,
-        R`\(v_e = \sqrt{\dfrac{2GM}{R}} = \sqrt{2gR},\quad v_o = \sqrt{\dfrac{GM}{r}}\)`,
-        R`\(T = 2\pi\sqrt{\dfrac{r^3}{GM}},\quad V = -\dfrac{GM}{r},\quad U = -\dfrac{GMm}{r}\)`
+        R`Newton's law of gravitation and g: \(F = \dfrac{Gm_1m_2}{r^2},\quad g = \dfrac{GM}{R^2}\)`,
+        R`g at height h and depth d: \(g_h = \dfrac{g}{(1 + h/R)^2},\quad g_d = g\left(1 - \dfrac{d}{R}\right)\)`,
+        R`Escape and orbital speed: \(v_e = \sqrt{\dfrac{2GM}{R}} = \sqrt{2gR},\quad v_o = \sqrt{\dfrac{GM}{r}}\)`,
+        R`Orbital period, potential and PE: \(T = 2\pi\sqrt{\dfrac{r^3}{GM}},\quad V = -\dfrac{GM}{r},\quad U = -\dfrac{GMm}{r}\)`
       ],
       examples: [
         { topic: R`Universal law of gravitation`, level: 'Main', q: R`Masses \(m\) and \(4m\) are a distance \(d\) apart. Where between them is the net gravitational field zero?`,
@@ -304,7 +304,7 @@ JEE.physics = {
         { h: R`Heat transfer`, body: R`Conduction rate: \(\dfrac{dQ}{dt} = \dfrac{kA\Delta T}{L}\). Stefan's law: \(E = \sigma e A T^4\). Wien's law: \(\lambda_m T = b\). Newton's law of cooling: the cooling rate is proportional to \(T - T_0\).` }
       ],
       formulas: [
-        R`\(Y = \dfrac{FL}{A\Delta L},\quad B = -\dfrac{\Delta P}{\Delta V/V}\)`,
+        R`Young's and bulk modulus: \(Y = \dfrac{FL}{A\Delta L},\quad B = -\dfrac{\Delta P}{\Delta V/V}\)`,
         R`Stokes: \(F = 6\pi\eta r v\); terminal velocity \(v_t = \dfrac{2r^2(\rho - \sigma)g}{9\eta}\)`,
         R`Torricelli: \(v = \sqrt{2gh}\)`,
         R`Capillary rise: \(h = \dfrac{2T\cos\theta}{r\rho g}\)`,
@@ -359,7 +359,7 @@ JEE.physics = {
       formulas: [
         R`Isothermal work: \(W = nRT\ln\dfrac{V_2}{V_1}\)`,
         R`Adiabatic: \(PV^\gamma = \text{const},\quad W = \dfrac{P_1V_1 - P_2V_2}{\gamma - 1}\)`,
-        R`\(\Delta U = nC_v\Delta T,\quad C_p - C_v = R\)`,
+        R`ΔU of an ideal gas; Mayer's relation: \(\Delta U = nC_v\Delta T,\quad C_p - C_v = R\)`,
         R`Carnot: \(\eta = 1 - \dfrac{T_2}{T_1}\); refrigerator \(\text{COP} = \dfrac{T_2}{T_1 - T_2}\)`
       ],
       examples: [
@@ -399,10 +399,10 @@ JEE.physics = {
         { h: R`Molecular speeds`, body: R`\(v_{rms} > v_{avg} > v_{mp}\), in the ratio \(\sqrt3 : \sqrt{8/\pi} : \sqrt2\).` }
       ],
       formulas: [
-        R`\(PV = nRT = NkT,\quad P = \tfrac13\rho v_{rms}^2\)`,
-        R`\(v_{rms} = \sqrt{\dfrac{3RT}{M}},\quad v_{avg} = \sqrt{\dfrac{8RT}{\pi M}},\quad v_{mp} = \sqrt{\dfrac{2RT}{M}}\)`,
-        R`Average KE per molecule \(= \tfrac32kT\)`,
-        R`\(C_v = \dfrac{f}{2}R,\quad \gamma = 1 + \dfrac{2}{f}\)`,
+        R`Ideal gas and kinetic pressure: \(PV = nRT = NkT,\quad P = \tfrac13\rho v_{rms}^2\)`,
+        R`Molecular speeds: \(v_{rms} = \sqrt{\dfrac{3RT}{M}},\quad v_{avg} = \sqrt{\dfrac{8RT}{\pi M}},\quad v_{mp} = \sqrt{\dfrac{2RT}{M}}\)`,
+        R`Average KE of a molecule: Average KE per molecule \(= \tfrac32kT\)`,
+        R`Specific heat from degrees of freedom: \(C_v = \dfrac{f}{2}R,\quad \gamma = 1 + \dfrac{2}{f}\)`,
         R`Mean free path: \(\lambda = \dfrac{1}{\sqrt2\pi d^2 n}\)`
       ],
       examples: [
@@ -452,8 +452,8 @@ JEE.physics = {
         { h: R`Doppler effect`, body: R`When the source and observer approach each other, the observed frequency rises. When they move apart, it falls.` }
       ],
       formulas: [
-        R`\(\omega = \sqrt{k/m},\quad T = 2\pi\sqrt{m/k},\quad T_{pendulum} = 2\pi\sqrt{L/g}\)`,
-        R`\(v = \omega\sqrt{A^2 - x^2},\quad E = \tfrac12kA^2\)`,
+        R`SHM: spring and pendulum periods: \(\omega = \sqrt{k/m},\quad T = 2\pi\sqrt{m/k},\quad T_{pendulum} = 2\pi\sqrt{L/g}\)`,
+        R`SHM: speed and energy: \(v = \omega\sqrt{A^2 - x^2},\quad E = \tfrac12kA^2\)`,
         R`Wave on a string: \(v = \sqrt{T/\mu}\); sound: \(v = \sqrt{\gamma P/\rho}\)`,
         R`String / open pipe: \(f_n = \dfrac{nv}{2L}\); closed pipe: \(f_n = \dfrac{(2n-1)v}{4L}\)`,
         R`Doppler: \(f' = f\,\dfrac{v \pm v_o}{v \mp v_s}\)`
@@ -513,11 +513,11 @@ JEE.physics = {
         { h: R`Capacitors`, body: R`A dielectric of constant \(K\) multiplies the capacitance by \(K\). In series, \(1/C\) values add. In parallel, \(C\) values add.` }
       ],
       formulas: [
-        R`\(F = \dfrac{1}{4\pi\varepsilon_0}\dfrac{q_1q_2}{r^2},\quad E = \dfrac{kq}{r^2},\quad V = \dfrac{kq}{r}\)`,
+        R`Coulomb's law, field and potential of a point charge: \(F = \dfrac{1}{4\pi\varepsilon_0}\dfrac{q_1q_2}{r^2},\quad E = \dfrac{kq}{r^2},\quad V = \dfrac{kq}{r}\)`,
         R`Dipole: \(E_{axial} = \dfrac{2kp}{r^3},\ E_{eq} = \dfrac{kp}{r^3},\ \tau = pE\sin\theta\)`,
         R`Line charge: \(E = \dfrac{\lambda}{2\pi\varepsilon_0 r}\); infinite sheet: \(E = \dfrac{\sigma}{2\varepsilon_0}\)`,
-        R`\(C = \dfrac{K\varepsilon_0 A}{d},\quad U = \tfrac12CV^2 = \dfrac{Q^2}{2C}\)`,
-        R`\(E = -\dfrac{dV}{dr}\)`
+        R`Capacitance and stored energy: \(C = \dfrac{K\varepsilon_0 A}{d},\quad U = \tfrac12CV^2 = \dfrac{Q^2}{2C}\)`,
+        R`Field from potential: \(E = -\dfrac{dV}{dr}\)`
       ],
       examples: [
         { topic: R`Electric charges & conservation of charge`, level: 'Main', q: R`How many electrons must be removed from a neutral body to give it a charge of \(+1\,\mu\text{C}\)?`,
@@ -574,9 +574,9 @@ JEE.physics = {
         { h: R`Stretching a wire`, body: R`The volume stays the same. If the length becomes \(n\) times larger, the area becomes \(1/n\) times, so the resistance becomes \(n^2\) times.` }
       ],
       formulas: [
-        R`\(I = neAv_d,\quad R = \dfrac{\rho L}{A},\quad R_T = R_0(1 + \alpha\Delta T)\)`,
-        R`\(P = VI = I^2R = \dfrac{V^2}{R}\)`,
-        R`\(I = \dfrac{\varepsilon}{R + r},\quad V = \varepsilon - Ir\)`,
+        R`Current, resistance and temperature: \(I = neAv_d,\quad R = \dfrac{\rho L}{A},\quad R_T = R_0(1 + \alpha\Delta T)\)`,
+        R`Electric power: \(P = VI = I^2R = \dfrac{V^2}{R}\)`,
+        R`Cell with internal resistance: \(I = \dfrac{\varepsilon}{R + r},\quad V = \varepsilon - Ir\)`,
         R`Balanced Wheatstone bridge: \(\dfrac{P}{Q} = \dfrac{R}{S}\); metre bridge: \(\dfrac{X}{R} = \dfrac{l}{100 - l}\)`
       ],
       examples: [
@@ -636,8 +636,8 @@ JEE.physics = {
       ],
       formulas: [
         R`Straight wire: \(B = \dfrac{\mu_0 I}{2\pi r}\); centre of a loop: \(B = \dfrac{\mu_0 I}{2R}\); solenoid: \(B = \mu_0 n I\)`,
-        R`\(r = \dfrac{mv}{qB},\quad T = \dfrac{2\pi m}{qB}\)`,
-        R`\(\vec F = I\vec L\times\vec B,\quad \dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi d}\)`,
+        R`Charge in a magnetic field: radius and period: \(r = \dfrac{mv}{qB},\quad T = \dfrac{2\pi m}{qB}\)`,
+        R`Force on a current; parallel wires: \(\vec F = I\vec L\times\vec B,\quad \dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi d}\)`,
         R`Torque on a loop: \(\tau = NIAB\sin\theta = MB\sin\theta\)`
       ],
       examples: [
@@ -686,11 +686,11 @@ JEE.physics = {
         { h: R`Resonance`, body: R`When \(X_L = X_C\), the impedance is smallest (\(Z = R\)), the current is largest, and the power factor is 1.` }
       ],
       formulas: [
-        R`\(\varepsilon = -\dfrac{d\Phi}{dt}\); motional emf \(\varepsilon = Blv\)`,
-        R`\(L = \mu_0 n^2 A l,\quad U = \tfrac12 LI^2\)`,
-        R`\(V_{rms} = \dfrac{V_0}{\sqrt2},\quad X_L = \omega L,\quad X_C = \dfrac{1}{\omega C}\)`,
-        R`\(Z = \sqrt{R^2 + (X_L - X_C)^2},\quad \cos\phi = \dfrac{R}{Z}\)`,
-        R`\(f_0 = \dfrac{1}{2\pi\sqrt{LC}},\quad P = V_{rms}I_{rms}\cos\phi\)`,
+        R`Faraday's law and motional emf: \(\varepsilon = -\dfrac{d\Phi}{dt}\); motional emf \(\varepsilon = Blv\)`,
+        R`Solenoid inductance and stored energy: \(L = \mu_0 n^2 A l,\quad U = \tfrac12 LI^2\)`,
+        R`RMS value and reactances: \(V_{rms} = \dfrac{V_0}{\sqrt2},\quad X_L = \omega L,\quad X_C = \dfrac{1}{\omega C}\)`,
+        R`LCR impedance and power factor: \(Z = \sqrt{R^2 + (X_L - X_C)^2},\quad \cos\phi = \dfrac{R}{Z}\)`,
+        R`Resonance frequency and AC power: \(f_0 = \dfrac{1}{2\pi\sqrt{LC}},\quad P = V_{rms}I_{rms}\cos\phi\)`,
         R`Transformer: \(\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p} = \dfrac{I_p}{I_s}\)`
       ],
       examples: [
@@ -742,10 +742,10 @@ JEE.physics = {
         { h: R`Spectrum (increasing frequency)`, body: R`Radio → microwave → infrared → visible → UV → X-rays → gamma rays. Microwaves are used in radar and ovens, IR in remote controls, UV in sterilisation, and X-rays in medical imaging.` }
       ],
       formulas: [
-        R`\(c = \dfrac{1}{\sqrt{\mu_0\varepsilon_0}} = 3\times10^8\) m/s, \(c = f\lambda\)`,
-        R`\(\dfrac{E_0}{B_0} = c\)`,
+        R`Speed of EM waves: \(c = \dfrac{1}{\sqrt{\mu_0\varepsilon_0}} = 3\times10^8\) m/s, \(c = f\lambda\)`,
+        R`Ratio of E and B amplitudes: \(\dfrac{E_0}{B_0} = c\)`,
         R`Intensity: \(I = \tfrac12 c\,\varepsilon_0 E_0^2\)`,
-        R`\(I_d = \varepsilon_0\dfrac{d\Phi_E}{dt}\)`
+        R`Displacement current: \(I_d = \varepsilon_0\dfrac{d\Phi_E}{dt}\)`
       ],
       examples: [
         { topic: R`Displacement current`, level: 'Main', q: R`Between the plates (area 0.01 m²) of a charging capacitor, the field changes at \(10^{12}\) V/m per second. Find the displacement current.`,
@@ -779,11 +779,11 @@ JEE.physics = {
         { h: R`Polarisation`, body: R`Malus's law: \(I = I_0\cos^2\theta\). Unpolarised light loses half its intensity through a polaroid. Reflected light is fully polarised at Brewster's angle, where \(\tan i_B = n\).` }
       ],
       formulas: [
-        R`Mirror: \(\dfrac1v + \dfrac1u = \dfrac1f\); lens: \(\dfrac1v - \dfrac1u = \dfrac1f\)`,
+        R`Mirror and lens formulas: \(\dfrac1v + \dfrac1u = \dfrac1f\); lens: \(\dfrac1v - \dfrac1u = \dfrac1f\)`,
         R`Lensmaker: \(\dfrac1f = (n - 1)\left(\dfrac{1}{R_1} - \dfrac{1}{R_2}\right)\); \(P = \dfrac{1}{f(\text{m})}\)`,
         R`Prism: \(n = \dfrac{\sin\frac{A + \delta_m}{2}}{\sin\frac A2}\)`,
         R`YDSE: \(\beta = \dfrac{\lambda D}{d}\); single slit minima at \(a\sin\theta = n\lambda\)`,
-        R`\(I = I_1 + I_2 + 2\sqrt{I_1I_2}\cos\phi\)`
+        R`Intensity in interference: \(I = I_1 + I_2 + 2\sqrt{I_1I_2}\cos\phi\)`
       ],
       examples: [
         { topic: R`Reflection & refraction at plane and spherical surfaces`, level: 'Main', q: R`A coin lies at the bottom of 12 cm of water (\(n = 4/3\)). How deep does it appear when viewed from above?`,
@@ -838,7 +838,7 @@ JEE.physics = {
       ],
       formulas: [
         R`\(E = h\nu = \dfrac{hc}{\lambda}\); handy: \(E(\text{eV}) = \dfrac{1240}{\lambda(\text{nm})}\)`,
-        R`\(K_{max} = h\nu - \phi = eV_0\)`,
+        R`Einstein's photoelectric equation: \(K_{max} = h\nu - \phi = eV_0\)`,
         R`\(\lambda = \dfrac{h}{p} = \dfrac{h}{\sqrt{2mK}}\); electron: \(\lambda = \dfrac{1.227}{\sqrt V}\) nm`
       ],
       examples: [
@@ -878,11 +878,11 @@ JEE.physics = {
         { h: R`Radioactive decay`, body: R`Decay is random, but its rate is proportional to the number of nuclei present: \(N = N_0 e^{-\lambda t}\). After \(n\) half-lives, \(N = N_0/2^n\).` }
       ],
       formulas: [
-        R`\(E_n = -\dfrac{13.6Z^2}{n^2}\) eV, \(r_n = 0.529\dfrac{n^2}{Z}\) Å`,
-        R`\(\dfrac1\lambda = RZ^2\left(\dfrac1{n_1^2} - \dfrac1{n_2^2}\right)\)`,
-        R`\(R = R_0A^{1/3}\), \(R_0 \approx 1.2\) fm`,
-        R`\(T_{1/2} = \dfrac{0.693}{\lambda}\), mean life \(\tau = 1/\lambda\)`,
-        R`\(\Delta E = \Delta m\,c^2\), \(1\,\text{u} \equiv 931.5\) MeV`
+        R`Bohr model: energy and radius: \(E_n = -\dfrac{13.6Z^2}{n^2}\) eV, \(r_n = 0.529\dfrac{n^2}{Z}\) Å`,
+        R`Rydberg formula: \(\dfrac1\lambda = RZ^2\left(\dfrac1{n_1^2} - \dfrac1{n_2^2}\right)\)`,
+        R`Nuclear radius: \(R = R_0A^{1/3}\), \(R_0 \approx 1.2\) fm`,
+        R`Half-life and mean life: \(T_{1/2} = \dfrac{0.693}{\lambda}\), mean life \(\tau = 1/\lambda\)`,
+        R`Mass–energy equivalence: \(\Delta E = \Delta m\,c^2\), \(1\,\text{u} \equiv 931.5\) MeV`
       ],
       examples: [
         { topic: R`Alpha-particle scattering experiment`, level: 'Advanced', q: R`A 5 MeV alpha particle heads straight at a gold nucleus (\(Z = 79\)). Find the distance of closest approach.`,
@@ -966,8 +966,8 @@ JEE.physics = {
         { h: R`Metre bridge`, body: R`For best accuracy, the balance point should lie near the middle of the wire. Swap the two resistors and take the average of the two results to cancel end errors.` }
       ],
       formulas: [
-        R`Vernier LC \(= 1\,\text{MSD} - 1\,\text{VSD} = \dfrac{1\,\text{MSD}}{n}\) (when \(n\) VSD \(= (n-1)\) MSD)`,
-        R`Screw gauge LC \(= \dfrac{\text{pitch}}{\text{no. of circular divisions}}\)`,
+        R`Vernier least count: Vernier LC \(= 1\,\text{MSD} - 1\,\text{VSD} = \dfrac{1\,\text{MSD}}{n}\) (when \(n\) VSD \(= (n-1)\) MSD)`,
+        R`Screw gauge least count: Screw gauge LC \(= \dfrac{\text{pitch}}{\text{no. of circular divisions}}\)`,
         R`Pendulum: \(g = \dfrac{4\pi^2L}{T^2}\)`,
         R`Resonance tube: \(v = 2f(l_2 - l_1)\)`
       ],
